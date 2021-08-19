@@ -1,0 +1,14 @@
+/* 영역 볼수 있도록 임시로 border표시, 나중에 지울것 */
+.container *{
+    
+    border: 1px solid gray;
+}
+
+/* 본문 가로 길이 1200px 고정, 반응형 삭제  */
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}

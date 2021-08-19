@@ -1,0 +1,40 @@
+.container *{
+
+    border: 1px solid gray;
+
+}
+
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+
+.sideBarImgArea {
+
+    position: relative;
+    height: 300px;
+
+}
+
+.sideImg {
+
+    height: 200px;
+}
+
+.userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 40px;
+}
+
+.menuList {
+    height: 500px;
+}
