@@ -100,7 +100,7 @@
                     </figcaption>
                 </figure>
                 <br>
-                <div id="map" style="width:100%;height:100%;">dwaawd</div>
+                <div id="map" style="width:100%;height:100%;"></div>
 
                 <script type="text/javascript"
                         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36484ecb4bc45702e85b48b3ddeabe57"></script>
