@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: wj
@@ -34,7 +35,7 @@
 
 
     <!--Custom styles-->
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/login.css"/>">
 </head>
 <body>
 <div class="container">

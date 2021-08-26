@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -24,8 +25,8 @@
       rel="stylesheet">
 
 
-<link rel="stylesheet" href="../css/onlinetradingbuyer.css">
-<script src="../js/tradingbuyer.js"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/onlinetradingbuyer.css"/>">
+<script src="<c:url value="/resources/js/tradingbuyer.js"/>"></script>
 <body>
 <!--채팅 출처-->
 <!--https://dororongju.tistory.com/151-->

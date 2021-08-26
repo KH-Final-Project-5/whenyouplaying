@@ -26,7 +26,7 @@
 
 
 <link href="<c:url value="/resources/css/onlinetrade.css"/>" rel="stylesheet">
-<script src="../js/onlinetrade.js"></script>
+<script src="<c:url value="/resources/js/onlinetrade.js"/>"></script>
 <body>
 <div class="container">
     <div class="row">

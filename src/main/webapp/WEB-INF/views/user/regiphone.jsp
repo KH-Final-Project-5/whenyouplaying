@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: wj
@@ -31,8 +32,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet">
 
-<link rel="stylesheet" href="../css/regiphone.css">
-<script src="../js/regiphone.js"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/regiphone.css"/>">
+<script src="<c:url value="/resources/js/regiphone.js"/>"></script>
 
 <body>
 <div class="container">
