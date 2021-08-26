@@ -31,7 +31,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet">
 
-<link rel="stylesheet" href="resources/css/mainpage.css">
+<link rel="stylesheet" href="<c:url value="/resources/css/maing"/>">
+<%--<link rel="stylesheet" href="resources/css/mainpage.css">--%>
 <%--<link rel="stylesheet" href="../css/mainpage.css">--%>
 <body>
 <div class="container">
