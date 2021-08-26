@@ -35,7 +35,7 @@
 <div class="container">
     <div class="row">
         <div class="sellerCalender col-9">
-            캘린더가 들어갈 예정입니다.
+            캘린더가 들어갈 예정입니다. faew
         </div>
         <div class="col-3">
             <button class="btn btn-outline-primary" id="calenderUpdate">수정 완료</button>
