@@ -42,47 +42,48 @@
             <br><br>
             <button class="btn btn-outline-primary" id="closePop">닫기</button>
         </div>
-    </div>fwjapofjpowajfpojoewojfpawpo
-    <br>
-    <div class="row">
-        <div class="updateCalender col-9">
-            <form action="" method="post">
-                <label>
-                    <input type="checkbox" name="reservation_chk1" id="reservation_chk1">
-                    <label>예약 일정 선택</label>
-                    <label class="eventreservation1">* 선택하면 하루만 선택 가능합니다.</label>
-                </label>
-                <br>
-                <div class="inputdate">
-                    <input type="date" name="reserStartDate">
-                    <label class="inputEndDate" id="inputEndDate1">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="date" name="reserEndDate"></label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" class="btn btn-outline-dark" value="입력">
-                </div>
-            </form>
-            <hr class="hrClass1">
-            <br>
-            <form action="" method="post">
-                <label>
-                    <input type="checkbox" name="reservation_chk2" id="reservation_chk2">
-                    <label class="reservation"> 예약하기</label>
-                    <label class="eventreservation2">* 선택하면 하루만 선택 가능합니다.</label>
-                </label>
-                <br>
-                <input type="text" name="reserName" placeholder="예약자 이름" id="reserName">
-                <br>
-                <input type="date" name="reserStartDate">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <label class="inputEndDate" id="inputEndDate2">~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="date" name="reserEndDate">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="submit" class="btn btn-outline-dark" value="입력">
-            </form>
-        </div>
-        <div class="col-3"></div>
     </div>
+</div>
+<br>
+<div class="row">
+    <div class="updateCalender col-9">
+        <form action="" method="post">
+            <label>
+                <input type="checkbox" name="reservation_chk1" id="reservation_chk1">
+                <label>예약 일정 선택</label>
+                <label class="eventreservation1">* 선택하면 하루만 선택 가능합니다.</label>
+            </label>
+            <br>
+            <div class="inputdate">
+                <input type="date" name="reserStartDate">
+                <label class="inputEndDate" id="inputEndDate1">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="date" name="reserEndDate"></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" class="btn btn-outline-dark" value="입력">
+            </div>
+        </form>
+        <hr class="hrClass1">
+        <br>
+        <form action="" method="post">
+            <label>
+                <input type="checkbox" name="reservation_chk2" id="reservation_chk2">
+                <label class="reservation"> 예약하기</label>
+                <label class="eventreservation2">* 선택하면 하루만 선택 가능합니다.</label>
+            </label>
+            <br>
+            <input type="text" name="reserName" placeholder="예약자 이름" id="reserName">
+            <br>
+            <input type="date" name="reserStartDate">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label class="inputEndDate" id="inputEndDate2">~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="date" name="reserEndDate">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="submit" class="btn btn-outline-dark" value="입력">
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>
 </div>
 </body>
 </html>
