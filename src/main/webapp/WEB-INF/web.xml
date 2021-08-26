@@ -44,15 +44,15 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <filter>
+    <!--<filter>
         <filter-name>logFilter</filter-name>
-<!--        <filter-class>com.mvc.upgrade.common.filter.LogFilter</filter-class>-->
+        <filter-class>com.mvc.upgrade.common.filter.LogFilter</filter-class>
     </filter>
 
     <filter-mapping>
         <filter-name>logFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
 
 
 </web-app>

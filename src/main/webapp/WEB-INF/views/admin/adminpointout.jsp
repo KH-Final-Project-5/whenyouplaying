@@ -25,9 +25,15 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+
     <!-- css -->
-    <link rel="stylesheet" href="../../css/adminpointout.css" type="text/css">
-    <script src="../../js/adminpointout.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../css/adminpointout.css" type="text/css">
+    <script src="../js/adminpointout.js"></script>
 
 </head>
 <body>
@@ -54,46 +60,68 @@
 
             <div id="menuList">
                 <br>
-                <span class="menuText"><a>공지 사항</a></span><br><br>
-                <span class="menuText"><a>재능 기부 승인</a></span><br><br>
-                <span class="menuText"><a>신고 내역 확인</a></span><br><br>
-                <span class="menuText"><a>회원 목록 확인</a></span><br><br>
-                <span class="menuText"><a>기부 캐쉬 출금</a></span><br><br>
+                <span class="menuText"><a href="#">공지 사항</a></span><br><br>
+                <span class="menuText"><a href="#">재능 기부 승인</a></span><br><br>
+                <span class="menuText"><a href="#">신고 내역 확인</a></span><br><br>
+                <span class="menuText"><a href="#">회원 목록 확인</a></span><br><br>
+                <span class="menuText"><a href="#"><b><u>기부 캐쉬 출금</u></b></a></span><br><br>
             </div>
         </div>
         <div class="col-9">
             <br>
-            <h2 style="font-weight: bold">기부 포인트 출금</h2>
+            <div id="titleName"><h3>관리자 출금 관리</h3></div>
             <br><br>
             <form action="" method="post">
 
                 <div class="row">
                     <div class="col-9">
                         <div class="pointDiv">
-                            보유 포인트 : 300,000 Point<br><br>
-                            <select name="adminBank" id="adminBank-select">
-                                <option selected value="">은행</option>
-                                <option value="shinhan">신한은행</option>
-                                <option value="kbstar">국민은행</option>
-                                <option value="woori">우리은행</option>
-                                <option value="hana">하나은행</option>
-                                <option value="kakao">카카오뱅크</option>
-                                <option value="nh">농협은행</option>
-                            </select>
-                            <input type="text" name="adminoutbank"
-                                   id="adminOutBank" placeholder="계좌번호를 입력해주세요.(-제외)"
-                                   onkeypress="return checkNumber(event)">
+                            <div id="cashHave" class="shadow">
+                                <div id="cashHaveContentArea">
+                                    <div id="cashTitle">
+                                        보유중인 캐시
+                                    </div>
+                                    <div id="cashContent">
+                                        1000원
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br><br>
+                            <div id="selectAccount">
+                                계좌선택
+                                <div id="selectContent">
+                                    <style>
+                                        select:invalid {
+                                            color: gray;
+                                        }
+                                    </style>
+                                    <select name="bankName" class="accountInput" required>
+                                        <option value="" disabled selected>선택해주세요</option>
+                                        <option value="shinhan">신한은행</option>
+                                        <option value="kbstar">국민은행</option>
+                                        <option value="woori">우리은행</option>
+                                        <option value="hana">하나은행</option>
+                                        <option value="kakao">카카오뱅크</option>
+                                        <option value="nh">농협은행</option>
+                                    </select>
+                                    <input type="text" name="adminoutbank"
+                                           id="adminOutBank" placeholder="계좌번호를 입력해주세요.(-제외)"
+                                           onkeypress="return checkNumber(event)">
+                                    <hr style="margin: 3px;">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-3">
-                        <br><br>
-                        <input id="adminOutBtn" type="submit" value="기부">
+                        <br><br><br><br><br><br><br><br><br>
+                        <input id="adminOutBtn" class="btn btn-primary" type="submit" value="기부">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-9"></div>
                     <div class="col-3">
-                        <input id="adminResetBtn" type="button" value="초기화">
+                        <input id="adminResetBtn" class="btn btn-primary" type="button" value="초기화"
+                               onclick="location.reload();">
                     </div>
                 </div>
             </form>

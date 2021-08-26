@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <html>
 <head>
     <title>판매자 예약 관리</title>
@@ -18,9 +17,16 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../../css/reservation_seller.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet">
+
+
+<link rel="stylesheet" href="../css/reservation_seller.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../js/reservation_seller.js"></script>
+<script src="../js/reservation_seller.js"></script>
 <script>
 </script>
 
@@ -31,9 +37,9 @@
             캘린더가 들어갈 예정입니다.
         </div>
         <div class="col-3">
-            <button id="calenderUpdate">수정 완료</button>
+            <button class="btn btn-outline-primary" id="calenderUpdate">수정 완료</button>
             <br><br>
-            <button id="closePop">닫기</button>
+            <button class="btn btn-outline-primary" id="closePop">닫기</button>
         </div>
     </div>
     <br>
@@ -52,10 +58,10 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="date" name="reserEndDate"></label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="입력">
+                    <input type="submit" class="btn btn-outline-dark" value="입력">
                 </div>
             </form>
-            <hr>
+            <hr class="hrClass1">
             <br>
             <form action="" method="post">
                 <label>
@@ -71,7 +77,7 @@
                 <label class="inputEndDate" id="inputEndDate2">~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="date" name="reserEndDate">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="submit" value="입력">
+                <input type="submit" class="btn btn-outline-dark" value="입력">
             </form>
         </div>
         <div class="col-3"></div>

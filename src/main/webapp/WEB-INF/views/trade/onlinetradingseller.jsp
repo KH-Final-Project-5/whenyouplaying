@@ -1,6 +1,4 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <html>
 <head>
     <title>title</title>
@@ -19,15 +17,25 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../../css/onlinetradingseller.css">
-<script src="../../js/tradingseller.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet">
+
+
+<link rel="stylesheet" href="../css/onlinetradingseller.css">
+
+<script src="../js/tradingseller.js"></script>
 <body>
 <!--채팅 출처-->
 <!--https://dororongju.tistory.com/151-->
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <label id="tradingLabel">거래 진행 중</label><br><br><br>
+            <label id="tradingLabel">거래 진행 중</label><br>
+            <hr class="hrClass1">
+            <br>
         </div>
     </div>
     <div class="row">
@@ -65,9 +73,9 @@
 
         <div class="col-6">
             <form action="" method="post">
-                <input type="button" id="faceChatBtn" value="화상 채팅">
-                <input type="button" id="uploadBtn" value="업로드">
-                <input type="submit" id="contentBtn" value="설명 작성 완료">
+                <input type="button" class="btn btn-outline-dark" id="faceChatBtn" value="화상 채팅">
+                <input type="button" class="btn btn-outline-dark" id="uploadBtn" value="업로드">
+                <input type="submit" class="btn btn-outline-dark" id="contentBtn" value="설명 작성 완료">
                 <br>
                 <br>
                 <figure class="figure">
@@ -109,7 +117,7 @@
             </form>
         </div>
 
-        <div class="col-3">
+        <div class="col-3 tradeAllDiv">
             <div class="tradeDiv">
                 <table id="tradeTable">
                     <colgroup>
@@ -155,7 +163,7 @@
                     </tr>
                 </table>
                 <br>
-                <button type="button" id="sellCompBtn">기부 완료</button>
+                <button type="button" class="btn btn-outline-primary" id="sellCompBtn">기부 완료</button>
             </div>
         </div>
     </div>

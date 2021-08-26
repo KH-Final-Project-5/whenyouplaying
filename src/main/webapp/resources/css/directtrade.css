@@ -1,0 +1,148 @@
+.container *{
+    /*border: 1px solid gray;*/
+}
+
+.container{
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.shadow {
+
+    /*box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);*/
+}
+
+#payMentLabel{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.orderDiv {
+    margin-top: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.orderDiv {
+    height: 400px;
+}
+
+.hrClass1{
+    border: 0;
+    height: 2px;
+    background: #ccc;
+}
+
+#marginDiv {
+    /*border: 1px solid gray;*/
+    margin-left: 20px;
+}
+
+#orderLabel {
+    font-size: 25px;
+    font-weight: bold;
+}
+.orderContainsDiv {
+    margin-top: 30px;
+}
+
+#orderImg {
+    width: 200px;
+    height: 200px;
+}
+
+#titleA {
+    color: black;
+}
+
+#titleA:hover {
+    text-underline: black;
+}
+
+#titleA:visited {
+    color: black;
+}
+
+#titleLabel {
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#nameLabel {
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 100px;
+    font-weight: bold;
+    font-size: 20px;
+}
+#priceLabel {
+    float: right;
+    font-weight: bold;
+    font-size: 20px;
+}
+.myContentsDiv {
+    margin-left: 20px;
+}
+#myImformLabel {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.labelDiv {
+    /*margin-left: 15px;*/
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#marginDiv2 {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+#payBtn {
+    width: 200px;
+    display: block;
+    margin: auto;
+}
+#myInformTable tr{
+    height: 50px;
+}
+.nameClass {
+    padding-right: 15px;
+    text-align: right;
+}
+#orderTable {
+    margin-top: 30px;
+}
+#orderTable tr{
+    height: 50px;
+}
+#orderCheckLabel {
+    margin-left: 35px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.tradeName {
+    padding-left: 10px;
+}
+.tradeAddrInput {
+    width: 400px;
+    padding-left: 10px;
+}
+
+.tradePhone {
+    text-align: center;
+    width: 70px;
+}
+
+#directMapDiv {
+    height: 500px;
+}
