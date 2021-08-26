@@ -118,6 +118,27 @@
             <label class="mainRating">100개 평가</label>
         </div>
     </div>
+    <div id="map" style="width:100%;height:100%;">dwaawd</div>
+
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36484ecb4bc45702e85b48b3ddeabe57"></script>
+    <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+        map.setDraggable(false);
+
+        // 버튼 클릭에 따라 지도 이동 기능을 막거나 풀고 싶은 경우에는 map.setDraggable 함수를 사용합니다
+        function setDraggable() {
+            // 마우스 드래그로 지도 이동 가능여부를 설정합니다
+            map.setDraggable(false);
+        }
+    </script>
 </div>
 </body>
 </html>
