@@ -54,6 +54,7 @@
                 </label>
                 <br>
                 <div class="inputdate">
+                    김수 호 깃 처음써봄 ^^
                     <input type="date" name="reserStartDate">
                     <label class="inputEndDate" id="inputEndDate1">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
