@@ -34,7 +34,7 @@
     <!-- css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/adminpointout.css"/>">
-    <script src="../js/adminpointout.js"></script>
+    <script src="<c:url value="/resources/js/adminpointout.js"/>"></script>
 
 </head>
 <body>

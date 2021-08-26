@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -25,7 +26,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 
-<link href="../css/directtrade.css" rel="stylesheet">
+<link href="<c:url value="/resources/css/directtrade.css"/>" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function newAddr() {
