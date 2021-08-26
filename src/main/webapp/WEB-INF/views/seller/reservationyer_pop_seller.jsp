@@ -42,6 +42,9 @@
             <br><br>
             <button class="btn btn-outline-primary" id="closePop">닫기</button>
         </div>
+
+    </div>
+ㅂㅈㅇㅂㅈㄼㅈㄼㅈㄹㅈ
     </div>
     <br>
     <div class="row">
