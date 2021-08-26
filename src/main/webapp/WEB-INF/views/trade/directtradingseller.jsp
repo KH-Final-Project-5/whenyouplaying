@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -24,9 +25,9 @@
       rel="stylesheet">
 
 
-<link rel="stylesheet" href="../css/directtradingseller.css">
+<link rel="stylesheet" href="<c:url value="/resources/css/directtradingseller.css"/>">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../js/directtradingseller.js"></script>
+<script src="<c:url value="/resources/js/directtradingseller.js"/>"></script>
 <body>
 <!--채팅 출처-->
 <!--https://dororongju.tistory.com/151-->
