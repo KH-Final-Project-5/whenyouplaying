@@ -12,11 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class notificationDto {
-	
-	private int notino;
-	private String notititle;
-	private String noticontent;
-	private Date notidate;
-	private int notiviews;
+public class DibsDto {
+	private int diNo;
+	private Date diDate;
 }

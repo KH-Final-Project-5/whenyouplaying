@@ -1,6 +1,4 @@
 package com.dto;
-
-
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -13,12 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class withdrawDto {
-	
-	
-	
-	private int wino;
-	private int wicash;
-	private Date widate;
-	private String wistatus;
+public class ProjectImgDto {
+	private int prImgNo;
+	private String prImgSrc;
 }

@@ -11,9 +11,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class reservation_pDto {
+public class Reservation_PDto {
 	
-	private int rvno;
-	private Date rvstart;
-	private Date rvend;
+	private int rvNo;
+	private Date rvStart;
+	private Date rvEnd;
 }
