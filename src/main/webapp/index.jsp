@@ -35,8 +35,6 @@
 <%--css 가져오는 방법--%>
 <link rel="stylesheet" href="<c:url value="/resources/css/mainpage.css"/>">
 
-<%--<link rel="stylesheet" href="resources/css/mainpage.css">--%>
-<%--<link rel="stylesheet" href="../css/mainpage.css">--%>
 <body>
 <div class="container">
     <div class="row">
