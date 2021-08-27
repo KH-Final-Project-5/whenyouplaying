@@ -1,0 +1,517 @@
+CREATE SEQUENCE NotiSEQ nocache;
+CREATE SEQUENCE DIBSSEQ nocache;
+CREATE SEQUENCE ProjectSEQ nocache;
+CREATE SEQUENCE ChargeSEQ nocache;
+CREATE SEQUENCE UserSEQ nocache;
+CREATE SEQUENCE ReportSEQ nocache;
+CREATE SEQUENCE MessageSEQ nocache;
+CREATE SEQUENCE WithSEQ nocache;
+CREATE SEQUENCE AbilitySEQ nocache;
+CREATE SEQUENCE ReviewSEQ nocache;
+CREATE SEQUENCE ChatSEQ nocache;
+CREATE SEQUENCE DealSEQ nocache;
+CREATE SEQUENCE DealImgSEQ nocache;
+CREATE SEQUENCE RvSEQ nocache;
+CREATE SEQUENCE CalSEQ nocache;
+CREATE SEQUENCE ScSEQ nocache;
+CREATE SEQUENCE PrImgSEQ nocache;
+
+CREATE TABLE "Notification"
+(
+    "notiNo"      NUMBER         NOT NULL,
+    "usNo"        Number         NOT NULL,
+    "notiTitle"   VARCHAR2(100)  NULL,
+    "notiContent" VARCHAR2(2000) NULL,
+    "notiDate"    DATE           NULL,
+    "notiViews"   NUMBER         NULL
+);
+
+CREATE TABLE "DIBS"
+(
+    "diNo"     NUMBER NOT NULL,
+    "usNo"     Number NOT NULL,
+    "prNo"     NUMBER NOT NULL,
+    "WriterNo" Number NOT NULL,
+    "diDate"   DATE   NULL
+);
+
+CREATE TABLE "PROJECT"
+(
+    "prNo"        NUMBER         NOT NULL,
+    "usNo"        Number         NOT NULL,
+    "prTtitle"    VARCHAR2(100)  NULL,
+    "prContent"   VARCHAR2(100)  NULL,
+    "prPrice"     VARCHAR2(300)  NULL,
+    "prWriteDate" DATE           NULL,
+    "prTalent"    VARCHAR2(100)  NULL,
+    "prDeal"      VARCHAR2(50)   NULL,
+    "prYouTube"   VARCHAR2(100)  NULL,
+    "prImage"     VARCHAR2(2000) NULL,
+    "prDate"      DATE           NULL,
+    "prStatus"    VARCHAR2(2)    NULL,
+    "prLatitude"  VARCHAR2(2000) NULL,
+    "prLongitude" VARCHAR2(2000) NULL,
+    "prAddress"   VARCHAR2(1000) NULL
+);
+
+CREATE TABLE "CHARGEHISTORY"
+(
+    "chNo"     NUMBER        NOT NULL,
+    "usNo"     Number        NOT NULL,
+    "chCash"   NUMBER        NULL,
+    "chDate"   DATE          NULL,
+    "chStatus" VARCHAR2(200) NULL
+);
+
+CREATE TABLE "User"
+(
+    "usNo"     Number        NOT NULL,
+    "usID"     VARCHAR2(30)  NULL,
+    "usPW"     VARCHAR2(30)  NULL,
+    "usName"   VARCHAR2(30)  NULL,
+    "usPhone"  VARCHAR2(20)  NULL,
+    "usEmail"  VARCHAR2(100) NULL,
+    "usTalent" VARCHAR2(5)   NULL,
+    "usDate"   DATE          NULL,
+    "usStatus" VARCHAR2(3)   NULL,
+    "usRole"   VARCHAR2(50)  NULL,
+    "usCash"   NUMBER        NULL
+);
+
+CREATE TABLE "Report"
+(
+    "desNo"      NUMBER         NOT NULL,
+    "usNo"       Number         NOT NULL,
+    "prNo"       NUMBER         NOT NULL,
+    "usWriteNum" Number         NOT NULL,
+    "decReason"  VARCHAR2(100)  NULL,
+    "decContent" VARCHAR2(2000) NULL,
+    "decDate"    DATE           NULL
+);
+
+CREATE TABLE "Message"
+(
+    "mesNo"       Number        NOT NULL,
+    "usSendNo"    Number        NOT NULL,
+    "prNo"        NUMBER        NOT NULL,
+    "usNo"        Number        NOT NULL,
+    "mesContents" VARCHAR2(100) NULL
+);
+
+CREATE TABLE "WITHDRAW"
+(
+    "wiNo"     NUMBER        NOT NULL,
+    "usNo"     Number        NOT NULL,
+    "wiCash"   NUMBER        NULL,
+    "wiDate"   DATE          NULL,
+    "wiStatus" VARCHAR2(200) NULL
+);
+
+CREATE TABLE "ABILITY"
+(
+    "abNo"      NUMBER         NOT NULL,
+    "usNo"      Number         NOT NULL,
+    "abCate"    VARCHAR2(100)  NULL,
+    "abTitle"   VARCHAR2(100)  NULL,
+    "abContent" VARCHAR2(2000) NULL,
+    "abDate"    DATE           NULL,
+    "abStatus"  VARCHAR2(10)   NULL,
+    "abImg1"    VARCHAR2(2000) NULL,
+    "abImg2"    VARCHAR2(2000) NULL
+);
+
+CREATE TABLE "REVIEW"
+(
+    "rvNo"      NUMBER         NOT NULL,
+    "prNo"      NUMBER         NOT NULL,
+    "usNo"      Number         NOT NULL,
+    "rvContent" VARCHAR2(2000) NULL,
+    "rvDate"    DATE           NULL,
+    "rvGrade"   NUMBER         NULL
+);
+
+CREATE TABLE "Chat"
+(
+    "chatNum"       NUMBER        NOT NULL,
+    "dealNo"        NUMBER        NOT NULL,
+    "prNo"          NUMBER        NOT NULL,
+    "usSellNo"      Number        NOT NULL,
+    "usBuyNo"       Number        NOT NULL,
+    "chatStartDate" DATE          NULL,
+    "chatEndDate"   DATE          NULL,
+    "chatFile"      VARCHAR2(200) NULL
+);
+
+CREATE TABLE "DEALSTATUS"
+(
+    "dealNo"   NUMBER NOT NULL,
+    "prNo"     NUMBER NOT NULL,
+    "usSellNo" Number NOT NULL,
+    "usBuyNo"  Number NOT NULL
+);
+
+CREATE TABLE "DEALSTATUSIMG"
+(
+    "dealImgNo"      NUMBER         NOT NULL,
+    "dealNo"         NUMBER         NOT NULL,
+    "prNo"           NUMBER         NOT NULL,
+    "usSellNo"       Number         NOT NULL,
+    "usBuyNo"        Number         NOT NULL,
+    "dealImgSrc"     VARCHAR2(2000) NULL,
+    "dealImgContent" VARCHAR2(2000) NULL
+);
+
+CREATE TABLE "RESERVATION_P"
+(
+    "rvNo"    NUMBER NOT NULL,
+    "calNo"   NUMBER NOT NULL,
+    "prNo"    NUMBER NOT NULL,
+    "usNo"    Number NOT NULL,
+    "rvStart" DATE   NULL,
+    "rvEnd"   DATE   NULL
+);
+
+CREATE TABLE "CALENDAR"
+(
+    "calNo" NUMBER NOT NULL,
+    "prNo"  NUMBER NOT NULL,
+    "usNo"  Number NOT NULL
+);
+
+CREATE TABLE "SCHEDULE"
+(
+    "scNo"    NUMBER        NOT NULL,
+    "calNo"   NUMBER        NOT NULL,
+    "prNo"    NUMBER        NOT NULL,
+    "usNo"    Number        NOT NULL,
+    "scTitle" VARCHAR2(100) NULL,
+    "scStart" DATE          NULL,
+    "scEnd"   DATE          NULL
+);
+
+CREATE TABLE "PROJECTIMG"
+(
+    "prImgNo"  NUMBER         NOT NULL,
+    "prNo"     NUMBER         NOT NULL,
+    "usNo"     Number         NOT NULL,
+    "prImgSrc" VARCHAR2(2000) NULL
+);
+
+ALTER TABLE "Notification"
+    ADD CONSTRAINT "PK_NOTIFICATION" PRIMARY KEY (
+                                                  "notiNo",
+                                                  "usNo"
+        );
+
+ALTER TABLE "DIBS"
+    ADD CONSTRAINT "PK_DIBS" PRIMARY KEY (
+                                          "diNo",
+                                          "usNo",
+                                          "prNo",
+                                          "WriterNo"
+        );
+
+ALTER TABLE "PROJECT"
+    ADD CONSTRAINT "PK_PROJECT" PRIMARY KEY (
+                                             "prNo",
+                                             "usNo"
+        );
+
+ALTER TABLE "CHARGEHISTORY"
+    ADD CONSTRAINT "PK_CHARGEHISTORY" PRIMARY KEY (
+                                                   "chNo",
+                                                   "usNo"
+        );
+
+ALTER TABLE "User"
+    ADD CONSTRAINT "PK_USER" PRIMARY KEY (
+                                          "usNo"
+        );
+
+ALTER TABLE "Report"
+    ADD CONSTRAINT "PK_REPORT" PRIMARY KEY (
+                                            "desNo",
+                                            "usNo",
+                                            "prNo",
+                                            "usWriteNum"
+        );
+
+ALTER TABLE "Message"
+    ADD CONSTRAINT "PK_MESSAGE" PRIMARY KEY (
+                                             "mesNo",
+                                             "usSendNo",
+                                             "prNo",
+                                             "usNo"
+        );
+
+ALTER TABLE "WITHDRAW"
+    ADD CONSTRAINT "PK_WITHDRAW" PRIMARY KEY (
+                                              "wiNo",
+                                              "usNo"
+        );
+
+ALTER TABLE "ABILITY"
+    ADD CONSTRAINT "PK_ABILITY" PRIMARY KEY (
+                                             "abNo",
+                                             "usNo"
+        );
+
+ALTER TABLE "REVIEW"
+    ADD CONSTRAINT "PK_REVIEW" PRIMARY KEY (
+                                            "rvNo",
+                                            "prNo",
+                                            "usNo"
+        );
+
+ALTER TABLE "Chat"
+    ADD CONSTRAINT "PK_CHAT" PRIMARY KEY (
+                                          "chatNum",
+                                          "dealNo",
+                                          "prNo",
+                                          "usSellNo",
+                                          "usBuyNo"
+        );
+
+ALTER TABLE "DEALSTATUS"
+    ADD CONSTRAINT "PK_DEALSTATUS" PRIMARY KEY (
+                                                "dealNo",
+                                                "prNo",
+                                                "usSellNo",
+                                                "usBuyNo"
+        );
+
+ALTER TABLE "DEALSTATUSIMG"
+    ADD CONSTRAINT "PK_DEALSTATUSIMG" PRIMARY KEY (
+                                                   "dealImgNo",
+                                                   "dealNo",
+                                                   "prNo",
+                                                   "usSellNo",
+                                                   "usBuyNo"
+        );
+
+ALTER TABLE "RESERVATION_P"
+    ADD CONSTRAINT "PK_RESERVATION_P" PRIMARY KEY (
+                                                   "rvNo",
+                                                   "calNo",
+                                                   "prNo",
+                                                   "usNo"
+        );
+
+ALTER TABLE "CALENDAR"
+    ADD CONSTRAINT "PK_CALENDAR" PRIMARY KEY (
+                                              "calNo",
+                                              "prNo",
+                                              "usNo"
+        );
+
+ALTER TABLE "SCHEDULE"
+    ADD CONSTRAINT "PK_SCHEDULE" PRIMARY KEY (
+                                              "scNo",
+                                              "calNo",
+                                              "prNo",
+                                              "usNo"
+        );
+
+ALTER TABLE "PROJECTIMG"
+    ADD CONSTRAINT "PK_PROJECTIMG" PRIMARY KEY (
+                                                "prImgNo",
+                                                "prNo",
+                                                "usNo"
+        );
+
+ALTER TABLE "Notification"
+    ADD CONSTRAINT "FK_User_TO_Notification_1" FOREIGN KEY (
+                                                            "usNo"
+        )
+        REFERENCES "User" (
+                           "usNo"
+            );
+
+ALTER TABLE "DIBS"
+    ADD CONSTRAINT "FK_User_TO_DIBS_1" FOREIGN KEY (
+                                                    "usNo"
+        )
+        REFERENCES "User" (
+                           "usNo"
+            );
+
+ALTER TABLE "DIBS"
+    ADD CONSTRAINT "FK_PROJECT_TO_DIBS_1" FOREIGN KEY (
+                                                       "prNo",
+                                                       "WriterNo"
+        )
+        REFERENCES "PROJECT" (
+                              "prNo",
+                              "usNo"
+            );
+ALTER TABLE "PROJECT"
+    ADD CONSTRAINT "FK_User_TO_PROJECT_1" FOREIGN KEY (
+                                                       "usNo"
+        )
+        REFERENCES "User" (
+                           "usNo"
+            );
+
+ALTER TABLE "CHARGEHISTORY"
+    ADD CONSTRAINT "FK_User_TO_CHARGEHISTORY_1" FOREIGN KEY (
+                                                             "usNo"
+        )
+        REFERENCES "User" (
+                           "usNo"
+            );
+
+ALTER TABLE "Report"
+    ADD CONSTRAINT "FK_User_TO_Report_1" FOREIGN KEY (
+                                                      "usNo"
+        )
+        REFERENCES "User" (
+                           "usNo"
+            );
+
+ALTER TABLE "Report"
+    ADD CONSTRAINT "FK_PROJECT_TO_Report_1" FOREIGN KEY (
+                                                         "prNo",
+                                                         "usWriteNum"
+        )
+        REFERENCES "PROJECT" (
+                              "prNo",
+                              "usNo"
+            );
+
+
+ALTER TABLE "Message"
+    ADD CONSTRAINT "FK_User_TO_Message_1" FOREIGN KEY (
+                                                       "usSendNo"
+        )
+        REFERENCES "User" (
+                           "usNo"
+            );
+
+ALTER TABLE "Message"
+    ADD CONSTRAINT "FK_PROJECT_TO_Message_1" FOREIGN KEY (
+                                                          "prNo",
+                                                          "usNo"
+        )
+        REFERENCES "PROJECT" (
+                              "prNo",
+                              "usNo"
+            );
+
+ALTER TABLE "WITHDRAW"
+    ADD CONSTRAINT "FK_User_TO_WITHDRAW_1" FOREIGN KEY (
+                                                        "usNo"
+        )
+        REFERENCES "User" (
+                           "usNo"
+            );
+
+ALTER TABLE "ABILITY"
+    ADD CONSTRAINT "FK_User_TO_ABILITY_1" FOREIGN KEY (
+                                                       "usNo"
+        )
+        REFERENCES "User" (
+                           "usNo"
+            );
+
+ALTER TABLE "REVIEW"
+    ADD CONSTRAINT "FK_PROJECT_TO_REVIEW_1" FOREIGN KEY (
+                                                         "prNo",
+                                                         "usNo"
+        )
+        REFERENCES "PROJECT" (
+                              "prNo",
+                              "usNo"
+            );
+
+ALTER TABLE "Chat"
+    ADD CONSTRAINT "FK_DEALSTATUS_TO_Chat_1" FOREIGN KEY (
+                                                          "dealNo",
+                                                          "prNo",
+                                                          "usSellNo",
+                                                          "usBuyNo"
+        )
+        REFERENCES "DEALSTATUS" (
+                                 "dealNo",
+                                 "prNo",
+                                 "usSellNo",
+                                 "usBuyNo"
+            );
+
+ALTER TABLE "DEALSTATUS"
+    ADD CONSTRAINT "FK_PROJECT_TO_DEALSTATUS_1" FOREIGN KEY (
+                                                             "prNo",
+                                                             "usSellNo"
+        )
+        REFERENCES "PROJECT" (
+                              "prNo",
+                              "usNo"
+            );
+
+ALTER TABLE "DEALSTATUS"
+    ADD CONSTRAINT "FK_User_TO_DEALSTATUS_1" FOREIGN KEY (
+                                                          "usBuyNo"
+        )
+        REFERENCES "User" (
+                           "usNo"
+            );
+
+ALTER TABLE "DEALSTATUSIMG"
+    ADD CONSTRAINT "FK_DEALSTATUSIMG_1" FOREIGN KEY (
+                                                     "dealNo",
+                                                     "prNo",
+                                                     "usSellNo",
+                                                     "usBuyNo"
+        )
+        REFERENCES "DEALSTATUS" (
+                                 "dealNo",
+                                 "prNo",
+                                 "usSellNo",
+                                 "usBuyNo"
+            );
+
+
+ALTER TABLE "RESERVATION_P"
+    ADD CONSTRAINT "FK_CALENDAR_TO_RESERVATION_P_1" FOREIGN KEY (
+                                                                 "calNo",
+                                                                 "prNo",
+                                                                 "usNo"
+        )
+        REFERENCES "CALENDAR" (
+                               "calNo",
+                               "prNo",
+                               "usNo"
+            );
+
+
+ALTER TABLE "CALENDAR"
+    ADD CONSTRAINT "FK_PROJECT_TO_CALENDAR_1" FOREIGN KEY (
+                                                           "prNo",
+                                                           "usNo"
+        )
+        REFERENCES "PROJECT" (
+                              "prNo",
+                              "usNo"
+            );
+
+ALTER TABLE "SCHEDULE"
+    ADD CONSTRAINT "FK_CALENDAR_TO_SCHEDULE_1" FOREIGN KEY (
+                                                            "calNo",
+                                                            "prNo",
+                                                            "usNo"
+        )
+        REFERENCES "CALENDAR" (
+                               "calNo",
+                               "prNo",
+                               "usNo"
+            );
+
+
+ALTER TABLE "PROJECTIMG"
+    ADD CONSTRAINT "FK_PROJECT_TO_PROJECTIMG_1" FOREIGN KEY (
+                                                             "prNo",
+                                                             "usNo"
+        )
+        REFERENCES "PROJECT" (
+                              "prNo",
+                              "usNo"
+            );
