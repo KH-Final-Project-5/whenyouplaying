@@ -1,0 +1,71 @@
+#msgList{
+    
+
+    margin-top: 100px;
+    
+    border:1px solid black;
+}
+
+.msgContent{
+    
+    padding : 30px 30px;
+}
+
+#msgContent{
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+#msgContent2{
+    border-bottom: 1px solid black;
+}
+.msgContent2{
+    
+    padding : 30px 30px 30px 30px;
+   
+}
+
+#msgListTable{
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.msgListTh{
+    background-color: #d6d8db;
+}
+
+#footerArea{
+    margin-top: 100px;
+}
+
+.msgButton{
+    margin-top: 20px;
+    margin-left: 905px;
+    margin-bottom: 20px;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#msgChkHead{
+    
+    text-align: center;
+    font-size: 40px;
+}
+
+.container{
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.nbsp-th{
+    border-right: white 1px solid; 
+    border-left: 1px white solid;
+}
+
+.nbsp-td{
+    border-right: 1px solid white;
+}
