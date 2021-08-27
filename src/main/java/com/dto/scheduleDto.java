@@ -5,17 +5,15 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import lombok.Setter;
-
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class chargeHistoryDto {
-	private int chno;
-	private int chcash;
-	private Date chdate;
-	private String chstatus;
+public class scheduleDto {
+	private int scno;
+	private String sctitle;
+	private Date scstart;
+	private Date scend;
 }
