@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:include page="WEB-INF/views/header/header.jsp" flush="true"/>
 
 <html>
 <head>
@@ -37,7 +38,6 @@
 
 <body>
 <div class="container">
-	gittest
     <div class="row">
         <h2>최신순</h2>
     </div>
@@ -118,7 +118,6 @@
             <label class="mainRating">100개 평가</label>
         </div>
     </div>
-   
-
+</div>
 </body>
 </html>
