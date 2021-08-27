@@ -30,7 +30,8 @@
         
             <div class="col-10">
                 <div class="row">
-                    <img src="../image/question.PNG" class="question-img"> <h3 class="search-head">아이디 찾기</h3>   
+                <img src="<c:url value="/resources/questionImg/question.PNG"/>"  class="search-head">
+                     <h3 class="search-head">아이디 찾기</h3>   
                 </div>
 
                
@@ -48,7 +49,7 @@
             </form> 
                 
                 <div class="row">
-                    <img src="../image/question.PNG" class="question-img"> <h3 class="search-head">비밀번호 찾기</h3>   
+                    <img src="<c:url value="/resources/questionImg/question.PNG"/>"  class="search-head"> <h3 class="search-head">비밀번호 찾기</h3>   
                 </div>
             <form action="#" method="#">
                
