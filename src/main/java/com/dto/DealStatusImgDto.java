@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DealStatusImg {
+public class DealStatusImgDto {
 
 	private int dealImgNo;
 	private String dealImgSrc;
