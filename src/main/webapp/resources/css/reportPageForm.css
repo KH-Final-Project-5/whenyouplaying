@@ -1,0 +1,97 @@
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#reportArea{
+    width: 550px;
+    height: 500px;
+    border: solid 1px lightgray;
+}
+
+#title{
+    background-color: lightgray;
+    height: 35px;
+}
+
+#titleFont{
+    font-size: 20px;
+    margin-top: 5px;
+    
+}
+
+#titleLine {
+    margin: 0px;
+    color: black;
+}
+
+.shadow {
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#contentArea{
+    
+    position: relative;
+    height: 465px;
+    padding: 30px ;
+    
+}
+
+#contentTitle{
+
+    height: 70px;
+   
+
+}
+
+.textcss{
+    padding-top: 5px;
+    border: none;
+
+}
+
+#middleHr{
+    margin-top: 10px;
+    margin-bottom: 7px;
+}
+
+#textCssContent{
+    border: none;
+    padding-top: 5px;
+    width: 370px;
+}
+
+.radioFont{
+    font-size: 13px;
+}
+
+#radioArea{
+  
+    position: absolute;
+    left: 90px;
+    top: 150px;
+
+}
+
+#textArea{
+
+    position: absolute;
+    left: 70px;
+    top: 90px;
+}
+
+#textbox{
+    resize: none;
+}
+
+.form-check-input{
+
+    margin-bottom: 10px;
+}
+
+#submitArea{
+
+    position: absolute;
+    top: 410px;
+    left: 200px;
+}

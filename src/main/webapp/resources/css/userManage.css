@@ -1,0 +1,137 @@
+
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+/*시작*/
+#sideBarImgArea {
+
+    position: relative;
+    height: 170px;
+
+}
+
+#sideImg {
+
+    height: 100px;
+}
+
+#userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#menuList {
+
+    text-align: center;
+}
+
+
+#pageName {
+
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.menuText {
+
+    font-size: 20px;
+    
+}
+
+#adminImg {
+    display: block;
+    margin: auto;
+    height: 100px;
+}
+
+a {
+    color: black;
+    
+}
+
+a:hover{
+    color: black;
+    text-decoration: none;
+
+}
+
+h3{
+    font-weight: bold;
+}
+
+#titleName {
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top:30px;
+}
+
+/*끝*/
+
+#tableArea{
+    position: relative;
+    top: 60px;
+}
+
+#search{
+    
+    position: relative;
+    top: 50px;
+    text-align: right;
+}
+
+#searchInput{
+    
+    position: relative;
+    top: 3px;
+    width: 100px;
+    
+}
+
+#table{
+    width: 870px;
+}
+
+
+th{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+#lastTh{
+    width: 53px;
+    
+}
+
+#pagingArea{
+
+    position: relative;
+    top: 450px;
+    left: 330px;
+    
+}
+
+.line{
+    border-top: 1px solid black;
+}
+

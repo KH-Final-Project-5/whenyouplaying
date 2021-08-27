@@ -1,0 +1,161 @@
+
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+/*시작*/
+#sideBarImgArea {
+
+    position: relative;
+    height: 170px;
+
+}
+
+#sideImg {
+
+    height: 100px;
+}
+
+#userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#menuList {
+
+    text-align: center;
+}
+
+
+#pageName {
+
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.menuText {
+
+    font-size: 20px;
+    
+}
+
+#adminImg {
+    display: block;
+    margin: auto;
+    height: 100px;
+}
+
+a {
+    color: black;
+    
+}
+
+a:hover{
+    color: black;
+    text-decoration: none;
+
+}
+
+h3{
+    font-weight: bold;
+}
+
+#titleName {
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top:30px;
+}
+
+/*끝*/
+
+#tableArea{
+    position: relative;
+    top: 40px;
+}
+
+.selectInput{
+    border: none;
+    width: 70px;
+}
+
+#selectContent{
+    border-bottom: 1px solid black;
+    text-align: right;
+    margin-bottom: 3px;
+    width: 70px;
+    float: right;
+}
+
+
+#table{
+    width: 870px;
+}
+
+
+th{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+
+
+#pagingArea{
+
+    position: relative;
+    top: 450px;
+    left: 330px;
+    
+}
+
+#selectArea{
+    float: right;
+}
+
+#select{
+    
+    font-size: 15px
+}
+
+#projectName{
+    width: 200x;
+}
+
+#cancel{
+    width: 120px;
+}
+
+#seller{
+    width: 60px;
+}
+
+#date{
+    width: 150px;
+}
+
+#no{
+    width: 50px;
+}
+
+.line{
+    border-top: 1px solid black;
+}

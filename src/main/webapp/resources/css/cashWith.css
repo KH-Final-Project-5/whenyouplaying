@@ -1,0 +1,175 @@
+/*
+.container *{
+
+    border: 1px solid gray;
+}
+*/
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*시작*/
+#sideBarImgArea {
+
+    position: relative;
+    height: 170px;
+
+}
+
+#sideImg {
+
+    height: 100px;
+}
+
+#userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#menuList {
+
+    text-align: center;
+}
+
+
+#pageName {
+
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.menuText {
+
+    font-size: 20px;
+    
+}
+
+#adminImg {
+    display: block;
+    margin: auto;
+    height: 100px;
+}
+/*끝*/
+
+
+#cashHave{
+    height: 150px;
+    width: 250px;
+    padding: 25px;
+    background-color: lightgray;
+    position: relative;
+    top: 50px;
+
+}
+
+h3{
+    font-weight: bold;
+}
+
+#titleName {
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top:30px;
+}
+
+#cashHaveContentArea{
+    
+    height: 100px;
+}
+
+#cashTitle{
+
+    text-align: center;
+    font-size: 20px;
+    margin-top: 15px;
+
+}
+
+#cashContent{
+    
+    text-align: right;
+    font-size: 25px;
+    margin-top: 25px;
+    background-color: white;
+}
+
+.shadow {
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#contentTitle2{
+
+    margin-top: 20px;
+    font-size: 20px;
+    position: relative;
+    top: 60px;
+}
+
+#line2{
+    margin-top: 60px;
+}
+
+#selectAccount{
+
+    margin-top: 20px;
+    margin-left: 30px;
+    height: 100px;
+    width: 310px;
+    position: relative;
+}
+
+#selectContent{
+
+    margin-top: 10px;
+    margin-left: 10px;
+}   
+
+.accountInput{
+    border: none;
+    width: 300px;
+}
+
+#submitButton{
+    position: relative;
+    left: 330px;
+    top: -30px;
+}
+
+#noticeArea{
+    
+    margin-top: 30px;
+    border: 1px solid black;
+    height: 300px;
+}
+
+.line{
+    border-top: 1px solid black;
+}
+
+a {
+    color: black;
+    
+}
+
+a:hover{
+    color: black;
+    text-decoration: none;
+
+}

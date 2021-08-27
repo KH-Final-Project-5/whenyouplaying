@@ -1,0 +1,119 @@
+/* 영역 볼수 있도록 임시로 border표시, 나중에 지울것*/
+
+/*
+.container *{
+    
+    border: 1px solid gray;
+}
+*/
+
+/* 본문 가로 길이 1200px 고정, 반응형 삭제  */
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#productImg {
+
+    border: 1px solid black;
+    text-align: center;
+    height: 330px;
+}
+
+#dealContentArea {
+    height: 330px;
+}
+
+.shadow {
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#area1 {
+    margin-bottom: 80px;
+}
+
+#area2 {
+    margin-top: 60px;
+}
+
+#buttonArea {
+    text-align: center;
+}
+
+#button1 {
+    margin-right: 70px;
+}
+
+#sellerArea {
+    height: 470px;
+
+}
+
+#sellerImgArea{
+    position: relative;
+    height: 230px;
+   
+}
+
+#sellerImg{
+    position: absolute;
+    top: 30px;
+    left: 130px;
+    width: 120px;
+    height: 120px;
+    border: 1px solid black;
+}
+
+#sellerName{
+
+    position: absolute;
+    top: 170px;
+    left: 115px;
+    font-size: 20px;
+    height: 35px;
+    width: 150px;
+    text-align: center;
+    border-radius: .25rem!important;
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+#sellerContent{
+    border: 1px solid black;
+    height: 205px;
+}
+
+#contentArea{
+
+    padding: 50px 50px;
+    margin-top: 50px;
+    width: 100%;
+    height: 400px;
+   
+}
+
+.figure{
+
+    width: 300px;
+    height: 300px;
+}
+
+.line{
+ 
+    border: 1px solid black;
+    opacity: unset;
+
+}
+
+#regTitle{
+    font-size: 20px;
+}
