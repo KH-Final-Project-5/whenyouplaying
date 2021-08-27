@@ -84,11 +84,13 @@
                                 <td>
                                     <select name="" class="accountInput"  required>
                                         <option value="" disabled selected>선택해주세요</option>
-                                        <option value="">재능2</option>
-                                        <option value="">재능3</option>
-                                        <option value="">재능4</option>
-                                        <option value="">재능5</option>
-                                        <option value="">재능6</option>
+                                        <option value="design">디자인</option>
+                                        <option value="translation">번역/외국어</option>
+                                        <option value="document">문서작성</option>
+                                        <option value="music">음악/영상</option>
+                                        <option value="program">프로그램개발</option>
+                                        <option value="biz">마케팅/비지니스</option>
+                                        <option value="life">생활서비스</option>
                                     </select>
                                     <hr style="margin: 3px;">
                                 </td>

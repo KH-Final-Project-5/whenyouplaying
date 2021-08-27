@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="project">
+  	
+  	<select id="selectDesign" parameterType="String" resultType="ProjectDto">
+  		SELECT *
+  		FROM PROJECT
+  		WHERE "prTalent"=#{design}
+  	</select>
+  	
+  	<select id="selectTranslation" parameterType="String" resultType="ProjectDto">
+  		SELECT *
+  		FROM PROJECT
+  		WHERE "prTalent"=#{translation}
+  	</select>
+  	
+  	<select id="selectDocument" parameterType="String" resultType="ProjectDto">
+  		SELECT *
+  		FROM PROJECT
+  		WHERE "prTalent"=#{document}
+  	</select>
+  	
+  	
+  	<select id="selectMusic" parameterType="String" resultType="ProjectDto">
+  		SELECT *
+  		FROM PROJECT
+  		WHERE "prTalent"=#{music}
+  	</select>
+  	
+  	<select id="selectProgram" parameterType="String" resultType="ProjectDto">
+  		SELECT *
+  		FROM PROJECT
+  		WHERE "prTalent"=#{program}
+  	</select>
+  	
+  	<select id="selectBiz" parameterType="String" resultType="ProjectDto">
+  		SELECT *
+  		FROM PROJECT
+  		WHERE "prTalent"=#{biz}
+  	</select>
+  	
+  	<select id="selectLife" parameterType="String" resultType="ProjectDto">
+  		SELECT *
+  		FROM PROJECT
+  		WHERE "prTalent"=#{life}
+  	</select>
+  	
+  </mapper>
