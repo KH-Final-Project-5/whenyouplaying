@@ -1,0 +1,177 @@
+/* 본문 가로 길이 1200px 고정, 반응형 삭제  */
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    height: 110px;
+    margin-top: 20px;
+   
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 구글 아이콘*/
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+      url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+      url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+  }
+
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+
+  .material-icons.md-18 { font-size: 18px; }
+  .material-icons.md-24 { font-size: 24px; }
+  .material-icons.md-36 { font-size: 36px; }
+  .material-icons.md-48 { font-size: 48px; }
+  
+
+.chaticon{
+    position: relative;
+    top: 10px;
+}
+
+.chatA{
+    color: black;
+}
+
+
+.line1{
+    padding: 5px;
+    border-bottom: 1px solid black;
+}
+
+.logoText{
+    color: black;
+    font-size: 25px;
+}
+
+.contentList{
+    display: inline;
+    float: right;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.badgeSize{
+
+    position: relative;
+    top: -23px;
+    right: 23px;
+    background-color: red;
+    color: white;
+    font-size: 10px;
+}
+
+.marginNav{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.navA{
+    color: black;
+    text-decoration: none;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.navA:hover{
+    color: black;
+}
+
+.searchArea{
+    position: relative;
+    top: 15px;
+    left: 200px;
+}
+
+.searchBar{
+    width: 600px;
+    border: 1px solid lightgray;
+    outline: none;
+}
+
+
+.rec{
+    position: relative;
+    right: 30px;
+}
+
+
+.enroll{
+    margin-left: 20px;
+}
+
+.mic{
+    position: relative;
+    right: 103px;
+    top: 2px;
+}
+
+.headerBack{
+    background-color: whitesmoke;
+    height: 240px;
+
+}
+
+.categoryArea{
+
+    margin-top: 50px;
+    background-color: white;
+    height: 100px;
+   
+    border-radius: 30px 30px 0px 0px;
+
+}
+
+.listArea{
+    font-size: 25px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.listSpace{
+    margin-left: 10px;
+    border: none;
+}
+
+.catA{
+    color: black;
+    text-decoration: none;
+}
+
+.catA:hover{
+    text-decoration: underline;
+    color: black;
+    font-weight: bold;
+}
