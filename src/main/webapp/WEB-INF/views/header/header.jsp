@@ -41,7 +41,7 @@
             <div class="row line1" >
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#" >
-                        <img src="resources/img_header/logo.png" alt="" width="60" height="30" class="d-inline-block">
+                        <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30" class="d-inline-block">
                         <b class="logoText">놀면 뭐하니?</b>
                     </a>
                     <div class="contentList">
@@ -62,7 +62,7 @@
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                             
                             <div class="mic">
-                                <a href=""><img src="resources/img_header/mic.png" alt="" width="50" height="35"></a>
+                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50" height="35"></a>
                             </div>
 
                             <div class="rec">
@@ -103,7 +103,7 @@
             <div class="row line1" >
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#" >
-                        <img src="resources/img_header/logo.png" alt="" width="60" height="30" class="d-inline-block">
+                        <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30" class="d-inline-block">
                         <b class="logoText">놀면 뭐하니?</b>
                     </a>
                     
@@ -138,7 +138,7 @@
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                             
                             <div class="mic">
-                                <a href=""><img src="resources/img_header/mic.png" alt="" width="50" height="35"></a>
+                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50" height="35"></a>
                             </div>
 
                             <div class="rec">
@@ -178,7 +178,7 @@
             <div class="row line1" >
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#" >
-                        <img src="resources/img_header/logo.png" alt="" width="60" height="30" class="d-inline-block">
+                        <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30" class="d-inline-block">
                         <b class="logoText">놀면 뭐하니?</b>
                     </a>
                     
@@ -209,7 +209,7 @@
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                             
                             <div class="mic">
-                                <a href=""><img src="resources/img_header/mic.png" alt="" width="50" height="35"></a>
+                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50" height="35"></a>
                             </div>
 
                             <div class="rec">
