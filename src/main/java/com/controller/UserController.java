@@ -16,7 +16,7 @@ public class UserController {
     UserBiz biz;
 
     @RequestMapping("/main.do")
-    public String  main() {
+    public String main() {
         return "user/index";
     }
 
@@ -34,10 +34,18 @@ public class UserController {
         userDto = biz.login(dto);
 
         if (userDto != null) {
+            session.setAttribute("user", userDto);
             return "redirect:main.do";
         } else {
             return "redirect:loginform.do";
         }
 
+    }
+
+    @RequestMapping("/logout.do")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        
+        return "redirect:main.do";
     }
 }

@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao{
         UserDto userDto = null;
 
         try {
-            userDto = sqlSessionTemplate.selectOne("loginUser", dto);
+            userDto = sqlSessionTemplate.selectOne(NAMESPACE+"loginUser", dto);
         } catch (Exception e) {
             System.out.println("로그인 에러");
             e.printStackTrace();
