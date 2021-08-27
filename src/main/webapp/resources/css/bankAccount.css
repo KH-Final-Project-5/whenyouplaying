@@ -1,0 +1,176 @@
+/*
+.container *{
+
+    border: 1px solid gray;
+
+}
+*/
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*시작*/
+#sideBarImgArea {
+
+    position: relative;
+    height: 170px;
+
+}
+
+#sideImg {
+
+    height: 100px;
+}
+
+#userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#menuList {
+
+    text-align: center;
+}
+
+
+#pageName {
+
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.menuText {
+
+    font-size: 20px;
+    
+}
+
+#adminImg {
+    display: block;
+    margin: auto;
+    height: 100px;
+}
+
+a {
+    color: black;
+    
+}
+
+a:hover{
+    color: black;
+    text-decoration: none;
+
+}
+
+h3{
+    font-weight: bold;
+}
+
+#titleName {
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top:30px;
+}
+
+/*끝*/
+
+#tableArea{
+    margin-top: 60px;
+}
+
+#contentTitle{
+
+    font-size: 20px;
+    position: relative;
+    top: 15px;
+}
+
+.col-9 {
+    position: relative;
+}
+
+#table{
+    width: 870px;
+}
+
+
+th{
+    text-align: center;
+}
+
+
+
+#lastTh{
+    width: 53px;
+    
+}
+
+#registerArea{
+
+    position: relative;
+    top: 100px;
+    left: 280px;
+    height: 310px;
+    width: 300px;
+    padding: 5px;
+    font-size: 13px;
+    border: 1px solid gray;
+
+}
+
+.shadow {
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.accountInput{
+    border: none;
+}
+
+#selectArea{
+    width: 280px;
+    
+}
+
+#submitButton{
+
+    position: relative;
+    top: 10px;
+    left: 70px;
+}
+
+#cancleButton{
+    position: relative;
+    top: 10px;
+    left: 100px;
+
+}
+
+#lastTr{
+    border: white;
+    text-align: right;
+}
+
+.centerTd{
+    text-align: center;
+}
+
+#line{
+    border-top: 1px solid black;
+}
