@@ -16,7 +16,7 @@ CREATE SEQUENCE CalSEQ nocache;
 CREATE SEQUENCE ScSEQ nocache;
 CREATE SEQUENCE PrImgSEQ nocache;
 
-CREATE TABLE "Notification"
+CREATE TABLE W_Notification
 (
     "notiNo"      NUMBER         NOT NULL,
     "usNo"        Number         NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE "CHARGEHISTORY"
     "chStatus" VARCHAR2(200) NULL
 );
 
-CREATE TABLE "User"
+CREATE TABLE W_USER
 (
     "usNo"     Number        NOT NULL,
     "usID"     VARCHAR2(30)  NULL,
@@ -78,7 +78,7 @@ CREATE TABLE "User"
     "usCash"   NUMBER        NULL
 );
 
-CREATE TABLE "Report"
+CREATE TABLE W_REPORT
 (
     "desNo"      NUMBER         NOT NULL,
     "usNo"       Number         NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE "Report"
     "decDate"    DATE           NULL
 );
 
-CREATE TABLE "Message"
+CREATE TABLE W_Message
 (
     "mesNo"       Number        NOT NULL,
     "usSendNo"    Number        NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE "REVIEW"
     "rvGrade"   NUMBER         NULL
 );
 
-CREATE TABLE "Chat"
+CREATE TABLE W_Chat
 (
     "chatNum"       NUMBER        NOT NULL,
     "dealNo"        NUMBER        NOT NULL,
@@ -197,7 +197,7 @@ CREATE TABLE "PROJECTIMG"
     "prImgSrc" VARCHAR2(2000) NULL
 );
 
-ALTER TABLE "Notification"
+ALTER TABLE W_Notification
     ADD CONSTRAINT "PK_NOTIFICATION" PRIMARY KEY (
                                                   "notiNo",
                                                   "usNo"
@@ -223,12 +223,12 @@ ALTER TABLE "CHARGEHISTORY"
                                                    "usNo"
         );
 
-ALTER TABLE "User"
+ALTER TABLE W_USER
     ADD CONSTRAINT "PK_USER" PRIMARY KEY (
                                           "usNo"
         );
 
-ALTER TABLE "Report"
+ALTER TABLE W_REPORT
     ADD CONSTRAINT "PK_REPORT" PRIMARY KEY (
                                             "desNo",
                                             "usNo",
@@ -236,7 +236,7 @@ ALTER TABLE "Report"
                                             "usWriteNum"
         );
 
-ALTER TABLE "Message"
+ALTER TABLE W_Message
     ADD CONSTRAINT "PK_MESSAGE" PRIMARY KEY (
                                              "mesNo",
                                              "usSendNo",
@@ -263,7 +263,7 @@ ALTER TABLE "REVIEW"
                                             "usNo"
         );
 
-ALTER TABLE "Chat"
+ALTER TABLE W_Chat
     ADD CONSTRAINT "PK_CHAT" PRIMARY KEY (
                                           "chatNum",
                                           "dealNo",
@@ -319,11 +319,11 @@ ALTER TABLE "PROJECTIMG"
                                                 "usNo"
         );
 
-ALTER TABLE "Notification"
+ALTER TABLE W_Notification
     ADD CONSTRAINT "FK_User_TO_Notification_1" FOREIGN KEY (
                                                             "usNo"
         )
-        REFERENCES "User" (
+        REFERENCES W_USER (
                            "usNo"
             );
 
@@ -331,7 +331,7 @@ ALTER TABLE "DIBS"
     ADD CONSTRAINT "FK_User_TO_DIBS_1" FOREIGN KEY (
                                                     "usNo"
         )
-        REFERENCES "User" (
+        REFERENCES W_USER (
                            "usNo"
             );
 
@@ -348,7 +348,7 @@ ALTER TABLE "PROJECT"
     ADD CONSTRAINT "FK_User_TO_PROJECT_1" FOREIGN KEY (
                                                        "usNo"
         )
-        REFERENCES "User" (
+        REFERENCES W_USER (
                            "usNo"
             );
 
@@ -356,19 +356,19 @@ ALTER TABLE "CHARGEHISTORY"
     ADD CONSTRAINT "FK_User_TO_CHARGEHISTORY_1" FOREIGN KEY (
                                                              "usNo"
         )
-        REFERENCES "User" (
+        REFERENCES W_USER (
                            "usNo"
             );
 
-ALTER TABLE "Report"
+ALTER TABLE W_REPORT
     ADD CONSTRAINT "FK_User_TO_Report_1" FOREIGN KEY (
                                                       "usNo"
         )
-        REFERENCES "User" (
+        REFERENCES W_USER (
                            "usNo"
             );
 
-ALTER TABLE "Report"
+ALTER TABLE W_REPORT
     ADD CONSTRAINT "FK_PROJECT_TO_Report_1" FOREIGN KEY (
                                                          "prNo",
                                                          "usWriteNum"
@@ -379,15 +379,15 @@ ALTER TABLE "Report"
             );
 
 
-ALTER TABLE "Message"
+ALTER TABLE W_Message
     ADD CONSTRAINT "FK_User_TO_Message_1" FOREIGN KEY (
                                                        "usSendNo"
         )
-        REFERENCES "User" (
+        REFERENCES W_USER (
                            "usNo"
             );
 
-ALTER TABLE "Message"
+ALTER TABLE W_Message
     ADD CONSTRAINT "FK_PROJECT_TO_Message_1" FOREIGN KEY (
                                                           "prNo",
                                                           "usNo"
@@ -401,7 +401,7 @@ ALTER TABLE "WITHDRAW"
     ADD CONSTRAINT "FK_User_TO_WITHDRAW_1" FOREIGN KEY (
                                                         "usNo"
         )
-        REFERENCES "User" (
+        REFERENCES W_USER (
                            "usNo"
             );
 
@@ -409,7 +409,7 @@ ALTER TABLE "ABILITY"
     ADD CONSTRAINT "FK_User_TO_ABILITY_1" FOREIGN KEY (
                                                        "usNo"
         )
-        REFERENCES "User" (
+        REFERENCES W_USER (
                            "usNo"
             );
 
@@ -423,7 +423,7 @@ ALTER TABLE "REVIEW"
                               "usNo"
             );
 
-ALTER TABLE "Chat"
+ALTER TABLE W_Chat
     ADD CONSTRAINT "FK_DEALSTATUS_TO_Chat_1" FOREIGN KEY (
                                                           "dealNo",
                                                           "prNo",
@@ -451,7 +451,7 @@ ALTER TABLE "DEALSTATUS"
     ADD CONSTRAINT "FK_User_TO_DEALSTATUS_1" FOREIGN KEY (
                                                           "usBuyNo"
         )
-        REFERENCES "User" (
+        REFERENCES W_USER (
                            "usNo"
             );
 
@@ -515,3 +515,13 @@ ALTER TABLE "PROJECTIMG"
                               "prNo",
                               "usNo"
             );
+
+INSERT INTO W_USER
+VALUES (UserSEQ.nextval, 'user01', 'user01', '유저01', '01012345678', 'abcd@gmail.com', 'N',
+        SYSDATE, 'Y', 'user', '100000');
+INSERT INTO W_USER
+VALUES (UserSEQ.nextval, 'user02', 'user02', '유저02', '01012345678', 'abcd@gmail.com', 'Y',
+        SYSDATE, 'Y', 'user', '100000');
+INSERT INTO W_USER
+VALUES (UserSEQ.nextval, 'admin', 'admin', '유저02', '01012345678', 'abcd@gmail.com', 'Y',
+        SYSDATE, 'Y', 'admin', '100000');
