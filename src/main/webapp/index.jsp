@@ -10,7 +10,7 @@
 
 <html>
 <head>
-    <title>메인페이지</title>
+    <title>테스트용</title>
 </head>
 <!-- bootstrap css -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
