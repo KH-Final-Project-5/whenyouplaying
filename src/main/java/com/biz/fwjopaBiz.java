@@ -1,4 +1,4 @@
-package com.com.biz;
+package com.biz;
 
 public interface fwjopaBiz {
 }
