@@ -4,11 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
+
     	<typeAlias type="com.dto.ProjectDto" alias="projectDto"/>
+    	<typeAlias type="com.dto.UserDto" alias="userDto"/>
     </typeAliases>
 
     <mappers>
     	<mapper resource="/mybatis/project-mapper.xml"/>
+
+        
+        <mapper resource="mybatis/user-mapper.xml"/>
+
     </mappers>
 
 
