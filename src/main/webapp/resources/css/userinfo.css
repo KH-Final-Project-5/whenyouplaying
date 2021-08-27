@@ -1,0 +1,116 @@
+        #usID{
+            width: 350px;
+        }
+        #usPW{
+            width: 350px;
+        }
+        #usPW2{
+            width: 350px;
+        }
+
+        #usEmail{
+            width: 350px;
+
+        }
+
+        .phone{
+            width: 65px;
+        }
+        
+        #usName{
+
+            width: 150px;
+        }
+
+        .form-control{
+            display: inline;
+        }
+
+        #praddress{
+            width: 400px;
+        }
+        #prAddress2{
+            width: 400px;
+        }
+
+        #userinfo{
+            width: 750px;
+            height: 450px;
+            resize: none;
+        }
+
+        a {
+            color: black;
+            
+        }
+        
+        a:hover{
+            color: black;
+            text-decoration: none;
+        
+        }
+        #sideBarImgArea {
+
+            position: relative;
+            height: 170px;
+        
+        }
+        
+        #sideImg {
+        
+            height: 100px;
+        }
+        
+        #userName {
+        
+            position: absolute;
+            left: 13%;
+            text-align: center;
+            width: 200px;
+            height: 30px;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        
+        #menuList {
+        
+            text-align: center;
+        }
+        
+        
+        #pageName {
+        
+            text-align: center;
+            font-size: 30px;
+        
+        }
+        
+        .menuText {
+        
+            font-size: 20px;
+            
+        }
+        
+        #adminImg {
+            display: block;
+            margin: auto;
+            height: 100px;
+        }
+
+
+        .container{
+
+            width: 1200px;
+            max-width: none !important;
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+        #titleName{
+            border-bottom: outset 3px;
+            text-align: center;
+            position: relative;
+            top:30px;
+        }
+        body{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
