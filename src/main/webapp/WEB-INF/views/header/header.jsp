@@ -41,7 +41,7 @@
             <div class="row line1" >
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#" >
-                        <img src="logo.png" alt="" width="60" height="30" class="d-inline-block">
+                        <img src="resources/img_header/logo.png" alt="" width="60" height="30" class="d-inline-block">
                         <b class="logoText">놀면 뭐하니?</b>
                     </a>
                     <div class="contentList">
@@ -57,12 +57,12 @@
                 <div class="searchArea">
                     <form action="" >
                         <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img src="search.png" alt="음성인식" width="40" height="20"></span>
+                            <span class="input-group-text" style="padding: 0px;"><img src="resources/img_header/search.png" alt="음성인식" width="40" height="20"></span>
                             <input type="search"  class="searchBar" name="search"  >
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                             
                             <div class="mic">
-                                <a href=""><img src="mic.png" alt="" width="50" height="35"></a>
+                                <a href=""><img src="resources/img_header/mic.png" alt="" width="50" height="35"></a>
                             </div>
 
                             <div class="rec">
@@ -103,7 +103,7 @@
             <div class="row line1" >
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#" >
-                        <img src="logo.png" alt="" width="60" height="30" class="d-inline-block">
+                        <img src="resources/img_header/logo.png" alt="" width="60" height="30" class="d-inline-block">
                         <b class="logoText">놀면 뭐하니?</b>
                     </a>
                     
@@ -133,12 +133,12 @@
                 <div class="searchArea">
                     <form action="" >
                         <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img src="search.png" alt="음성인식" width="40" height="20"></span>
+                            <span class="input-group-text" style="padding: 0px;"><img src="resources/img_header/search.png" alt="음성인식" width="40" height="20"></span>
                             <input type="search"  class="searchBar" name="search"  >
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                             
                             <div class="mic">
-                                <a href=""><img src="mic.png" alt="" width="50" height="35"></a>
+                                <a href=""><img src="resources/img_header/mic.png" alt="" width="50" height="35"></a>
                             </div>
 
                             <div class="rec">
@@ -178,7 +178,7 @@
             <div class="row line1" >
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#" >
-                        <img src="logo.png" alt="" width="60" height="30" class="d-inline-block">
+                        <img src="resources/img_header/logo.png" alt="" width="60" height="30" class="d-inline-block">
                         <b class="logoText">놀면 뭐하니?</b>
                     </a>
                     
@@ -204,12 +204,12 @@
                 <div class="searchArea">
                     <form action="" >
                         <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img src="search.png" alt="음성인식" width="40" height="20"></span>
+                            <span class="input-group-text" style="padding: 0px;"><img src="resources/img_header/search.png" alt="음성인식" width="40" height="20"></span>
                             <input type="search"  class="searchBar" name="search"  >
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                             
                             <div class="mic">
-                                <a href=""><img src="mic.png" alt="" width="50" height="35"></a>
+                                <a href=""><img src="resources/img_header/mic.png" alt="" width="50" height="35"></a>
                             </div>
 
                             <div class="rec">
