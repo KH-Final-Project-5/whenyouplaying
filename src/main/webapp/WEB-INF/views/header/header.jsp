@@ -1,21 +1,28 @@
-
+<%@ page import="com.dto.UserDto" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 
-  	<!-- bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
     <!-- bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+            integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+            integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+            crossorigin="anonymous"></script>
 
     <!-- css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
@@ -23,28 +30,59 @@
     <!-- 글씨체-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+
     <!-- 구글 아이콘 -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- jQeury-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <!-- js -->
     <script src="<c:url value="/resources/js/header.js"/>"></script>
-
 </head>
+<%
+    UserDto userDto = null;
+    if (session.getAttribute("user") != null) {
+        userDto = (UserDto) session.getAttribute("user");
+%>
+<script>
+
+    $(function () {
+        var usertalnet = "<%=userDto.getUsTalent()%>";
+        var userrole = "<%=userDto.getUsRole()%>";
+        console.log(userrole);
+        if (userrole === "user") {
+            $('#defaultHeader').hide();
+            $("#loginHeader").show();
+            $("#userWelcome").text("<%=userDto.getUsName()%>님 환영합니다!");
+            $("#userPoint").text("포인트 : <%=userDto.getUsCash()%>Point");
+            if (usertalnet === "Y") {
+                $('.enroll').hide();
+            }
+        } else if (userrole === "admin") {
+            $('#defaultHeader').hide();
+            $("#adminHeader").show();
+        }
+    });
+</script>
+<%
+    }
+%>
+
 <body>
+
 
 <!-- default -->
 <div id="defaultHeader">
     <div class="headerBack">
         <div class="container">
-            <div class="row line1" >
+            <div class="row line1">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#" >
-                        <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30" class="d-inline-block">
+                    <a class="navbar-brand" href="#">
+                        <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30"
+                             class="d-inline-block">
                         <b class="logoText">놀면 뭐하니?</b>
                     </a>
                     <div class="contentList">
@@ -58,20 +96,22 @@
             </div>
             <div class="row">
                 <div class="searchArea">
-                    <form action="" >
+                    <form action="">
                         <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img src="resources/img_header/search.png" alt="음성인식" width="40" height="20"></span>
-                            <input type="search"  class="searchBar" name="search"  >
+                            <span class="input-group-text" style="padding: 0px;"><img
+                                    src="resources/img_header/search.png" alt="음성인식" width="40" height="20"></span>
+                            <input type="search" class="searchBar" name="search">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
-                            
+
                             <div class="mic">
-                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50" height="35"></a>
+                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
+                                                height="35"></a>
                             </div>
 
                             <div class="rec">
                                 <button class="btn btn-primary">전문가 추천</button>
                             </div>
-        
+
                             <div class="enroll">
                                 <button class="btn btn-primary">전문가 등록</button>
                             </div>
@@ -79,7 +119,7 @@
                     </form>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="categoryArea">
                     <ul class="list-group list-group-horizontal flex-fill listArea">
@@ -103,19 +143,21 @@
 <div id="loginHeader">
     <div class="headerBack">
         <div class="container">
-            <div class="row line1" >
+            <div class="row line1">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#" >
-                        <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30" class="d-inline-block">
+                    <a class="navbar-brand" href="#">
+                        <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30"
+                             class="d-inline-block">
                         <b class="logoText">놀면 뭐하니?</b>
                     </a>
-                    
-    
+
+
                     <div class="contentList">
-                        00님 환영합니다!!!
-                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">logOut</button>
+                        <label id="userWelcome"></label>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav"
+                                onclick="location.href='logout.do'">logOut</button>
                         |
-			                           포인트: 10,000cash
+                        <label id="userPoint"></label>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">충전</button>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">출금</button>
                         |
@@ -126,28 +168,30 @@
                         <a href="" class="chatA">
                             <span class="material-icons md-36 chaticon">
                                 wechat
-                                <span class="rounded-pill badgeSize" >1</span>
+                                <span class="rounded-pill badgeSize">1</span>
                             </span>
-                        </a>   
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="searchArea">
-                    <form action="" >
+                    <form action="">
                         <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img src="resources/img_header/search.png" alt="음성인식" width="40" height="20"></span>
-                            <input type="search"  class="searchBar" name="search"  >
+                            <span class="input-group-text" style="padding: 0px;"><img
+                                    src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40" height="20"></span>
+                            <input type="search" class="searchBar" name="search">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
-                            
+
                             <div class="mic">
-                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50" height="35"></a>
+                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
+                                                height="35"></a>
                             </div>
 
                             <div class="rec">
                                 <button class="btn btn-primary">전문가 추천</button>
                             </div>
-        
+
                             <div class="enroll">
                                 <button class="btn btn-primary">전문가 등록</button>
                             </div>
@@ -178,17 +222,19 @@
 <div id="adminHeader">
     <div class="headerBack">
         <div class="container">
-            <div class="row line1" >
+            <div class="row line1">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#" >
-                        <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30" class="d-inline-block">
+                    <a class="navbar-brand" href="#">
+                        <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30"
+                             class="d-inline-block">
                         <b class="logoText">놀면 뭐하니?</b>
                     </a>
-                    
-    
+
+
                     <div class="contentList">
-                        00님 환영합니다!!!
-                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">logOut</button>
+                        관리자님 환영합니다!!
+                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav"
+                                onclick="location.href='logout.do'">logOut</button>
                         |
                         <a href="" class="navA">Admin page</a>
                         |
@@ -197,30 +243,28 @@
                         <a href="" class="chatA">
                             <span class="material-icons md-36 chaticon">
                                 wechat
-                                <span class="rounded-pill badgeSize" >1</span>
+                                <span class="rounded-pill badgeSize">1</span>
                             </span>
-                        </a>   
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="searchArea">
-                    <form action="" >
+                    <form action="">
                         <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img src="resources/img_header/search.png" alt="음성인식" width="40" height="20"></span>
-                            <input type="search"  class="searchBar" name="search"  >
+                            <span class="input-group-text" style="padding: 0px;"><img
+                                    src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40" height="20"></span>
+                            <input type="search" class="searchBar" name="search">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
-                            
+
                             <div class="mic">
-                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50" height="35"></a>
+                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
+                                                height="35"></a>
                             </div>
 
                             <div class="rec">
                                 <button class="btn btn-primary">전문가 추천</button>
-                            </div>
-        
-                            <div class="enroll">
-                                <button class="btn btn-primary">전문가 등록</button>
                             </div>
                         </div>
                     </form>
@@ -243,7 +287,7 @@
 
 
         </div>
-    </div> 
+    </div>
 </div>
 
 </body>
