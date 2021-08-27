@@ -30,6 +30,9 @@
 
     <!-- jQeury-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- js -->
+    <script src="<c:url value="/resources/js/header.js"/>"></script>
 
 </head>
 <body>
