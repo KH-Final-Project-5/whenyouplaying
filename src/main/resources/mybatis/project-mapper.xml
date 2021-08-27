@@ -48,4 +48,12 @@
   		WHERE "prTalent"=#{life}
   	</select>
   	
+  	
+  	
+  	<select id="detail" parameterType="int" resultType="ProjectDto">
+  		SELECT *
+  		FROM PROJECT
+  		WHERE "prNo"=#{prNo}
+  	</select>
+  	
   </mapper>

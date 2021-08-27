@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,11 @@
 <title>Insert title here</title>
 </head>
 
-
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	
+	
     <!-- bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -60,38 +66,53 @@
 
         <div class="board-content">
             
-            <div class="col-12" style="text-align: center;"><h3><a href="#">Spring FrameWork 알려드립니다(글제목)</a></h3></div>
+           <c:choose>
+           	 <c:when test="${empty pr_dto }">
+           	 	<h1>---------등록된 게시물이 없습니다------------</h1>
+           	 </c:when> 
+            
+            <c:otherwise>
+            	<c:forEach items="${pr_dto }" var="pr_dto">
+            <div class="col-12" style="text-align: center;"><h3><a href="#">${pr_dto.prTitle }</a></h3></div>
                 <div class="col-12">
-                <div class="row">
-
+                <div class="row" style="border-bottom:1px solid black">
+				
+				
+				
+				
+					
                         <div class="col-4">
-                            
-                               
-                                    <img src="../image/ImgBox.PNG">
+                                    
+                                    <img src="<c:url value="/resources/ProjectImg/ImgBox.PNG"/>">
                         </div>
                         
                         <div class="col-5">
-                            <p><a href="#">글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용</a></p>
+                            <p><a href="Detail.do?prNo=${pr_dto.prNo }">${pr_dto.prContent }</a></p>
                         </div>
                         
                         <div class="col-3">
 
-                            <div class="talent-price"><b>10000원</b> <button onclick="#" class="btn btn-outline-primary">글 삭제</button></div>
+                            <div class="talent-price"><b>${pr_dto.prPrice }</b> <button onclick="#" class="btn btn-outline-primary">글 삭제</button></div>
                                 
                         </div>
+                    
                            
                         </div>
                         
                     </div>
-
+                    </c:forEach>
+               </c:otherwise>     
+			</c:choose>
                 </div>
           
         
         <!--검색기능-->
         <div class="col-12 search">
+         		<form action="#"> 
             <div class="row">
+            
                 <div class="col-2 search-select">
-                    <form>  
+                    
                        
                         <select style="width: 120px;">
                             <option  disabled selected>카테고리</option>
@@ -110,14 +131,15 @@
                         </select>
                 </div>
                 <div class="col-8">
-                        <img src="../image/search.png" class="search-img">
+                         <img src="<c:url value="/resources/ProjectImg/search.png"/>"  class="search-img">
                         <input type="text" placeholder="검색어를 입력해 주세요." class="search-bar" style="height: 40px;">
                         <input type="submit"  class="btn btn-outline-primary" value="검색하기" id="search-button">
-                    </form>
-                    <img src="../image/mike.jpg" class="search-img2">
+                    
+                    <img src="<c:url value="/resources/ProjectImg/mike.jpg"/>"  class="search-img2">
                     <button class="search-img2" onclick="#"></button>
                 </div>
             </div>
+            	</form>
             <hr>
         </div>
 

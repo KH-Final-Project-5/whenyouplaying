@@ -82,4 +82,32 @@ public class ProjectController {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	@RequestMapping("/Detail.do")
+	public String ProjectDetail(Model model, int prNo) {
+		
+		logger.info("Detail");
+		model.addAttribute("detail_dto",biz.selectDetail(prNo));
+		
+		
+		return "projectBoard/talentBoardDetail";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
