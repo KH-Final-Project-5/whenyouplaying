@@ -37,6 +37,7 @@
 
 <body>
 <div class="container">
+    에러발생
     <div class="row">
         <h2>최신순</h2>
     </div>
