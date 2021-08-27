@@ -80,7 +80,7 @@ body{
     display: inline;
     float: right;
     font-size: 20px;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .badgeSize{
@@ -141,6 +141,8 @@ body{
 .headerBack{
     background-color: whitesmoke;
     height: 240px;
+	position: relative;
+	top: -20px;
 
 }
 
