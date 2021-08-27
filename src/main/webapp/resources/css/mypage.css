@@ -1,0 +1,434 @@
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    justify-content: space-around;
+    padding: 0 0.2em;
+    text-align: center;
+    width: 5em;
+    padding-left: 300px;
+    
+  }
+   
+  .star-rating input {
+    display: none;
+  }
+   
+  .star-rating label {
+    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 2.3px;
+    -webkit-text-stroke-color: #2b2a29;
+    cursor: pointer;
+    margin-left: 10px;
+    
+  }
+   
+  .star-rating :checked ~ label {
+    -webkit-text-fill-color: gold;
+  }
+   
+  .star-rating label:hover,
+  .star-rating label:hover ~ label {
+    -webkit-text-fill-color: #fff58c;
+  }
+
+  #review-submit{
+      margin-left: 500px;
+  }
+
+
+  #review{
+      border: 1px solid black;
+      width: 510px;
+      height: 200px;
+      padding-left: 0px;
+      margin-left: 70px;
+  }
+
+  .review-col{
+      padding-left: 0px;
+  }
+ #review-user{
+     margin-left: 100px;
+     margin-top:200px;
+ }
+
+
+ #msg-submit{
+     margin-left: 270px;
+ }
+
+
+.search-bar{
+    width: 350px;
+
+}
+
+
+.com-select1{
+    float: left;
+}
+
+
+
+.com-select2{
+    float: right;
+}
+
+.buy-table-div{
+  
+   position: relative;
+   margin-top: 100px;
+}
+
+.buy-table{
+    text-align: center;
+    width: 800px;
+}
+
+.user-leave{
+    display: block;
+    margin: auto;
+}
+
+.userleave-th{
+    font-size: 40px;
+}
+
+.userNav{
+    margin-top: 100px;
+}
+
+#footerArea{
+    margin-top: 100px;
+}
+
+.img_search{
+    width: 100px;
+    height: 30px;
+}
+
+.page-nav{
+    margin-left: 45%;
+    margin-top: 150px;
+}
+
+.board-content{
+    border: 2px solid black;
+    margin-top: 30px;
+    padding : 40px;
+
+}
+.search-img, .search-img2{
+    width: 30px;
+    height: 30px;
+}
+
+.search-img2{
+    width: 30px;
+    height: 30px;
+    background: url("../image/mike.jpg") no-repeat;
+    border: none;
+    cursor:pointer;
+}
+
+.search{
+    margin-top: 100px;
+    
+}
+
+.imoge{
+    width: 30px;
+    height: 30px;
+}
+
+
+.sideBarImgArea{
+    margin-top: 50px;
+}
+
+
+.detail-content{
+    
+    margin-left: 25%;
+    margin-top:60px;
+    
+}
+
+.detail-data{
+    margin-top:60px;
+}
+#boardDetail{
+    width: 1200px;
+    max-width: none !important;
+    margin-bottom: 60px;
+    margin-top: 50px;
+    border: black 1px solid;
+}
+
+
+#detail-title{
+    font-size: 37px;
+}
+
+#ai-img{
+    width: 300px;
+    height: 200px;
+}
+
+#detail-content{
+    width: 550px;
+    height: 600px;
+    border: solid 1px black;
+
+    
+    margin-left: 23%;
+    margin-top:15px;
+}
+
+.detail-button{
+    margin-left: 250px;
+    margin-top:15px;
+
+    width: 150px;
+    height: 50px;
+}
+
+.detail-button2{
+
+    width: 70px;
+    height: 30px;
+    margin-left: 5px;
+}
+
+.detail-button3{
+    display: none;
+}
+
+
+#button-div{
+    margin-left: 500px;
+    margin-top: 50px;
+}
+
+
+#detail-content-title{
+    width: 500px;
+    height: 200px;
+    font-size: 30px;
+}
+
+#insertform{
+    margin-left: 15%;
+    margin-right: 15%;
+
+    width: 500px;
+    height: 1000px;
+
+    
+
+}
+
+.detail-content2{
+    margin-top: 70px;
+}
+
+#insert-title{
+    margin-top: 30px;
+}
+
+#deal-title-td{
+    width: 722px; 
+    height: 60px; 
+    font-size: 20px;
+}
+
+#deal-title-th{
+    
+    background-color: #d6d8db;
+    padding-right: 30px; 
+    font-size: 20px;
+    text-align: center;
+}
+
+#deal-img{
+    text-align: center;
+}
+
+
+
+.deal-img{
+    width: 200px; height: 200px;
+}
+
+.deal-th{
+    background-color: #d6d8db;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.deal-input-td{
+    width: 722px;
+}
+
+#search-button{
+    margin-bottom: 5px;
+}
+
+#perchase-button{
+    margin-left: 203px;
+}
+
+#array-button{
+    height: 27px;
+    margin-bottom: 4px;
+}
+
+#msg-button{
+    margin-left: 0px;
+}
+
+.text-area{
+    resize: none;
+    margin-left: 70px; 
+}
+
+#text-area{
+    resize: none;
+     
+}
+
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#button-div2{
+    margin-left: 400px;
+    margin-top: 50px;
+}
+
+.search-select{
+    margin-top: 10px;
+    
+}
+
+.search-select2{
+    margin-top: 2px;
+}
+
+
+#selectAccount{
+
+    margin-top: 20px;
+    margin-left: 30px;
+    height: 100px;
+    width: 310px;
+    position: relative;
+}
+
+#selectContent{
+
+    margin-top: 10px;
+    margin-left: 10px;
+}   
+
+.accountInput{
+    border: none;
+    width: 300px;
+}
+
+#submitButton{
+    position: relative;
+    left: 330px;
+    top: -30px;
+}
+
+#review-row{
+    margin-top: 120px;
+    margin-left: 45px;
+}
+
+#review-row2{
+    margin-left: 0px;
+}
+
+.container{
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.msgPop-input{
+
+    border: 0px;
+}
+
+#menuList {
+    text-align: center;
+    
+}
+
+
+#pageName {
+    text-align: center;
+    font-size: 30px;
+}
+
+a {
+    color: black;
+}
+a:hover {
+    color: black;
+}
+a:visited {
+    color: black;
+}
+
+#userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+
+#sideBarImgArea {
+
+    position: relative;
+    height: 170px;
+
+}
+
+#sideImg {
+    height: 100px;
+}
+
+#adminImg {
+    display: block;
+    margin: auto;
+    height: 100px;
+}
+
+
+.menuText {
+    font-size: 20px;
+}
+
+.userImg{
+    width: 100px;
+    height: 100px;
+    margin-top: 50px;
+    margin-left: 85px;
+}
+
+
+.trade-th{
+    background-color: #d6d8db;
+}
