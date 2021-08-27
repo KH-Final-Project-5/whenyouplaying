@@ -1,0 +1,126 @@
+
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+
+#sideBarImgArea {
+
+    position: relative;
+    height: 270px;
+
+}
+
+#sideImg {
+
+    height: 200px;
+}
+
+#userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#menuList {
+    text-align: center;
+
+}
+
+
+#pageName {
+
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.menuText {
+
+    font-size: 20px;
+    
+}
+
+
+
+.table{
+    font-size: 20px;
+    height: 380px;
+    text-align: center;
+    border: none; background: transparent;
+}
+
+.tableDiv{
+    border: 0.5px solid gray;
+    position: relative;
+    top:30px;
+    height: 780px;
+    padding: 20px 20px 20px 20px;
+}
+
+th{
+    background-color: #dcdcdc;
+}
+
+#btn{
+    position: relative;
+    top: -70px;
+    float: right;
+    right: 20px;
+}
+
+h2{
+    position: relative;
+    top: 5px;
+    left: 10px;
+}
+
+p{
+    position: relative;
+    top: 20px;
+    left: 50%;
+}
+
+#pagingArea{
+
+    position: relative;
+    top: 40px;
+    left: 330px;
+    
+}
+
+h1{
+    text-align: center;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+#titleName{
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top:30px;
+}
+
+a{
+    color: black;
+}
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}

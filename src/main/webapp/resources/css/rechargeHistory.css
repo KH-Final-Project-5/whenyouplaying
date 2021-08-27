@@ -1,0 +1,159 @@
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+
+#sideBarImgArea {
+
+    position: relative;
+    height: 270px;
+
+}
+
+#sideImg {
+
+    height: 200px;
+}
+
+#userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#menuList {
+    height: 300px;
+    text-align: center;
+
+}
+
+
+#pageName {
+
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.menuText {
+    font-size: 20px;
+    
+}
+
+#amount > input, #point > input{
+    width: 300px;
+    border: none; background: transparent;
+    pointer-events: none;
+}
+
+#bold{
+    font-size: 25px;
+    font: bold;
+}
+
+#point{
+    position: absolute;
+    right: 200px;
+    top: 21.4%;
+}
+
+#divBox{
+    border: solid 0.5px gray;
+    position: relative;
+    top: 20px;
+    width: 866px;
+    height: 800px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+
+}
+
+h2{
+    text-align: center;
+}
+
+
+h2>input {
+    border: none; background: transparent;
+    pointer-events: none;
+    text-align: center;
+}
+
+
+#fromDate{
+    position: relative;
+    text-align: center;
+    left: 19%
+}
+#toDate{
+    position: relative;
+    text-align: center;
+    left: 19%
+}
+#fromDateSpan{
+    position: relative;
+    text-align: center;
+    left: 19%
+}
+#toDateSpan{
+    position: relative;
+    text-align: center;
+    left: 19%
+}
+
+
+.table{
+    text-align: center;
+    height: 50px;
+    border: none; background: transparent;
+}
+
+th{
+    background-color: #dcdcdc;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#btn{
+    position: relative;
+    left: 160px;
+    top: -3px;
+}
+
+#titleName{
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top:30px;
+}
+
+#pagingArea{
+
+    position: relative;
+    top: 20px;
+    left: 330px;
+    
+}
+
+a{
+    color: black;
+}
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}

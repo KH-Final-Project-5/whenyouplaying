@@ -1,0 +1,121 @@
+
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+
+#sideBarImgArea {
+
+    position: relative;
+    height: 270px;
+
+}
+
+#sideImg {
+
+    height: 200px;
+}
+
+#userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#menuList {
+    text-align: center;
+
+}
+
+
+#pageName {
+
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.menuText {
+
+    font-size: 20px;
+    
+}
+
+
+
+h2{
+    position: relative;
+    top: 5px;
+    left: 10px;
+}
+
+h3{
+    font-weight: bold;
+}
+#titleName{
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top:30px;
+}
+
+#selectBar{
+    position: relative;
+    top:50px;
+    float: right;
+    right: 25px;
+}
+
+.tableDiv{
+    border: 0.5px solid gray;
+    position: relative;
+    top:100px;
+    height: 650px;
+    padding: 20px 20px 20px 20px;
+    text-align: center;
+    
+    
+}
+
+th{
+    background-color: #dcdcdc;
+}
+
+.table{
+    height: 150px;
+    border: none; background: transparent;
+}
+
+#pagingArea{
+
+    position: relative;
+    top: 50px;
+    left: 330px;
+    
+}
+
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+a{
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}
