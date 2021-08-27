@@ -177,10 +177,3 @@ body{
     color: black;
     font-weight: bold;
 }
-
-#adminHeader {
-    display: none;
-}
-#loginHeader {
-    display: none;
-}
