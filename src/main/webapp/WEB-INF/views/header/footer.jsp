@@ -24,7 +24,7 @@
     <script src="<c:url value="/resources/js/footer.js"/>"></script>
 </head>
 <body>
-    <footer>
+    <footer class="footer">
         <div class="foo_div">
 			<img src="<c:url value="/resources/img_header/logo.png"/>">
         </div>

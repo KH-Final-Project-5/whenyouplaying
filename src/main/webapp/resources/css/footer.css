@@ -32,3 +32,21 @@ footer img{
     height: 25px;
     margin-top: 10px;
 }
+
+.footer {
+
+    position: relative;
+
+    left: 0;
+
+    bottom: -900px;
+
+    width: 100%;
+
+	padding: 15px 0;
+
+	text-align: center;
+
+
+
+}
