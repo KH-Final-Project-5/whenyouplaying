@@ -50,7 +50,7 @@
                     <div class="contentList">
                         <a href="" class="navA">공지사항</a>
                         |
-                        <a href="" class="navA">로그인</a>
+                        <a href="loginform.do" class="navA">로그인</a>
                         |
                         <a href="" class="navA">회원가입</a>
                     </div>
