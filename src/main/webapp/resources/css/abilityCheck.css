@@ -1,0 +1,229 @@
+
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+
+#sideBarImgArea {
+
+    position: relative;
+    height: 270px;
+
+}
+
+#sideImg {
+
+    height: 200px;
+}
+
+#userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#menuList {
+    text-align: center;
+
+}
+
+
+#pageName {
+    text-align: center;
+    font-size: 30px;
+}
+
+.menuText {
+    font-size: 20px;
+}
+
+
+
+h2{
+    position: relative;
+    top: 5px;
+    left: 10px;
+}
+
+h1{
+    text-align: center;
+    position: relative;
+
+}
+#divBox{
+    border: 0.5px solid gray;
+    position: relative;
+    top: 20px;
+    width: 866px;
+    height: 1050px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+#infoId,#infoName{
+    width: 110px;
+}
+
+#infoPhone{
+    width: 170px;
+}
+#infoEmail{
+    width: 220px;
+}
+#infoAbility{
+    width: 220px;
+}
+
+label{
+    font-size: 16px;
+    font:bold;
+    
+}
+
+#infoId,#infoName,#infoPhone,#infoEmail,#infoAbility{
+    font-size: 16px;
+    font: bold;
+    left: 20px;
+    border: none; background: transparent;
+    pointer-events: none;
+}
+
+h3>input{
+    position: relative;
+    top: 20px;
+    width: 700px; 
+    border: none; background: transparent;
+    pointer-events: none;
+}
+
+#textarea{
+    position: relative;
+    top: 15px;
+    resize: none;
+    width:99%;
+    height: 88%;
+    border: none; background: transparent;
+    pointer-events: none;
+}
+
+#btn{
+    position: relative;
+    top: -80px;
+    margin-left: 20%;
+}
+
+#fileName1{
+    position: absolute;
+    top: 870px;
+    left: 177px;
+    border: none;
+    pointer-events: none;
+
+}
+
+#fileName2{
+    position: absolute;
+    top: 870px;
+    left: 490px;
+    border: none;
+    pointer-events: none;
+}
+
+#fileBox1{
+    border: 0.1px solid gray;
+    width: 270px;
+    height: 270px;
+    position: absolute;
+    left:80px;
+    top: 900px;
+    
+}
+
+#fileBox2{
+    border: 0.1px solid gray;
+    width: 270px;
+    height: 270px;
+    position: absolute;
+    left:400px;
+    top:900px;
+}
+
+
+/*거절사유 css*/
+#refuse{
+    border:1px solid black;
+    background: rgb(239, 241, 225);
+    position : absolute;
+    top:950px;
+    left:36%;
+    display:none;
+    width: 830px;
+    height: 400px;
+    text-align: center;
+    border: none;
+}
+
+
+#cancelBtn{
+    position: absolute;
+    left: 35%;
+    top: 83%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#applyBtn{
+    position: absolute;
+    left: 58%;
+    top: 83%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#refuseContent{
+    width: 50%;
+    height: 100%;
+    resize: none;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+/*                */
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+#titleName{
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top:30px;
+}
+
+a{
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}
+
+table{
+    width: 845px;
+    text-align: center;
+    height: 80px;
+    
+}

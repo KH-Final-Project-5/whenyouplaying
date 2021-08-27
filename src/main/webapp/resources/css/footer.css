@@ -1,0 +1,34 @@
+footer{
+    background-color: rgb(24, 214, 163);
+}
+
+footer img{
+    width: 150px;
+    height: 130px;
+    border-radius: 50%;
+    margin-top: 7px;
+}
+
+.foo_div{
+    float: left;
+}
+
+.foo_div1{
+    text-align: center;
+}
+
+.foo_div1 span {
+    font-size: 15px;
+    color: white;
+}
+
+.foo_div1 p {
+    margin-top: 5px;
+    color: white;
+}
+
+.foo_div1 img{
+    width: 25px;
+    height: 25px;
+    margin-top: 10px;
+}

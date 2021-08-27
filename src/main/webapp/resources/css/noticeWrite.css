@@ -1,0 +1,176 @@
+
+
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+
+#sideBarImgArea {
+
+    position: relative;
+    height: 270px;
+
+}
+
+#sideImg {
+
+    height: 200px;
+}
+
+#userName {
+
+    position: absolute;
+    left: 13%;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#menuList {
+    text-align: center;
+
+}
+
+
+#pageName {
+
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.menuText {
+
+    font-size: 20px;
+    
+}
+
+
+
+h2{
+    position: relative;
+    top: 5px;
+    left: 10px;
+}
+
+p{
+    position: relative;
+    top: 20px;
+    left: 50%;
+}
+
+#title{
+    position: relative;
+    top: 30px;
+    width: 793px;
+    border-radius: 30px;
+    padding-left: 2%;
+    left: 3%
+}
+
+#content{
+    position: relative;
+    top:50px;
+    left: 3%
+}
+
+#btn{
+    position: relative;
+    top: 70px;
+    float: right;
+    margin-left: 50px;
+}
+
+#file{
+    position: relative;
+    top: 90px;
+}
+
+#divBox{
+    border: 0.5px solid gray;
+    position: relative;
+    top: 20px;
+    width: 866px;
+    height: 1050px;
+    padding-left: 10px;
+    padding-top: 10px;
+
+}
+
+textarea{
+    resize: none;
+    width:92.5%;
+    height: 87%;
+    border-radius: 30px;
+    padding-left: 2%;
+}
+textarea:focus{
+    outline: none;
+    border-radius: 30px;
+}
+#title:focus{
+    border-radius: 30px;
+    outline:none;
+    
+}
+
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+
+#titleName{
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top:30px;
+}
+
+/* 파일 업로더 */
+.box-file-input label{
+    display:inline-block;
+    background:#23a3a7;
+    color:#fff;
+    padding:0px 15px;
+    line-height:35px;
+    cursor:pointer;
+
+  }
+  
+  .box-file-input label:after{
+    content:"파일등록";
+  }
+  
+  .box-file-input .file-input{
+    display:none;
+  }
+  
+  .box-file-input .filename{
+    display:inline-block;
+    padding-left:10px;
+  }
+
+  .box-file-input{
+    position: relative;
+    top: 55px;
+    left: 30px;
+  }
+
+  a{
+    color: black;
+}
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}

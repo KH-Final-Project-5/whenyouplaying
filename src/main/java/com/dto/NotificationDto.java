@@ -1,4 +1,5 @@
 package com.dto;
+
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -11,7 +12,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class projectImgDto {
-	private int primgno;
-	private String primgsrc;
+public class NotificationDto {
+	
+	private int notiNo;
+	private String notiTitle;
+	private String notiContent;
+	private Date notiDate;
+	private int notiViews;
 }

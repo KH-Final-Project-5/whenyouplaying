@@ -1,0 +1,79 @@
+h2{
+    position: relative;
+    top: 5px;
+    left: 10px;
+}
+
+h1{
+    text-align: center;
+    position: relative;
+    top: 15px;
+}
+
+#divBox{
+    border: solid 0.5px gray;
+    position: relative;
+    width: 700px;
+    height: 750px;
+    left: 1%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    pointer-events: none;
+    top: 10px;
+}
+#divBox>input, #divBox>textarea{
+    border: none; background: transparent;
+}
+
+#btn{
+    position: relative;
+    top: 25px;
+    left: 250px;
+}
+
+#titleName2{
+    width: 500px;
+    border: none; background: transparent;
+}
+
+#userId{
+    width:  150px;
+
+}
+
+#reportNo{
+    width: 150px;
+}
+
+textarea{
+    resize: none;
+    width:96.5%;
+    height: 40%;
+}
+
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+
+#titleName{
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top:30px;
+}
+a{
+    color: black;
+}
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}
