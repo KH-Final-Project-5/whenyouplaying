@@ -155,23 +155,30 @@ body{
 }
 
 .listArea{
-    font-size: 25px;
     margin-left: 20px;
     margin-top: 20px;
 }
 
 .listSpace{
-    margin-left: 10px;
+    margin-left: 15px;
     border: none;
 }
 
 .catA{
     color: black;
     text-decoration: none;
+    font-size: 22px;
 }
 
 .catA:hover{
     text-decoration: underline;
     color: black;
     font-weight: bold;
+}
+
+#adminHeader {
+    display: none;
+}
+#loginHeader {
+    display: none;
 }
