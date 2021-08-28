@@ -1,4 +1,8 @@
 /* 본문 가로 길이 1200px 고정, 반응형 삭제  */
+.container * {
+    /*border: 1px solid red;*/
+}
+
 .container {
     width: 1200px;
     max-width: none !important;
@@ -13,11 +17,11 @@
     font-size: 2.25rem;
     line-height: 2.5rem;
     justify-content: space-around;
-    padding: 0 0.2em;
+    /*padding: 0 0.2em;*/
     text-align: center;
     width: 5em;
-    padding-left: 300px;
-
+    padding-left: 85px;
+    /*margin-left: 15px;*/
 }
 
 .star-rating input {
@@ -46,8 +50,13 @@
     margin-left: 500px;
 }
 
+#review-write-user {
+    /*padding-top: 150px;*/
+    /*margin-top: 250px;*/
+    margin-left: 100px;
+}
 
-#review {
+.review {
     border: 1px solid black;
     width: 510px;
     height: 200px;
@@ -59,11 +68,10 @@
     padding-left: 0px;
 }
 
-#review-user {
+.review-user {
     margin-left: 100px;
     margin-top: 200px;
 }
-
 
 #msg-submit {
     margin-left: 270px;
@@ -204,6 +212,10 @@
 
     width: 150px;
     height: 50px;
+}
+
+#reserbtn {
+    margin-left: 608px;
 }
 
 .detail-button2 {

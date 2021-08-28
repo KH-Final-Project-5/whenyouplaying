@@ -47,7 +47,6 @@
         userDto = (UserDto) session.getAttribute("user");
 %>
 <script>
-
     $(function () {
         var usertalnet = "<%=userDto.getUsTalent()%>";
         var userrole = "<%=userDto.getUsRole()%>";
@@ -69,7 +68,6 @@
 <%
     }
 %>
-
 <body>
 
 

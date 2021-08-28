@@ -46,7 +46,7 @@
 }
 
 .menuText {
-
+    color: black;
     font-size: 20px;
 
 }
@@ -239,15 +239,15 @@ body {
     padding-left: 10px;
 }
 
-a {
+.menuText{
     color: black;
 }
 
-a:hover {
+.menuText:hover{
     color: black;
 }
 
-a:active {
+.menuText:visited{
     color: black;
 }
 
