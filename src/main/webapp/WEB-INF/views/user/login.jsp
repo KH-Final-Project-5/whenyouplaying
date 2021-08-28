@@ -8,30 +8,27 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <html>
 <head>
-    <meta charset="UTF-8">
 
     <title>Login Page</title>
     <!--Made with love by Mutiullah Samim -->
 
-    <!--Bootsrap 4 CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!--Fontawesome CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-          rel="stylesheet">
+    <!-- bootstrap js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
 
 
     <!--Custom styles-->
@@ -43,52 +40,37 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
     </header>
     <div class="container">
-        <div class="d-flex justify-content-center h-100">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Sign In</h3>
-                    <div class="d-flex justify-content-end social_icon">
-                        <span><i class="fab fa-facebook-square"></i></span>
-                        <span><i class="fab fa-google-plus-square"></i></span>
-                        <span><i class="fab fa-twitter-square"></i></span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form action="login.do" method="post">
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="username" name="usId">
-
-                        </div>
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            <input type="password" class="form-control" placeholder="password" name="usPw">
-                        </div>
-                        <div class="row align-items-center remember">
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Login" class="btn float-right login_btn">
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center links">
-                        <a href="#">회원가입</a>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <a href="#">아이디 / 비밀번호 찾기</a>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-5"></div>
+            <!-- Custom styles for this template -->
+            <div class="col-3">
+                <form action="login.do" method="post">
+                    <img class="mb-4" src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="72"
+                         height="57" style="margin-left: 90px">
+                    <h1 class="h3 mb-3 fw-normal" style="margin: 0 auto; text-align: center">Please sign in</h1>
+                    <input type="text" id="usId" name="usId"
+                           style="width: 271px; display: inline-block; margin: 0 auto;"
+                           class="form-control"
+                           placeholder="ID를 입력해주세요"
+                           required autofocus>
+                    <br>
+                    <br>
+                    <input type="password" id="usPw" class="form-control" name="usPw"
+                           style="width: 271px; display: inline-block; margin: 0 auto;" placeholder="Password" required>
+                    <br>
+                    <br>
+                    <button class="btn btn-primary"
+                            style="width: 271px; display: inline-block; margin: 0 auto;"
+                            type="submit">로그인
+                    </button>
+                    <br><br>
+                </form>
+                <a class="loginA" href="#">회원가입</a><br><br>
+                <a class="loginA" href="#">아이디 / 비밀번호 찾기</a>
             </div>
+            <div class="col-4"></div>
         </div>
     </div>
-    <footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
-    </footer>
 </div>
 </body>
 </html>
