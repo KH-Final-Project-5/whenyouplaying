@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.biz.ProjectBiz;
+import com.dto.UserDto;
 
 @Controller
 public class ProjectController {
@@ -46,6 +47,13 @@ public class ProjectController {
 		return "projectBoard/talentBoardDetail";
 	}
 	
+	
+	@RequestMapping("popup.do")
+	public String ProjectDetail(UserDto dto)  {
+		
+		
+		return "trade/messagePopup";
+	}
 	
 	
 	
