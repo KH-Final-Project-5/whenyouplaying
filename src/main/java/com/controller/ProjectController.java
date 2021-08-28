@@ -1,5 +1,9 @@
 package com.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.biz.ProjectBiz;
+import com.commons.ScriptUtils;
 import com.dto.UserDto;
 
 @Controller
@@ -49,10 +54,10 @@ public class ProjectController {
 	
 	
 	@RequestMapping("popup.do")
-	public String ProjectDetail(UserDto dto)  {
+	public String ProjectDetail(UserDto dto){
 		
+			return "trade/messagePopup";
 		
-		return "trade/messagePopup";
 	}
 	
 	
