@@ -6,7 +6,7 @@
     <select id="loginUser" parameterType="userDto" resultType="userDto">
         SELECT *
         FROM W_USER
-        WHERE "usID" = #{usId}
-          AND "usPW" = #{usPw}
+        WHERE USID = #{usId}
+          AND USPW = #{usPw}
     </select>
 </mapper>

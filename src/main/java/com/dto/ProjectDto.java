@@ -17,7 +17,7 @@ public class ProjectDto {
 	private String prTitle;
 	private String prContent;
 	private String prPrice;
-	private Date prWritedate;
+	private Date prWriteDate;
 	private String prTalent;
 	private String prDeal;
 	private String prYoutube;
