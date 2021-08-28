@@ -16,46 +16,12 @@ public class ProjectBizImpl implements ProjectBiz{
 	private ProjectDao dao;
 	
 	@Override
-	public List<ProjectDto> selectDesign(String prTalent) {
+	public List<ProjectDto> selectCategory(String prTalent) {
 		// TODO Auto-generated method stub
-		return dao.selectDesign(prTalent);
+		return dao.selectCategory(prTalent);
 	}
 
-	@Override
-	public List<ProjectDto> selectTranslation(String prTalent) {
-		
-		return dao.selectTranslation(prTalent);
-	}
-
-	@Override
-	public List<ProjectDto> selectDocument(String prTalent) {
-		// TODO Auto-generated method stub
-		return dao.selectDocument(prTalent);
-	}
-
-	@Override
-	public List<ProjectDto> selectMusic(String prTalent) {
-		// TODO Auto-generated method stub
-		return dao.selectMusic(prTalent);
-	}
-
-	@Override
-	public List<ProjectDto> selectProgram(String prTalent) {
-		// TODO Auto-generated method stub
-		return dao.selectProgram(prTalent);
-	}
-
-	@Override
-	public List<ProjectDto> selectBiz(String prTalent) {
-		// TODO Auto-generated method stub
-		return dao.selectBiz(prTalent);
-	}
-
-	@Override
-	public List<ProjectDto> selectLife(String prTalent) {
-		// TODO Auto-generated method stub
-		return dao.selectLife(prTalent);
-	}
+	
 
 	
 	

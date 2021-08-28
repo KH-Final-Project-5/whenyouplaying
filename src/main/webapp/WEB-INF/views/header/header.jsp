@@ -127,19 +127,19 @@
             <div class="row">
                 <div class="categoryArea">
                     <ul class="list-group list-group-horizontal flex-fill listArea">
-                        <li class="list-group-item listSpace"><a href="design.do?prTalent=design" class="catA">디자인</a>
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=design" class="catA">디자인</a>
                         </li>
-                        <li class="list-group-item listSpace"><a href="translation.do?prTalent=translation"
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=translation"
                                                                  class="catA">번역/외국어</a></li>
-                        <li class="list-group-item listSpace"><a href="document.do?prTalent=document"
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=document"
                                                                  class="catA">문서작성</a></li>
-                        <li class="list-group-item listSpace"><a href="music.do?prTalent=music" class="catA">음악/영상</a>
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=music" class="catA">음악/영상</a>
                         </li>
-                        <li class="list-group-item listSpace"><a href="program.do?prTalent=program"
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=program"
                                                                  class="catA">프로그램개발</a></li>
-                        <li class="list-group-item listSpace"><a href="biz.do?prTalent=biz" class="catA">마케팅/비지니스</a>
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=biz" class="catA">마케팅/비지니스</a>
                         </li>
-                        <li class="list-group-item listSpace"><a href="life.do?prTalent=life" class="catA">생활서비스</a>
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=life" class="catA">생활서비스</a>
                         </li>
                     </ul>
                 </div>

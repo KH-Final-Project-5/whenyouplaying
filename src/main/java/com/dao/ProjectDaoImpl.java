@@ -18,7 +18,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	
 	
 	@Override
-	public List<ProjectDto> selectDesign(String prTalent) {
+	public List<ProjectDto> selectCategory(String prTalent) {
 		
 		List<ProjectDto> dto = new ArrayList<ProjectDto>();
 		
@@ -36,99 +36,7 @@ public class ProjectDaoImpl implements ProjectDao{
 
 
 
-	@Override
-	public List<ProjectDto> selectTranslation(String prTalent) {
-		List<ProjectDto> dto = new ArrayList<ProjectDto>();
-		
-			try {
-				dto = sqlSession.selectList(NAMESPACE+"selectTranslation", prTalent);
-			} catch (Exception e) {
-				System.out.println("[error] : selectTranslation");
-				e.printStackTrace();
-			}
-			
-		return dto;
-	}
-
-
-
-	@Override
-	public List<ProjectDto> selectDocument(String prTalent) {
-		List<ProjectDto> dto = new ArrayList<ProjectDto>();
-		
-			try {
-				dto = sqlSession.selectList(NAMESPACE+"selectDocument",prTalent);
-			} catch (Exception e) {
-				System.out.println("[error] : selectDocument");
-				e.printStackTrace();
-			}
-			
-		return dto;
-	}
-
-
-
-	@Override
-	public List<ProjectDto> selectMusic(String prTalent) {
-		List<ProjectDto> dto = new ArrayList<ProjectDto>();
-		
-			try {
-				dto = sqlSession.selectList(NAMESPACE+"selectMusic",prTalent);
-			} catch (Exception e) {
-				System.out.println("[error] : selectMusic");
-				e.printStackTrace();
-			}
-			
-		
-		return dto;
-	}
-
-
-
-	@Override
-	public List<ProjectDto> selectProgram(String prTalent) {
-		List<ProjectDto> dto = new ArrayList<ProjectDto>();
-		
-			try {
-				dto = sqlSession.selectList(NAMESPACE+"selectProgram",prTalent);
-			} catch (Exception e) {
-				System.out.println("[error] : selectProgram");
-				e.printStackTrace();
-			}
-			
-		return dto;
-	}
-
-
-
-	@Override
-	public List<ProjectDto> selectBiz(String prTalent) {
-		List<ProjectDto> dto = new ArrayList<ProjectDto>();
-		
-		try {
-			dto = sqlSession.selectList(NAMESPACE+"selectBiz",prTalent);
-		} catch (Exception e) {
-			System.out.println("[error : selectBiz");
-			e.printStackTrace();
-		}
-		
-		return dto;
-	}
-
-
-
-	@Override
-	public List<ProjectDto> selectLife(String prTalent) {
-		List<ProjectDto> dto = new ArrayList<ProjectDto>();
-		
-		try {
-			dto = sqlSession.selectList(NAMESPACE+"selectLife",prTalent);
-		} catch (Exception e) {
-			System.out.println("[error : selectBiz");
-			e.printStackTrace();
-		}
-		return dto;
-	}
+	
 
 
 

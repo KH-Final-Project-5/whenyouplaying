@@ -18,68 +18,16 @@ public class ProjectController {
 	
 	@Autowired
 	private ProjectBiz biz;
-	@RequestMapping("/design.do")
+	@RequestMapping("/category.do")
 	public String designProject(Model model, String prTalent) {
 		
-		logger.info("Select Design");
-		model.addAttribute("pr_dto",biz.selectDesign(prTalent));
-		
-		return "projectBoard/talentBoard";
-	}
-	
-	@RequestMapping("/translation.do")
-	public String translationProject(Model model, String prTalent) {
-		
-		logger.info("Select Translation");
-		model.addAttribute("pr_dto",biz.selectTranslation(prTalent));
-		
-		return "projectBoard/talentBoard";
-	}
-	
-	@RequestMapping("/document.do")
-	public String DocumentProject(Model model, String prTalent) {
-		
-		logger.info("Select Document");
-		model.addAttribute("pr_dto",biz.selectDocument(prTalent));
-		
-		return "projectBoard/talentBoard";
-	}
-	
-	@RequestMapping("/music.do")
-	public String MusicProject(Model model, String prTalent) {
-		
-		logger.info("Select Music");
-		model.addAttribute("pr_dto",biz.selectMusic(prTalent));
-		
-		return "projectBoard/talentBoard";
-	}
-	
-	@RequestMapping("/program.do")
-	public String ProgramProject(Model model, String prTalent) {
-		
-		logger.info("Select Program");
-		model.addAttribute("pr_dto",biz.selectProgram(prTalent));
+		logger.info("Select Category");
+		model.addAttribute("pr_dto",biz.selectCategory(prTalent));
 		
 		return "projectBoard/talentBoard";
 	}
 	
 	
-	@RequestMapping("/biz.do")
-	public String BizProject(Model model, String prTalent) {
-		
-		logger.info("Select Biz");
-		model.addAttribute("pr_dto",biz.selectBiz(prTalent));
-		return "projectBoard/talentBoard";
-	}
-	
-	@RequestMapping("/life.do")
-	public String LifeProject(Model model, String prTalent) {
-		
-		logger.info("Select Life");
-		model.addAttribute("pr_dto",biz.selectLife(prTalent));
-		
-		return "projectBoard/talentBoard";
-	}
 	
 	
 	

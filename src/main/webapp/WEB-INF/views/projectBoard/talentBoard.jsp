@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-4">
                 <iframe id="gangnamStyleIframe" width="350" height="300"
-                        src="https://www.youtube.com/embed/9bZkp7q19f0?rel=0&enablejsapi=1" frameborder="0"
+                        src="https://www.youtube.com/embed/o3uMD8AV25s?rel=0&enablejsapi=1" frameborder="0"
                         allow="autoplay; fullscreen" allowfullscreen></iframe>
 
                 <script type="text/javascript">
