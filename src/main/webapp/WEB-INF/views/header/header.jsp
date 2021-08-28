@@ -82,8 +82,8 @@
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                         <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30"
-                             class="d-inline-block">
-                        <b class="logoText">놀면 뭐하니?</b>
+                             class="d-inline-block" onclick="location.href='main.do'">
+                        <b class="logoText" onclick="location.href='main.do'">놀면 뭐하니?</b>
                     </a>
                     <div class="contentList">
                         <a href="" class="navA">공지사항</a>
@@ -96,40 +96,52 @@
             </div>
             <div class="row">
                 <div class="searchArea">
-                    <form action="">
-                        <div class="input-group input-group mb-3 ">
+                    <div class="input-group input-group mb-3 ">
                             <span class="input-group-text" style="padding: 0px;"><img
-                                    src="resources/img_header/search.png" alt="음성인식" width="40" height="20"></span>
+                                    src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
+                                    height="20"></span>
+                        <form action="">
+
                             <input type="search" class="searchBar" name="search">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
+                        </form>
 
-                            <div class="mic">
-                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                                height="35"></a>
-                            </div>
 
-                            <div class="rec">
-                                <button class="btn btn-primary">전문가 추천</button>
-                            </div>
-
-                            <div class="enroll">
-                                <button class="btn btn-primary">전문가 등록</button>
-                            </div>
+                        <div class="mic">
+                            <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
+                                            height="35"></a>
                         </div>
-                    </form>
+
+                        <div class="rec">
+                            <button class="btn btn-primary">전문가 추천</button>
+                        </div>
+
+                        <div class="enroll">
+                            <button class="btn btn-primary"
+                                    onclick="location.href='talentform.do'">전문가 등록
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="categoryArea">
                     <ul class="list-group list-group-horizontal flex-fill listArea">
-                        <li class="list-group-item listSpace"><a href="design.do?prTalent=design" class="catA">디자인</a></li>
-                        <li class="list-group-item listSpace"><a href="translation.do?prTalent=translation" class="catA">번역/외국어</a></li>
-                        <li class="list-group-item listSpace"><a href="document.do?prTalent=document" class="catA">문서작성</a></li>
-                        <li class="list-group-item listSpace"><a href="music.do?prTalent=music" class="catA">음악/영상</a></li>
-                        <li class="list-group-item listSpace"><a href="program.do?prTalent=program" class="catA">프로그램개발</a></li>
-                        <li class="list-group-item listSpace"><a href="biz.do?prTalent=biz" class="catA">마케팅/비지니스</a></li>
-                        <li class="list-group-item listSpace"><a href="life.do?prTalent=life" class="catA">생활서비스</a></li>
+                        <li class="list-group-item listSpace"><a href="design.do?prTalent=design" class="catA">디자인</a>
+                        </li>
+                        <li class="list-group-item listSpace"><a href="translation.do?prTalent=translation"
+                                                                 class="catA">번역/외국어</a></li>
+                        <li class="list-group-item listSpace"><a href="document.do?prTalent=document"
+                                                                 class="catA">문서작성</a></li>
+                        <li class="list-group-item listSpace"><a href="music.do?prTalent=music" class="catA">음악/영상</a>
+                        </li>
+                        <li class="list-group-item listSpace"><a href="program.do?prTalent=program"
+                                                                 class="catA">프로그램개발</a></li>
+                        <li class="list-group-item listSpace"><a href="biz.do?prTalent=biz" class="catA">마케팅/비지니스</a>
+                        </li>
+                        <li class="list-group-item listSpace"><a href="life.do?prTalent=life" class="catA">생활서비스</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -155,7 +167,8 @@
                     <div class="contentList">
                         <label id="userWelcome"></label>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav"
-                                onclick="location.href='logout.do'">logOut</button>
+                                onclick="location.href='logout.do'">logOut
+                        </button>
                         |
                         <label id="userPoint"></label>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">충전</button>
@@ -176,27 +189,33 @@
             </div>
             <div class="row">
                 <div class="searchArea">
-                    <form action="">
-                        <div class="input-group input-group mb-3 ">
+                    <div class="input-group input-group mb-3 ">
                             <span class="input-group-text" style="padding: 0px;"><img
-                                    src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40" height="20"></span>
+                                    src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
+                                    height="20"></span>
+                        <form action="">
+
                             <input type="search" class="searchBar" name="search">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
+                        </form>
 
-                            <div class="mic">
-                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                                height="35"></a>
-                            </div>
 
-                            <div class="rec">
-                                <button class="btn btn-primary">전문가 추천</button>
-                            </div>
-
-                            <div class="enroll">
-                                <button class="btn btn-primary">전문가 등록</button>
-                            </div>
+                        <div class="mic">
+                            <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
+                                            height="35"></a>
                         </div>
-                    </form>
+
+                        <div class="rec">
+                            <button class="btn btn-primary">전문가 추천</button>
+                        </div>
+
+                        <div class="enroll">
+                            <button class="btn btn-primary"
+                                    onclick="location.href='talentform.do'">전문가 등록
+                            </button>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -234,7 +253,8 @@
                     <div class="contentList">
                         관리자님 환영합니다!!
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav"
-                                onclick="location.href='logout.do'">logOut</button>
+                                onclick="location.href='logout.do'">logOut
+                        </button>
                         |
                         <a href="" class="navA">Admin page</a>
                         |
@@ -254,7 +274,8 @@
                     <form action="">
                         <div class="input-group input-group mb-3 ">
                             <span class="input-group-text" style="padding: 0px;"><img
-                                    src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40" height="20"></span>
+                                    src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
+                                    height="20"></span>
                             <input type="search" class="searchBar" name="search">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
 

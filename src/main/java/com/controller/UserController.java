@@ -45,7 +45,12 @@ public class UserController {
     @RequestMapping("/logout.do")
     public String logout(HttpSession session) {
         session.invalidate();
-        
+
         return "redirect:main.do";
+    }
+
+    @RequestMapping("/talentform.do")
+    public String talentForm() {
+        return "user/abilityRegister";
     }
 }

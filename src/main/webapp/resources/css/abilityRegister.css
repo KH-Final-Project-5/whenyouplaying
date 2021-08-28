@@ -1,6 +1,5 @@
 
-
-.container{
+.container {
 
     width: 1200px;
     max-width: none !important;
@@ -49,22 +48,23 @@
 .menuText {
 
     font-size: 20px;
-    
+
 }
 
-h2{
+h2 {
     position: relative;
     top: 5px;
     left: 10px;
 }
 
-h1{
+h1 {
     text-align: center;
     position: relative;
     top: 20px;
-    font: bold;
+    font-weight: bold;
 }
-#divBox{
+
+#divBox {
     border: 1px gray solid;
     position: relative;
     top: 20px;
@@ -73,22 +73,23 @@ h1{
     padding-top: 10px;
 }
 
-#info{
+.info {
     width: 220px;
-    border: none; background: transparent;
+    border: none;
+    background: transparent;
     margin-bottom: 20px;
     padding-left: 15px;
     pointer-events: none;
 }
 
-#selectBar{
+#selectBar {
     position: absolute;
-    top:10px;
+    top: 10px;
     margin-left: 230px;
 }
 
 
-#fileName1{
+#fileName1 {
     position: absolute;
     top: 10px;
     left: 450px;
@@ -97,7 +98,7 @@ h1{
 
 }
 
-#fileName2{
+#fileName2 {
     position: absolute;
     top: 10px;
     left: 680px;
@@ -106,140 +107,142 @@ h1{
     width: 150px;
 }
 
-#fileBox1{
+#fileBox1 {
     border: 0.1px solid gray;
     width: 200px;
     height: 200px;
     position: absolute;
-    left:420px;
+    left: 420px;
     top: 4%;
-    
+
 }
 
-#fileBox2{
+#fileBox2 {
     border: 0.1px solid gray;
     width: 200px;
     height: 200px;
     position: absolute;
-    left:650px;
-    top:4%;
+    left: 650px;
+    top: 4%;
 }
 
-#title{
+#title {
     position: relative;
     top: 70px;
 }
 
 
-
-textarea{
+textarea {
     position: relative;
     top: 70px;
     resize: none;
-    width:100%;
+    width: 100%;
     height: 71%;
 
 }
 
 
-#file{
+#file {
     position: relative;
     top: 80px;
     width: 220px;
 }
 
-#fileTitle1{
+#fileTitle1 {
     position: absolute;
     top: 1220px;
     left: 30px;
-    border: none; background: transparent;
-    pointer-events: none;
-}
-#fileTitle2{
-    position: absolute;
-    top: 1220px;
-    left: 260px;
-    border: none; background: transparent;
+    border: none;
+    background: transparent;
     pointer-events: none;
 }
 
-#cancelBtn{
+#fileTitle2 {
+    position: absolute;
+    top: 1220px;
+    left: 260px;
+    border: none;
+    background: transparent;
+    pointer-events: none;
+}
+
+#cancelBtn {
     position: relative;
     float: right;
     top: -80px;
     margin-right: 50px;
-    
+
 }
 
-#applyBtn{
+#applyBtn {
     position: relative;
     float: right;
     top: -80px;
 }
 
-body{
+body {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
 
-
-#titleName{
+#titleName {
     border-bottom: outset 3px;
     text-align: center;
     position: relative;
-    top:30px;
+    top: 30px;
 }
 
 
 /* 파일 업로더 */
-.box-file-input label{
-    display:inline-block;
-    background:#23a3a7;
-    color:#fff;
-    padding:0px 15px;
-    line-height:35px;
-    cursor:pointer;
-  }
-  
-  .box-file-input label:after{
-    content:"파일등록";
-  }
-  
-  .box-file-input .file-input{
-    display:none;
-  }
-  
-  .box-file-input .filename{
-    display:inline-block;
-    padding-left:10px;
-  }
+.box-file-input label {
+    display: inline-block;
+    background: #23a3a7;
+    color: #fff;
+    padding: 0px 15px;
+    line-height: 35px;
+    cursor: pointer;
+}
 
-  /*파일2*/
-  .box-file-input2 label{
-    display:inline-block;
-    background:#23a3a7;
-    color:#fff;
-    padding:0px 15px;
-    line-height:35px;
-    cursor:pointer;
-  }
-  
-  .box-file-input2 label:after{
-    content:"파일등록";
-  }
-  
-  .box-file-input2 .file-input2{
-    display:none;
-  }
-  
-  .box-file-input2 .filename2{
-    display:inline-block;
-    padding-left:10px;
-  }
+.box-file-input label:after {
+    content: "파일등록";
+}
 
-  a{
+.box-file-input .file-input {
+    display: none;
+}
+
+.box-file-input .filename {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+/*파일2*/
+.box-file-input2 label {
+    display: inline-block;
+    background: #23a3a7;
+    color: #fff;
+    padding: 0px 15px;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.box-file-input2 label:after {
+    content: "파일등록";
+}
+
+.box-file-input2 .file-input2 {
+    display: none;
+}
+
+.box-file-input2 .filename2 {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+a {
     color: black;
 }
+
 a:hover {
     color: black;
 }

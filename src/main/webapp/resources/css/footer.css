@@ -1,4 +1,19 @@
+/* 본문 가로 길이 1200px 고정, 반응형 삭제  */
+.container{
+
+    width: 1200px;
+    max-width: none !important;
+    /*height: 110px;*/
+    margin-top: 20px;
+
+}
+
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
 footer{
+    /*height: %;*/
     background-color: rgb(24, 214, 163);
 }
 
@@ -11,6 +26,7 @@ footer img{
 
 .foo_div{
     float: left;
+    height: 160px;
 }
 
 .foo_div1{
@@ -33,20 +49,12 @@ footer img{
     margin-top: 10px;
 }
 
+/*
 .footer {
-
-    position: relative;
-
+    !*position: relative;*!
     left: 0;
-
-    bottom: -900px;
-
+    !*bottom: -900px;*!
     width: 100%;
-
-	padding: 15px 0;
-
+	!*padding: 15px 0;*!
 	text-align: center;
-
-
-
-}
+}*/

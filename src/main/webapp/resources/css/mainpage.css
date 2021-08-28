@@ -1,19 +1,14 @@
-/* 영역 볼수 있도록 임시로 border표시, 나중에 지울것 */
-.container *{
-    
-    /*border: 1px solid gray;*/
-}
-
 /* 본문 가로 길이 1200px 고정, 반응형 삭제  */
-.container{
+.container {
 
     width: 1200px;
     max-width: none !important;
     margin-top: 60px;
     margin-bottom: 60px;
+    height: 100%;
 }
 
-body{
+body {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -21,7 +16,8 @@ body{
     width: 170px;
     height: 170px;
 }
-.mainNewLink , .mainNewLink:visited, .mainNewLink:hover{
+
+.mainNewLink, .mainNewLink:visited, .mainNewLink:hover {
     color: black;
 }
 
@@ -39,12 +35,13 @@ body{
     margin-left: 90px;
     color: gray;
 }
+
 .mainNewImgDiv {
     margin-left: 40px;
     margin-right: 50px;
 }
 
-.hrClass1{
+.hrClass1 {
     border: 0;
     height: 2px;
     background: #ccc;

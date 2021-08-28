@@ -7,45 +7,45 @@
   	
   	<select id="selectDesign" parameterType="String" resultType="ProjectDto">
   		SELECT *
-  		FROM PROJECT
-  		WHERE "prTalent"=#{design}
+  		FROM W_PROJECT
+  		WHERE PRTALENT=#{design}
   	</select>
   	
   	<select id="selectTranslation" parameterType="String" resultType="ProjectDto">
   		SELECT *
-  		FROM PROJECT
-  		WHERE "prTalent"=#{translation}
+  		FROM W_PROJECT
+  		WHERE prTalent=#{translation}
   	</select>
   	
   	<select id="selectDocument" parameterType="String" resultType="ProjectDto">
   		SELECT *
-  		FROM PROJECT
-  		WHERE "prTalent"=#{document}
+  		FROM W_PROJECT
+  		WHERE prTalent=#{document}
   	</select>
   	
   	
   	<select id="selectMusic" parameterType="String" resultType="ProjectDto">
   		SELECT *
   		FROM PROJECT
-  		WHERE "prTalent"=#{music}
+  		WHERE prTalent=#{music}
   	</select>
   	
   	<select id="selectProgram" parameterType="String" resultType="ProjectDto">
   		SELECT *
   		FROM PROJECT
-  		WHERE "prTalent"=#{program}
+  		WHERE prTalent=#{program}
   	</select>
   	
   	<select id="selectBiz" parameterType="String" resultType="ProjectDto">
   		SELECT *
   		FROM PROJECT
-  		WHERE "prTalent"=#{biz}
+  		WHERE prTalent=#{biz}
   	</select>
   	
   	<select id="selectLife" parameterType="String" resultType="ProjectDto">
   		SELECT *
   		FROM PROJECT
-  		WHERE "prTalent"=#{life}
+  		WHERE prTalent=#{life}
   	</select>
   	
   	
@@ -53,7 +53,7 @@
   	<select id="detail" parameterType="int" resultType="ProjectDto">
   		SELECT *
   		FROM PROJECT
-  		WHERE "prNo"=#{prNo}
+  		WHERE prNo=#{prNo}
   	</select>
   	
   </mapper>
