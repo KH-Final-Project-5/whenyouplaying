@@ -19,6 +19,7 @@ public class UserDto {
 	private String usPw;
 	private String usName;
 	private String usPhone;
+	private String usAddress;
 	private String usEmail;
 	private String usTalent;
 	private Date usDate;

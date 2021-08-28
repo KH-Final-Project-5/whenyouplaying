@@ -34,7 +34,7 @@
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/login.css"/>">
 </head>
-<body>
+<body style="overflow-y: hidden">
 <div class="wwrap">
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>

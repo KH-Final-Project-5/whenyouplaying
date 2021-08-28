@@ -125,5 +125,6 @@
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
     </footer>
 </div>
+
 </body>
 </html>

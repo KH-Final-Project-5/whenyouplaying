@@ -1,9 +1,13 @@
 
 html,
 body {
-    margin:0;
-    padding:0;
+    position: relative;
+    margin: 0;
+    padding: 0;
     height: 100%;
+    overflow-x: hidden;
+    /*overflow-y: hidden;*/
+
 }
 .wwrap {
     min-height: 100%;
@@ -16,6 +20,7 @@ footer {
     /*height: 200px;*/
     bottom: 0;
     text-align: center;
+    /*margin-top: 00px;*/
 }
 
 body {
@@ -29,6 +34,7 @@ body {
     min-height: 100%;
     margin-top: 20px;
     margin-bottom: 0;
+    padding-bottom: 160px;
 }
 
 /* 구글 아이콘*/
