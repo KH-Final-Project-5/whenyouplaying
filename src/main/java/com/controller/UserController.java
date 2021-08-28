@@ -2,6 +2,7 @@ package com.controller;
 
 
 import com.biz.UserBiz;
+import com.dto.AbilityDto;
 import com.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,4 +54,5 @@ public class UserController {
     public String talentForm() {
         return "user/abilityRegister";
     }
+
 }

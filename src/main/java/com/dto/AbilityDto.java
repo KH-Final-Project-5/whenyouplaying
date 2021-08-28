@@ -12,7 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AbilityDto {
-	
 	private int abNo;
 	private String abCate;
 	private String abTitle;
@@ -21,4 +20,6 @@ public class AbilityDto {
 	private String abStatus;
 	private String abImg1;
 	private String abImg2;
+	private int usNo;
+	private UserDto userDto;
 }

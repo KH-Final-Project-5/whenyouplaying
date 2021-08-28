@@ -1,28 +1,28 @@
 package com.dao;
 
-import com.dto.UserDto;
+import com.dto.AbilityDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDaoImpl implements UserDao{
+public class AbilityDaoImpl implements AbilityDao {
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
 
-    @Override
-    public UserDto login(UserDto dto) {
 
-        UserDto userDto = null;
+    @Override
+    public int AbilityInsert(AbilityDto dto, int usNo) {
+        int res = 0;
 
         try {
-            userDto = sqlSessionTemplate.selectOne(NAMESPACE+"loginUser", dto);
+            res = sqlSessionTemplate.insert(NAMESPACE+ "abilityInsert", dto);
         } catch (Exception e) {
-            System.out.println("로그인 에러");
+            System.out.println("재능기부 신청 실패");
             e.printStackTrace();
         }
 
-        return userDto;
+        return res;
     }
 }

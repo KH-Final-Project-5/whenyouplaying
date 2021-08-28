@@ -35,7 +35,57 @@
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/abilityRegister.js"/>"></script>
+    <script type="text/javascript"
+            src="<c:url value="/resources/smarteditor2/js/service/HuskyEZCreator.js"/>"
+            charset="utf-8"></script>
 
+    <script>
+        $(function () {
+            var oEditors = [];
+            nhn.husky.EZCreator.createInIFrame({
+                oAppRef: oEditors,
+                elPlaceHolder: "abContent",
+                sSkinURI: "/resources/smarteditor2/SmartEditor2Skin.html",
+                fCreator: "createSEditor2",
+                htParams: {
+                    bUseToolbar: true,
+                    bUseVerticalResizer: false,
+                    bUseModeChanger: true
+                },
+                /*fOnAppLoad: function () {
+                    oEditors.getById["abContent"].exec("PASTE_HTML", ["기존 DB에 저장된 내용을 에디터에 적용할 문구"]);
+                }*/
+
+            });
+
+            $("#applyBtn").click(function () {
+                oEditors.getById["abContent"].exec("UPDATE_CONTENTS_FIELD", []);
+
+                $("#abilityForm").submit();
+            });
+        });
+
+        function setThumbnail1(event) {
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var img = document.createElement("img");
+                img.setAttribute("class", "imgTwo");
+                img.setAttribute("src", event.target.result);
+                document.querySelector("div#fileBox1").appendChild(img);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        function setThumbnail2(event) {
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var img = document.createElement("img");
+                img.setAttribute("class", "imgTwo");
+                img.setAttribute("src", event.target.result);
+                document.querySelector("div#fileBox2").appendChild(img);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </head>
 
 <%
@@ -68,14 +118,14 @@
 
                 <div id="menuList">
                     <span class="menuText"><a class="menuText" href="#">회원정보</a></span><br><br>
-                    <span class="menuText"><a href="#">찜 내역</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 구매내역</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 판매내역</a></span><br><br>
-                    <span class="menuText"><a href="#">충전 내역확인</a></span><br><br>
-                    <span class="menuText"><a href="#">계좌 관리</a></span><br><br>
-                    <span class="menuText"><a href="#">포인트 출금</a></span><br><br>
-                    <span class="menuText"><a href="#">포인트 출금내역</a></span><br><br>
-                    <span class="menuText"><a href="#">회원 탈퇴</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="#">찜 내역</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="#">재능 구매내역</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="#">재능 판매내역</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="#">충전 내역확인</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="#">계좌 관리</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="#">포인트 출금</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="#">포인트 출금내역</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="#">회원 탈퇴</a></span><br><br>
                 </div>
             </div>
 
@@ -83,7 +133,8 @@
             <div class="col-9">
                 <div id="titleName"><h1>당신의 재능을 보여주세요</h1><br></div>
                 <br><br>
-                <form action="" method="post">
+                <form action="abilityregi.do" method="post" id="abilityForm">
+                    <input type="hidden" name="usNo" value="<%=dto.getUsNo()%>">
                     <div id="divBox">
                         <input type="text" name="usId" value="ID: <%=dto.getUsId()%>" class="info" readonly="readonly">
                         <br>
@@ -95,20 +146,20 @@
                                readonly="readonly">
 
                         <div id="selectBar">
-                            <select>
+                            <select name="abCate">
                                 <option value="" selected disabled>재능을 선택하세요</option>
-                                <option value="">디자인</option>
-                                <option value="">번역/외국어</option>
-                                <option value="">문서작성</option>
-                                <option value="">음악/영상</option>
-                                <option value="">마케팅/비즈니스</option>
-                                <option value="">기타</option>
+                                <option value="design">디자인</option>
+                                <option value="translation">번역/외국어</option>
+                                <option value="document">문서작성</option>
+                                <option value="music">음악/영상</option>
+                                <option value="biz">마케팅/비즈니스</option>
+                                <option value="life">생활서비스</option>
                             </select>
                         </div>
 
                         <input type="text" value="첨부사진1 미리보기" id="fileName1">
                         <div id="fileBox1">
-
+                            <img id="blah1" src="#" alt=""/>
                         </div>
 
                         <input type="text" value="첨부사진2 미리보기" id="fileName2">
@@ -117,22 +168,23 @@
                         </div>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="제목을 입력하세요" aria-label="제목을 입력하세요"
-                                   aria-describedby="basic-addon2" id="title">
+                                   aria-describedby="basic-addon2" name="abTitle" id="title">
                         </div>
 
+                        <br><br><br>
 
-                        <textarea placeholder="신청할 재능을 입력하세요"></textarea>
+                        <textarea id="abContent" name="abContent" placeholder="신청할 재능을 입력하세요"></textarea>
                     </div>
                     <br><br>
 
-                    <div class="box-file-input"><label><input type="file" name="ev_display" class="file-input"
+                    <div class="box-file-input"><label><input type="file" onchange="setThumbnail1(event);" name="ev_display" class="file-input"
                                                               accept="image/*"></label><span class="filename">재능을 증명할 첫번째 파일을 선택해주세요.</span>
                     </div>
-                    <div class="box-file-input2"><label><input type="file" name="ev_display2" class="file-input2"
+                    <div class="box-file-input2"><label><input type="file" onchange="setThumbnail2(event);" name="ev_display2" class="file-input2"
                                                                accept="image/*"></label><span class="filename2">재능을 증명할 두번째 파일을 선택해주세요.</span>
                     </div>
 
-                    <input type="submit" value="신청하기" id="applyBtn" class="btn btn-outline-primary">
+                    <button id="applyBtn" class="btn btn-outline-primary">신청하기</button>
                     <input type="button" value="취소하기" id="cancelBtn" class="btn btn-outline-primary">
                 </form>
             </div>

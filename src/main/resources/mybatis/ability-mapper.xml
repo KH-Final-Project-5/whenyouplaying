@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ability">
+    <resultMap id="userDto" type="userDto">
+        <result property="usNo" column="USNO"/>
+    </resultMap>
+    <insert id="abilityInsert" parameterType="abilityDto">
+        INSERT INTO W_ABILITY
+        VALUES (ABILITYSEQ.NEXTVAL, #{usNo}, #{abCate}, #{abTitle},
+                #{abContent}, SYSDATE, 'N', null, null)
+    </insert>
+</mapper>

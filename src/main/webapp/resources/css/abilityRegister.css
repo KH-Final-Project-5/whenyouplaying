@@ -107,6 +107,11 @@ h1 {
     width: 150px;
 }
 
+.imgTwo {
+    width: 200px;
+    height: 200px;
+}
+
 #fileBox1 {
     border: 0.1px solid gray;
     width: 200px;
@@ -114,7 +119,6 @@ h1 {
     position: absolute;
     left: 420px;
     top: 4%;
-
 }
 
 #fileBox2 {
@@ -134,10 +138,10 @@ h1 {
 
 textarea {
     position: relative;
-    top: 70px;
+    margin-top: 150px;
     resize: none;
-    width: 100%;
-    height: 71%;
+    width: 864px;
+    height: 657px;
 
 }
 
@@ -249,5 +253,9 @@ body {
 
 .menuText:visited{
     color: black;
+}
+
+#smart_editor2 {
+    margin-top: 50px;
 }
 
