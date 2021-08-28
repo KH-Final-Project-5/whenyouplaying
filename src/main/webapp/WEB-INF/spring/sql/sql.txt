@@ -66,17 +66,18 @@ CREATE TABLE W_CHARGEHISTORY
 
 CREATE TABLE W_USER
 (
-    USNO     Number        NOT NULL,
-    USID     VARCHAR2(30)  NULL,
-    USPW     VARCHAR2(30)  NULL,
-    USNAME   VARCHAR2(30)  NULL,
-    USPHONE  VARCHAR2(20)  NULL,
-    USEMAIL  VARCHAR2(100) NULL,
-    USTALENT VARCHAR2(5)   NULL,
-    USDATE   DATE          NULL,
-    USSTATUS VARCHAR2(3)   NULL,
-    USROLE   VARCHAR2(50)  NULL,
-    USCASH   NUMBER        NULL
+    USNO     Number         NOT NULL,
+    USID     VARCHAR2(30)   NULL,
+    USPW     VARCHAR2(30)   NULL,
+    USNAME   VARCHAR2(30)   NULL,
+    USPHONE  VARCHAR2(20)   NULL,
+    USADRESS VARCHAR2(1000) NULL,
+    USEMAIL  VARCHAR2(100)  NULL,
+    USTALENT VARCHAR2(5)    NULL,
+    USDATE   DATE           NULL,
+    USSTATUS VARCHAR2(3)    NULL,
+    USROLE   VARCHAR2(50)   NULL,
+    USCASH   NUMBER         NULL
 );
 
 CREATE TABLE W_REPORT
@@ -464,10 +465,10 @@ ALTER TABLE W_DEALSTATUS
 
 ALTER TABLE W_DEALSTATUSIMG
     ADD CONSTRAINT FK_W_DEALSTATUSIMG_1 FOREIGN KEY (
-                                                                     DEALNO,
-                                                                     PRNO,
-                                                                     USSELLNO,
-                                                                     USBUYNO
+                                                     DEALNO,
+                                                     PRNO,
+                                                     USSELLNO,
+                                                     USBUYNO
         )
         REFERENCES W_DEALSTATUS (
                                  DEALNO,
@@ -479,9 +480,9 @@ ALTER TABLE W_DEALSTATUSIMG
 
 ALTER TABLE W_RESERVATION_P
     ADD CONSTRAINT FK_W_RESERVATION_P_1 FOREIGN KEY (
-                                                                   CALNO,
-                                                                   PRNO,
-                                                                   USNO
+                                                     CALNO,
+                                                     PRNO,
+                                                     USNO
         )
         REFERENCES W_CALENDAR (
                                CALNO,
@@ -533,4 +534,7 @@ INSERT INTO W_USER
 VALUES (UserSEQ.nextval, 'admin', 'admin', '유저02', '01012345678', 'abcd@gmail.com', 'Y',
         SYSDATE, 'Y', 'admin', '100000');
 
-
+SELECT *
+FROM W_USER
+WHERE usID = 'user01'
+  AND usPW = 'user01';
