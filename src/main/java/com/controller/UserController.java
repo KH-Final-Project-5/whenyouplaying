@@ -18,7 +18,7 @@ public class UserController {
 
     @RequestMapping("/main.do")
     public String main() {
-        return "user/index";
+        return "user/main";
     }
 
     @RequestMapping("/loginform.do")
