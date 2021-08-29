@@ -50,7 +50,7 @@
         </div>
         <div class="row">
             <div class="col-12" align="right" style="margin-bottom: 90px;">
-                <button class="btn btn-outline-primary" onclick="location.href='talentBoardInsert.html'">재능 등록하기
+                <button class="btn btn-outline-primary" onclick="location.href='insertProject.do'">재능 등록하기
                 </button>
             </div>
         </div>

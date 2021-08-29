@@ -1,8 +1,10 @@
 package com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.dto.ProjectDto;
+import com.dto.UserDto;
 
 public interface ProjectDao {
 	
@@ -15,4 +17,8 @@ public interface ProjectDao {
 	
 	
 	public ProjectDto selectDetail(int prNo);
+	
+	public int insertProject(ProjectDto dto);
+	
+	
 }

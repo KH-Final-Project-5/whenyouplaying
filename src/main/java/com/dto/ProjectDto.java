@@ -27,4 +27,5 @@ public class ProjectDto {
 	private String prLatitude;
 	private String prLongitude;
 	private String prAddress;
+	private int usNo;
 }

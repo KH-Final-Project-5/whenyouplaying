@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.biz.ProjectBiz;
 import com.commons.ScriptUtils;
+import com.dto.ProjectDto;
 import com.dto.UserDto;
 
 @Controller
 public class ProjectController {
+	
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
@@ -61,8 +64,22 @@ public class ProjectController {
 	}
 	
 	
+	@RequestMapping("insertProject.do")
+	public String insertProject(Model model) {
+			logger.info("insert");
+		return "projectBoard/talentBoardInsert";
+	}
 	
-	
+	@RequestMapping(value="insertProjectRes.do")
+	public void insertProjectRes(HttpServletResponse response,ProjectDto dto) throws IOException {
+		logger.info("Insert Res");
+		int res = biz.insertProject(dto);
+		 if (res > 0) {
+	            ScriptUtils.alertAndMovePage(response, "입력 완료", "main.do");
+	        } else {
+	            ScriptUtils.alertAndMovePage(response, "입력 실패", "main.do");
+	        }
+	}
 	
 	
 	
