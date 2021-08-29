@@ -13,7 +13,7 @@ public class AbilityDaoImpl implements AbilityDao {
 
 
     @Override
-    public int AbilityInsert(AbilityDto dto, int usNo) {
+    public int AbilityInsert(AbilityDto dto) {
         int res = 0;
 
         try {

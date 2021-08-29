@@ -9,6 +9,6 @@
     <insert id="abilityInsert" parameterType="abilityDto">
         INSERT INTO W_ABILITY
         VALUES (ABILITYSEQ.NEXTVAL, #{usNo}, #{abCate}, #{abTitle},
-                #{abContent}, SYSDATE, 'N', null, null)
+                #{abContent}, SYSDATE, 'N', #{abImg1}, #{abImg2})
     </insert>
 </mapper>

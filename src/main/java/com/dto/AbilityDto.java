@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -21,5 +22,11 @@ public class AbilityDto {
 	private String abImg1;
 	private String abImg2;
 	private int usNo;
-	private UserDto userDto;
+	private String usId;
+	private String usName;
+	private String usPhone;
+	private String usEmail;
+	private MultipartFile file1;
+	private MultipartFile file2;
+
 }

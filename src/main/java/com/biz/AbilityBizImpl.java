@@ -15,7 +15,7 @@ public class AbilityBizImpl implements AbilityBiz{
 
     @Transactional
     @Override
-    public int AbilityInsert(AbilityDto dto, int usNo) {
-        return dao.AbilityInsert(dto, usNo);
+    public int AbilityInsert(AbilityDto dto) {
+        return dao.AbilityInsert(dto);
     }
 }

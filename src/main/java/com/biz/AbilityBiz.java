@@ -5,6 +5,6 @@ import com.dto.AbilityDto;
 
 public interface AbilityBiz {
 
-    public int AbilityInsert(AbilityDto dto, int usNo);
+    public int AbilityInsert(AbilityDto dto);
 
 }

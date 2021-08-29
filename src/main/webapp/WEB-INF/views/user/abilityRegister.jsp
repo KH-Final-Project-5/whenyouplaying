@@ -112,7 +112,7 @@
             <div class="col-9">
                 <div id="titleName"><h1>당신의 재능을 보여주세요</h1><br></div>
                 <br><br>
-                <form action="abilityregi.do" method="post" id="abilityForm">
+                <form action="abilityregi.do" method="post" id="abilityForm" enctype="multipart/form-data">
                     <input type="hidden" name="usNo" value="<%=dto.getUsNo()%>">
                     <div id="divBox">
                         <input type="text" name="usId" value="ID: <%=dto.getUsId()%>" class="info" readonly="readonly">
@@ -156,10 +156,10 @@
                     </div>
                     <br><br>
 
-                    <div class="box-file-input"><label><input type="file" onchange="setThumbnail1(event);" name="ev_display" class="file-input"
+                    <div class="box-file-input"><label><input type="file" onchange="setThumbnail1(event);" name="file1" class="file-input"
                                                               accept="image/*"></label><span class="filename">재능을 증명할 첫번째 파일을 선택해주세요.</span>
                     </div>
-                    <div class="box-file-input2"><label><input type="file" onchange="setThumbnail2(event);" name="ev_display2" class="file-input2"
+                    <div class="box-file-input2"><label><input type="file" onchange="setThumbnail2(event);" name="file2" class="file-input2"
                                                                accept="image/*"></label><span class="filename2">재능을 증명할 두번째 파일을 선택해주세요.</span>
                     </div>
 
