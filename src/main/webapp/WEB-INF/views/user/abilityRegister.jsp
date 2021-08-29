@@ -64,27 +64,6 @@
                 $("#abilityForm").submit();
             });
         });
-
-        function setThumbnail1(event) {
-            var reader = new FileReader();
-            reader.onload = function (event) {
-                var img = document.createElement("img");
-                img.setAttribute("class", "imgTwo");
-                img.setAttribute("src", event.target.result);
-                document.querySelector("div#fileBox1").appendChild(img);
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
-        function setThumbnail2(event) {
-            var reader = new FileReader();
-            reader.onload = function (event) {
-                var img = document.createElement("img");
-                img.setAttribute("class", "imgTwo");
-                img.setAttribute("src", event.target.result);
-                document.querySelector("div#fileBox2").appendChild(img);
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
     </script>
 </head>
 
