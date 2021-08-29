@@ -14,7 +14,7 @@ body{
 }
 footer{
     /*height: %;*/
-    background-color: rgb(24, 214, 163);
+    background-color: whitesmoke;
 }
 
 footer img{
@@ -35,12 +35,12 @@ footer img{
 
 .foo_div1 span {
     font-size: 15px;
-    color: white;
+    color: black;
 }
 
 .foo_div1 p {
     margin-top: 5px;
-    color: white;
+    color: black;
 }
 
 .foo_div1 img{
