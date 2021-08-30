@@ -9,4 +9,15 @@
         WHERE USID = #{usId}
           AND USPW = #{usPw}
     </select>
+    
+     <select id="RegiUser" parameterType="userDto" resultType="userDto">
+ 
+	INSERT INTO User(usID,
+					usPW,
+					usName,
+					usPhone,
+					usEmail,
+					usADDRESS)
+ 		</select>
+    
 </mapper>

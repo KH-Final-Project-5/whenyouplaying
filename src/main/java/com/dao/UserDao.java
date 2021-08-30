@@ -8,4 +8,10 @@ public interface UserDao {
 
     public UserDto login(UserDto dto);
 
+    
+    
+    //user회원가입
+    
+    String NAMESPACE1 = "regi.";
+    public UserDto regi(UserDto dto);
 }

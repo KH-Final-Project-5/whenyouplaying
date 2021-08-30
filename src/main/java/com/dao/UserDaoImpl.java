@@ -25,4 +25,14 @@ public class UserDaoImpl implements UserDao{
 
         return userDto;
     }
+
+	@Override
+	public UserDto regi(UserDto dto) {
+		UserDto userDto = null;
+		
+		
+		return userDto;
+	}
+    
+    
 }
