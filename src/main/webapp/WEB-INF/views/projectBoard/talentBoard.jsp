@@ -1,3 +1,4 @@
+<%@page import="javax.websocket.SendResult"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 
@@ -36,11 +37,12 @@
 		<link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
 </head>
 <%
-	if(${dto.usId} != null){
-		
-	}
-		
 	
+	UserDto userDto = null;
+	
+	if(session.getAttribute("user")!=null){
+		userDto= (UserDto) session.getAttribute("user");
+
 %>
 
 
@@ -49,7 +51,7 @@
 <script>
 	$(function(){
 		
-		var userrole = "<%=dto.getUsRole()%>";
+		var userrole = "<%=userDto.getUsRole()%>";
 		console.log(userrole);
 		if(userrole !=="admin"){
 			$("#deleteBtn").css("display","none");
@@ -60,6 +62,11 @@
 	});
 
 </script>
+
+<%
+	}
+%>
+
 
 <body>
 
