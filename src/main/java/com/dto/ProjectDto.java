@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectDto {
+public class ProjectDto extends UserDto{
 	private int prNo;
 	private String prTitle;
 	private String prContent;
@@ -27,5 +27,6 @@ public class ProjectDto {
 	private String prLatitude;
 	private String prLongitude;
 	private String prAddress;
-	private int usNo;
+	
+	
 }

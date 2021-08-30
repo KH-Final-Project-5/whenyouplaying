@@ -1,37 +1,49 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- bootstrap js -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
 
     <!-- 글씨체 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-	
-	<!-- css -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+
+    <!-- css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="<c:url value="/resources/css/ablilityMain.css"/>">
-    <script src="<c:url value="/resources/js/abilityMain.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/resources/css/abilityMain.css"/>">
+    <%--    <script src="<c:url value="/resources/js/ab"/>"></script>--%>
 
 
 </head>
 <body>
 
+<div class="wwrap">
 
     <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+    </header>
 
     <div class="container">
         <div class="row">
@@ -48,19 +60,19 @@
                 </div>
                 <hr>
                 <div id="pageName"><b>Admin Page</b></div>
-    
+
                 <div id="menuList">
                     <br>
-                    <span class="menuText"><a href="#">공지 사항</a></span><br><br>
-                    <span class="menuText"><a href="#"><u><b>재능 기부 승인</b></u></a></span><br><br>
-                    <span class="menuText"><a href="#">신고 내역 확인</a></span><br><br>
-                    <span class="menuText"><a href="#">회원 목록 확인</a></span><br><br>
-                    <span class="menuText"><a href="#">기부 캐쉬 출금</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="noticeListAdmin.do">공지 사항</a></span><br><br>
+                    <span class="menuText"><a class="menuText"
+                                              href="abilitymain.do"><u><b>재능 기부 승인</b></u></a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="reportMain.do">신고 내역 확인</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="userManage.do">회원 목록 확인</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
                 </div>
             </div>
-    
-    
-    
+
+
             <div class="col-9">
                 <div id="titleName"><h1>재능승인 글 관리</h1></div>
 
@@ -72,132 +84,90 @@
                         <option value="">승인 대기</option>
                     </select>
                 </div>
-                <div>
-                    <div class="tableDiv">
-                        <table border="1" align="center" class="table">
-                            
-                            <colgroup>
-                                <col width="50" />
-                                <col width="250" />
-                                <col width="70" />
-                                <col width="100" />
-                                <col width="80" />
-                            </colgroup>
+                <div class="tableDiv">
+                    <table border="1" align="center" class="table">
 
-                            <tr>
-                                <th>NO</th>
-                                <th>제목</th>
-                                <th>신청자</th>
-                                <th>상태</th>
-                                <th>신청일</th>
-                            </tr>
+                        <colgroup>
+                            <col width="50"/>
+                            <col width="250"/>
+                            <col width="70"/>
+                            <col width="100"/>
+                            <col width="80"/>
+                        </colgroup>
 
-                            <tr>
-                                <td>10</td>
-                                <td>프로그램 개발 재능 신청합니다!!</td>
-                                <td>홍길동</td>
-                                <td>승인 대기</td>
-                                <td>2021.08.18</td>
-                            </tr>
-                            <!-- 임시데이터 삭제예정-->
-                            <tr>
-                                <td>9</td>
-                                <td>프로그램 개발 재능 신청합니다!!</td>
-                                <td>김길동</td>
-                                <td>승인 거절</td>
-                                <td>2021.08.18</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>프로그램 개발 재능 신청합니다!!</td>
-                                <td>박길동</td>
-                                <td>승인 거절</td>
-                                <td>2021.08.18</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>프로그램 개발 재능 신청합니다!!</td>
-                                <td>이길동</td>
-                                <td>승인 완료</td>
-                                <td>2021.08.18</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>프로그램 개발 재능 신청합니다!!</td>
-                                <td>신길동</td>
-                                <td>승인 완료</td>
-                                <td>2021.08.18</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>프로그램 개발 재능 신청합니다!!</td>
-                                <td>김길동</td>
-                                <td>승인 거절</td>
-                                <td>2021.08.18</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>프로그램 개발 재능 신청합니다!!</td>
-                                <td>김길동</td>
-                                <td>승인 거절</td>
-                                <td>2021.08.18</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>프로그램 개발 재능 신청합니다!!</td>
-                                <td>박길동</td>
-                                <td>승인 거절</td>
-                                <td>2021.08.18</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>프로그램 개발 재능 신청합니다!!</td>
-                                <td>이길동</td>
-                                <td>승인 완료</td>
-                                <td>2021.08.18</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>프로그램 개발 재능 신청합니다!!</td>
-                                <td>신길동</td>
-                                <td>승인 완료</td>
-                                <td>2021.08.18</td>
-                            </tr>
-                            <!--임시데이터 끝 이부분까지 삭제-->
+                        <tr>
+                            <th>NO</th>
+                            <th>제목</th>
+                            <th>신청자</th>
+                            <th>상태</th>
+                            <th>신청일</th>
+                        </tr>
 
-                        </table>
-                        </div>
-                       
-                        <div id="pagingArea" class="pagingDiv">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                      <span aria-hidden="true">&laquo;</span>
+                        <c:choose>
+                            <c:when test="${empty abList}">
+                                <tr>
+                                    <td colspan="5">등록된 게시물이 없습니다.</td>
+                                </tr>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach items="${abList}" var="abList">
+                                    <tr>
+                                        <td height="50">${abList.abNo}</td>
+                                        <td><a class="menuText" href="abilitydetail.do">${abList.abTitle}</a></td>
+                                        <td>${abList.usName}</td>
+                                        <td>${abList.abStatus}</td>
+                                        <td><fmt:formatDate value="${abList.abDate}" pattern="yyyy-MM-dd"/></td>
+                                    </tr>
+                                </c:forEach>
+
+                            </c:otherwise>
+                        </c:choose>
+
+                    </table>
+                </div>
+                <br><br>
+
+                <div id="pagingArea" class="pagingDiv">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <c:if test="${pageMaker.prev}">
+                                <li class="page-item">
+                                    <a class="page-link" href="${pageMaker.makeQuery(pageMaker.startPage - 1)}"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
                                     </a>
-                                  </li>
-                                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                      <span aria-hidden="true">&raquo;</span>
+                                </li>
+                            </c:if>
+                            <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                                <li class="page-item"><a class="page-link"
+                                                         href="abilitymain.do${pageMaker.makeQuery(idx)}">${idx}</a>
+                                </li>
+                            </c:forEach>
+
+                            <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+                                <li class="page-item">
+                                    <a class="page-link"
+                                       href="abilitymain.do${pageMaker.makeQuery(pageMaker.endPage + 1)}"
+                                       aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
                                     </a>
-                                  </li>
-                                </ul>
-                              </nav>
-                        </div>
+                                </li>
+                            </c:if>
+                        </ul>
+                    </nav>
 
                 </div>
             </div>
         </div>
-    </div><br><br>
+    </div>
+    <br><br>
 
     <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+    </footer>
+</div>
 
-      
-      
 
 </body>
 </html>

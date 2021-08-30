@@ -1,70 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ page import="com.dto.UserDto" %>
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.dto.UserDto" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-		      rel="stylesheet">
-		
-		
-		<!-- bootstrap css -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		
-		<!-- bootstrap js -->
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-		        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-		        crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		        crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-		        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-		        crossorigin="anonymous"></script>
-		<!-- jQeury-->
-		    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		
-		<link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
-</head>
-<%
-    UserDto dto = (UserDto) session.getAttribute("user");
-%>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
 
-<% if(dto==null){ %>
-	<script>
-	alert("로그인이 필요합니다");
-	location.href="main.do";
-	</script>
-<%}%>
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- bootstrap js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <!-- jQeury-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
+</head>
 
 
 <script>
-	$(function(){
-		
-		var userrole = "<%=dto.getUsRole()%>";
-		console.log(userrole);
-		if(userrole !=="admin"){
-			$("#deleteBtn").css("display","none");
-		}
-
-	
-
-	});
+    $(function () {
+        var user = "<%=session.getAttribute("user")%>";
+        var userrole = "${user.usRole}"
+        console.log(user);
+        if (userrole !== "admin") {
+            $(".deleteBtn").hide();
+        } else if (user === "null" || user == null) {
+            $(".deleteBtn").hide(); 
+        }
+        
+        
+        
+        if(user === "null" || user==null){
+        	$("#insertBtn").hide();
+        }
+    });
 
 </script>
 
 
-
 <body>
 
-<!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-<%--    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> --%>
+
 <div class="wwrap">
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
@@ -78,7 +74,7 @@
         </div>
         <div class="row">
             <div class="col-12" align="right" style="margin-bottom: 90px;">
-                <button class="btn btn-outline-primary" onclick="location.href='insertProject.do'">재능 등록하기
+                <button class="btn btn-outline-primary" id="insertBtn" onclick="location.href='insertProject.do'">재능 등록하기
                 </button>
             </div>
         </div>
@@ -266,7 +262,8 @@
 
                     <c:otherwise>
                         <c:forEach items="${pr_dto }" var="pr_dto">
-                            <div class="col-12" style="text-align: center;"><h3><a href="Detail.do?prNo=${pr_dto.prNo }">${pr_dto.prTitle }</a></h3>
+                            <div class="col-12" style="text-align: center;"><h3><a
+                                    href="Detail.do?prNo=${pr_dto.prNo }">${pr_dto.prTitle }</a></h3>
                             </div>
                             <div class="col-12">
                                 <div class="row" style="border-bottom:1px solid black">
@@ -284,9 +281,11 @@
                                     <div class="col-3">
 
                                         <div class="talent-price"><b>${pr_dto.prPrice }</b>
-                                          
+
                                         </div>
-                                        <button onclick="location.href='ProjectDelete.do?prNo=${pr_dto.prNo}'" class="btn btn-outline-primary" id="deleteBtn">글 삭제</button>
+                                        <button onclick="location.href='ProjectDelete.do?prNo=${pr_dto.prNo}'"
+                                                class="btn btn-outline-primary deleteBtn">글 삭제
+                                        </button>
 
                                     </div>
 

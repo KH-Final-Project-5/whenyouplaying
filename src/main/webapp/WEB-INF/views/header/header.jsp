@@ -1,9 +1,9 @@
-<%@ page import="com.dto.UserDto" %>
+<%--<jsp:useBean id="user" scope="session" type="com.dto.UserDto"/>--%>
+<%--<%@ page import="com.dto.UserDto" %>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<!DOCTYPE html>
 <html>
 <head>
     <title>Insert title here</title>
@@ -41,33 +41,28 @@
     <!-- js -->
     <script src="<c:url value="/resources/js/header.js"/>"></script>
 </head>
-<%
-    UserDto userDto = null;
-    if (session.getAttribute("user") != null) {
-        userDto = (UserDto) session.getAttribute("user");
-%>
 <script>
     $(function () {
-        var usertalnet = "<%=userDto.getUsTalent()%>";
-        var userrole = "<%=userDto.getUsRole()%>";
-        console.log(userrole);
-        if (userrole === "user") {
-            $('#defaultHeader').hide();
-            $("#loginHeader").show();
-            $("#userWelcome").text("<%=userDto.getUsName()%>님 환영합니다!");
-            $("#userPoint").text("포인트 : <%=userDto.getUsCash()%>Point");
-            if (usertalnet === "Y") {
-                $('.enroll').hide();
+        var user = "<%=session.getAttribute("user")%>";
+        if (user) {
+            var usertalnet = "${user.usTalent}";
+            var userrole = "${user.usRole}";
+            console.log(userrole);
+            if (userrole === "user") {
+                $('#defaultHeader').hide();
+                $("#loginHeader").show();
+                $("#userWelcome").text("${user.usName}님 환영합니다!");
+                $("#userPoint").text("포인트 : ${user.usCash}Point");
+                if (usertalnet === "Y") {
+                    $('.enroll').hide();
+                }
+            } else if (userrole === "admin") {
+                $('#defaultHeader').hide();
+                $("#adminHeader").show();
             }
-        } else if (userrole === "admin") {
-            $('#defaultHeader').hide();
-            $("#adminHeader").show();
         }
     });
 </script>
-<%
-    }
-%>
 <body>
 
 
@@ -131,11 +126,13 @@
                                                                  class="catA">번역/외국어</a></li>
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=document"
                                                                  class="catA">문서작성</a></li>
-                        <li class="list-group-item listSpace"><a href="category.do?prTalent=music" class="catA">음악/영상</a>
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=music"
+                                                                 class="catA">음악/영상</a>
                         </li>
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=program"
                                                                  class="catA">프로그램개발</a></li>
-                        <li class="list-group-item listSpace"><a href="category.do?prTalent=biz" class="catA">마케팅/비지니스</a>
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=biz"
+                                                                 class="catA">마케팅/비지니스</a>
                         </li>
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=life" class="catA">생활서비스</a>
                         </li>
@@ -225,11 +222,13 @@
                                                                  class="catA">번역/외국어</a></li>
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=document"
                                                                  class="catA">문서작성</a></li>
-                        <li class="list-group-item listSpace"><a href="category.do?prTalent=music" class="catA">음악/영상</a>
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=music"
+                                                                 class="catA">음악/영상</a>
                         </li>
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=program"
                                                                  class="catA">프로그램개발</a></li>
-                        <li class="list-group-item listSpace"><a href="category.do?prTalent=biz" class="catA">마케팅/비지니스</a>
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=biz"
+                                                                 class="catA">마케팅/비지니스</a>
                         </li>
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=life" class="catA">생활서비스</a>
                         </li>
@@ -260,7 +259,7 @@
                                 onclick="location.href='logout.do'">logOut
                         </button>
                         |
-                        <a href="" class="navA">Admin page</a>
+                        <a href="noticeListAdmin.do" class="navA">Admin page</a>
                         |
                         <a href="" class="navA">공지사항</a>
                         |
@@ -298,18 +297,20 @@
 
             <div class="row">
                 <div class="categoryArea">
-                   <ul class="list-group list-group-horizontal flex-fill listArea">
+                    <ul class="list-group list-group-horizontal flex-fill listArea">
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=design" class="catA">디자인</a>
                         </li>
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=translation"
                                                                  class="catA">번역/외국어</a></li>
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=document"
                                                                  class="catA">문서작성</a></li>
-                        <li class="list-group-item listSpace"><a href="category.do?prTalent=music" class="catA">음악/영상</a>
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=music"
+                                                                 class="catA">음악/영상</a>
                         </li>
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=program"
                                                                  class="catA">프로그램개발</a></li>
-                        <li class="list-group-item listSpace"><a href="category.do?prTalent=biz" class="catA">마케팅/비지니스</a>
+                        <li class="list-group-item listSpace"><a href="category.do?prTalent=biz"
+                                                                 class="catA">마케팅/비지니스</a>
                         </li>
                         <li class="list-group-item listSpace"><a href="category.do?prTalent=life" class="catA">생활서비스</a>
                         </li>

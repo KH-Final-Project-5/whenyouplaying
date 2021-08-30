@@ -20,4 +20,19 @@
 					usADDRESS)
  		</select>
     
+    <select id="findId" parameterType="userDto" resultType="string">
+    	SELECT USID
+		FROM W_USER
+		WHERE USNAME = #{usName}
+		AND USEMAIL = #{usEmail}
+    </select>
+    
+    <select id="findPw" parameterType="userDto" resultType="string">
+ 		SELECT USPW
+ 		FROM W_USER
+ 		WHERE USNAME = #{usName}
+ 		AND USID = #{usId}
+ 		AND USEMAIL = #{usEmail}
+ 	</select> 
+    
 </mapper>

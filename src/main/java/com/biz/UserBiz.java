@@ -5,7 +5,7 @@ import com.dto.UserDto;
 public interface UserBiz {
 
     public UserDto login(UserDto dto);
-
     public UserDto regi(UserDto dto);
-
+    public String findId(UserDto dto);
+    public String findPw(UserDto dto);
 }
