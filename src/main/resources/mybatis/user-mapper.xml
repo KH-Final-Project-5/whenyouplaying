@@ -9,4 +9,14 @@
         WHERE USID = #{usId}
           AND USPW = #{usPw}
     </select>
+    
+    <select id="findId" parameterType="userDto" resultType="string">
+    	SELECT USID
+		FROM W_USER
+		WHERE USNAME = #{usName}
+		AND USEMAIL = #{usEmail}
+    </select>
+    
+    
+    
 </mapper>
