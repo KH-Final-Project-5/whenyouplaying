@@ -40,12 +40,22 @@
 		
 	</script>
 	
+<script>
+    $(function () {
+        var user = "<%=session.getAttribute("user")%>";
+        var userNo = "${user.usNo}"
+        var projectUsNo ="${detail_dto.usNo}"
+        console.log(user);
+        if(projectUsNo!==userNo){
+        	 $("#deleteBtn").hide();
+        	 $("#updateBtn").hide();
+        }
+    });
 
+</script>
 </head>
 
-<%
-    UserDto dto = (UserDto) session.getAttribute("user");
-%>
+
 
 <body>
 <div class="wwrap">
@@ -62,7 +72,7 @@
                         <img id="ai-img" src="<c:url value="/resources/img_header/logo.png"/>" alt="">
                     </div>
                     <div id="userName" style="margin-top: 120px;">
-                        User1
+                        ${detail_dto.usName }
                     </div>
 
                     <div id="message">
@@ -170,7 +180,7 @@
                         <div class="col-12">
 
                             <span class="detail-content"><b>판매자 : &nbsp;</b></span><span
-                                class="detail-data"></span>
+                                class="detail-data">${detail_dto.usName }</span>
                         </div>
                     </div>
 					
@@ -245,9 +255,9 @@
                 </form>
                 <div class="row" id="button-div">
                     <div class="col-12">
-                        <button onclick="location.href='ProjectUpdate.do?prNo=${detail_dto.prNo}'" class="detail-button2 btn btn-outline-primary btn-sm detail-button4">글 수정
+                        <button onclick="location.href='ProjectUpdate.do?prNo=${detail_dto.prNo}'" class="detail-button2 btn btn-outline-primary btn-sm detail-button4" id="updateBtn">글 수정
                         </button>
-                        <button onclick="location.href='ProjectDelete.do?prNo=${pr_dto.prNo}'" class="detail-button2 btn btn-outline-primary btn-sm detail-button4">글 삭제
+                        <button onclick="location.href='ProjectDelete.do?prNo=${pr_dto.prNo}'" class="detail-button2 btn btn-outline-primary btn-sm detail-button4" id="deleteBtn">글 삭제
                         </button>
                     </div>
                 </div>

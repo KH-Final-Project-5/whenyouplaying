@@ -24,7 +24,7 @@
    <!-- jquery-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<c:url value="/resources/js/messagePopup.js"/>"></script>
-    
+    <script src="<c:url value="/resources/js/projectThumnail.js"/>"></script>
 
 
 
@@ -83,13 +83,27 @@
 
                             <!-- 이미지 미리보기-->
                             <tr>
-                                <td colspan="2" id="deal-img"><img src="../image/ImgBox.PNG" class="deal-img"></td>
+                                <td colspan="2" id="deal-img" class="fileBox1">
+	                                
+	                            		<img id="blah1" src="#" alt=""/>
+	                       			
+                       			</td>
                             </tr>
 
                             <!-- 이미지 업로드-->
                             <tr>
                                 <th class="deal-th">이미지 업로드</th>
-                                <td><input type="file" name="prImage"></td>
+                                <td>
+	                                
+	                                <div class="box-file-input">
+		                                
+		                                <input type="file" onchange="setThumbnail1(event);" 
+		                                		name="file1" class="file-input"
+		                                        accept="image/*">
+		                                
+	                                <span class="filename">재능을 설명할 파일을 선택해주세요.</span>
+	                                </div>
+                                 </td>
                             </tr>
 
                            
