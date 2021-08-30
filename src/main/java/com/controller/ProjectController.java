@@ -1,9 +1,10 @@
 package com.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,11 @@ public class ProjectController {
 	@Autowired
 	private ProjectBiz biz;
 	@RequestMapping("/category.do")
-	public String designProject(Model model, String prTalent) {
+	public String designProject(Model model, String prTalent,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.setAttribute("dto", session);
+		
+		
 		
 		logger.info("Select Category");
 		model.addAttribute("pr_dto",biz.selectCategory(prTalent));
