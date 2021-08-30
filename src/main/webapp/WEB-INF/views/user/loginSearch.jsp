@@ -41,8 +41,10 @@
 	
 	        <div class="col-10">
 	            <div class="row">
-	                <img src="<c:url value="/resources/questionImg/question.PNG"/>" class="search-head">
-	                <h3 class="search-head">아이디 찾기</h3>
+	            	<div class="idpwImgArea">
+		                <img src="<c:url value="/resources/questionImg/question.PNG"/>" class="search-head">
+		            </div>
+		                <h3 class="search-head" id="h3Display">아이디 찾기</h3>
 	            </div>
 	
 	
@@ -50,7 +52,8 @@
 	
 	                <!--ID찾기 이름 입력폼-->
 	                <div class="row search-row">
-	                    <label id="id-name" class="search-label">Name : </label> <input type="text" name="name" placeholder="이름을 입력해주세요" id="id-name-input">
+	                    <label id="id-name" class="search-label">Name : </label> 
+	                    <input type="text" name="name" placeholder="이름을 입력해주세요" id="id-name-input">
 	                </div>
 	                <!--ID찾기 이메일 입력폼-->
 	                <div class="row search-row">

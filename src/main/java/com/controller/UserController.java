@@ -67,7 +67,7 @@ public class UserController {
     //id/pw 찾기
     @RequestMapping("/finduser.do")
     public String findUser() {
-    	logger.info("id/pw 찾는 페이지 이동");
+    	logger.info("finduser.do : id/pw 찾는 페이지 이동");
     	return "user/loginSearch";
     }
     
