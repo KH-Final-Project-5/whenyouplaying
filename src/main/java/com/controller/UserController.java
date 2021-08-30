@@ -121,6 +121,18 @@ public class UserController {
     }
     
     
+    //회원정보 수정
+    @RequestMapping("/useredit.do")
+    public String userEdit() {
+    	
+    	logger.info("useredit.do : 회원정보수정 이동");
+    	return "user/userinfo";
+    }
+    
+
+    
+    
+    
     
     
 

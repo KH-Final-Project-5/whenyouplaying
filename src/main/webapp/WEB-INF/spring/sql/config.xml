@@ -13,6 +13,7 @@
     	<mapper resource="/mybatis/project-mapper.xml"/>
         <mapper resource="mybatis/user-mapper.xml"/>
         <mapper resource="mybatis/ability-mapper.xml"/>
+        <mapper resource="mybatis/mypage-mapper.xml"/>
     </mappers>
 
 

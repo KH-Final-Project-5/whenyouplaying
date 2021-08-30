@@ -37,6 +37,7 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
+    
     <!-- 만든 필터를 사용할수 있도록 맵핑하자 -->
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>

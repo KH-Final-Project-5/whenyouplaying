@@ -168,7 +168,7 @@
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">충전</button>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">출금</button>
                         |
-                        <a href="" class="navA">MY PAGE</a>
+                        <a href="mypage.do?usNo=${user.usNo }" class="navA">MY PAGE</a>
                         |
                         <a href="" class="navA">공지사항</a>
                         |
