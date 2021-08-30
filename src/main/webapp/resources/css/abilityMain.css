@@ -76,14 +76,13 @@ h3{
 }
 
 .tableDiv{
-    border: 0.5px solid gray;
+    /*border: 0.5px solid gray;*/
     position: relative;
     top:100px;
     height: 650px;
     padding: 20px 20px 20px 20px;
     text-align: center;
-    
-    
+    /*overflow: auto;*/
 }
 
 th{
@@ -100,6 +99,7 @@ th{
     position: relative;
     top: 50px;
     left: 330px;
+    display: block;
     
 }
 
@@ -108,14 +108,13 @@ body{
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-a{
+.menuText{
+    color: black;
+}
+.menuText:hover {
     color: black;
 }
 
-a:hover {
-    color: black;
-}
-
-a:active {
+.menuText:active {
     color: black;
 }

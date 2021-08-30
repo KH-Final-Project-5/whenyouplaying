@@ -259,7 +259,7 @@
                                 onclick="location.href='logout.do'">logOut
                         </button>
                         |
-                        <a href="" class="navA">Admin page</a>
+                        <a href="noticeListAdmin.do" class="navA">Admin page</a>
                         |
                         <a href="" class="navA">공지사항</a>
                         |
