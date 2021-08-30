@@ -22,8 +22,22 @@
   	</select>
   	
   	
+  	
   	<insert id="insert" parameterType="ProjectDto" >
   		INSERT INTO W_PROJECT VALUES(PROJECTSEQ.NEXTVAL,#{usNo},#{prTitle},#{prContent},#{prPrice},SYSDATE,#{prTalent},#{prDeal},#{prYoutube},#{prImage},SYSDATE,'1','test위도','test경도','주소')
   		
   	</insert>
+  	
+  	
+  	<update id="update" parameterType="ProjectDto">
+  		UPDATE W_PROJECT
+  		SET PRTITLE=#{prTitle}, PRCONTENT=#{prContent}, PRPRICE=#{prPrice}, PRTALENT=#{prTalent}, PRDEAL=#{prDeal}, PRYOUTUBE=#{prYoutube}, PRIMAGE=#{prImage}
+  		WHERE prNo=#{prNo}
+  	</update>
+  	
+  	<delete id="delete" parameterType="int">
+	  	DELETE
+	  	FROM W_PROJECT
+	  	WHERE PRNO=#{prNo}
+	</delete>
   </mapper>

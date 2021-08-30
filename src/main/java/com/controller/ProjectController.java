@@ -37,14 +37,6 @@ public class ProjectController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/Detail.do")
 	public String ProjectDetail(Model model, int prNo) {
 		
@@ -82,10 +74,39 @@ public class ProjectController {
 	}
 	
 	
+	@RequestMapping("ProjectUpdate.do")
+	public String ProjectUpdate(Model model,int prNo) {
+		logger.info("UPDATE FORM");
+		model.addAttribute("dto",biz.selectDetail(prNo));
+		return "projectBoard/talentBoardUpdate";
+	}
+
+	@RequestMapping("ProjectUpdateRes.do")
+	public void ProjectUpdateRes(HttpServletResponse response,ProjectDto dto) throws IOException {
+		logger.info("Update Res");
+		
+		int res = biz.updateProject(dto);
+		 if (res > 0) {
+	            ScriptUtils.alertAndMovePage(response, "수정 완료", "main.do");
+	        } else {
+	            ScriptUtils.alertAndMovePage(response, "수정 실패", "main.do");
+	        }
+		
+	}
 	
 	
-	
-	
-	
+	@RequestMapping("ProjectDelete.do")
+	public void ProjectDelete(HttpServletResponse response,int prNo) throws IOException {
+		
+		logger.info("Delete");
+		
+		int res = biz.deleteProject(prNo);
+		
+		if(res>0) {
+			ScriptUtils.alertAndMovePage(response, "삭제 성공", "main.do");
+		}else {
+			ScriptUtils.alertAndMovePage(response, "삭제 실패", "detail.do?prNo="+prNo);
+		}
+	}
 	
 }

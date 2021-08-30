@@ -50,6 +50,43 @@ public class ProjectBizImpl implements ProjectBiz{
 		
 		return dao.insertProject(dto);
 	}
+
+
+
+
+
+
+
+
+
+	@Override
+	public int updateProject(ProjectDto dto) {
+		
+		return dao.updateProject(dto);
+	}
+
+
+
+
+
+
+
+
+
+	@Override
+	public int deleteProject(int prNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteProject(prNo);
+	}
+
+
+
+
+
+
+
+
+
 	
 
 	

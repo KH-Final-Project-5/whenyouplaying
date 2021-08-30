@@ -20,5 +20,8 @@ public interface ProjectDao {
 	
 	public int insertProject(ProjectDto dto);
 	
+	public int updateProject(ProjectDto dto);
+	
+	public int deleteProject(int prNo);
 	
 }

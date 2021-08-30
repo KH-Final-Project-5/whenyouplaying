@@ -63,6 +63,7 @@ public class ProjectDaoImpl implements ProjectDao{
 
 
 
+	
 
 
 
@@ -83,6 +84,60 @@ public class ProjectDaoImpl implements ProjectDao{
 		}
 		return res;
 	}
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public int updateProject(ProjectDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"update", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : update");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public int deleteProject(int prNo) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE+"delete",prNo);
+		} catch (Exception e) {
+			System.out.println("[error] : delete");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+
+
+
+
+
+
+
+
+
 
 
 

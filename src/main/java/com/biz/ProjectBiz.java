@@ -1,6 +1,5 @@
 package com.biz;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.dto.ProjectDto;
@@ -17,5 +16,10 @@ public interface ProjectBiz {
 	
 	
 	public ProjectDto selectDetail(int prNo);
+	
 	public int insertProject(ProjectDto dto);
+	
+	public int updateProject(ProjectDto dto);
+	
+	public int deleteProject(int prNo);
 }
