@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="project">
-  	
-  	<select id="selectDesign" parameterType="String" resultType="ProjectDto">
-  		SELECT *
-  		FROM W_PROJECT
-  		WHERE PRTALENT=#{prTalent}
-  	</select>
-  	
-  	
-  	
-  	
-  	
-  	<select id="detail" parameterType="int" resultType="ProjectDto">
-  		SELECT *
-  		FROM W_PROJECT
-  		WHERE prNo=#{prNo}
-  	</select>
-  	
-  	
-  	
-  	<insert id="insert" parameterType="ProjectDto" >
-  		INSERT INTO W_PROJECT VALUES(PROJECTSEQ.NEXTVAL,#{usNo},#{prTitle},#{prContent},#{prPrice},SYSDATE,#{prTalent},#{prDeal},#{prYoutube},#{prImage},SYSDATE,'1','test위도','test경도','주소')
-  		
-  	</insert>
-  	
-  	
-  	<update id="update" parameterType="ProjectDto">
-  		UPDATE W_PROJECT
-  		SET PRTITLE=#{prTitle}, PRCONTENT=#{prContent}, PRPRICE=#{prPrice}, PRTALENT=#{prTalent}, PRDEAL=#{prDeal}, PRYOUTUBE=#{prYoutube}, PRIMAGE=#{prImage}
-  		WHERE prNo=#{prNo}
-  	</update>
-  	
-  	<delete id="delete" parameterType="int">
-	  	DELETE
-	  	FROM W_PROJECT
-	  	WHERE PRNO=#{prNo}
-	</delete>
-  </mapper>
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="project">
+
+    <select id="selectDesign" parameterType="String" resultType="ProjectDto">
+        SELECT *
+        FROM W_PROJECT
+        WHERE PRTALENT = #{prTalent}
+    </select>
+
+
+    <select id="detail" parameterType="int" resultType="ProjectDto">
+        SELECT *
+        FROM W_PROJECT
+        WHERE prNo = #{prNo}
+    </select>
+
+
+    <insert id="insert" parameterType="ProjectDto">
+        INSERT INTO W_PROJECT
+        VALUES (PROJECTSEQ.NEXTVAL, #{usNo}, #{prTitle}, #{prContent}, #{prPrice}, SYSDATE, #{prTalent}, #{prDeal},
+                #{prYoutube}, #{prImage}, SYSDATE, '1', 'test위도', 'test경도', '주소')
+
+    </insert>
+
+
+    <update id="update" parameterType="ProjectDto">
+        UPDATE W_PROJECT
+        SET PRTITLE=#{prTitle},
+            PRCONTENT=#{prContent},
+            PRPRICE=#{prPrice},
+            PRTALENT=#{prTalent},
+            PRDEAL=#{prDeal},
+            PRYOUTUBE=#{prYoutube},
+            PRIMAGE=#{prImage}
+        WHERE prNo = #{prNo}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE
+        FROM W_PROJECT
+        WHERE PRNO = #{prNo}
+    </delete>
+</mapper>
