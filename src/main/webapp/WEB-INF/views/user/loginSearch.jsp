@@ -72,21 +72,21 @@
 		                <h3 class="h3Display">비밀번호 찾기</h3>
 		            </div>
 		            
-		            <form action="#" method="#">
+		            <form action="findpw.do" method="post">
 						
 		                <div class="search-row">
 		                    <label>Name : </label> 
-		                    <input type="text" name="name" placeholder="이름을 입력해주세요" id="pw-name-input">
+		                    <input type="text" name="usName" placeholder="이름을 입력해주세요" id="pw-name-input">
 		                </div>
 
 		                <div class="search-row">
 		                    <label>ID : </label> 
-		                    <input type="text" name="id" placeholder="ID를 입력해주세요" id="pw-id-input">
+		                    <input type="text" name="usId" placeholder="ID를 입력해주세요" id="pw-id-input">
 		                </div>
 		                
 		              	<div class="search-row">
 		                    <label>E-MAIL : </label> 
-		                    <input type="text" name="email" placeholder="example@naver.com" id="pw-email-input">
+		                    <input type="text" name="usEmail" placeholder="example@naver.com" id="pw-email-input">
 		                    <input class="btn btn-outline-primary" id="pw-search-btn" type="submit" value="PW찾기">
 		                </div>
 

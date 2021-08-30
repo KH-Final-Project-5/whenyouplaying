@@ -21,5 +21,10 @@ public class UserBizImpl implements UserBiz{
 		return dao.findId(dto);
 	}
 
+	@Override
+	public String findPw(UserDto dto) {
+		return dao.findPw(dto);
+	}
+
 
 }

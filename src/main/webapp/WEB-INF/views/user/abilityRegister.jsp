@@ -67,9 +67,6 @@
     </script>
 </head>
 
-<%
-    UserDto dto = (UserDto) session.getAttribute("user");
-%>
 
 <body>
 <div class="wwrap">
@@ -113,15 +110,15 @@
                 <div id="titleName"><h1>당신의 재능을 보여주세요</h1><br></div>
                 <br><br>
                 <form action="abilityregi.do" method="post" id="abilityForm" enctype="multipart/form-data">
-                    <input type="hidden" name="usNo" value="<%=dto.getUsNo()%>">
+                    <input type="hidden" name="usNo" value="${user.usNo}">
                     <div id="divBox">
-                        <input type="text" name="usId" value="ID: <%=dto.getUsId()%>" class="info" readonly="readonly">
+                        <input type="text" name="usId" value="ID: ${user.usId}" class="info" readonly="readonly">
                         <br>
-                        <input type="text" name="usName" value="신청자: <%=dto.getUsName()%>" class="info"
+                        <input type="text" name="usName" value="신청자: ${user.usName}" class="info"
                                readonly="readonly"> <br>
-                        <input type="text" name="usPhone" value="전화번호: <%=dto.getUsPhone()%>" class="info"
+                        <input type="text" name="usPhone" value="전화번호: ${user.usPhone}" class="info"
                                readonly="readonly"> <br>
-                        <input type="text" name="usEmail" value="이메일: <%=dto.getUsEmail()%>" class="info"
+                        <input type="text" name="usEmail" value="이메일: ${user.usEmail}" class="info"
                                readonly="readonly">
 
                         <div id="selectBar">

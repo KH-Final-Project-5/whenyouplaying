@@ -23,7 +23,7 @@
     <!-- css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/noticeDetailAdmin.css"/>">
-    <script src="<c:url value="/resources/js/noticeDetailAdmin.js"/>"></script>
+<%--    <script src="<c:url value="/resources/js/no"/>"></script>--%>
 </head>
 <body>
 	
@@ -61,11 +61,11 @@
     
                 <div id="menuList">
                     <br>
-                    <span class="menuText"><a href="#"><u><b>공지사항</b></u></a></span><br><br>
-                    <span class="menuText"><a href="#">재능 기부 승인</a></span><br><br>
-                    <span class="menuText"><a href="#">신고 내역 확인</a></span><br><br>
-                    <span class="menuText"><a href="#">회원 목록 확인</a></span><br><br>
-                    <span class="menuText"><a href="#">기부 캐쉬 출금</a></span><br><br>
+                    <span class="menuText"><a href="noticeListAdmin.do"><u><b>공지 사항</b></u></a></span><br><br>
+                    <span class="menuText"><a href="abilitymain.do">재능 기부 승인</a></span><br><br>
+                    <span class="menuText"><a href="reportMain.do">신고 내역 확인</a></span><br><br>
+                    <span class="menuText"><a href="userManage.do">회원 목록 확인</a></span><br><br>
+                    <span class="menuText"><a href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
                 </div>
             </div>
     
