@@ -2,6 +2,7 @@ package com.controller;
 
 
 import com.biz.UserBiz;
+import com.commons.ScriptUtils;
 import com.dto.AbilityDto;
 import com.dto.UserDto;
 
@@ -11,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -64,12 +68,39 @@ public class UserController {
     }
     
     
-    //id/pw 찾기
+    //id/pw 찾기 form
     @RequestMapping("/finduser.do")
     public String findUser() {
     	logger.info("finduser.do : id/pw 찾는 페이지 이동");
     	return "user/loginSearch";
     }
+    
+    //id찾기
+    @RequestMapping("/findId.do")
+    public void findId(HttpServletResponse response  ,UserDto dto) {
+    	
+    	logger.info("findId.do : id찾기");
+    	
+    	String usId = null;
+    	
+    	usId = biz.findId(dto);
+    	
+    	try {
+			if(usId == null) {
+//				ScriptUtils.alert(response, "일치하는 id가 없습니다. 다시 입력해주세요");
+//				return "redirect:finduser.do";
+				ScriptUtils.alertAndMovePage(response, "일치하는 id가 없습니다. 다시 입력해주세요.", "finduser.do");
+			}else {
+				ScriptUtils.alertAndMovePage(response, "id는 "+usId+"입니다.", "loginform.do");
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
+    	
+    }
+    
     
     
     

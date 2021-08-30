@@ -3,20 +3,14 @@
     height: 100px;
 }
 
-.search-head{
-    margin-top: 35px;
-    margin-left: 35px;
-}
+
 
 #search-box{
     margin-top: 100px;
     margin-bottom: 100px;
 }
 
-#id-name{
-    
-    margin-left: 150px;
-}
+
 
 #id-name-input{
     margin-left: 30px;
@@ -33,12 +27,10 @@
     width: 250px;
 }
 
-#id-email{
-    margin-left: 146px;
-}
+
 
 #id-email-input{
-    margin-left: 31px;
+    margin-left: 28px;
     width: 250px;
 }
 
@@ -47,7 +39,7 @@
 }
 
 #pw-email-input{
-    margin-left: 23px;
+    margin-left: 20px;
     width: 250px;
 }
 
@@ -56,15 +48,15 @@
 }
 
 #pw-id-input{
-    margin-left: 31px;
+    margin-left: 57px;
     width: 250px;
 }
-.search-label{
-    font-size: 20px;
-}
+
 
 .search-row{
+	margin-top: 20px;
     margin-bottom: 50px;
+    margin-left: 50px;
 }
 
 #id-search-btn{
@@ -72,7 +64,7 @@
 }
 
 #pw-search-btn{
-    margin-left: 29px;
+    margin-left: 30px;
 }
 
 body{
@@ -86,3 +78,24 @@ body{
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+
+.h3Display{
+	display: inline;
+}
+
+.idImgArea{
+	display: inline;
+	position: relative;
+	top: -7px;
+}
+
+
+
+
+
+
+
+
+
+
