@@ -77,7 +77,7 @@ public class UserController {
     
     //id찾기
     @RequestMapping("/findId.do")
-    public void findId(HttpServletResponse response  ,UserDto dto) {
+    public void findId(HttpServletResponse response, UserDto dto) {
     	
     	logger.info("findId.do : id찾기");
     	
@@ -87,8 +87,6 @@ public class UserController {
     	
     	try {
 			if(usId == null) {
-//				ScriptUtils.alert(response, "일치하는 id가 없습니다. 다시 입력해주세요");
-//				return "redirect:finduser.do";
 				ScriptUtils.alertAndMovePage(response, "일치하는 id가 없습니다. 다시 입력해주세요.", "finduser.do");
 			}else {
 				ScriptUtils.alertAndMovePage(response, "id는 "+usId+"입니다.", "loginform.do");
@@ -98,7 +96,28 @@ public class UserController {
 			e.printStackTrace();
 		}
     	
+    }
+    
+    //pw찾기
+    @RequestMapping("/findpw.do")
+    public void findPw(HttpServletResponse response, UserDto dto) {
     	
+    	logger.info("findpw.do : pw찾기");
+    	
+    	String resPw = null;
+    	
+    	resPw = biz.findPw(dto);
+    	
+    	try {
+			if(resPw == null) {
+				ScriptUtils.alertAndMovePage(response, "일치하는 pw가 없습니다. 다시 입력해주세요.", "finduser.do");
+			}else {
+				ScriptUtils.alertAndMovePage(response, "pw는 "+resPw+"입니다.", "loginform.do");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     
     

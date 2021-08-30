@@ -40,4 +40,19 @@ public class UserDaoImpl implements UserDao{
 		
 		return res;
 	}
+
+	@Override
+	public String findPw(UserDto dto) {
+		
+		String res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectOne(NAMESPACE+"findPw", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : pw찾기 에러");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
 }
