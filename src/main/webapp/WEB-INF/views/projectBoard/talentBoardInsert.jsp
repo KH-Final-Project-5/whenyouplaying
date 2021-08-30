@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.dto.UserDto" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,15 +28,23 @@
 
 
 
-    </script>
+    
 </head>
+<%
+    UserDto dto = (UserDto) session.getAttribute("user");
+%>
 <body>
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+    </header>
 <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
   
 
 
     <div class="container" id="boardDetail">
         <div class="row">
+        
             <div class="col-3">
                 
                 
@@ -43,7 +53,7 @@
                 <div id="pageName"><b>재능 판매 공지사항</b></div>
 
                 <div id="menuList">
-                   <div style="border: black solid 3px; width: 200px; height: 1000px;" >
+                   <div style="border: black solid 3px; width: 262px; height: 1000px;" >
                         *재능 기부자님들에게 안내드립니다*<br>
                         -해당 재능에 대하여 자세하게 작성해주셔야 합니다-<br>
                         -구매자와의 연락 방법<br>
@@ -52,17 +62,22 @@
                 </div>
             </div>
 
-
+		
+			
              <div class="col-9">
+             	
                 <h2>당신의 재능을 작성해주세요.</h2>
+                		
                 <div class="row">
-                    <form action="#" method="#">
-                        <table border="1px" class="deal-table" style="height: 1100px;">
+                
+                    <form action="insertProjectRes.do" method="post">
+                       <input type="hidden" name="usNo" value="<%=dto.getUsNo() %>">
+                        <table  class="deal-table" style="height: 1100px;">
                             
                             <!-- 글 제목 input-->
                             <tr>
-                                <th id="deal-title-th">글 제목</th>
-                                <td><input type="text" name="title" id="deal-title-td"></td>
+                                <th id="deal-title-th" >글 제목</th>
+                                <td><input type="text" name="prTitle" id="deal-title-td"></td>
                             </tr>
                             
 
@@ -74,7 +89,7 @@
                             <!-- 이미지 업로드-->
                             <tr>
                                 <th class="deal-th">이미지 업로드</th>
-                                <td><input type="file" name="image"></td>
+                                <td><input type="file" name="prImage"></td>
                             </tr>
 
                            
@@ -83,7 +98,7 @@
                             <tr>
                                 <th class="deal-th">재능 종류</th>
                                 <td>
-                                    <select name="" class="accountInput"  required>
+                                    <select name="prTalent" class="accountInput"  required>
                                         <option value="" disabled selected>선택해주세요</option>
                                         <option value="design">디자인</option>
                                         <option value="translation">번역/외국어</option>
@@ -101,52 +116,59 @@
                             <tr>
                                 <th class="deal-th">거래 방법</th>
                                 <td>
-                                    <select name="" class="accountInput"  required>
+                                    <select name="prDeal" class="accountInput"  required>
                                         <option value="" disabled selected>선택해주세요</option>
-                                        <option value="">온라인</option>
-                                        <option value="">직거래</option>
+                                        <option value="online">온라인</option>
+                                        <option value="direct">직거래</option>
                                     </select>
                                     <hr style="margin: 3px;">
                                 </td>
                             </tr>
-
+							
+							 <!--가격 링크-->
+                            <tr>
+                                <th class="deal-th">가격</th>
+                                <td><input type="text" name="prPrice" class="deal-input-td"></td>
+                            </tr>
+							
                             <!--유튜브 영상링크-->
                             <tr>
                                 <th class="deal-th">유튜브 영상링크</th>
-                                <td><input type="text" name="youtube" class="deal-input-td"></td>
+                                <td><input type="text" name="prYoutube" class="deal-input-td"></td>
                             </tr>
 
                             <!--재능 설명-->
                             <tr>
                                 <th class="deal-th">재능설명</th>
-                                <td><textarea cols="100" rows="25" name="content" class="text-area"></textarea></td>
+                                <td><textarea cols="100" rows="25" name="prContent" class="text-area" style="margin-left:0px;"></textarea></td>
                             </tr>
 
-                            <tr>
-                                <th class="deal-th">이미지 첨부</th>
-                                <td><input type="file" name="content-img" class="deal-input-td"></td>
-                                    
-                                
-                            </tr>
+                            
 
                             <tr style="border: none;">
                                 <td colspan="2" align="right">
-                                    <input type=submit class="btn btn-outline-primary btn-sm  value="글 쓰기">
+                                    <input type=submit class="btn btn-outline-primary btn-sm"  value="완료">
                                 </td>
                             </tr>
 
 
 
-                    </form>        
+                        
                         </table>
+                       </form> 
+                    </div>
                 </div>
-                    
-            </div>
+                
+                       
+            
         </div>
      </div>           
     <!-- footer 영역-->
     <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
-
+   <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+    </footer>
+</div>
       
       
 </body>

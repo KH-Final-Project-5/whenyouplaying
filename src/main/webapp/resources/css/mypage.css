@@ -1,4 +1,4 @@
-/* 본문 가로 길이 1200px 고정, 반응형 삭제  */
+/* 蹂몃Ц 媛�濡� 湲몄씠 1200px 怨좎젙, 諛섏쓳�삎 �궘�젣  */
 .container * {
     /*border: 1px solid red;*/
 }
@@ -273,6 +273,7 @@
     padding-right: 30px;
     font-size: 20px;
     text-align: center;
+    
 }
 
 #deal-img {
@@ -314,7 +315,7 @@
 
 .text-area {
     resize: none;
-    margin-left: 70px;
+    
 }
 
 #text-area {

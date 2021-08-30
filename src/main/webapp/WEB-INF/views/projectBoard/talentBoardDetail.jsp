@@ -90,7 +90,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="detail-content">
-                                <b id="detail-title">쉽게배우자 Spring</b>
+                                <b id="detail-title">${detail_dto.prTitle }</b>
                             </div>
                         </div>
                     </div>
@@ -165,7 +165,17 @@
                             </div>
                         </div>
                     </div>
+					
+					<div class="row">
+                        <div class="col-12">
 
+                            <span class="detail-content"><b>판매자 : &nbsp;</b></span><span
+                                class="detail-data"></span>
+                        </div>
+                    </div>
+					
+					
+					
                     <div class="row">
                         <div class="col-12">
 
@@ -179,6 +189,13 @@
 
                             <span class="detail-content"><b>재능 종류 : &nbsp;</b></span><span
                                 class="detail-data">${detail_dto.prTalent }</span>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-12">
+
+                            <span class="detail-content"><b>가격 : &nbsp;</b></span><span
+                                class="detail-data">${detail_dto.prPrice }</span>
                         </div>
                     </div>
 
@@ -228,9 +245,9 @@
                 </form>
                 <div class="row" id="button-div">
                     <div class="col-12">
-                        <button onclick="" class="detail-button2 btn btn-outline-primary btn-sm detail-button4">글 수정
+                        <button onclick="location.href='ProjectUpdate.do?prNo=${detail_dto.prNo}'" class="detail-button2 btn btn-outline-primary btn-sm detail-button4">글 수정
                         </button>
-                        <button onclick="" class="detail-button2 btn btn-outline-primary btn-sm detail-button4">글 삭제
+                        <button onclick="location.href='ProjectDelete.do?prNo=${pr_dto.prNo}'" class="detail-button2 btn btn-outline-primary btn-sm detail-button4">글 삭제
                         </button>
                     </div>
                 </div>

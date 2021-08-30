@@ -1,6 +1,7 @@
 package com.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dto.ProjectDto;
+import com.dto.UserDto;
 
 @Repository
 public class ProjectDaoImpl implements ProjectDao{
@@ -58,5 +60,94 @@ public class ProjectDaoImpl implements ProjectDao{
 		
 		return dto;
 	}
+
+
+
+	
+
+
+
+
+
+
+
+	@Override
+	public int insertProject(ProjectDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE+"insert",dto);
+			
+		} catch (Exception e) {
+			System.out.println("[error] : insert");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public int updateProject(ProjectDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"update", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : update");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public int deleteProject(int prNo) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE+"delete",prNo);
+		} catch (Exception e) {
+			System.out.println("[error] : delete");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
