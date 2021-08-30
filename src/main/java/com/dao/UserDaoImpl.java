@@ -27,6 +27,14 @@ public class UserDaoImpl implements UserDao{
     }
 
 	@Override
+	public UserDto regi(UserDto dto) {
+		UserDto userDto = null;
+		
+		
+		return userDto;
+	}
+    
+    
 	public String findId(UserDto dto) {
 		
 		String res = null;

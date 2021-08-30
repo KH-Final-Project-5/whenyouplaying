@@ -10,6 +10,16 @@
           AND USPW = #{usPw}
     </select>
     
+     <select id="RegiUser" parameterType="userDto" resultType="userDto">
+ 
+	INSERT INTO User(usID,
+					usPW,
+					usName,
+					usPhone,
+					usEmail,
+					usADDRESS)
+ 		</select>
+    
     <select id="findId" parameterType="userDto" resultType="string">
     	SELECT USID
 		FROM W_USER

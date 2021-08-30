@@ -17,6 +17,10 @@ public class UserBizImpl implements UserBiz{
     }
 
 	@Override
+	public UserDto regi(UserDto dto) {
+		return dao.regi(dto);
+	}
+	
 	public String findId(UserDto dto) {
 		return dao.findId(dto);
 	}

@@ -10,4 +10,10 @@ public interface UserDao {
     public String findId(UserDto dto);
     public String findPw(UserDto dto);
 
+    
+    
+    //user회원가입
+    
+    String NAMESPACE1 = "regi.";
+    public UserDto regi(UserDto dto);
 }
