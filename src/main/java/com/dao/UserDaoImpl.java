@@ -25,4 +25,19 @@ public class UserDaoImpl implements UserDao{
 
         return userDto;
     }
+
+	@Override
+	public String findId(UserDto dto) {
+		
+		String res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectOne(NAMESPACE+"findId", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : id찾기 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 }
