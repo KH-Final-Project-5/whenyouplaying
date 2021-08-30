@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+         
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>         
+         
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,76 +27,75 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/loginSearch.css"/>">
 </head>
 <body>
-<!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-<div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div>
+<div class="wwrap">
+	<header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+    </header>
 
+	<div class="container">
+	    <div class="row" id="search-box">
+	        <div class="col-2">
+	
+	        </div>
+	
+	
+	        <div class="col-10">
+	            <div class="row">
+	                <img src="<c:url value="/resources/questionImg/question.PNG"/>" class="search-head">
+	                <h3 class="search-head">아이디 찾기</h3>
+	            </div>
+	
+	
+	            <form action="#" method="#">
+	
+	                <!--ID찾기 이름 입력폼-->
+	                <div class="row search-row">
+	                    <label id="id-name" class="search-label">Name : </label> <input type="text" name="name" placeholder="이름을 입력해주세요" id="id-name-input">
+	                </div>
+	                <!--ID찾기 이메일 입력폼-->
+	                <div class="row search-row">
+	                    <label id="id-email" class="search-label">E-mail : </label> <input type="email" name="email" placeholder="example@naver.com" id="id-email-input">
+	                    <input class="btn btn-outline-primary" id="id-search-btn" type="submit" value="ID찾기">
+	                </div>
+	            </form>
+	
+	            <div class="row">
+	                <img src="<c:url value="/resources/questionImg/question.PNG"/>" class="search-head">
+	                <h3 class="search-head">비밀번호 찾기</h3>
+	            </div>
+	            <form action="#" method="#">
+	
+	                <!--ID찾기 이름 입력폼-->
+	                <div class="row search-row">
+	                    <label id="pw-name" class="search-label">Name : </label> <input type="text" name="name"
+	                                                                                    placeholder="이름을 입력해주세요"
+	                                                                                    id="pw-name-input">
+	                </div>
+	                <!--PW찾기 ID입력폼-->
+	                <div class="row search-row">
+	                    <label id="pw-id" class="search-label">ID : </label><input type="text" name="id"
+	                                                                               placeholder="ID를 입력해주세요"
+	                                                                               id="pw-id-input">
+	                </div>
+	                <!--PW찾기 이메일 입력폼-->
+	                <div class="row search-row">
+	                    <label id="pw-email" class="search-label" l>E-mail : </label> <input type="email" name="email"
+	                                                                                         placeholder="example@naver.com"
+	                                                                                         id="pw-email-input">
+	                    <input class="btn btn-outline-primary" id="pw-search-btn" type="submit" value="PW찾기">
+	                </div>
+	            </form>
+	
+	
+	        </div>
+	    </div>
+	</div>
 
-<div class="container">
-    <div class="row" id="search-box">
-        <div class="col-2">
-
-        </div>
-
-
-        <div class="col-10">
-            <div class="row">
-                <img src="<c:url value="/resources/questionImg/question.PNG"/>" class="search-head">
-                <h3 class="search-head">아이디 찾기</h3>
-            </div>
-
-
-            <form action="#" method="#">
-
-                <!--ID찾기 이름 입력폼-->
-                <div class="row search-row">
-                    <label id="id-name" class="search-label">Name : </label> <input type="text" name="name"
-                                                                                    placeholder="이름을 입력해주세요"
-                                                                                    id="id-name-input">
-                </div>
-                <!--ID찾기 이메일 입력폼-->
-                <div class="row search-row">
-                    <label id="id-email" class="search-label">E-mail : </label> <input type="email" name="email"
-                                                                                       placeholder="example@naver.com"
-                                                                                       id="id-email-input">
-                    <input class="btn btn-outline-primary" id="id-search-btn" type="submit" value="ID찾기">
-                </div>
-            </form>
-
-            <div class="row">
-                <img src="<c:url value="/resources/questionImg/question.PNG"/>" class="search-head">
-                <h3 class="search-head">비밀번호 찾기</h3>
-            </div>
-            <form action="#" method="#">
-
-                <!--ID찾기 이름 입력폼-->
-                <div class="row search-row">
-                    <label id="pw-name" class="search-label">Name : </label> <input type="text" name="name"
-                                                                                    placeholder="이름을 입력해주세요"
-                                                                                    id="pw-name-input">
-                </div>
-                <!--PW찾기 ID입력폼-->
-                <div class="row search-row">
-                    <label id="pw-id" class="search-label">ID : </label><input type="text" name="id"
-                                                                               placeholder="ID를 입력해주세요"
-                                                                               id="pw-id-input">
-                </div>
-                <!--PW찾기 이메일 입력폼-->
-                <div class="row search-row">
-                    <label id="pw-email" class="search-label" l>E-mail : </label> <input type="email" name="email"
-                                                                                         placeholder="example@naver.com"
-                                                                                         id="pw-email-input">
-                    <input class="btn btn-outline-primary" id="pw-search-btn" type="submit" value="PW찾기">
-                </div>
-            </form>
-
-
-        </div>
-    </div>
+	<!-- footer -->
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+    </footer>
 </div>
-
-<!-- footer 영역-->
-<div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;">임시 footer 영역입니다.</div>
-
 
 </body>
 </html>
