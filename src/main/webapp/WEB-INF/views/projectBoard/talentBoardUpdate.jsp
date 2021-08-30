@@ -25,7 +25,33 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<c:url value="/resources/js/messagePopup.js"/>"></script>
     
+	<script>
+	$(document).on("change", ".file-input", function () {
 
+	    $filename = $(this).val();
+
+	    if ($filename == "")
+	        $filename = "파일을 선택해주세요.";
+
+	    $(".filename").text($filename);
+
+	})
+
+
+	function setThumbnail1(event) {
+	    var reader = new FileReader();
+	    reader.onload = function (event) {
+	        var img = document.createElement("img");
+	        img.style.width=200+"px";
+	        img.style.height=200+"px";
+	        img.setAttribute("src", event.target.result);
+	        document.querySelector("div#blah1").appendChild(img);
+
+	        
+	    };
+	    reader.readAsDataURL(event.target.files[0]);
+	}
+	</script>
 
 
     
@@ -86,14 +112,31 @@
 
                             <!-- 이미지 미리보기-->
                             <tr>
-                                <td colspan="2" id="deal-img"><img src="../image/ImgBox.PNG" class="deal-img"></td>
+                                <td colspan="2" id="deal-img" class="fileBox1">
+	                                <div id="blah1"></div>
+
+
+	                            		
+	                       			
+                       			</td>
                             </tr>
 
                             <!-- 이미지 업로드-->
                             <tr>
                                 <th class="deal-th">이미지 업로드</th>
-                                <td><input type="file" name="prImage"></td>
+                                <td>
+	                                
+	                                <div class="box-file-input">
+		                                
+		                                <input type="file" onchange="setThumbnail1(event);" 
+		                                		name="file1" class="file-input"
+		                                        accept="image/*">
+		                                
+	                                <span class="filename">재능을 설명할 파일을 선택해주세요.</span>
+	                                </div>
+                                 </td>
                             </tr>
+
 
                            
 

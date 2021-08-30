@@ -23,10 +23,39 @@
 
    <!-- jquery-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script src="<c:url value="/resources/js/messagePopup.js"/>"></script>
-    <script src="<c:url value="/resources/js/projectThumnail.js"/>"></script>
+    
+    
 
 
+	<script>
+	$(document).on("change", ".file-input", function () {
+
+	    $filename = $(this).val();
+
+	    if ($filename == "")
+	        $filename = "파일을 선택해주세요.";
+
+	    $(".filename").text($filename);
+
+	})
+
+
+	function setThumbnail1(event) {
+	    var reader = new FileReader();
+	    reader.onload = function (event) {
+	        var img = document.createElement("img");
+	        img.style.width=200+"px";
+	        img.style.height=200+"px";
+	        img.setAttribute("src", event.target.result);
+	        document.querySelector("div#blah1").appendChild(img);
+
+	        
+	    };
+	    reader.readAsDataURL(event.target.files[0]);
+	}
+	</script>
 
     
 </head>
@@ -84,8 +113,10 @@
                             <!-- 이미지 미리보기-->
                             <tr>
                                 <td colspan="2" id="deal-img" class="fileBox1">
-	                                
-	                            		<img id="blah1" src="#" alt=""/>
+	                                <div id="blah1"></div>
+
+
+	                            		
 	                       			
                        			</td>
                             </tr>
