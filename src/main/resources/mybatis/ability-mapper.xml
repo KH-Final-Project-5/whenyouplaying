@@ -3,12 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ability">
-    <resultMap id="userDto" type="userDto">
-        <result property="usNo" column="USNO"/>
-    </resultMap>
+
+    <select id="abilitySelectAll" resultType="abilityDto">
+        SELECT *
+        FROM W_ABILITY
+                 JOIN W_USER ON W_USER.USNO = W_ABILITY.USNO
+    </select>
+
+    <select id="abilitySelectPaging" resultType="abilityDto" parameterType="com.commons.Criteria">
+        SELECT *
+        FROM (SELECT b.*, row_number() over (order by ABNO DESC) as rnum
+              FROM W_ABILITY b
+             ) a
+                 JOIN W_USER ON W_USER.USNO = a.USNO
+        WHERE a.rnum between #{rowStart} and #{rowEnd}
+        order by ABNO desc
+    </select>
+
+    <select id="abilityCounting" resultType="int">
+        SELECT COUNT(ABNO)
+        FROM W_ABILITY
+        WHERE ABNO > 0
+    </select>
+
     <insert id="abilityInsert" parameterType="abilityDto">
         INSERT INTO W_ABILITY
         VALUES (ABILITYSEQ.NEXTVAL, #{usNo}, #{abCate}, #{abTitle},
-                #{abContent}, SYSDATE, 'N', #{abImg1}, #{abImg2})
+                #{abContent}, SYSDATE, '승인 대기', #{abImg1}, #{abImg2})
     </insert>
 </mapper>
