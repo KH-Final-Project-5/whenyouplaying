@@ -36,36 +36,25 @@
 		
 		<link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
 </head>
-<%
-	
-	UserDto userDto = null;
-	
-	if(session.getAttribute("user")!=null){
-		userDto= (UserDto) session.getAttribute("user");
 
-%>
 
 
 
 
 <script>
 	$(function(){
-		
-		var userrole = "<%=userDto.getUsRole()%>";
-		console.log(userrole);
+		var user = "<%session.getAttribute("user");%>"
+		var userrole = "${user.usRole}"
+		console.log(user);
 		if(userrole !=="admin"){
-			$("#deleteBtn").css("display","none");
+			$(".deleteBtn").css("display","none");
+		}else if(user=""||user=null){
+			$(".deleteBtn").css("display","none");
 		}
-
-	
-
 	});
 
 </script>
 
-<%
-	}
-%>
 
 
 <body>
@@ -292,7 +281,7 @@
                                         <div class="talent-price"><b>${pr_dto.prPrice }</b>
                                           
                                         </div>
-                                        <button onclick="location.href='ProjectDelete.do?prNo=${pr_dto.prNo}'" class="btn btn-outline-primary" id="deleteBtn">글 삭제</button>
+                                        <button onclick="location.href='ProjectDelete.do?prNo=${pr_dto.prNo}'" class="btn btn-outline-primary" class="deleteBtn">글 삭제</button>
 
                                     </div>
 
