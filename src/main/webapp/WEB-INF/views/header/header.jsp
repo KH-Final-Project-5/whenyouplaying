@@ -43,7 +43,7 @@
 </head>
 <script>
     $(function () {
-        var user = "<%=session.getAttribute("user")%>"
+        var user = "<%=session.getAttribute("user")%>";
         if (user) {
             var usertalnet = "${user.usTalent}";
             var userrole = "${user.usRole}";
