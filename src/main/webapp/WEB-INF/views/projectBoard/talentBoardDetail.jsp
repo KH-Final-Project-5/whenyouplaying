@@ -287,7 +287,6 @@
                     감사합니다<br>
                 </div>
             </div>
-            <div class="col-3"></div>
         </div>
         <br>
         <div class="row">
@@ -303,7 +302,6 @@
                     감사합니다<br>
                 </div>
             </div>
-            <div class="col-3"></div>
         </div>
     </div>
     <!-- footer 영역-->
@@ -312,8 +310,6 @@
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
     </footer>
 </div>
-
-<br><br>
 </body>
 </html>
 
