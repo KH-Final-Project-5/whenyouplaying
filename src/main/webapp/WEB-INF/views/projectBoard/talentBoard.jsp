@@ -45,7 +45,13 @@
         if (userrole !== "admin") {
             $(".deleteBtn").hide();
         } else if (user === "null" || user == null) {
-            $(".deleteBtn").hide();
+            $(".deleteBtn").hide(); 
+        }
+        
+        
+        
+        if(user === "null" || user==null){
+        	$("#insertBtn").hide();
         }
     });
 
@@ -68,7 +74,7 @@
         </div>
         <div class="row">
             <div class="col-12" align="right" style="margin-bottom: 90px;">
-                <button class="btn btn-outline-primary" onclick="location.href='insertProject.do'">재능 등록하기
+                <button class="btn btn-outline-primary" id="insertBtn" onclick="location.href='insertProject.do'">재능 등록하기
                 </button>
             </div>
         </div>
