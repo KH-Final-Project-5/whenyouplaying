@@ -126,7 +126,7 @@ public class UserController {
     public String userEdit() {
     	
     	logger.info("useredit.do : 회원정보수정 이동");
-    	return "user/userinfo";
+    	return "user/userInfo";
     }
     
 
