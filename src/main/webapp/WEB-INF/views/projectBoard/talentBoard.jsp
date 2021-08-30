@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ page import="com.dto.UserDto" %>
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.dto.UserDto" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,12 +62,9 @@
 
 </script>
 
-
-
 <body>
 
-<!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-<%--    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> --%>
+
 <div class="wwrap">
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
