@@ -9,11 +9,5 @@ public interface UserDao {
     public UserDto login(UserDto dto);
     public String findId(UserDto dto);
     public String findPw(UserDto dto);
-
-    
-    
-    //user회원가입
-    
-    String NAMESPACE1 = "regi.";
-    public UserDto regi(UserDto dto);
+    public int regi(UserDto dto);
 }

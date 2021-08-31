@@ -39,6 +39,13 @@ public class UserController {
     }
 
     
+    @RequestMapping("/regi.do")
+    public String regi(UserDto dto) {
+
+    	return null;
+    	
+    }
+    
     @RequestMapping("/login.do")
     public String login(HttpSession session, UserDto dto) {
 
