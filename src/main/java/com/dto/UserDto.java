@@ -19,11 +19,14 @@ public class UserDto {
 	private String usPw;
 	private String usName;
 	private String usPhone;
-	private String usAddress;
+	private String usAddress1;
+	private String usAddress2;
 	private String usEmail;
+	private String usSelfInfo;
 	private String usTalent;
 	private Date usDate;
 	private String usStatus;
 	private String usRole;
 	private int usCash;
+	
 }
