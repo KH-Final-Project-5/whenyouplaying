@@ -22,4 +22,8 @@ public interface ProjectBiz {
 	public int updateProject(ProjectDto dto);
 	
 	public int deleteProject(int prNo);
+	
+	
+	public UserDto selectSession(int usNo);
+	
 }

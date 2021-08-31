@@ -24,4 +24,6 @@ public interface ProjectDao {
 	
 	public int deleteProject(int prNo);
 	
+	public UserDto selectSession(int usNo);
+	
 }

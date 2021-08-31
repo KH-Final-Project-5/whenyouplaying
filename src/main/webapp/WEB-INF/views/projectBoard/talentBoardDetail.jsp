@@ -97,7 +97,11 @@
 
             <div class="col-9">
 
-                <form action="#">
+                <form>
+                
+                <input type="hidden" name="prNo" value="${detail_dto.prNo }">
+                <input type="hidden" name="usNo" value="${detail_dto.usNo }">
+                <input type="hidden" name="loginUsNo" value="${user.usNo }">
                     <div class="row">
                         <div class="col-12">
                             <div class="detail-content">
@@ -210,21 +214,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12">
-
-                            <span class="detail-content"><b>거래 방법 : &nbsp;</b></span>
-                            <span class="detail-data">
-                       <!--거래방법 선택하기-->
-                        
-                           <select name="buySelect" style="width: 150px;">
-                                <option value="">거래방법</option>
-                                <option value="직거래">직거래</option>
-                                <option value="택배">택배</option>
-                           </select>
-                            </span>
-                        </div>
-                    </div>
+                   
 
 
                     <div class="row">
@@ -239,8 +229,10 @@
                     <div class="row">
                         <div class="col-12">
 
-                            <input type="submit" value="구매하기" class="detail-button btn btn-outline-primary btn-lg"
-                                   id="perchase-button">
+                            <input type="submit" value="온라인 구매" class="detail-button btn btn-outline-primary btn-lg"
+                                   id="perchase-button" formaction="online.do">
+                            <input type="submit" value="직거래 구매" class="detail-button btn btn-outline-primary btn-lg"
+                                 	id="perchase-button" formaction="direct.do">
 
 
                             <!-- class를 detail-button3로 주었으며

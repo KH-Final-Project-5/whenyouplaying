@@ -2,6 +2,8 @@ package com.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +33,10 @@ public class ProjectController {
 	
 	@Autowired
 	private ProjectBiz biz;
+	
+	private int result;
+	
+	
 	@RequestMapping("/category.do")
 	public String designProject(Model model, String prTalent,HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -182,6 +188,83 @@ public class ProjectController {
 			ScriptUtils.alertAndMovePage(response, "삭제 실패", "detail.do?prNo="+prNo);
 		}
 	}
+	
+	@RequestMapping("online.do")
+	public String Online(Model model,int prNo, int usNo,int loginUsNo, String buyselect, HttpSession session){
+			System.out.println("online");
+			 
+			UserDto dto = (UserDto)session.getAttribute("user");
+			ProjectDto dto2 = biz.selectDetail(prNo);
+			
+			
+			int cash = dto.getUsCash();
+			 int price = dto2.getPrPrice();
+			 
+			 result = cash-price;
+			 System.out.println(result);
+			 model.addAttribute("result1",result);
+			model.addAttribute("dto",biz.selectDetail(prNo));
+			
+			
+				return "trade/onlinetrade";
+			
+		
+	}
+	
+	
+	@RequestMapping("direct.do")
+	public String Perchase(Model model,int prNo, int usNo,int loginUsNo, HttpSession session){
+		System.out.println("direct");
+		
+		
+		
+		UserDto dto = (UserDto)session.getAttribute("user");
+		
+		
+		
+		
+		String phone1 =dto.getUsPhone().substring(0,3);
+		 
+		 
+		 String phone2 =dto.getUsPhone().substring(4,4);
+		
+		 String phone3 =dto.getUsPhone().substring(4,4);
+		 ProjectDto dto2 = biz.selectDetail(prNo);
+		 model.addAttribute("dto",dto2);
+		
+		 System.out.println(dto.getUsPhone());
+		 System.out.println(phone1);
+		 System.out.println(phone2);
+		 System.out.println(phone3);
+		 
+		 
+		 
+		 model.addAttribute("phone",dto);
+		
+		 
+		 int cash = dto.getUsCash();
+		 int price = dto2.getPrPrice();
+		 
+		 result = cash-price;
+		 System.out.println(result);
+		 model.addAttribute("result1",result);
+		 
+		 
+		 
+		
+		
+		
+		
+		
+				return "trade/directtrade";
+				
+			
+		
+	}
+	
+	
+	
+	
 	
 
 	

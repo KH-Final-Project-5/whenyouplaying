@@ -138,6 +138,28 @@ public class ProjectDaoImpl implements ProjectDao{
 
 
 
+	@Override
+	public UserDto selectSession(int usNo) {
+		UserDto dto = null;
+		
+		try {
+			dto = sqlSession.selectOne(NAMESPACE+"selectSession",usNo);
+		} catch (Exception e) {
+			System.out.println("[error] : selectSession");
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -87,6 +87,20 @@ public class ProjectBizImpl implements ProjectBiz{
 
 
 
+	@Override
+	public UserDto selectSession(int usNo) {
+		// TODO Auto-generated method stub
+		return dao.selectSession(usNo);
+	}
+
+
+
+
+
+
+
+
+
 	
 
 	

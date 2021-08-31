@@ -18,7 +18,7 @@ public class ProjectDto extends UserDto{
 	private int prNo;
 	private String prTitle;
 	private String prContent;
-	private String prPrice;
+	private int prPrice;
 	private Date prWriteDate;
 	private String prTalent;
 	private String prDeal;
@@ -30,6 +30,8 @@ public class ProjectDto extends UserDto{
 	private String prLongitude;
 	private String prAddress;
 	
+	
+	private int result;
 	private MultipartFile prImage2;
 	
 }

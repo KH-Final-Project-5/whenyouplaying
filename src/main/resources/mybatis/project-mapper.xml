@@ -46,4 +46,10 @@
     </delete>
     
     
+    <select id="" parameterType="int" resultType="UserDto">
+    	SELECT *
+    	FROM W_USER;
+    	WHERE USNO=#{usNo}
+    </select>
+    
 </mapper>
