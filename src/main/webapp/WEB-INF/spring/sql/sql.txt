@@ -66,18 +66,20 @@ CREATE TABLE W_CHARGEHISTORY
 
 CREATE TABLE W_USER
 (
-    USNO     Number         NOT NULL,
-    USID     VARCHAR2(30)   NULL,
-    USPW     VARCHAR2(30)   NULL,
-    USNAME   VARCHAR2(30)   NULL,
-    USPHONE  VARCHAR2(20)   NULL,
-    USADRESS VARCHAR2(1000) NULL,
-    USEMAIL  VARCHAR2(100)  NULL,
-    USTALENT VARCHAR2(5)    NULL,
-    USDATE   DATE           NULL,
-    USSTATUS VARCHAR2(3)    NULL,
-    USROLE   VARCHAR2(50)   NULL,
-    USCASH   NUMBER         NULL
+    USNO       Number         NOT NULL,
+    USID       VARCHAR2(30)   NULL,
+    USPW       VARCHAR2(30)   NULL,
+    USNAME     VARCHAR2(30)   NULL,
+    USPHONE    VARCHAR2(20)   NULL,
+    USADDRESS1 VARCHAR2(1000) NULL,
+    USADDRESS2 VARCHAR2(1000) NULL,
+    USEMAIL    VARCHAR2(100)  NULL,
+    USSELFINFO VARCHAR2(2000) NULL,
+    USTALENT   VARCHAR2(5)    NULL,
+    USDATE     DATE           NULL,
+    USSTATUS   VARCHAR2(3)    NULL,
+    USROLE     VARCHAR2(50)   NULL,
+    USCASH     NUMBER         NULL
 );
 
 CREATE TABLE W_REPORT
@@ -117,7 +119,7 @@ CREATE TABLE W_ABILITY
     ABTITLE   VARCHAR2(100)  NULL,
     ABCONTENT VARCHAR2(2000) NULL,
     ABDATE    DATE           NULL,
-    ABSTATUS  VARCHAR2(10)   NULL,
+    ABSTATUS  VARCHAR2(100)  NULL,
     ABIMG1    VARCHAR2(2000) NULL,
     ABIMG2    VARCHAR2(2000) NULL
 );
@@ -512,6 +514,11 @@ ALTER TABLE W_SCHEDULE
                                USNO
             );
 
+CREATE TABLE TEST1
+(
+    TEST VARCHAR2(1000) not null
+);
+
 ALTER TABLE W_PROJECTIMG
     ADD CONSTRAINT FK_W_PROJECT_TO_W_PROJECTIMG_1 FOREIGN KEY (
                                                                PRNO,
@@ -524,17 +531,31 @@ ALTER TABLE W_PROJECTIMG
 
 
 
+SELECT *
+FROM (SELECT b.*, row_number() over (order by ABNO DESC) as rnum
+      FROM W_ABILITY b
+     ) a
+         JOIN W_USER ON W_USER.USNO = a.USNO
+WHERE a.rnum between 1 and 10
+order by ABNO desc;
+
+
+
 INSERT INTO W_USER
-VALUES (UserSEQ.nextval, 'user01', 'user01', '유저01', '01012345678', 'abcd@gmail.com', 'N',
+VALUES (UserSEQ.nextval, 'user01', 'user01', '유저01', '01012345678', '서울시 강남구', '어쩌구 저쩌구' , 'abcd@gmail.com', '', 'N',
         SYSDATE, 'Y', 'user', '100000');
 INSERT INTO W_USER
-VALUES (UserSEQ.nextval, 'user02', 'user02', '유저02', '01012345678', 'abcd@gmail.com', 'Y',
+VALUES (UserSEQ.nextval, 'user03', 'user03', '유저03', '01012345678', '서울시 강남구', '어쩌구 저쩌구' , 'abcd@gmail.com','' , 'N',
         SYSDATE, 'Y', 'user', '100000');
 INSERT INTO W_USER
-VALUES (UserSEQ.nextval, 'admin', 'admin', '유저02', '01012345678', 'abcd@gmail.com', 'Y',
+VALUES (UserSEQ.nextval, 'user02', 'user02', '유저02', '01012345678', '서울시 강남구', '어쩌구 저쩌구' , 'abcd@gmail.com','', 'Y',
+        SYSDATE, 'Y', 'user', '100000');
+INSERT INTO W_USER
+VALUES (UserSEQ.nextval, 'admin', 'admin', '유저02', '01012345678', '서울시 강남구',  '어쩌구 저쩌구' , 'abcd@gmail.com','', 'Y',
         SYSDATE, 'Y', 'admin', '100000');
 
-SELECT *
-FROM W_USER
-WHERE usID = 'user01'
-  AND usPW = 'user01';
+INSERT INTO W_ABILITY
+VALUES (AbilitySEQ.nextval, 1, 'design', 'test', 'test', sysdate, '승인 대기', 'a', 'a');
+
+ALTER TABLE W_PROJECT
+    MODIFY (PRSTATUS VARCHAR2(100));

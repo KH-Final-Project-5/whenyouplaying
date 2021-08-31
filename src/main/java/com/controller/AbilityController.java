@@ -32,40 +32,36 @@ public class AbilityController {
         FtpClient ftpClient =
                 new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
-        if (dto.getFile1() == null && dto.getFile2() == null) {
-            String id = dto.getUsId().trim().substring(3, dto.getUsId().length()).trim();
+
+        String id = dto.getUsId().trim().substring(3, dto.getUsId().length()).trim();
 
 
-            MultipartFile mfile1 = dto.getFile1();
-            MultipartFile mfile2 = dto.getFile2();
+        MultipartFile mfile1 = dto.getFile1();
+        MultipartFile mfile2 = dto.getFile2();
 
-            if (mfile1 != null) {
-                String filename1 = mfile1.getOriginalFilename();
-                String refilename = ftpClient.fileName(filename1, id);
+        if (mfile1 != null) {
+            String filename1 = mfile1.getOriginalFilename();
+            String refilename = ftpClient.fileName(filename1, id);
 
-                dto.setAbImg1("wjwan0.dothome.co.kr/stoarge/" + id + "/" + refilename);
-                File file1 = ftpClient.convert(mfile1);
-                ftpClient.upload(file1, filename1, id);
-            } else {
-                dto.setAbImg1(null);
-            }
+            System.out.println(id);
 
-            if (mfile2 != null) {
-                String filename2 = mfile2.getOriginalFilename();
-                String refilename = ftpClient.fileName(filename2, id);
-
-                dto.setAbImg2("wjwan0.dothome.co.kr/stoarge/" + id + "/" + refilename);
-                File file2 = ftpClient.convert(mfile2);
-                ftpClient.upload(file2, filename2, id);
-            } else {
-                dto.setAbImg2(null);
-            }
+            dto.setAbImg1("http://wjwan0.dothome.co.kr/stoarge/" + id + "/" + refilename);
+            File file1 = ftpClient.convert(mfile1);
+            ftpClient.upload(file1, filename1, id);
         } else {
             dto.setAbImg1("a");
-            dto.setAbImg2("a");
         }
 
+        if (mfile2 != null) {
+            String filename2 = mfile2.getOriginalFilename();
+            String refilename = ftpClient.fileName(filename2, id);
 
+            dto.setAbImg2("http://wjwan0.dothome.co.kr/stoarge/" + id + "/" + refilename);
+            File file2 = ftpClient.convert(mfile2);
+            ftpClient.upload(file2, filename2, id);
+        } else {
+            dto.setAbImg2("b");
+        }
 
 
         int res = biz.AbilityInsert(dto);
