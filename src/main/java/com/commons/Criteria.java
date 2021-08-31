@@ -5,6 +5,7 @@ public class Criteria {
     private int perPageNum;
     private int rowStart;
     private int rowEnd;
+    private int usNo;
 
     private String change;
 
@@ -58,4 +59,18 @@ public class Criteria {
         rowEnd = rowStart + perPageNum - 1;
         return rowEnd;
     }
+
+	public int getUsNo() {
+		return usNo;
+	}
+
+	public void setUsNo(int usNo) {
+		this.usNo = usNo;
+	}
+    
+    
+    
+    
+    
 }
+	

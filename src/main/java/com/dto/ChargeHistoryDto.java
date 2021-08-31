@@ -13,9 +13,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChargeHistoryDto {
+public class ChargeHistoryDto extends UserDto {
 	private int chNo;
 	private int chCash;
 	private Date chDate;
-	private String chStatus;
+	private String chBank;
 }
