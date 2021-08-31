@@ -59,10 +59,10 @@
             </div>
             <div class="col-4">
                 <div class="col-8">
-                    <a href="#"><img src="../image/ImgBox.PNG"></a>
+                    <a href="cashrecord.do?usNo=${userDto.usNo }"><img src="../image/ImgBox.PNG"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>충전 내역확인</b></a>
+                    <a href="cashrecord.do?usNo=${userDto.usNo }"><b>충전 내역확인</b></a>
                  </div>
                 
                  <div class="col-8">

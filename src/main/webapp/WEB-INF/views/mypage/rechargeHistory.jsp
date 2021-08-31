@@ -1,6 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,9 +27,10 @@
 </head>
 <body>
 
-    <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
-
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+    </header>
 
     <div class="container">
         <div class="row">
@@ -49,16 +51,16 @@
                 <div id="pageName"><b>MY PAGE</b></div><br>
 
                 <div id="menuList">
-                    <span class="menuText"><a href="#">회원정보</a></span><br><br>
-                    <span class="menuText"><a href="#">공지사항</a></span><br><br>
-                    <span class="menuText"><a href="#">찜 내역</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 구매내역</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 판매내역</a></span><br><br>
-                    <span class="menuText"><a href="#"><u><b>충전 내역확인</b></u></a></span><br><br>
-                    <span class="menuText"><a href="#">계좌 관리</a></span><br><br>
-                    <span class="menuText"><a href="#">포인트 출금</a></span><br><br>
-                    <span class="menuText"><a href="#">포인트 출금내역</a></span><br><br>
-                    <span class="menuText"><a href="#">회원 탈퇴</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="">회원정보</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="#">공지사항</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="#">찜 내역</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="#">재능 구매내역</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="#">재능 판매내역</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="#"><u><b>충전 내역확인</b></u></a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="#">계좌 관리</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="#">포인트 출금</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="#">포인트 출금내역</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="#">회원 탈퇴</a></span><br><br>
                 </div>
             </div>
 
@@ -92,7 +94,8 @@
 
                     <input type="submit" value="조회" id="btn" class="btn btn-secondary btn-sm">
                     
-                </form><br>
+                </form>
+                <br>
                     
                 
 
@@ -113,88 +116,69 @@
                             <th>충전 금액</th>
 
                         </tr>
-
+                        <c:choose>
+                        	<c:when test="${empty chargeList}">
+								<tr>
+									<td colspan="4" align="center">--------- 기록이 없습니다 ---------- </td>
+								</tr>                        	
+                        	</c:when>
+                        	<c:otherwise>
+                        		<c:forEach items="${chargeList }" var="dto" >
+                        			<tr>
+                        				<td>${dto.chDate}</td>
+                        				<td>${dto.chNo }</td>
+                        				<td>${dto.chBank }</td>
+                        				<td>${dto.chCash }</td>
+                        			</tr>
+                        		</c:forEach>
+                        	</c:otherwise>
+                        </c:choose>
+<!-- 
+						<c:forEach items="${chargeList}" var="dto">
+							<tr>
+								<td>${dto.chDate }</td>
+								<td>${dto.chNo }</td>
+								<td>${dto.chBank }</td>
+								<td>${dto.chCash }</td>
+							</tr>
+						</c:forEach>
+ -->                        
+<!--  
                         <tr>
                             <td>21.08.20</td>
                             <td>1000</td>
                             <td>신한은행</td>
                             <td>100,000 원</td>
                         </tr>
-                    <!-- 임시데이터 -->
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
+-->   
                         
 
-                    <!-- 임시데이터 -->
                     </table>
                     <div id="pagingArea" class="pagingDiv">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
-                              <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                  <span aria-hidden="true">&laquo;</span>
-                                </a>
-                              </li>
-                              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item"><a class="page-link" href="#">2</a></li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                  <span aria-hidden="true">&raquo;</span>
-                                </a>
-                              </li>
+                            	
+                            	<c:if test="${chargePageMaker.prev}" >
+                            		<li class="page-item">
+                            			<a class="page-link" aria-label="Previous" href="${chargePageMaker.makeQuery(chargePageMaker.startPage - 1)}">
+											<span aria-hidden="true">&laquo;</span>                          		
+                            			</a> 
+                            		</li>
+                            	</c:if>
+                           
+                            	<c:forEach begin="${chargePageMaker.startPage}" end="${chargePageMaker.endPage}" var="idx">
+                            		<li class="page-item">
+										<a class="page-link" href="cashrecord.do${chargePageMaker.makeQuery2(idx)}">${idx}</a>                            		
+                            		</li>
+                            	</c:forEach>
+                            	
+								<c:if test="${chargePageMaker.next && chargePageMaker.endPage > 0 }">
+									<li class="page-item">
+										<a class="page-link" aria-label="Next" href="cashrecord.do${chargePageMaker.makeQuery(chargePageMaker.endPage + 1)}">
+											<span aria-hidden="true">&raquo;</span>
+										</a>
+									</li>
+								</c:if>		                            	
                             </ul>
                           </nav>
                     </div>
@@ -211,8 +195,11 @@
         </div>
     </div><br><br>
 
-    <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+    </footer>
+</div>
+
 
 </body>
 </html>
