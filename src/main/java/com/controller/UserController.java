@@ -145,6 +145,32 @@ public class UserController {
     	return "user/userInfo";
     }
     
+    //회원정보 수정결과
+    @RequestMapping("/usereditres.do")
+    public void userEditRes(HttpServletResponse response, UserDto dto, String usPhone1, String usPhone2, String usPhone3) {
+    	
+    	logger.info("usereditres.do : 회원정보수정 결과값 db 적용");
+
+    	String usPhone = usPhone1+usPhone2+usPhone3;
+    	
+    	dto.setUsPhone(usPhone);
+    	
+    	int res = 0;
+    	
+    	res = biz.userEdit(dto);
+    	
+    	try {
+			if(res>0) {
+				ScriptUtils.alertAndMovePage(response, "회원정보가 수정되었습니다, 다시 로그인해주세요.", "logout.do");
+			}else {
+				ScriptUtils.alert(response, "회원정보 수정실패");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
+    }
+    
 
     
     

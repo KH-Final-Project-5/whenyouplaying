@@ -3,6 +3,7 @@ package com.biz;
 import com.dao.AbilityDao;
 import com.dto.AbilityDto;
 import com.commons.Criteria;
+import com.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,5 +38,24 @@ public class AbilityBizImpl implements AbilityBiz {
     @Override
     public List<AbilityDto> AbilityListPaging(Criteria criteria) {
         return dao.AbilityListPaging(criteria);
+    }
+
+    @Override
+    public AbilityDto AbilityDetail(int abNo) {
+
+        return dao.AbilityDetail(abNo);
+    }
+
+    @Transactional
+    @Override
+    public int AbilityApprove(AbilityDto dto) {
+
+        int res = 0;
+
+        dao.AbilityApprove(dto);
+        res = dao.AbilityApproveUser(dto);
+
+
+        return res;
     }
 }

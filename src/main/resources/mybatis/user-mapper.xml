@@ -32,5 +32,12 @@
  		AND USID = #{usId}
  		AND USEMAIL = #{usEmail}
  	</select> 
+ 	
+ 	
+ 	<update id="userEdit" parameterType="userDto">
+ 		UPDATE W_USER
+ 		SET USPW=#{usPw}, USNAME=#{usName}, USPHONE=#{usPhone}, USADDRESS1=#{usAddress1}, USADDRESS2=#{usAddress2}, USEMAIL=#{usEmail}, USSELFINFO=#{usSelfInfo}
+ 		WHERE USNO=#{usNo}
+ 	</update>
     
 </mapper>

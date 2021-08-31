@@ -123,6 +123,12 @@
         
         }
         
+        #confirmPw{
+        	color: red;
+        	position: relative;
+        	left: 450px;
+        }
+        
         
         
         

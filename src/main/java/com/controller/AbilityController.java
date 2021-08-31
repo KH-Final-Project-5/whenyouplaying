@@ -6,17 +6,23 @@ import com.commons.PageMaker;
 import com.commons.ScriptUtils;
 import com.dto.AbilityDto;
 import com.commons.Criteria;
+import com.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AbilityController {
@@ -24,13 +30,13 @@ public class AbilityController {
     @Autowired
     AbilityBiz biz;
 
+    @Autowired
+    FtpClient ftpClient;
+
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     @RequestMapping("/abilityregi.do")
     public void abilityregi(HttpServletResponse response, AbilityDto dto) throws Exception {
-
-        FtpClient ftpClient =
-                new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
 
         String id = dto.getUsId().trim().substring(3, dto.getUsId().length()).trim();
@@ -86,7 +92,6 @@ public class AbilityController {
 
         for (AbilityDto dto : list) {
             String date = format.format(dto.getAbDate());
-//            System.out.println(date);
             dto.setAbDate(format.parse(date));
         }
 
@@ -94,5 +99,36 @@ public class AbilityController {
         model.addAttribute("pageMaker", pageMaker);
 
         return "admin/abilityMain";
+    }
+
+    @RequestMapping("/abilitydetail.do")
+    public String abilityDetail(Model model, int abNo) {
+
+
+        model.addAttribute("dto", biz.AbilityDetail(abNo));
+
+
+        return "admin/abilityCheck";
+    }
+
+    @RequestMapping(value = "/ajaxapprove.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Boolean> ajaxApprove(@RequestBody AbilityDto dto) {
+
+        int res = 0;
+
+        boolean check = false;
+
+        res = biz.AbilityApprove(dto);
+
+        Map<String, Boolean> map = new HashMap<>();
+
+        if (res > 0) {
+            check = true;
+        }
+
+        map.put("check", check);
+
+        return map;
     }
 }
