@@ -21,11 +21,14 @@
 
     <!-- css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/userinfo.css"/>">
-
+    
     <!-- 글씨체-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- script -->
     <script type="text/javascript"> 
@@ -45,8 +48,44 @@
          cont.value =  cont.value.substr(0, 6);
             alert('입력한 글자가 6글자 이상 이어야 해요!!');
            return false;
-        }
-    }   
+        	}
+   		}   
+    
+        
+    	$(function(){
+    		
+    		$("#confirmPw").hide();
+	  
+    		$("#usPW2").change(function(){
+	    		
+	    		var pw1 = $("#usPW").val();
+	    		var pw2 = $("#usPW2").val();
+	    		
+	    		if(pw1 != pw2){
+	    			$("#confirmPw").show();
+	    		}
+	    		
+	    	});
+    	});
+    	
+    
+    	function check(){
+    		
+    		var pw1 = $("#usPW").val();
+    		var pw2 = $("#usPW2").val();
+    		
+    		if(pw1 != pw2){
+    			return false;
+    		}else{
+    			return true;
+    		}
+    	}
+    
+       
+        
+        
+        
+        
     </script>
 
 </head>
@@ -92,7 +131,8 @@
             <div class="col-9"> 
                 <div id="titleName"><h3>회원정보 수정</h3></div> 
                     
-                <form class="validation-form" novalidate>
+                <form action="usereditres.do" method="get" class="validation-form" onsubmit="return check()"  novalidate>
+                	<input type="hidden" value="${user.usNo}" name="usNo">
                     <div class="row">
                         <div class="col-md-6 mb-3"> 
                             <br>
@@ -100,7 +140,7 @@
                     
                             <label for="usID">ID</label>
                             <br>
-                            <input type="text" class="form-control" id="usID" name="usID" value="${user.usId }" required readonly="readonly" > 
+                            <input type="text" class="form-control" id="usID" name="usId" value="${user.usId }" required readonly="readonly" > 
                 
                             <div class="invalid-feedback"> 아이디를 입력해주세요. </div> 
                         </div> 
@@ -111,17 +151,18 @@
 
                             <label for="usPW">PW </label> 
                             <br>
-                            <input type="text" class="form-control" id="usPW" name="usPW" value="${user.usPw }" required > 
+                            <input type="text" class="form-control" id="usPW" name="usPw" value="${user.usPw }" required > 
                     
                             <div class="invalid-feedback"> 비밀번호를 입력해주세요. </div> 
-                    
+                    		<div id="confirmPw"> 비밀번호가 일치하지 않습니다. </div>  
+                    		
                         </div> 
                     
                         <div class="col-md-6 mb-3"> 
                         
                             <label for="usPW2">PW 확인</label> 
                             <br>
-                            <input type="text" class="form-control" id="usPW2" name="usPW2" value="${user.usPw }" required> 
+                            <input type="text" class="form-control" id="usPW2" name="usPw2" value="${user.usPw }" required> 
                         
                             <div class="invalid-feedback"> 비밀번호를 입력해주세요. </div> 
                     
@@ -162,7 +203,7 @@
                         <table>
                         	<tr>
                             	<td>
-                                <input type="usPhone" style="width: 65px" class="form-control" required name="usPhone" value="<%=usPhone1 %>">
+                                <input type="usPhone" style="width: 65px" class="form-control" required name="usPhone1" value="<%=usPhone1 %>">
                             	</td>
                             	<td>
                             	-
@@ -187,7 +228,7 @@
                                 
                             <label for="prAddress">주소</label>
                                 <br>
-                                <input type="text" style="display: inline;" class="form-control" id="praddress" required name="prAddress" value="${user.usAddress }"> 
+                                <input type="text" style="display: inline;" class="form-control" id="praddress" required name="usAddress1" value="${user.usAddress1 }"> 
                                 <button type="button" class="btn btn-outline-primary btn-sm">주소찾기</button>
                                 
                                 <div class="invalid-feedback"> 주소를 입력해주세요.</div>
@@ -202,7 +243,7 @@
 
                             <br>
                                     
-                            <input type="text" class="form-control" id="prAddress2" name="prAddress2">
+                            <input type="text" class="form-control" id="prAddress2" name="usAddress2" value="${user.usAddress2 }">
    
                         </div>
 
@@ -210,7 +251,7 @@
                         <div class="mb-3"> 
                             <label for="usinfo">자기소개</label>
                             <br>
-                            <textarea id="userinfo" name="usSelfInfo"></textarea>
+                            <textarea id="userinfo" name="usSelfInfo">${user.usSelfInfo }</textarea>
                                         
                         </div> 
                     </div>

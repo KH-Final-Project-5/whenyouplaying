@@ -30,5 +30,10 @@ public class UserBizImpl implements UserBiz{
 		return dao.findPw(dto);
 	}
 
+	@Override
+	public int userEdit(UserDto dto) {
+		return dao.userEdit(dto);
+	}
+
 
 }

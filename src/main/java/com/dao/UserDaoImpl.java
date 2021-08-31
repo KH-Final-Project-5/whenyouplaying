@@ -69,4 +69,19 @@ public class UserDaoImpl implements UserDao{
 
 		return res;
 	}
+
+	@Override
+	public int userEdit(UserDto dto) {
+
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.update(NAMESPACE+"userEdit", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : 회원정보등록 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 }
