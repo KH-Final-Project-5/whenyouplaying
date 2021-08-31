@@ -34,6 +34,7 @@ public class UserController {
     //로그인 페이지
     @RequestMapping("/loginform.do")
     public String loginForm() {
+    	
 
         return "user/login";
     }
@@ -41,8 +42,16 @@ public class UserController {
     
     @RequestMapping("/regi.do")
     public String regi(UserDto dto) {
+    	
+    	int res = biz.regi(dto);
+    	
+    	if (res > 0) {
+    		return "redirect:main.do";
+    	}else {
+        	return "redirect:regi.do";
+    	}
+    	
 
-    	return null;
     	
     }
     

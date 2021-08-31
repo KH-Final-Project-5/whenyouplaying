@@ -10,15 +10,13 @@
           AND USPW = #{usPw}
     </select>
     
-     <select id="RegiUser" parameterType="userDto" resultType="userDto">
- 
-	INSERT INTO User(usID,
-					usPW,
-					usName,
-					usPhone,
-					usEmail,
-					usADDRESS)
- 		</select>
+     <insert id="regi" parameterType="userDto">
+     
+ 	INSERT INTO W_USER VALUES(USERSEQ.NEXTVAL, #{usId},
+ 	#{usPw},#{usName},#{usPhone},
+ 	#{usAddress1},#{usAddress2},#{usEmail},NULL,'N',SYSDATE,'Y','user','0')
+	
+ 		</insert>
     
     <select id="findId" parameterType="userDto" resultType="string">
     	SELECT USID

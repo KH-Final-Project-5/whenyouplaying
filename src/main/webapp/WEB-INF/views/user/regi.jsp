@@ -56,7 +56,7 @@
 
                       <form name="usID" method="post" onsubmit="return idCheck(this);">
                         <br>
-                       <input type="text" class="form-control" id="usID" placeholder="" value="" required name="usID"> 
+                       <input type="text" class="form-control" id="usID" placeholder="" value="" required name="usId"> 
 
                         </form>
                        <div class="invalid-feedback"> 아이디를 입력해주세요. 
@@ -76,7 +76,7 @@
                         
                         <label for="usPW">PW</label> 
                         <br>
-                        <input type="text" class="form-control" id="usPW" placeholder="" value="" required name="usPW"> 
+                        <input type="text" class="form-control" id="usPW" placeholder="" value="" required name="usPw"> 
                         
                         <div class="invalid-feedback"> 비밀번호를 입력해주세요. </div> 
                     
@@ -112,8 +112,8 @@
                     <table>
                         <td>
                     <input type="usPhone" class="form-control phone" id="usPhone" required name="usPhone"> -
-                    <input type="usPhone" class="form-control phone" id="usPhone2" required name="usPhone2"> -
-                    <input type="usPhone" class="form-control phone" id="usPhone3" required name="usPhone3">
+                    <input type="usPhone" class="form-control phone" id="usPhone" required name="usPhone2"> -
+                    <input type="usPhone" class="form-control phone" id="usPhone" required name="usPhone3">
                     </td>
                     </table>
                     <div class="invalid-feedback"> 휴대전화를 입력해주세요. 
@@ -131,9 +131,9 @@
                              <br>
 
                              <br>
-                             <div class="mb-3"> <label for="prAddress">주소</label>
+                             <div class="mb-3"> <label for="usAddress">주소</label>
                                 <br>
-                                 <input type="text" class="form-control" id="praddress" placeholder="서울특별시 강남구" required name="prAddress"> 
+                                 <input type="text" class="form-control" id="praddress" placeholder="서울특별시 강남구" required name="usAddress1"> 
                                  
                                  <input type="button" value="우편 찾기">
                                  <div class="invalid-feedback"> 주소를 입력해주세요.
@@ -143,14 +143,14 @@
                                 
                                 <div class="mb-3"> 
                                      
-                                    <label for="praddress2">상세주소<span class="text-muted" required>&nbsp;
+                                    <label for="usAddress">상세주소<span class="text-muted" required>&nbsp;
                                         
 
 
                                     </span>
                                     </label> 
                                     <br>
-                                    <input type="text" class="form-control" id="praddress2" placeholder="상세주소를 입력해주세요." name="prAddress2">
+                                    <input type="text" class="form-control" id="praddress2" placeholder="상세주소를 입력해주세요." name="usAddress2">
                                 
                                                      
                                                      <hr class="mb-4"> 
