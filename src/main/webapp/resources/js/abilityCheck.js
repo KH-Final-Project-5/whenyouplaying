@@ -17,3 +17,5 @@ function closeWin(){
         btns[i].disabled = "";
     }
 }
+
+

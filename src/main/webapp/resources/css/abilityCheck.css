@@ -115,7 +115,7 @@ h3>input{
     pointer-events: none;
 }
 
-#btn{
+.btna{
     position: relative;
     top: -80px;
     margin-left: 20%;
@@ -145,9 +145,13 @@ h3>input{
     position: absolute;
     left:80px;
     top: 900px;
-    
 }
 
+
+#fileBox1 img {
+    width: 270px;
+    height: 270px;
+}
 #fileBox2{
     border: 0.1px solid gray;
     width: 270px;
@@ -157,6 +161,11 @@ h3>input{
     top:900px;
 }
 
+#fileBox2 img {
+    width: 270px;
+    height: 270px;
+}
+
 
 /*거절사유 css*/
 #refuse{
@@ -164,12 +173,13 @@ h3>input{
     background: rgb(239, 241, 225);
     position : absolute;
     top:950px;
-    left:36%;
+    left:26%;
     display:none;
     width: 830px;
     height: 400px;
     text-align: center;
     border: none;
+    margin: 0 auto;
 }
 
 
@@ -194,7 +204,6 @@ h3>input{
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-
 /*                */
 
 body{
@@ -209,15 +218,14 @@ body{
     top:30px;
 }
 
-a{
+.menuText{
+    color: black;
+}
+.menuText:hover {
     color: black;
 }
 
-a:hover {
-    color: black;
-}
-
-a:active {
+.menuText:active {
     color: black;
 }
 

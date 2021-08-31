@@ -31,4 +31,25 @@
         VALUES (ABILITYSEQ.NEXTVAL, #{usNo}, #{abCate}, #{abTitle},
                 #{abContent}, SYSDATE, '승인 대기', #{abImg1}, #{abImg2})
     </insert>
+
+    <select id="abilitySelectOne" parameterType="int" resultType="abilityDto">
+        SELECT *
+        FROM W_ABILITY
+                 JOIN W_USER WU on W_ABILITY.USNO = WU.USNO
+        WHERE W_ABILITY.ABNO = #{abNo}
+    </select>
+
+    <update id="abilityApprove" parameterType="abilityDto">
+        UPDATE W_ABILITY
+        SET ABSTATUS = '승인완료'
+        WHERE ABNO = #{abNo}
+    </update>
+
+    <update id="abilityApproveUser" parameterType="abilityDto">
+        UPDATE W_USER
+        SET USTALENT = #{usTalent}
+        WHERE USNO = #{usNo}
+    </update>
+
+
 </mapper>

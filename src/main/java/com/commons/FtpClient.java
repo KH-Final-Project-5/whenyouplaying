@@ -1,11 +1,14 @@
 package com.commons;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -14,6 +17,9 @@ import java.io.IOException;
 import java.net.SocketException;
 
 @NoArgsConstructor
+@Component
+@Setter
+@Getter
 public class FtpClient {
     private String serverIp;
     private int serverPort;

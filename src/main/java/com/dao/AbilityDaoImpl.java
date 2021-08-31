@@ -2,10 +2,12 @@ package com.dao;
 
 import com.dto.AbilityDto;
 import com.commons.Criteria;
+import com.dto.UserDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.xml.stream.events.DTD;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,4 +77,48 @@ public class AbilityDaoImpl implements AbilityDao {
 
         return list;
     }
+
+    @Override
+    public AbilityDto AbilityDetail(int abNo) {
+        AbilityDto dto = null;
+        try {
+            dto = sqlSessionTemplate.selectOne(NAMESPACE + "abilitySelectOne", abNo);
+        } catch (Exception e) {
+            System.out.println("가져오기 실패");
+            e.printStackTrace();
+        }
+
+
+        return dto;
+    }
+
+    @Override
+    public int AbilityApprove(AbilityDto dto) {
+        int res = 0;
+
+        try {
+            res = sqlSessionTemplate.update(NAMESPACE + "abilityApprove", dto);
+        } catch (Exception e) {
+            System.out.println("승인 실패");
+            e.printStackTrace();
+        }
+
+        return res;
+    }
+
+    @Override
+    public int AbilityApproveUser(AbilityDto dto) {
+        int res = 0;
+
+        try {
+            res = sqlSessionTemplate.update(NAMESPACE + "abilityApproveUser", dto);
+        } catch (Exception e) {
+            System.out.println("유저 승인 실패");
+            e.printStackTrace();
+        }
+
+        return res;
+    }
+
+
 }

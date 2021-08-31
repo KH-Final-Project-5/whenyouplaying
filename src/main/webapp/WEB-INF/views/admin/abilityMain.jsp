@@ -113,7 +113,8 @@
                                 <c:forEach items="${abList}" var="abList">
                                     <tr>
                                         <td height="50">${abList.abNo}</td>
-                                        <td><a class="menuText" href="abilitydetail.do">${abList.abTitle}</a></td>
+                                        <td><a class="menuText"
+                                               href="abilitydetail.do?abNo=${abList.abNo}">${abList.abTitle}</a></td>
                                         <td>${abList.usName}</td>
                                         <td>${abList.abStatus}</td>
                                         <td><fmt:formatDate value="${abList.abDate}" pattern="yyyy-MM-dd"/></td>
