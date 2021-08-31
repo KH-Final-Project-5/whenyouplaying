@@ -2,6 +2,8 @@ package com.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -28,5 +30,6 @@ public class ProjectDto extends UserDto{
 	private String prLongitude;
 	private String prAddress;
 	
+	private MultipartFile prImage2;
 	
 }

@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.biz.ProjectBiz;
+import com.commons.FtpClient;
 import com.commons.ScriptUtils;
 import com.dto.ProjectDto;
 import com.dto.UserDto;
@@ -68,9 +71,40 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="insertProjectRes.do")
-	public void insertProjectRes(HttpServletResponse response,ProjectDto dto) throws IOException {
+	public void insertProjectRes(HttpServletResponse response,ProjectDto dto) throws Exception {
 		logger.info("Insert Res");
+		FtpClient ftpClient =
+                new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
+		
+		String filename = null;
+		
+		//dto안에 들어있는 file을 가져오고
+		MultipartFile multiFile = dto.getPrImage2();
+		
+		//파일 real이름을 filename 변수에 저장
+		filename = multiFile.getOriginalFilename();
+		
+		//id : id값 을 id만 나올 수 있게 만든다
+		
+		
+		
+		String filename2 = ftpClient.fileName(filename, dto.getUsId());
+		
+		//경로/id/filename
+		dto.setPrImage("wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
+		
+		//multiPartFile을 File로 변환하는 작업
+		File file = ftpClient.convert(multiFile);
+		
+		ftpClient.upload(file, filename, dto.getUsId());
+		
+		
+		
+		
+		
 		int res = biz.insertProject(dto);
+		
+		
 		 if (res > 0) {
 	            ScriptUtils.alertAndMovePage(response, "입력 완료", "main.do");
 	        } else {
@@ -113,5 +147,7 @@ public class ProjectController {
 			ScriptUtils.alertAndMovePage(response, "삭제 실패", "detail.do?prNo="+prNo);
 		}
 	}
+	
+
 	
 }

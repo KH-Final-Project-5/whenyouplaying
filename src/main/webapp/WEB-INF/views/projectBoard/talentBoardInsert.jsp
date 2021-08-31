@@ -25,9 +25,37 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <script src="<c:url value="/resources/js/messagePopup.js"/>"></script>
-    
-    
+    <!-- <script src="<c:url value="/resources/ckeditor/ckeditor.js"/>"></script> -->
+    <script type="text/javascript"
+            src="<c:url value="/resources/smarteditor2/js/service/HuskyEZCreator.js"/>"
+            charset="utf-8"></script>
 
+ 
+    <script>
+    $(function () {
+        var oEditors = [];
+        nhn.husky.EZCreator.createInIFrame({
+            oAppRef: oEditors,
+            elPlaceHolder: "prContent",
+            sSkinURI: "/resources/smarteditor2/SmartEditor2Skin.html",
+            fCreator: "createSEditor2",
+            htParams: {
+                bUseToolbar: true,
+                bUseVerticalResizer: false,
+                bUseModeChanger: true
+            },
+            
+
+        });
+        $("#completeBtn").click(function () {
+            oEditors.getById["prContent"].exec("UPDATE_CONTENTS_FIELD", []);
+
+            $("#projectForm").submit();
+        });
+       
+    });
+    </script>
+ 
 
 	<script>
 	$(document).on("change", ".file-input", function () {
@@ -99,8 +127,9 @@
                 		
                 <div class="row">
                 
-                    <form action="insertProjectRes.do" method="post">
+                    <form action="insertProjectRes.do" method="post" id="projectForm" enctype="multipart/form-data">
                        <input type="hidden" name="usNo" value="<%=dto.getUsNo() %>">
+                       <input type="hidden" name="usId" value="<%=dto.getUsId() %>">
                         <table  class="deal-table" style="height: 1100px;">
                             
                             <!-- 글 제목 input-->
@@ -129,7 +158,7 @@
 	                                <div class="box-file-input">
 		                                
 		                                <input type="file" onchange="setThumbnail1(event);" 
-		                                		name="file1" class="file-input"
+		                                		name="prImage2" class="file-input"
 		                                        accept="image/*">
 		                                
 	                                <span class="filename">재능을 설명할 파일을 선택해주세요.</span>
@@ -185,14 +214,15 @@
                             <!--재능 설명-->
                             <tr>
                                 <th class="deal-th">재능설명</th>
-                                <td><textarea cols="100" rows="25" name="prContent" class="text-area" style="margin-left:0px;"></textarea></td>
+                                <td><textarea cols="100" rows="25" name="prContent" class="text-area" id="prContent"  style="margin-left:0px;"></textarea></td>
+                            	
                             </tr>
 
                             
 
                             <tr style="border: none;">
                                 <td colspan="2" align="right">
-                                    <input type=submit class="btn btn-outline-primary btn-sm"  value="완료">
+                                    <button id="completeBtn" class="btn btn-outline-primary btn-sm">완료</button>
                                 </td>
                             </tr>
 

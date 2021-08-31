@@ -129,7 +129,7 @@
 	                                <div class="box-file-input">
 		                                
 		                                <input type="file" onchange="setThumbnail1(event);" 
-		                                		name="file1" class="file-input"
+		                                		name="prImage" class="file-input"
 		                                        accept="image/*">
 		                                
 	                                <span class="filename">재능을 설명할 파일을 선택해주세요.</span>
