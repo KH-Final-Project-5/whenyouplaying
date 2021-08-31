@@ -142,7 +142,7 @@ public class ProjectController {
 		String filename2 = ftpClient.fileName(filename, dto.getUsId());
 		
 		//경로/id/filename
-		dto.setPrImage("wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
+		dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
 		
 		//multiPartFile을 File로 변환하는 작업
 		File file = ftpClient.convert(multiFile);
