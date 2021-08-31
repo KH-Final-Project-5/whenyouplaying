@@ -198,6 +198,30 @@
                                     <hr style="margin: 3px;">
                                 </td>
                             </tr>
+                           <tr> 
+                          
+                          <!-- 거래 지역 지도 -->
+                          <th class="deal-th">지도</th>
+                          	<td>
+						    <div id="map" style="width:500px;height:400px;"></div>
+							<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ab159e5abb2442cfed56949c9439ba9"></script>
+							<script>
+								var container = document.getElementById('map');
+								var options = {
+									center: new kakao.maps.LatLng(33.450701, 126.570667),
+									level: 3
+								};
+						
+								var map = new kakao.maps.Map(container, options);
+							</script>
+							</td>
+							
+							</tr>
+							
+							
+							
+							
+							
 							
 							 <!--가격 링크-->
                             <tr>
