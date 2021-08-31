@@ -2,6 +2,7 @@ package com.biz;
 
 import com.dto.AbilityDto;
 import com.commons.Criteria;
+import com.dto.ApplyDto;
 import com.dto.UserDto;
 
 import java.util.List;
@@ -21,5 +22,10 @@ public interface AbilityBiz {
     public int AbilityApprove(AbilityDto dto);
 
 
+    public void AbilityNega(ApplyDto applyDto, AbilityDto abilityDto);
+
+    public int AjaxAbilityListCount(Criteria criteria);
+
+    public List<AbilityDto> AjaxAbilityListPaging(Criteria criteria);
 
 }

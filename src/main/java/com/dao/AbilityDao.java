@@ -2,6 +2,7 @@ package com.dao;
 
 import com.dto.AbilityDto;
 import com.commons.Criteria;
+import com.dto.ApplyDto;
 import com.dto.UserDto;
 
 import java.util.List;
@@ -23,5 +24,14 @@ public interface AbilityDao {
     public int AbilityApprove(AbilityDto dto);
 
     public int AbilityApproveUser(AbilityDto dto);
+
+    public int AbilityNega(ApplyDto dto);
+
+    public int AbilityNegaUser(AbilityDto dto);
+
+    public int AjaxAbilityListCount(Criteria criteria);
+
+    public List<AbilityDto> AjaxAbilityListPaging(Criteria criteria);
+
 
 }

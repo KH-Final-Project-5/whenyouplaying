@@ -34,6 +34,52 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/abilityMain.css"/>">
     <%--    <script src="<c:url value="/resources/js/ab"/>"></script>--%>
 
+    <script>
+        $(function () {
+            $('#selectOption').change(function () {
+
+                var change = null;
+
+                if ($(this).val() == "applySubmit") {
+                    change = "a";
+                } else if ($(this).val() == "applyNega") {
+                    change = "b";
+                } else if ($(this).val() == "applyWait") {
+                    change = "c";
+                }
+
+                location.href = 'ajaxabilitymain.do?change=' + change;
+
+            });
+            var url = location.search;
+            var urlParam = new URLSearchParams(url);
+            var getType = urlParam.get("change");
+
+            if (getType == "a") {
+                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                $('.pagenumber${idx}').attr('href', 'ajaxabilitymain.do${pageMaker.makeQuery(idx)}&change=a');
+                $('.pagenext').attr("href", 'ajaxabilitymain.do${pageMaker.makeQuery(pageMaker.endPage + 1)}&change=a');
+                </c:forEach>
+            } else if (getType == "b") {
+                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+
+                $('.pagenumber${idx}').attr('href', 'ajaxabilitymain.do${pageMaker.makeQuery(idx)}&change=b');
+                $('.pagenext').attr("href", 'ajaxabilitymain.do${pageMaker.makeQuery(pageMaker.endPage + 1)}&change=b');
+                </c:forEach>
+
+            } else if (getType == "c") {
+                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                $('.pagenumber${idx}').attr('href', 'ajaxabilitymain.do${pageMaker.makeQuery(idx)}&change=c');
+                $('.pagenext').attr("href", 'ajaxabilitymain.do${pageMaker.makeQuery(pageMaker.endPage + 1)}&change=c');
+                </c:forEach>
+
+            }
+
+        });
+
+
+    </script>
+
 
 </head>
 <body>
@@ -77,11 +123,11 @@
                 <div id="titleName"><h1>재능승인 글 관리</h1></div>
 
                 <div id="selectBar">
-                    <select>
+                    <select id="selectOption">
                         <option value="" selected disabled>진행 상태</option>
-                        <option value="">승인 완료</option>
-                        <option value="">승인 거절</option>
-                        <option value="">승인 대기</option>
+                        <option value="applySubmit">승인 완료</option>
+                        <option value="applyNega">승인 거절</option>
+                        <option value="applyWait">승인 대기</option>
                     </select>
                 </div>
                 <div class="tableDiv">
@@ -95,7 +141,7 @@
                             <col width="80"/>
                         </colgroup>
 
-                        <tr>
+                        <tr id="titleTr">
                             <th>NO</th>
                             <th>제목</th>
                             <th>신청자</th>
@@ -111,14 +157,15 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${abList}" var="abList">
-                                    <tr>
+                                    <tr class="abListTr">
                                         <td height="50">${abList.abNo}</td>
                                         <td><a class="menuText"
                                                href="abilitydetail.do?abNo=${abList.abNo}">${abList.abTitle}</a></td>
                                         <td>${abList.usName}</td>
-                                        <td>${abList.abStatus}</td>
+                                        <td id="abStatus">${abList.abStatus}</td>
                                         <td><fmt:formatDate value="${abList.abDate}" pattern="yyyy-MM-dd"/></td>
                                     </tr>
+                                    <div id="tabl1"></div>
                                 </c:forEach>
 
                             </c:otherwise>
@@ -140,14 +187,14 @@
                                 </li>
                             </c:if>
                             <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-                                <li class="page-item"><a class="page-link"
+                                <li class="page-item"><a class="page-link pagenumber${idx}"
                                                          href="abilitymain.do${pageMaker.makeQuery(idx)}">${idx}</a>
                                 </li>
                             </c:forEach>
 
                             <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
                                 <li class="page-item">
-                                    <a class="page-link"
+                                    <a class="page-link pagenext"
                                        href="abilitymain.do${pageMaker.makeQuery(pageMaker.endPage + 1)}"
                                        aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
