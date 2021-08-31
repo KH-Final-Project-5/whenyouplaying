@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,21 +21,21 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
 </head>
 <body>
-    
-    <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
 
+<div class="wwrap">    
+	<header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+    </header>
 
     <!-- grid영역, 컬럼은 12줄로 이루어져 있고 갯수 비율로 틀을 잡는다. -->
-    <div class="container">
+    <div class="container" style="height: 30px">
         <div class="row">
             <div class="col-12 userNav">
-            <h2><img src="../image/UserImg.PNG">00님의 mypage</h2> <hr>
+            <h2><img src="../image/UserImg.PNG">${userDto.usName }님의 mypage</h2> <hr>
             </div>
         </div>    
     </div>
 
-    </div>
 
     <div class="container">
         
@@ -69,10 +72,10 @@
             </div>
             <div class="col-4">
                 <div class="col-8">
-                    <a href="#"><img src="../image/ImgBox.PNG"></a>
+                    <a href="useredit.do?usNo=${userDto.usNo }"><img src="../image/ImgBox.PNG"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>회원 정보 수정</b></a>
+                    <a href="useredit.do"><b>회원 정보 수정</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -130,7 +133,6 @@
 
 
         <div class="row">
-            
             <div class="col-4">
                  <div class="col-8">
                     <a href="#"><img src="../image/ImgBox.PNG"></a>
@@ -141,20 +143,19 @@
                 
                  <div class="col-8">
                 <p>찜한 내역을 확인<br>할 수 있습니다.<br> 
-                    
                 </div>
-
-                 
             </div>
-            
         </div>
-
         
     </div>
+    
+   	<footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+    </footer>
+</div>
 
+	
 
-    <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
 
 </body>
 </html>
