@@ -38,7 +38,13 @@ public class UserController {
 
         return "user/login";
     }
+    
+    @RequestMapping("/regiform.do")
+  public String regiFrom() {
+    	
 
+        return "user/regi";
+    }
     
     @RequestMapping("/regi.do")
     public String regi(UserDto dto) {

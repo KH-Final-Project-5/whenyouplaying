@@ -47,7 +47,7 @@
             <div class="col-8">
                 <div id="titleName"><h1>회원가입</h1></div>
 
-                <form class="validation-form" novalidate action="regi.do">
+                <form action="regi.do" class="validation-form" novalidate>
 
 
                     <div class="row">

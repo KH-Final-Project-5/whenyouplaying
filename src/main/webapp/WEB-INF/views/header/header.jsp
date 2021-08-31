@@ -82,7 +82,7 @@
                         |
                         <a href="loginform.do" class="navA">로그인</a>
                         |
-                        <a href="" class="navA">회원가입</a>
+                        <a href="regiform.do" class="navA">회원가입</a>
                     </div>
                 </div>
             </div>
