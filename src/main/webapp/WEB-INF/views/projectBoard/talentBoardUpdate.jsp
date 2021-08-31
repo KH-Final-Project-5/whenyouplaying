@@ -203,6 +203,8 @@
                                 </td>
                             </tr>
 							
+							
+												
 							 <!--가격 링크-->
                             <tr>
                                 <th class="deal-th">가격</th>
@@ -220,8 +222,8 @@
                                 <th class="deal-th">재능설명</th>
                                 <td><textarea cols="100" rows="25" name="prContent" class="text-area" id="prContent" style="margin-left:0px;">${dto.prContent }</textarea></td>
                             </tr>
-
-                            
+							
+						
 
                             <tr style="border: none;">
                                 <td colspan="2" align="right">
