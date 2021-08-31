@@ -2,6 +2,7 @@ package com.dao;
 
 import com.dto.AbilityDto;
 import com.commons.Criteria;
+import com.dto.ApplyDto;
 import com.dto.UserDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class AbilityDaoImpl implements AbilityDao {
         int res = 0;
 
         try {
-            res = sqlSessionTemplate.insert(NAMESPACE+ "abilityInsert", dto);
+            res = sqlSessionTemplate.insert(NAMESPACE + "abilityInsert", dto);
         } catch (Exception e) {
             System.out.println("재능기부 신청 실패");
             e.printStackTrace();
@@ -118,6 +119,66 @@ public class AbilityDaoImpl implements AbilityDao {
         }
 
         return res;
+    }
+
+    @Override
+    public int AbilityNega(ApplyDto dto) {
+
+        int res = 0;
+
+        try {
+            res = sqlSessionTemplate.insert(NAMESPACE + "abilityNega", dto);
+        } catch (Exception e) {
+            System.out.println("쪽지 보내기 실패");
+            e.printStackTrace();
+        }
+
+
+        return res;
+    }
+
+    @Override
+    public int AbilityNegaUser(AbilityDto dto) {
+
+        int res = 0;
+
+        try {
+            res = sqlSessionTemplate.update(NAMESPACE + "abilityNegaUser", dto);
+        } catch (Exception e) {
+            System.out.println("유저 실패");
+            e.printStackTrace();
+        }
+
+
+        return res;
+    }
+
+    @Override
+    public int AjaxAbilityListCount(Criteria criteria) {
+        int res = 0;
+        try {
+            res = sqlSessionTemplate.selectOne(NAMESPACE + "abilityAjaxCount", criteria);
+        } catch (Exception e) {
+            System.out.println("카운팅 실패");
+            e.printStackTrace();
+        }
+
+        return res;
+    }
+
+    @Override
+    public List<AbilityDto> AjaxAbilityListPaging(Criteria criteria) {
+
+        List<AbilityDto> list = new ArrayList<>();
+
+        try {
+            list = sqlSessionTemplate.selectList(NAMESPACE + "abilityAjaxList", criteria);
+        } catch (Exception e) {
+            System.out.println("실패");
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
 

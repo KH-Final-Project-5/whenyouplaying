@@ -6,6 +6,16 @@ public class Criteria {
     private int rowStart;
     private int rowEnd;
 
+    private String change;
+
+    public String getChange() {
+        return change;
+    }
+
+    public void setChange(String change) {
+        this.change = change;
+    }
+
     public Criteria() {
         this.page = 1;
         this.perPageNum = 10;

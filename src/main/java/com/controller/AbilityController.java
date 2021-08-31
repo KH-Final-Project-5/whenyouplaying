@@ -6,6 +6,7 @@ import com.commons.PageMaker;
 import com.commons.ScriptUtils;
 import com.dto.AbilityDto;
 import com.commons.Criteria;
+import com.dto.ApplyDto;
 import com.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -130,5 +132,41 @@ public class AbilityController {
         map.put("check", check);
 
         return map;
+    }
+
+    @RequestMapping("/abilitynega.do")
+    public void abilityNega(HttpServletResponse response, ApplyDto applyDto, AbilityDto abilityDto) throws IOException {
+
+        System.out.println(abilityDto.getUsNo());
+
+        biz.AbilityNega(applyDto, abilityDto);
+
+        ScriptUtils.alertAndMovePage(response, "승인 거부 완료", "abilitymain.do");
+
+
+    }
+
+    @RequestMapping("/ajaxabilitymain.do")
+    public String ajaxabilitymain(Criteria criteria, Model model) {
+
+        if (criteria.getChange().equals("a")) {
+            criteria.setChange("승인 완료");
+        } else if (criteria.getChange().equals("b")) {
+            criteria.setChange("승인 거절");
+        } else {
+            criteria.setChange("승인 대기");
+        }
+
+        List<AbilityDto> list = biz.AjaxAbilityListPaging(criteria);
+
+
+        PageMaker pageMaker = new PageMaker();
+        pageMaker.setCri(criteria);
+        pageMaker.setTotalCount(biz.AjaxAbilityListCount(criteria));
+
+        model.addAttribute("abList", list);
+        model.addAttribute("pageMaker", pageMaker);
+
+        return "admin/abilityMain";
     }
 }
