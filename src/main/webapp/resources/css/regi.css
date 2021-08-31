@@ -1,49 +1,65 @@
-#usID{
+#usID {
     width: 350px;
 }
-#usPW{
+
+#usPW {
     width: 350px;
 }
-#usPW2{
+
+#usPW2 {
     width: 350px;
 }
-        #usPhone{
-            width: 65px;
-        }
-        .form-control{
-            display: inline;
-        }
 
-        #praddress{
-            width: 350px;
-        }
-        #praddress2{
-            width: 350px;
-        }
-        .phone{
-            width: 65px;
-        }
+#usPhone {
+    width: 65px;
+}
 
-        #usEmail{
-            width: 350px;
-        }
-        #usName{
-            width: 150px;
-        }
+.form-control {
+    display: inline;
+}
 
-        .container{
+#praddress {
+    width: 350px;
+}
 
-            width: 1200px;
-            max-width: none !important;
-            margin-top: 60px;
-            margin-bottom: 60px;
-        }
-        #titleName{
-            border-bottom: outset 3px;
-            text-align: center;
-            position: relative;
-            top:30px;
-        }
-        body{
-            font-family: 'Noto Sans KR', sans-serif;
-        }
+#praddress2 {
+    width: 350px;
+}
+
+.phone {
+    width: 65px;
+    display: inline;
+}
+#usPhone2 {
+    width: 65px;
+}
+#usPhone3 {
+    width: 65px;
+}
+
+#usEmail {
+    width: 350px;
+}
+
+#usName {
+    width: 150px;
+}
+
+.container {
+
+    width: 1200px;
+    max-width: none !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+#titleName {
+    border-bottom: outset 3px;
+    text-align: center;
+    position: relative;
+    top: 30px;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}

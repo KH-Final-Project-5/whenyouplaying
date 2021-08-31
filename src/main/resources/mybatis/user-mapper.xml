@@ -9,35 +9,41 @@
         WHERE USID = #{usId}
           AND USPW = #{usPw}
     </select>
-    
-     <insert id="regi" parameterType="userDto">
-     
- 	INSERT INTO W_USER VALUES(USERSEQ.NEXTVAL, #{usId},
- 	#{usPw},#{usName},#{usPhone},
- 	#{usAddress1},#{usAddress2},#{usEmail},NULL,'N',SYSDATE,'Y','user','0')
-	
- 		</insert>
-    
+
+    <insert id="regi" parameterType="userDto">
+
+        INSERT INTO W_USER
+        VALUES (USERSEQ.NEXTVAL, #{usId}, #{usPw}, #{usName}, #{usPhone},
+                #{usAddress1}, #{usAddress2}, #{usEmail}, NULL, 'N', SYSDATE, 'Y', 'user', '0')
+
+    </insert>
+
     <select id="findId" parameterType="userDto" resultType="string">
-    	SELECT USID
-		FROM W_USER
-		WHERE USNAME = #{usName}
-		AND USEMAIL = #{usEmail}
+        SELECT USID
+        FROM W_USER
+        WHERE USNAME = #{usName}
+          AND USEMAIL = #{usEmail}
     </select>
-    
+
     <select id="findPw" parameterType="userDto" resultType="string">
- 		SELECT USPW
- 		FROM W_USER
- 		WHERE USNAME = #{usName}
- 		AND USID = #{usId}
- 		AND USEMAIL = #{usEmail}
- 	</select> 
- 	
- 	
- 	<update id="userEdit" parameterType="userDto">
- 		UPDATE W_USER
- 		SET USPW=#{usPw}, USNAME=#{usName}, USPHONE=#{usPhone}, USADDRESS1=#{usAddress1}, USADDRESS2=#{usAddress2}, USEMAIL=#{usEmail}, USSELFINFO=#{usSelfInfo}
- 		WHERE USNO=#{usNo}
- 	</update>
-    
+        SELECT USPW
+        FROM W_USER
+        WHERE USNAME = #{usName}
+          AND USID = #{usId}
+          AND USEMAIL = #{usEmail}
+    </select>
+
+
+    <update id="userEdit" parameterType="userDto">
+        UPDATE W_USER
+        SET USPW=#{usPw},
+            USNAME=#{usName},
+            USPHONE=#{usPhone},
+            USADDRESS1=#{usAddress1},
+            USADDRESS2=#{usAddress2},
+            USEMAIL=#{usEmail},
+            USSELFINFO=#{usSelfInfo}
+        WHERE USNO = #{usNo}
+    </update>
+
 </mapper>
