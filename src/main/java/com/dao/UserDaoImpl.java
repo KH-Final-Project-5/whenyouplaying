@@ -27,11 +27,17 @@ public class UserDaoImpl implements UserDao{
     }
 
 	@Override
-	public UserDto regi(UserDto dto) {
-		UserDto userDto = null;
+	public int regi(UserDto dto) {
+		int res = 0;
 		
+		try {
+			res = sqlSessionTemplate.insert(NAMESPACE+"regi",dto);
+		}catch(Exception e) {
+			System.out.println("회원가입 에러");
+			e.printStackTrace();
+		}
 		
-		return userDto;
+		return res;
 	}
     
     

@@ -17,7 +17,7 @@ public class UserBizImpl implements UserBiz{
     }
 
 	@Override
-	public UserDto regi(UserDto dto) {
+	public int regi(UserDto dto) {
 		return dao.regi(dto);
 	}
 	

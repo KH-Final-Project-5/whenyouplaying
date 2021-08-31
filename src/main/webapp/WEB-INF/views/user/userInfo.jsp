@@ -3,6 +3,8 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
+<%@ page import="com.dto.UserDto" %>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +77,7 @@
                 <div id="menuList">
                     <br>
                     <span class="menuText"><a class="colorA" href="#">공지사항</a></span><br><br>
-                    <span class="menuText"><a class="colorA" href="#"><b><u>회원정보</u></b></a></span><br><br>
+                    <span class="menuText"><a class="colorA" href="useredit.do"><b><u>회원정보</u></b></a></span><br><br>
                     <span class="menuText"><a class="colorA" href="#">찜 내역</a></span><br><br>
                     <span class="menuText"><a class="colorA" href="#">재능 구매내역</a></span><br><br>
                     <span class="menuText"><a class="colorA" href="#">재능 판매내역</a></span><br><br>
@@ -98,7 +100,7 @@
                     
                             <label for="usID">ID</label>
                             <br>
-                            <input type="text" class="form-control" id="usID" name="usID" required > 
+                            <input type="text" class="form-control" id="usID" name="usID" value="${user.usId }" required readonly="readonly" > 
                 
                             <div class="invalid-feedback"> 아이디를 입력해주세요. </div> 
                         </div> 
@@ -109,7 +111,7 @@
 
                             <label for="usPW">PW </label> 
                             <br>
-                            <input type="text" class="form-control" id="usPW" name="usPW" required > 
+                            <input type="text" class="form-control" id="usPW" name="usPW" value="${user.usPw }" required > 
                     
                             <div class="invalid-feedback"> 비밀번호를 입력해주세요. </div> 
                     
@@ -119,30 +121,40 @@
                         
                             <label for="usPW2">PW 확인</label> 
                             <br>
-                            <input type="text" class="form-control" id="usPW2" name="usPW2" required> 
+                            <input type="text" class="form-control" id="usPW2" name="usPW2" value="${user.usPw }" required> 
                         
                             <div class="invalid-feedback"> 비밀번호를 입력해주세요. </div> 
                     
                         </div> 
                 
+                
                         <div class="col-md-6 mb-3">
 
                             <label for="usName">이름</label>
                             <br>
-                            <input type="text" class="form-control" id="usName" name="usName" required>
+                            <input type="text" class="form-control" id="usName" name="usName" value="${user.usName }" required>
 
                         </div>
                     </div>
 
                     <label for="usEmail">이메일</label>
                     <br>
-                    <input type="usEmail" class="form-control" id="usEmail" placeholder="you@example.com" name="usEmail" required>
+                    <input type="usEmail" class="form-control" id="usEmail" placeholder="you@example.com" name="usEmail" value="${user.usEmail }" required>
                 
                     <div class="invalid-feedback"> 이메일을 입력해주세요. </div> 
                 
                     <br>
                     <br>
-                
+
+<%
+					UserDto userDto = (UserDto)session.getAttribute("user");
+					String usPhone = userDto.getUsPhone();
+					
+					String usPhone1 = usPhone.substring(0, 3);
+					String usPhone2 = usPhone.substring(3, 7);
+					String usPhone3	= usPhone.substring(7);
+
+%>
                     <div class="mb-3">
                             
                         <label for="usPhone">휴대전화</label>
@@ -150,19 +162,19 @@
                         <table>
                         	<tr>
                             	<td>
-                                <input type="usPhone" style="width: 65px" class="form-control" required name="usPhone">
+                                <input type="usPhone" style="width: 65px" class="form-control" required name="usPhone" value="<%=usPhone1 %>">
                             	</td>
                             	<td>
                             	-
                             	</td>
                             	<td>
-                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone2"> 
+                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone2" value="<%=usPhone2 %>"> 
                                 </td>
                                	<td>
                             	-
                             	</td>
                                 <td>
-                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone3">
+                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone3" value="<%=usPhone3 %>">
 								</td>
 							</tr>                          
                         </table>
@@ -175,7 +187,7 @@
                                 
                             <label for="prAddress">주소</label>
                                 <br>
-                                <input type="text" style="display: inline;" class="form-control" id="praddress" required name="prAddress"> 
+                                <input type="text" style="display: inline;" class="form-control" id="praddress" required name="prAddress" value="${user.usAddress }"> 
                                 <button type="button" class="btn btn-outline-primary btn-sm">주소찾기</button>
                                 
                                 <div class="invalid-feedback"> 주소를 입력해주세요.</div>
