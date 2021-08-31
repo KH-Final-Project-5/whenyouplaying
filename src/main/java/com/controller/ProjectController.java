@@ -121,8 +121,43 @@ public class ProjectController {
 	}
 
 	@RequestMapping("ProjectUpdateRes.do")
-	public void ProjectUpdateRes(HttpServletResponse response,ProjectDto dto) throws IOException {
+	public void ProjectUpdateRes(HttpServletResponse response,ProjectDto dto) throws Exception {
 		logger.info("Update Res");
+		
+		FtpClient ftpClient =
+                new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
+		
+		String filename = null;
+		
+		//dto안에 들어있는 file을 가져오고
+		MultipartFile multiFile = dto.getPrImage2();
+		
+		//파일 real이름을 filename 변수에 저장
+		filename = multiFile.getOriginalFilename();
+		
+		//id : id값 을 id만 나올 수 있게 만든다
+		
+		
+		
+		String filename2 = ftpClient.fileName(filename, dto.getUsId());
+		
+		//경로/id/filename
+		dto.setPrImage("wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
+		
+		//multiPartFile을 File로 변환하는 작업
+		File file = ftpClient.convert(multiFile);
+		
+		ftpClient.upload(file, filename, dto.getUsId());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		int res = biz.updateProject(dto);
 		 if (res > 0) {

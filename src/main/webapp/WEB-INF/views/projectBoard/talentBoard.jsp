@@ -271,7 +271,7 @@
 
                                     <div class="col-4">
 
-                                        <img src="<c:url value="/resources/ProjectImg/ImgBox.PNG"/>">
+                                        <img id="ai-img" src="${pr_dto.prImage }" alt="사진">
                                     </div>
 
                                     <div class="col-5">
