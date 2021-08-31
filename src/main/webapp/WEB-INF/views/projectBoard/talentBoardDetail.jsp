@@ -258,7 +258,7 @@
                     <div class="col-12">
                         <button onclick="location.href='ProjectUpdate.do?prNo=${detail_dto.prNo}'" class="detail-button2 btn btn-outline-primary btn-sm detail-button4" id="updateBtn">글 수정
                         </button>
-                        <button onclick="location.href='ProjectDelete.do?prNo=${pr_dto.prNo}'" class="detail-button2 btn btn-outline-primary btn-sm detail-button4" id="deleteBtn">글 삭제
+                        <button onclick="location.href='ProjectDelete.do?prNo=${detail_dto.prNo}'" class="detail-button2 btn btn-outline-primary btn-sm detail-button4" id="deleteBtn">글 삭제
                         </button>
                     </div>
                 </div>
