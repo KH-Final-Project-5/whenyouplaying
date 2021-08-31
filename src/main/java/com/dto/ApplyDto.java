@@ -1,21 +1,17 @@
 package com.dto;
 
-import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import lombok.Setter;
-
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChargeHistoryDto extends UserDto {
-	private int chNo;
-	private int chCash;
-	private Date chDate;
-	private String chBank;
+public class ApplyDto extends UserDto{
+    private int apNo;
+    private String apSender;
+    private String apContent;
 }

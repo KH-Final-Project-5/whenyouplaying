@@ -36,6 +36,14 @@
 
     <script>
         $(function () {
+            var abstatus = '${dto.abStatus}';
+            if (abstatus == "승인 대기") {
+                $('.btna').show();
+            } else {
+                $('.btna').hide();
+            }
+
+
             $('#appBtn').click(function () {
                 var usNo = {
                     "usNo": '${dto.usNo}',
@@ -64,7 +72,7 @@
                         }
                     })
                 }
-            })
+            });
 
 
             var cate = '${dto.abCate}';
@@ -82,6 +90,8 @@
             } else if (cate == "life") {
                 $('#abCate').text("생활서비스");
             }
+
+
         });
 
 
@@ -162,7 +172,7 @@
 
                     <input type="button" value="거절" onclick="refuseForm();" class="btn btn-outline-primary btna">
                     <input type="button" value="승인" id="appBtn" class="btn btn-outline-primary btna">
-                    <input type="button" value="보류" class="btn btn-outline-primary btna">
+                    <input type="button" value="보류" onclick="history.back();" class="btn btn-outline-primary btna">
 
                 </div>
                 <input type="text" value="첨부서류1" id="fileName1">
@@ -181,10 +191,12 @@
     <br><br><br>
     <!--거절사유-->
     <div id="refuse">
-        <form>
+        <form action="abilitynega.do" method="post">
             <h2>거절사유</h2><br>
 
-            <textarea rows="10" name="reason" id="refuseContent"></textarea><br>
+            <textarea rows="10" name="apContent" id="refuseContent"></textarea><br>
+            <input type="hidden" value="${dto.usNo}" name="usNo">
+            <input type="hidden" value="${dto.abNo}" name="abNo">
 
 
             <input type="button" value="취소" onclick="closeWin();" id="cancelBtn" class="btn btn-outline-primary">

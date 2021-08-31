@@ -3,6 +3,7 @@ package com.biz;
 import com.dao.AbilityDao;
 import com.dto.AbilityDto;
 import com.commons.Criteria;
+import com.dto.ApplyDto;
 import com.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,10 +53,37 @@ public class AbilityBizImpl implements AbilityBiz {
 
         int res = 0;
 
-        dao.AbilityApprove(dto);
+        res = dao.AbilityApprove(dto);
+
         res = dao.AbilityApproveUser(dto);
 
 
         return res;
     }
+
+    @Transactional
+    @Override
+    public void AbilityNega(ApplyDto applyDto, AbilityDto abilityDto) {
+
+        int res = 0;
+
+        dao.AbilityNega(applyDto);
+
+        dao.AbilityNegaUser(abilityDto);
+
+
+
+    }
+
+    @Override
+    public int AjaxAbilityListCount(Criteria criteria) {
+        return dao.AjaxAbilityListCount(criteria);
+    }
+
+    @Override
+    public List<AbilityDto> AjaxAbilityListPaging(Criteria criteria) {
+        return dao.AjaxAbilityListPaging(criteria);
+    }
+
+
 }

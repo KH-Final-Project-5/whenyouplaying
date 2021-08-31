@@ -50,7 +50,7 @@ public class PageMaker {
         return cri;
     }
 
-    private void calcData() {
+	private void calcData() {
         endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
         startPage = (endPage - displayPageNum) + 1;
 
@@ -71,4 +71,18 @@ public class PageMaker {
 
         return uriComponents.toUriString();
     }
+    
+    public String makeQuery2(int page) {
+        UriComponents uriComponents =
+                UriComponentsBuilder.newInstance()
+                        .queryParam("page", page)
+                        .queryParam("perPageNum", cri.getPerPageNum())
+                        .queryParam("usNo", cri.getUsNo())
+                        .build();
+
+        return uriComponents.toUriString();
+    }
+    
+
+    
 }

@@ -71,7 +71,6 @@
     position: relative;
     top: 20px;
     width: 866px;
-    height: 800px;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 10px;
@@ -142,8 +141,8 @@ body{
 #pagingArea{
 
     position: relative;
-    top: 20px;
-    left: 330px;
+    top: 10px;
+    left: 370px;
     
 }
 
@@ -157,3 +156,16 @@ a:hover {
 a:active {
     color: black;
 }
+
+
+.menuA{
+	
+	color: black;
+}
+
+.menuA:hover{
+	color: black;
+	text-decoration: none;
+}
+
+

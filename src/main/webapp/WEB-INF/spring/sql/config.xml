@@ -7,6 +7,8 @@
     	<typeAlias type="com.dto.ProjectDto" alias="projectDto"/>
     	<typeAlias type="com.dto.UserDto" alias="userDto"/>
         <typeAlias type="com.dto.AbilityDto" alias="abilityDto"/>
+        <typeAlias type="com.dto.ApplyDto" alias="applyDto"/>
+        <typeAlias type="com.dto.ChargeHistoryDto" alias="chargeHistoryDto"/>
     </typeAliases>
 
     <mappers>

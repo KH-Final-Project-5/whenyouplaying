@@ -41,7 +41,7 @@
 
     <update id="abilityApprove" parameterType="abilityDto">
         UPDATE W_ABILITY
-        SET ABSTATUS = '승인완료'
+        SET ABSTATUS = '승인 완료'
         WHERE ABNO = #{abNo}
     </update>
 
@@ -50,6 +50,35 @@
         SET USTALENT = #{usTalent}
         WHERE USNO = #{usNo}
     </update>
+
+    <insert id="abilityNega" parameterType="applyDto">
+        INSERT INTO W_APPLY
+        VALUES (APPLYSEQ.NEXTVAL, #{usNo}, '관리자', #{apContent})
+    </insert>
+
+    <update id="abilityNegaUser" parameterType="abilityDto">
+        UPDATE W_ABILITY
+        SET ABSTATUS = '승인 거절'
+        WHERE ABNO = #{abNo}
+    </update>
+
+    <select id="abilityAjaxCount" parameterType="com.commons.Criteria" resultType="int">
+        SELECT COUNT(ABNO)
+        FROM W_ABILITY
+        WHERE ABSTATUS = #{change}
+    </select>
+
+    <select id="abilityAjaxList" resultType="abilityDto" parameterType="com.commons.Criteria">
+        SELECT *
+        FROM (SELECT b.*, row_number() over (order by ABNO DESC) as rnum
+              FROM W_ABILITY b
+              WHERE  ABSTATUS = #{change}
+             ) a
+                 JOIN W_USER ON W_USER.USNO = a.USNO
+        WHERE a.rnum between #{rowStart} and #{rowEnd}
+        order by ABNO desc
+    </select>
+
 
 
 </mapper>
