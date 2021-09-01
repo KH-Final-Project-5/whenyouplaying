@@ -115,6 +115,10 @@ h3>input{
     pointer-events: none;
 }
 
+#textarea * {
+    word-wrap: break-word;
+}
+
 .btna{
     position: relative;
     top: -80px;
