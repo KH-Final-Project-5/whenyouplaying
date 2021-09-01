@@ -33,7 +33,57 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
           rel="stylesheet">
+          
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          
+    <script type="text/javascript">
+		function fn_idChk(){
+			$.ajax({
+				url : "/idChk.do",
+				type : "post",
+				dataType : "json",
+				data : {"usId" : $("#usId").val()},
+				success : function(data){
+					if(data == 1){
+						alert("중복된 아이디입니다.");
+						$("#usId").val("");
+					}else if(data == 0){
+						$("#idChk").attr("value", "Y");
+						alert("사용가능한 아이디입니다.");
+					}
+				}
+			})
+		}
+		$(function(){
+			$("#alert-success").hide(); 
+			$("#alert-danger").hide(); 
+			$("input").keyup(function(){ var usPW=$("#usPW").val(); 
+			var usPW2=$("#usPW2").val();
+			if(usPW != "" || usPW2 != "")
+			{ if(usPW == usPW2){ $("#alert-success").show(); 
+			
+			$("#alert-danger").hide(); 
+			
+			$("#submit").removeAttr("disabled"); 
+			}else{ 
+				$("#alert-success").hide(); 
+				$("#alert-danger").show(); 
+				$("#submit").attr("disabled", "disabled"); 
+				
+			} 
+			}
+			});
+			});
 
+
+		//비밀번호 검사
+
+		 
+
+	</script>      
+          
+          
 </head>
 <body>
 
@@ -69,10 +119,8 @@
                             <br>
                             <input type="text" class="form-control" id="usId" placeholder="" value="" required
                                    name="usId">
-
-                            <div class="invalid-feedback"> 아이디를 입력해주세요.
-
-                            </div>
+							<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+                            <div class="invalid-feedback"> 아이디를 입력해주세요.</div>
                         </div>
 
 
@@ -82,9 +130,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="usPW">PW</label>
                             <br>
-                            <input type="text" class="form-control" id="usPW" placeholder="" value="" required
-                                   name="usPw">
-                            <div class="invalid-feedback"> 비밀번호를 입력해주세요.</div>
+                            <input type="text" class="form-control" id="usPW" placeholder="" value="" required name="usPw">
                         </div>
 
 
@@ -94,7 +140,8 @@
                             <br>
                             <input type="text" class="form-control" id="usPW2" placeholder="" value="" required>
 
-                            <div class="invalid-feedback"> 비밀번호를 입력해주세요.</div>
+                         <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
+                         <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 
                         </div>
 
@@ -189,21 +236,8 @@
     </footer>
 </div>
 
-<script>
-    window.addEventListener('load', () => {
-        const forms = document.getElementsByClassName('validation-form');
 
-        Array.prototype.filter.call(forms, (form) => {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-</script>
+
 
 
 </body>

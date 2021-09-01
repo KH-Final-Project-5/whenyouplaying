@@ -453,3 +453,13 @@ a:visited {
 .trade-th {
     background-color: #d6d8db;
 }
+
+.myA{
+	color: black;
+}
+
+.myA:hover {
+	color: black;
+	text-decoration: none;
+}
+

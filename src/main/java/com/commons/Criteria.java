@@ -6,18 +6,10 @@ public class Criteria {
     private int rowStart;
     private int rowEnd;
     private int usNo;
-    
-    
-
+    private String startDate;
+    private String endDate;
+	private String change;
 	private String prTalent;
-    
-    private String change;
-
-    
-
-    
-    
-    
     
     public String getPrTalent() {
 		return prTalent;
@@ -82,8 +74,25 @@ public class Criteria {
 		return usNo;
 	}
 
+	//유저
 	public void setUsNo(int usNo) {
 		this.usNo = usNo;
+	}
+	//달력
+    public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
     
     

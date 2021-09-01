@@ -5,13 +5,56 @@
 <mapper namespace="message">
     <insert id="sendmessage" parameterType="messageDto">
         INSERT INTO W_MESSAGE
-        VALUES (MESSAGESEQ.NEXTVAL, #{usSendNo}, #{prNo}, #{usNo}, #{mesContents}, 'N')
+        VALUES (MESSAGESEQ.NEXTVAL, #{usNo}, #{usSendId}, #{mesContents}, 'N', SYSDATE)
     </insert>
 
-    <select id="mesNoReadCount">
+    <select id="mesNoReadCount" resultType="int">
         SELECT COUNT(MESNO)
         FROM W_MESSAGE
         WHERE USNO = ${usNo}
           AND MESSTATUS = 'N'
     </select>
+
+    <select id="mesPagingList" parameterType="com.commons.Criteria" resultType="messageDto">
+        SELECT *
+        FROM (SELECT b.*, row_number() over (order by MESNO DESC) as rnum
+              FROM W_MESSAGE b
+              WHERE USNO = #{usNo}
+             ) a
+                 JOIN W_USER ON W_USER.USNO = a.USNO
+        WHERE a.rnum between #{rowStart} and #{rowEnd}
+        order by MESNO desc
+    </select>
+
+    <select id="mesPagingCount" parameterType="com.commons.Criteria" resultType="int">
+        SELECT COUNT(MESNO)
+        FROM W_MESSAGE
+        WHERE MESNO > 0
+          AND USNO = #{usNo}
+    </select>
+
+    <select id="ResendMessage" parameterType="int" resultType="messageDto">
+        SELECT *
+        FROM W_MESSAGE
+                 JOIN W_USER WU on W_MESSAGE.USNO = WU.USNO
+        WHERE MESNO = #{mesNo}
+    </select>
+
+    <insert id="ResendMessageOut" parameterType="messageDto">
+        INSERT INTO W_MESSAGE
+        VALUES (MESSAGESEQ.nextval, (SELECT USNO FROM W_USER WHERE USID = #{usSendId}), #{usId}, #{mesContents}, 'N',
+                SYSDATE)
+    </insert>
+
+    <delete id="DeleteMessage" parameterType="int">
+        DELETE
+        FROM W_MESSAGE
+        WHERE MESNO = #{mesNo}
+    </delete>
+
+    <update id="StatusUpdate" parameterType="int">
+        UPDATE W_MESSAGE
+        SET MESSTATUS='Y'
+        WHERE MESNO = #{mesNo}
+    </update>
 </mapper>

@@ -51,9 +51,9 @@
         WHERE USNO = #{usNo}
     </update>
 
-    <insert id="abilityNega" parameterType="applyDto">
-        INSERT INTO W_APPLY
-        VALUES (APPLYSEQ.NEXTVAL, #{usNo}, '관리자', #{apContent})
+    <insert id="abilityNega" parameterType="messageDto">
+        INSERT INTO W_MESSAGE
+        VALUES (MESSAGESEQ.NEXTVAL, #{usNo}, #{usSendId}, #{mesContents}, 'N', SYSDATE)
     </insert>
 
     <update id="abilityNegaUser" parameterType="abilityDto">

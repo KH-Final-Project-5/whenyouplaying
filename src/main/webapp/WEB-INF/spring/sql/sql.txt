@@ -42,14 +42,14 @@ CREATE TABLE W_PROJECT
     USNO        NUMBER         NOT NULL,
     PRTITLE     VARCHAR2(300)  NULL,
     PRCONTENT   VARCHAR2(2000) NULL,
-    PRPRICE     NUMBER  	   NULL,
+    PRPRICE     NUMBER         NULL,
     PRWRITEDATE DATE           NULL,
     PRTALENT    VARCHAR2(100)  NULL,
     PRDEAL      VARCHAR2(50)   NULL,
     PRYOUTUBE   VARCHAR2(100)  NULL,
     PRIMAGE     VARCHAR2(2000) NULL,
     PRDATE      DATE           NULL,
-    PRSTATUS    VARCHAR2(2)    NULL,
+    PRSTATUS    VARCHAR2(100)  NULL,
     PRLATITUDE  VARCHAR2(2000) NULL,
     PRLONGITUDE VARCHAR2(2000) NULL,
     PRADDRESS   VARCHAR2(1000) NULL
@@ -57,11 +57,11 @@ CREATE TABLE W_PROJECT
 
 CREATE TABLE W_CHARGEHISTORY
 (
-    CHNO     NUMBER        NOT NULL,
-    USNO     Number        NOT NULL,
-    CHCASH   NUMBER        NULL,
-    CHDATE   DATE          NULL,
-    CHBANK VARCHAR2(200)   NULL
+    CHNO   NUMBER        NOT NULL,
+    USNO   Number        NOT NULL,
+    CHCASH NUMBER        NULL,
+    CHDATE DATE          NULL,
+    CHBANK VARCHAR2(200) NULL
 );
 
 CREATE TABLE W_USER
@@ -96,10 +96,11 @@ CREATE TABLE W_REPORT
 CREATE TABLE W_MESSAGE
 (
     MESNO       NUMBER        NOT NULL,
-    USSENDNO    NUMBER        NOT NULL,
-    PRNO        NUMBER        NOT NULL,
     USNO        NUMBER        NOT NULL,
-    MESCONTENTS VARCHAR2(500) NULL
+    USSENDID    VARCHAR2(100) NOT NULL,
+    MESCONTENTS VARCHAR2(500) NULL,
+    MESSTATUS   VARCHAR2(10),
+    MESDATE     DATE
 );
 
 CREATE TABLE W_WITHDRAW
@@ -243,8 +244,6 @@ ALTER TABLE W_REPORT
 ALTER TABLE W_MESSAGE
     ADD CONSTRAINT PK_W_MESSAGE PRIMARY KEY (
                                              MESNO,
-                                             USSENDNO,
-                                             PRNO,
                                              USNO
         );
 
@@ -387,20 +386,10 @@ ALTER TABLE W_REPORT
 
 ALTER TABLE W_MESSAGE
     ADD CONSTRAINT FK_W_USER_TO_W_MESSAGE_1 FOREIGN KEY (
-                                                         USSENDNO
+                                                         USNO
         )
         REFERENCES W_USER (
                            USNO
-            );
-
-ALTER TABLE W_MESSAGE
-    ADD CONSTRAINT FK_W_PROJECT_TO_W_MESSAGE_1 FOREIGN KEY (
-                                                            PRNO,
-                                                            USNO
-        )
-        REFERENCES W_PROJECT (
-                              PRNO,
-                              USNO
             );
 
 
@@ -542,16 +531,16 @@ order by ABNO desc;
 
 
 INSERT INTO W_USER
-VALUES (UserSEQ.nextval, 'user01', 'user01', '유저01', '01012345678', '서울시 강남구', '어쩌구 저쩌구' , 'abcd@gmail.com', '', 'N',
+VALUES (UserSEQ.nextval, 'user01', 'user01', '유저01', '01012345678', '서울시 강남구', '어쩌구 저쩌구', 'abcd@gmail.com', '', 'N',
         SYSDATE, 'Y', 'user', '100000');
 INSERT INTO W_USER
-VALUES (UserSEQ.nextval, 'user03', 'user03', '유저03', '01012345678', '서울시 강남구', '어쩌구 저쩌구' , 'abcd@gmail.com','' , 'N',
+VALUES (UserSEQ.nextval, 'user03', 'user03', '유저03', '01012345678', '서울시 강남구', '어쩌구 저쩌구', 'abcd@gmail.com', '', 'N',
         SYSDATE, 'Y', 'user', '100000');
 INSERT INTO W_USER
-VALUES (UserSEQ.nextval, 'user02', 'user02', '유저02', '01012345678', '서울시 강남구', '어쩌구 저쩌구' , 'abcd@gmail.com','', 'Y',
+VALUES (UserSEQ.nextval, 'user02', 'user02', '유저02', '01012345678', '서울시 강남구', '어쩌구 저쩌구', 'abcd@gmail.com', '', 'Y',
         SYSDATE, 'Y', 'user', '100000');
 INSERT INTO W_USER
-VALUES (UserSEQ.nextval, 'admin', 'admin', '유저02', '01012345678', '서울시 강남구',  '어쩌구 저쩌구' , 'abcd@gmail.com','', 'Y',
+VALUES (UserSEQ.nextval, 'admin', 'admin', '유저02', '01012345678', '서울시 강남구', '어쩌구 저쩌구', 'abcd@gmail.com', '', 'Y',
         SYSDATE, 'Y', 'admin', '100000');
 
 INSERT INTO W_ABILITY

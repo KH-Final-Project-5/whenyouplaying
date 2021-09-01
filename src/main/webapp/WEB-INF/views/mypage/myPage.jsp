@@ -9,16 +9,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
- <!-- bootstrap css -->
+ 	<!-- bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- bootstrap js -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
     
 	<link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
+
+
+
 </head>
 <body>
 
@@ -28,7 +30,7 @@
     </header>
 
     <!-- grid영역, 컬럼은 12줄로 이루어져 있고 갯수 비율로 틀을 잡는다. -->
-    <div class="container" style="height: 30px">
+    <div class="container" style="margin-top:60px; height: 30px; padding-bottom: 100px;">
         <div class="row">
             <div class="col-12 userNav">
             <h2><img src="../image/UserImg.PNG">${userDto.usName }님의 mypage</h2> <hr>
@@ -37,17 +39,17 @@
     </div>
 
 
-    <div class="container">
+    <div class="container" style="padding-bottom: 300px;">
         
         <!--첫번째 줄-->
         <div class="row">
             
             <div class="col-4">
                  <div class="col-8">
-                    <a href="#"><img src="../image/ImgBox.PNG"></a>
+                    <a href="useredit.do"><img src="<c:url value="/resources/img_mypage/accountManage.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>회원 정보 수정</b></a>
+                    <a class="myA"  href="useredit.do"><b>회원 정보 수정</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -57,29 +59,32 @@
 
                  
             </div>
-            <div class="col-4">
+ 			
+ 			<div class="col-4">
                 <div class="col-8">
-                    <a href="cashrecord.do?usNo=${userDto.usNo }"><img src="../image/ImgBox.PNG"></a>
+                    <a href="#"><img src="<c:url value="/resources/img_mypage/favoriteList.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="cashrecord.do?usNo=${userDto.usNo }"><b>충전 내역확인</b></a>
+                    <a class="myA" href="#"><b>찜 내역 확인</b></a>
                  </div>
                 
                  <div class="col-8">
-                <p>회원님의 충전 내역을<br>확인 할 수 있습니다.<br> 
+                <p>찜한 내역을 확인 할 수 있습니다.</p>
                     
                 </div>
             </div>
+            
+            
             <div class="col-4">
                 <div class="col-8">
-                    <a href="useredit.do?usNo=${userDto.usNo }"><img src="../image/ImgBox.PNG"></a>
+                    <a href="#"><img src="<c:url value="/resources/img_mypage/bank.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="useredit.do"><b>회원 정보 수정</b></a>
+                    <a class="myA" href="#"><b>계좌 관리</b></a>
                  </div>
                 
                  <div class="col-8">
-                <p>[사이트명]에서 가입한 <br>회원정보를 수정<br>할 수 있습니다.<br> 
+                <p>입/출금을 위한 계좌를 관리할 수 있습니다.<br> 
                     
                 </div>
             </div>
@@ -90,10 +95,10 @@
             
             <div class="col-4">
                  <div class="col-8">
-                    <a href="#"><img src="../image/ImgBox.PNG"></a>
+                    <a href="#"><img src="<c:url value="/resources/img_mypage/buy.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>재능 구매 내역</b></a>
+                    <a class="myA" href="#"><b>재능 구매 내역</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -105,10 +110,10 @@
             </div>
             <div class="col-4">
                 <div class="col-8">
-                    <a href="#"><img src="../image/ImgBox.PNG"></a>
+                    <a href="#"><img src="<c:url value="/resources/img_mypage/sell.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>재능 판매 내역</b></a>
+                    <a class="myA" href="#"><b>재능 판매 내역</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -116,35 +121,67 @@
                     
                 </div>
             </div>
+            
             <div class="col-4">
                 <div class="col-8">
-                    <a href="#"><img src="../image/ImgBox.PNG"></a>
+                    <a href="cashrecord.do?usNo=${userDto.usNo }"><img src="<c:url value="/resources/img_mypage/chargehistory.png"/>"></a>
                  </div>
-                 <div class="col-8">
-                    <a href="#"><b>회원 탈퇴</b></a>
+                 <div  class="col-8">
+                    <a class="myA" href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01"><b>충전 내역확인</b></a>
                  </div>
                 
                  <div class="col-8">
-                <p>회원 탈퇴시 내역은 모두 사라집니다.</p>
+                <p>회원님의 충전 내역을<br>확인 할 수 있습니다.<br> 
                     
                 </div>
             </div>
+            
         </div>
 
-
+		<!-- 세번째 줄 -->
         <div class="row">
+            
             <div class="col-4">
                  <div class="col-8">
-                    <a href="#"><img src="../image/ImgBox.PNG"></a>
+                    <a href="#"><img src="<c:url value="/resources/img_mypage/point.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>찜 내역 확인</b></a>
+                    <a class="myA" href="#"><b>포인트 출금</b></a>
                  </div>
                 
                  <div class="col-8">
-                <p>찜한 내역을 확인<br>할 수 있습니다.<br> 
+                <p>포인트를 유저의 계좌로 출금할 수 있습니다.<br> 
                 </div>
             </div>
+            
+            
+            <div class="col-4">
+                 <div class="col-8">
+                    <a href="#"><img src="<c:url value="/resources/img_mypage/pointhistory.png"/>"></a>
+                 </div>
+                 <div class="col-8">
+                    <a class="myA" href="#"><b>포인트 출금 내역</b></a>
+                 </div>
+                
+                 <div class="col-8">
+                <p>포인트 출금 내역을 확인 할 수 있습니다.<br> 
+                </div>
+            </div>
+            
+            
+            <div class="col-4">
+                 <div class="col-8">
+                    <a href="#"><img src="<c:url value="/resources/img_mypage/closeAccount.png"/>"></a>
+                 </div>
+                 <div  class="col-8">
+                    <a class="myA" href="#"><b>회원 탈퇴</b></a>
+                 </div>
+                
+                 <div class="col-8">
+                <p>회원 탈퇴시 내역은 모두 사라집니다.<br> 
+                </div>
+            </div>
+            
         </div>
         
     </div>

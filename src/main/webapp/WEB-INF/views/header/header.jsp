@@ -43,42 +43,52 @@
 </head>
 <script>
     $(function () {
-        var user = "<%=session.getAttribute("user")%>";
-        if (user) {
-            var usertalnet = "${user.usTalent}";
-            var userrole = "${user.usRole}";
-            console.log(userrole);
-            if (userrole === "user") {
-                $('#defaultHeader').hide();
-                $("#loginHeader").show();
-                $("#userWelcome").text("${user.usName}님 환영합니다!");
-                $("#userPoint").text("포인트 : ${user.usCash}Point");
-                if (usertalnet === "Y") {
-                    $('.enroll').hide();
+        <c:choose>
+        <c:when test="${empty user.usNo}">
+
+        </c:when>
+        <c:otherwise>
+
+
+        $.ajax({
+            type: "post",
+            url: "mesCountChk.do?usNo=${user.usNo}",
+            dataType: 'json',
+            success: function (data) {
+                if (data.check == true) {
+                    $('.badgeSize').show();
+                } else {
+                    $('.badgeSize').hide();
                 }
+            },
+            error: function (request, status, error) {
 
-
-                $.ajax({
-                    type:"post",
-                    url:"mesCountChk.do?usNo=${user.usNo}",
-                    dataType: 'json',
-                    success: function (data) {
-                        alert("성공");
-                    },
-                    error: function (request, status, error) {
-
-                        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-                    }
-
-                })
-
-
-
-            } else if (userrole === "admin") {
-                $('#defaultHeader').hide();
-                $("#adminHeader").show();
+                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
             }
+
+        });
+        var usertalnet = "${user.usTalent}";
+        var userrole = "${user.usRole}";
+        console.log(userrole);
+        if (userrole === "user") {
+            $('#defaultHeader').hide();
+            $("#loginHeader").show();
+            $("#userWelcome").text("${user.usName}님 환영합니다!");
+            $("#userPoint").text("포인트 : ${user.usCash}Point");
+            if (usertalnet === "N") {
+                $('.enroll').show();
+            } else {
+                $('.enroll2').html("전문가 변경");
+            }
+
+
+        } else if (userrole === "admin") {
+            $('#defaultHeader').hide();
+            $("#adminHeader").show();
         }
+
+        </c:otherwise>
+        </c:choose>
 
 
     });
@@ -129,7 +139,7 @@
                         </div>
 
                         <div class="enroll">
-                            <button class="btn btn-primary"
+                            <button class="btn btn-primary enroll2"
                                     onclick="location.href='talentform.do'">전문가 등록
                             </button>
                         </div>
@@ -173,8 +183,8 @@
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                         <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30"
-                             class="d-inline-block">
-                        <b class="logoText">놀면 뭐하니?</b>
+                             class="d-inline-block" onclick="location.href='main.do'">
+                        <b class="logoText" onclick="location.href='main.do'">놀면 뭐하니?</b>
                     </a>
 
 
@@ -224,7 +234,7 @@
                         </div>
 
                         <div class="enroll">
-                            <button class="btn btn-primary"
+                            <button class="btn btn-primary enroll2"
                                     onclick="location.href='talentform.do'">전문가 등록
                             </button>
 
@@ -268,8 +278,8 @@
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                         <img src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="60" height="30"
-                             class="d-inline-block">
-                        <b class="logoText">놀면 뭐하니?</b>
+                             class="d-inline-block" onclick="location.href='main.do'">
+                        <b class="logoText" onclick="location.href='main.do'">놀면 뭐하니?</b>
                     </a>
 
 
@@ -283,7 +293,7 @@
                         |
                         <a href="" class="navA">공지사항</a>
                         |
-                        <a href="" class="chatA">
+                        <a href="messagechk.do?usNo=${user.usNo}" class="chatA">
                             <span class="material-icons md-36 chaticon">
                                 wechat
                                 <span class="rounded-pill badgeSize">1</span>

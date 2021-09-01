@@ -39,6 +39,19 @@ public class UserDaoImpl implements UserDao{
 		
 		return res;
 	}
+	
+	public int idChk(UserDto dto) throws Exception{
+		
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.selectOne(NAMESPACE+"idChk",dto);
+		} catch (Exception e) {
+		System.out.println("id중복확인 에러");
+		e.printStackTrace();
+		}
+		return res;
+	}
     
     
 	public String findId(UserDto dto) {

@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ page import="com.commons.Criteria" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +26,11 @@
      <!-- css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/rechargeHistory.css"/>">
+    
+    <!-- js -->
     <script src="<c:url value="/resources/js/rechargeHistory.js"/>"></script>
+    
+    
 </head>
 <body>
 
@@ -64,10 +71,24 @@
                 </div>
             </div>
 
+<%
+			Criteria cri = (Criteria)request.getAttribute("criDate");
+			
+			String start = cri.getStartDate();
+			String start1 = start.substring(0, 4);
+			String start2 = start.substring(4, 6);
+			String start3 = start.substring(6);
+			
+			String startDate = start1+"-"+start2+"-"+start3;
+			
+			String end = cri.getEndDate();
+			String end1 = end.substring(0,4);
+			String end2 = end.substring(4,6);
+			String end3 = end.substring(6);
+			
+			String endDate = end1+"-"+end2+"-"+end3;
 
-
-            
-
+%>
 
             <div class="col-9">
                 <div id="titleName"><h1>캐시 충전 내역 조회</h1></div><br><br>
@@ -75,22 +96,13 @@
                 <div id="divBox">
 
                 <h2 id="h2">충전내역 확인</h2><br>
-                <form>
+                <form action="cashrecord.do" method="get">
+                	<input type="hidden" name="usNo" value="${user.usNo }">
                     <span id="fromDateSpan">조회 시작일</span>
-                    <input type="date" max="9999-12-31" id = "fromDate"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="date" max="9999-12-31" id ="fromDate" name="startDate" value="<%=startDate%>"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            
                     <span id="toDateSpan">~ 조회 종료일</span>
-                    <input type="date" max="9999-12-31" id = "toDate">
-
-                    <!-- 날짜 스크립트 해당form태그를 벗어나 js나 haed영역에 작성시 안먹혀서 이곳에 작성-->
-                    <script>
-                        var today = new Date();
-                        yyyy = today.getFullYear();
-                        mm = today.getMonth() + 1; mm = (mm < 10) ? '0' + mm : mm;
-                        dd = today.getDate(); dd = (dd < 10) ? '0' + dd : dd;
-                        fromDate.value = yyyy + "-" + mm + "-01";
-                        toDate.value   = yyyy + "-" + mm + "-" + dd;
-                    </script>
+                    <input type="date" max="9999-12-31" id ="toDate" name="endDate" value="<%=endDate%>">
 
                     <input type="submit" value="조회" id="btn" class="btn btn-secondary btn-sm">
                     
@@ -132,26 +144,7 @@
                         			</tr>
                         		</c:forEach>
                         	</c:otherwise>
-                        </c:choose>
-<!-- 
-						<c:forEach items="${chargeList}" var="dto">
-							<tr>
-								<td>${dto.chDate }</td>
-								<td>${dto.chNo }</td>
-								<td>${dto.chBank }</td>
-								<td>${dto.chCash }</td>
-							</tr>
-						</c:forEach>
- -->                        
-<!--  
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
--->   
-                        
+                        </c:choose>        
 
                     </table>
                     <div id="pagingArea" class="pagingDiv">
@@ -186,9 +179,6 @@
                     
                 </div>
             </div>
-
-            
-
 
 
             </div>

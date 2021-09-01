@@ -34,6 +34,11 @@ public class UserBizImpl implements UserBiz{
 	public int userEdit(UserDto dto) {
 		return dao.userEdit(dto);
 	}
+	
+	@Override
+	public int idChk(UserDto dto) throws Exception {
+		return dao.idChk(dto);
+	}
 
 
 }
