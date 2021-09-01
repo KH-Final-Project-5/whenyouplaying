@@ -47,6 +47,7 @@
 				success : function(data){
 					if(data == 1){
 						alert("중복된 아이디입니다.");
+						$("#usId").val("");
 					}else if(data == 0){
 						$("#idChk").attr("value", "Y");
 						alert("사용가능한 아이디입니다.");

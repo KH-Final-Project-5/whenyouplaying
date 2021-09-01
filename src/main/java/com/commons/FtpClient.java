@@ -65,9 +65,8 @@ public class FtpClient {
             ftpFiles = ftpClient.listFiles(tmp);
             if (ftpFiles != null && ftpFiles.length > 0) {
                 String fileoption = filename.substring(filename.indexOf("."));
-                filename = filename.substring(0, filename.indexOf("."));
 
-                filename = filename + (ftpFiles.length + 1) + fileoption;
+                filename = (ftpFiles.length + 1) + fileoption;
             }
 
             fis = new FileInputStream(fileObj);
@@ -115,7 +114,7 @@ public class FtpClient {
                 String fileoption = filename.substring(filename.indexOf("."));
                 filename = filename.substring(0, filename.indexOf("."));
 
-                filename = filename + (ftpFiles.length + 1) + fileoption;
+                filename = (ftpFiles.length + 1) + fileoption;
             }
 
 

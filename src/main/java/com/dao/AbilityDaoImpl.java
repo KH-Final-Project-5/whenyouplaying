@@ -2,13 +2,11 @@ package com.dao;
 
 import com.dto.AbilityDto;
 import com.commons.Criteria;
-import com.dto.ApplyDto;
-import com.dto.UserDto;
+import com.dto.MessageDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.xml.stream.events.DTD;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,7 +120,7 @@ public class AbilityDaoImpl implements AbilityDao {
     }
 
     @Override
-    public int AbilityNega(ApplyDto dto) {
+    public int AbilityNega(MessageDto dto) {
 
         int res = 0;
 
