@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 
@@ -40,6 +42,7 @@ public class UserController {
         return "user/login";
     }
 
+    //회원가입 페이지
     @RequestMapping("/regiform.do")
     public String regiFrom() {
 
@@ -66,6 +69,13 @@ public class UserController {
 
     }
 
+    @ResponseBody
+    @RequestMapping(value="/idChk.do", method = RequestMethod.POST)
+    public int idChk(UserDto dto) throws Exception{
+    	int res = biz.idChk(dto);
+    	return res;
+    }
+    
     @RequestMapping("/login.do")
     public String login(HttpSession session, UserDto dto) {
 

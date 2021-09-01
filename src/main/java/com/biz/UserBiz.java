@@ -9,4 +9,5 @@ public interface UserBiz {
     public String findId(UserDto dto);
     public String findPw(UserDto dto);
     public int userEdit(UserDto dto);
+    public int idChk(UserDto dto) throws Exception;
 }
