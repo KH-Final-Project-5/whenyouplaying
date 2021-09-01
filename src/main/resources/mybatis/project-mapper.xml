@@ -14,8 +14,9 @@
 
     <select id="detail" parameterType="int" resultType="ProjectDto">
         SELECT a.*, b.*
-		FROM W_PROJECT a JOIN W_USER b ON a.USNO=b.USNO
-		WHERE PRNO=#{prNo}
+        FROM W_PROJECT a
+                 JOIN W_USER b ON a.USNO = b.USNO
+        WHERE PRNO = #{prNo}
     </select>
 
 
@@ -44,12 +45,19 @@
         FROM W_PROJECT
         WHERE PRNO = #{prNo}
     </delete>
-    
-    
+
+
     <select id="" parameterType="int" resultType="UserDto">
-    	SELECT *
-    	FROM W_USER;
-    	WHERE USNO=#{usNo}
+        SELECT *
+        FROM W_USER
+        WHERE USNO = #{usNo}
     </select>
-    
+
+    <select id="selectMessagePop" parameterType="int" resultType="ProjectDto">
+        SELECT *
+        FROM W_PROJECT
+                 JOIN W_USER WU on W_PROJECT.USNO = WU.USNO
+        WHERE PRNO = #{prNo}
+    </select>
+
 </mapper>

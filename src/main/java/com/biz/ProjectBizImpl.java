@@ -93,17 +93,10 @@ public class ProjectBizImpl implements ProjectBiz{
 		return dao.selectSession(usNo);
 	}
 
+	@Override
+	public ProjectDto messagePopup(int prNo) {
+		return dao.messagePopup(prNo);
+	}
 
-
-
-
-
-
-
-
-	
-
-	
-	
 
 }

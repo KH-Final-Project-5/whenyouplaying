@@ -33,8 +33,8 @@
 	<script>
 		
 		function messagePopup() {
-			var option ="width=500, height =700, top =100, left =200,location=no"
-			window.open("popup.do","",option)
+			var option ="width=800, height =1000, top =100, left =200,location=no"
+			window.open("popup.do?prNo=${detail_dto.prNo}","",option)
 						
 		
 		}

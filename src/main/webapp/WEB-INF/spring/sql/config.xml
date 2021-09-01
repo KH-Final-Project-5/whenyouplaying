@@ -9,6 +9,7 @@
         <typeAlias type="com.dto.AbilityDto" alias="abilityDto"/>
         <typeAlias type="com.dto.ApplyDto" alias="applyDto"/>
         <typeAlias type="com.dto.ChargeHistoryDto" alias="chargeHistoryDto"/>
+        <typeAlias type="com.dto.MessageDto" alias="messageDto"/>
     </typeAliases>
 
     <mappers>
@@ -16,6 +17,7 @@
         <mapper resource="mybatis/user-mapper.xml"/>
         <mapper resource="mybatis/ability-mapper.xml"/>
         <mapper resource="mybatis/mypage-mapper.xml"/>
+        <mapper resource="mybatis/mes-mapper.xml"/>
     </mappers>
 
 

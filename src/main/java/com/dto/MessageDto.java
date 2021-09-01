@@ -12,7 +12,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MessageDto {
+public class MessageDto extends ProjectDto {
 	private int mesNo;
+	private int usSendNo;
 	private String mesContents;
 }

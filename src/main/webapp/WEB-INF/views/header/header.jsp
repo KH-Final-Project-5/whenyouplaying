@@ -172,7 +172,7 @@
                         |
                         <a href="" class="navA">공지사항</a>
                         |
-                        <a href="" class="chatA">
+                        <a href="messagechk.do" class="chatA">
                             <span class="material-icons md-36 chaticon">
                                 wechat
                                 <span class="rounded-pill badgeSize">1</span>
