@@ -1,11 +1,11 @@
 package com.biz;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.commons.Criteria;
 import com.dao.ProjectDao;
 import com.dto.ProjectDto;
 import com.dto.UserDto;
@@ -18,12 +18,18 @@ public class ProjectBizImpl implements ProjectBiz{
 	private ProjectDao dao;
 	
 	@Override
-	public List<ProjectDto> selectCategory(String prTalent) {
+	public List<ProjectDto> selectCategory(Criteria cri) {
 		// TODO Auto-generated method stub
-		return dao.selectCategory(prTalent);
+		return dao.selectCategory(cri);
 	}
 
 	
+	@Override
+	public int listCount() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listCount();
+	}
+
 
 	
 	
@@ -98,5 +104,14 @@ public class ProjectBizImpl implements ProjectBiz{
 		return dao.messagePopup(prNo);
 	}
 
+
+
+
+
+
+
+
+
+	
 
 }

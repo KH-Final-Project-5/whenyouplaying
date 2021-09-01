@@ -8,12 +8,18 @@ public class Criteria {
     private int usNo;
     private String startDate;
     private String endDate;
-
-
-
 	private String change;
+	private String prTalent;
+    
+    public String getPrTalent() {
+		return prTalent;
+	}
 
-    public String getChange() {
+	public void setPrTalent(String prTalent) {
+		this.prTalent = prTalent;
+	}
+
+	public String getChange() {
         return change;
     }
 
