@@ -1,3 +1,8 @@
+
+p {
+    word-wrap:break-word;
+}
+
 #msgList{
     
 
@@ -68,4 +73,8 @@ body{
 
 .nbsp-td{
     border-right: 1px solid white;
+}
+
+.statusN {
+    font-weight: bold;
 }
