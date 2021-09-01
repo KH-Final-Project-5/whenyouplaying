@@ -6,8 +6,7 @@ import com.commons.PageMaker;
 import com.commons.ScriptUtils;
 import com.dto.AbilityDto;
 import com.commons.Criteria;
-import com.dto.ApplyDto;
-import com.dto.UserDto;
+import com.dto.MessageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,29 +43,37 @@ public class AbilityController {
         String id = dto.getUsId().trim().substring(3, dto.getUsId().length()).trim();
 
 
-        MultipartFile mfile1 = dto.getFile1();
-        MultipartFile mfile2 = dto.getFile2();
+        System.out.println(dto.getFile1().getSize());
+        System.out.println(dto.getFile2().getSize());
 
-        if (mfile1 != null) {
-            String filename1 = mfile1.getOriginalFilename();
-            String refilename = ftpClient.fileName(filename1, id);
 
-            System.out.println(id);
+        if (dto.getFile1().getSize() > 0) {
+            MultipartFile mfile1 = dto.getFile1();
+            if (mfile1 != null) {
+                String filename1 = mfile1.getOriginalFilename();
+                String refilename = ftpClient.fileName(filename1, id);
 
-            dto.setAbImg1("http://wjwan0.dothome.co.kr/stoarge/" + id + "/" + refilename);
-            File file1 = ftpClient.convert(mfile1);
-            ftpClient.upload(file1, filename1, id);
+                System.out.println(id);
+
+                dto.setAbImg1("http://wjwan0.dothome.co.kr/stoarge/" + id + "/" + refilename);
+                File file1 = ftpClient.convert(mfile1);
+                ftpClient.upload(file1, filename1, id);
+            }
         } else {
             dto.setAbImg1("a");
         }
 
-        if (mfile2 != null) {
-            String filename2 = mfile2.getOriginalFilename();
-            String refilename = ftpClient.fileName(filename2, id);
+        if (dto.getFile2().getSize() > 0) {
+            MultipartFile mfile2 = dto.getFile2();
 
-            dto.setAbImg2("http://wjwan0.dothome.co.kr/stoarge/" + id + "/" + refilename);
-            File file2 = ftpClient.convert(mfile2);
-            ftpClient.upload(file2, filename2, id);
+            if (mfile2 != null) {
+                String filename2 = mfile2.getOriginalFilename();
+                String refilename = ftpClient.fileName(filename2, id);
+
+                dto.setAbImg2("http://wjwan0.dothome.co.kr/stoarge/" + id + "/" + refilename);
+                File file2 = ftpClient.convert(mfile2);
+                ftpClient.upload(file2, filename2, id);
+            }
         } else {
             dto.setAbImg2("b");
         }
@@ -76,7 +83,7 @@ public class AbilityController {
 
 
         if (res > 0) {
-            ScriptUtils.alertAndMovePage(response, "입력 완료", "main.do");
+            ScriptUtils.alertAndMovePage(response, "신청 완료했습니다.", "main.do");
         } else {
             ScriptUtils.alertAndMovePage(response, "입력 실패", "main.do");
         }
@@ -135,11 +142,11 @@ public class AbilityController {
     }
 
     @RequestMapping("/abilitynega.do")
-    public void abilityNega(HttpServletResponse response, ApplyDto applyDto, AbilityDto abilityDto) throws IOException {
+    public void abilityNega(HttpServletResponse response, MessageDto messageDto, AbilityDto abilityDto) throws IOException {
 
         System.out.println(abilityDto.getUsNo());
 
-        biz.AbilityNega(applyDto, abilityDto);
+        biz.AbilityNega(messageDto, abilityDto);
 
         ScriptUtils.alertAndMovePage(response, "승인 거부 완료", "abilitymain.do");
 
