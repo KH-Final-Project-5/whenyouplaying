@@ -168,7 +168,11 @@
 
 
                     <!-- 글 내용 -->
-                    <textarea readonly="readonly" disabled id="textarea">${dto.abContent}</textarea>
+                    <div id="textarea">
+                        ${dto.abContent}
+                    </div>
+                    <%--<textarea readonly="readonly" disabled id="textarea">
+                    </textarea>--%>
 
                     <input type="button" value="거절" onclick="refuseForm();" class="btn btn-outline-primary btna">
                     <input type="button" value="승인" id="appBtn" class="btn btn-outline-primary btna">
@@ -194,9 +198,10 @@
         <form action="abilitynega.do" method="post">
             <h2>거절사유</h2><br>
 
-            <textarea rows="10" name="apContent" id="refuseContent"></textarea><br>
+            <textarea rows="10" name="mesContents" id="refuseContent"></textarea><br>
             <input type="hidden" value="${dto.usNo}" name="usNo">
             <input type="hidden" value="${dto.abNo}" name="abNo">
+            <input type="hidden" value="${user.usId}" name="usSendId">
 
 
             <input type="button" value="취소" onclick="closeWin();" id="cancelBtn" class="btn btn-outline-primary">

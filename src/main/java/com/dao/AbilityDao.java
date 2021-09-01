@@ -2,8 +2,7 @@ package com.dao;
 
 import com.dto.AbilityDto;
 import com.commons.Criteria;
-import com.dto.ApplyDto;
-import com.dto.UserDto;
+import com.dto.MessageDto;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public interface AbilityDao {
 
     public int AbilityApproveUser(AbilityDto dto);
 
-    public int AbilityNega(ApplyDto dto);
+    public int AbilityNega(MessageDto dto);
 
     public int AbilityNegaUser(AbilityDto dto);
 

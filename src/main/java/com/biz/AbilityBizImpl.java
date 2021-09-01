@@ -3,8 +3,7 @@ package com.biz;
 import com.dao.AbilityDao;
 import com.dto.AbilityDto;
 import com.commons.Criteria;
-import com.dto.ApplyDto;
-import com.dto.UserDto;
+import com.dto.MessageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,11 +62,11 @@ public class AbilityBizImpl implements AbilityBiz {
 
     @Transactional
     @Override
-    public void AbilityNega(ApplyDto applyDto, AbilityDto abilityDto) {
+    public void AbilityNega(MessageDto messageDto, AbilityDto abilityDto) {
 
         int res = 0;
 
-        dao.AbilityNega(applyDto);
+        dao.AbilityNega(messageDto);
 
         dao.AbilityNegaUser(abilityDto);
 
