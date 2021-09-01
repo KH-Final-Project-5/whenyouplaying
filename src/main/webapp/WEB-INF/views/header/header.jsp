@@ -56,11 +56,31 @@
                 if (usertalnet === "Y") {
                     $('.enroll').hide();
                 }
+
+
+                $.ajax({
+                    type:"post",
+                    url:"mesCountChk.do?usNo=${user.usNo}",
+                    dataType: 'json',
+                    success: function (data) {
+                        alert("성공");
+                    },
+                    error: function (request, status, error) {
+
+                        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                    }
+
+                })
+
+
+
             } else if (userrole === "admin") {
                 $('#defaultHeader').hide();
                 $("#adminHeader").show();
             }
         }
+
+
     });
 </script>
 <body>

@@ -16,4 +16,5 @@ public class MessageDto extends ProjectDto {
 	private int mesNo;
 	private int usSendNo;
 	private String mesContents;
+	private String mesStatus;
 }

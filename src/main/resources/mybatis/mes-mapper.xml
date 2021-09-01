@@ -5,6 +5,13 @@
 <mapper namespace="message">
     <insert id="sendmessage" parameterType="messageDto">
         INSERT INTO W_MESSAGE
-        VALUES (MESSAGESEQ.NEXTVAL, #{usSendNo}, #{prNo}, #{usNo}, #{mesContents})
+        VALUES (MESSAGESEQ.NEXTVAL, #{usSendNo}, #{prNo}, #{usNo}, #{mesContents}, 'N')
     </insert>
+
+    <select id="mesNoReadCount">
+        SELECT COUNT(MESNO)
+        FROM W_MESSAGE
+        WHERE USNO = ${usNo}
+          AND MESSTATUS = 'N'
+    </select>
 </mapper>
