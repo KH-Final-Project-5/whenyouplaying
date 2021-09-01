@@ -27,10 +27,11 @@ public class MyPageBizImpl implements MyPageBiz {
 	}
 
 	@Override
-	public int chargeListCount(int usNo) {
-		return dao.chargeListCount(usNo);
+	public int chargeListCount(Criteria cri) {
+		return dao.chargeListCount(cri);
 	}
-	
+
+
 	
 	
 	

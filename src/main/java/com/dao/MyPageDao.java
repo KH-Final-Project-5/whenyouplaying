@@ -12,5 +12,7 @@ public interface MyPageDao {
 	
 	 public UserDto selectUser(int usNo);
 	 public List<ChargeHistoryDto> chargeList(Criteria cri);
-	 public int chargeListCount(int usNo);
+	 public int chargeListCount(Criteria cri);
+
+
 }

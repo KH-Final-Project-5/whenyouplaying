@@ -78,6 +78,8 @@ public class PageMaker {
                         .queryParam("page", page)
                         .queryParam("perPageNum", cri.getPerPageNum())
                         .queryParam("usNo", cri.getUsNo())
+                        .queryParam("startDate", cri.getStartDate())
+                        .queryParam("endDate", cri.getEndDate())
                         .build();
 
         return uriComponents.toUriString();
