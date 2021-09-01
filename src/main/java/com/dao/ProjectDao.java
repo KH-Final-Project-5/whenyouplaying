@@ -3,6 +3,7 @@ package com.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.commons.Criteria;
 import com.dto.ProjectDto;
 import com.dto.UserDto;
 
@@ -11,8 +12,9 @@ public interface ProjectDao {
 
     String NAMESPACE = "project.";
 
-    public List<ProjectDto> selectCategory(String prTalent);
-
+    public List<ProjectDto> selectCategory(Criteria cri);
+    
+    public int listCount() throws Exception;
 
     public ProjectDto selectDetail(int prNo);
 

@@ -4,13 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="project">
+	
+	<select id="selectDesign" parameterType="com.commons.Criteria" resultType="ProjectDto">
+		SELECT PRNO,USNO,PRTITLE, PRCONTENT, PRPRICE, PRWRITEDATE, PRTALENT, PRDEAL,PRYOUTUBE,PRIMAGE,PRDATE,PRSTATUS,PRLATITUDE,PRLONGITUDE,PRADDRESS
+        FROM (
+                SELECT PRNO,USNO,PRTITLE, PRCONTENT, PRPRICE, PRWRITEDATE, PRTALENT, PRDEAL,PRYOUTUBE,PRIMAGE,PRDATE,PRSTATUS,PRLATITUDE,PRLONGITUDE,PRADDRESS, ROW_NUMBER() OVER(ORDER BY PRNO DESC) AS RNUM
+                FROM W_PROJECT
+                WHERE PRTALENT=#{prTalent})
+        WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+        ORDER BY PRNO DESC
+	</select>
 
-    <select id="selectDesign" parameterType="String" resultType="ProjectDto">
+
+	<select id="prListCount" resultType="int">
+		SELECT COUNT(PRNO)
+		FROM W_PROJECT
+		WHERE PRNO>0
+	</select>
+
+    <!-- <select id="selectDesign" parameterType="String" resultType="ProjectDto">
         SELECT *
         FROM W_PROJECT
         WHERE PRTALENT = #{prTalent}
     </select>
-
+	 -->
 
     <select id="detail" parameterType="int" resultType="ProjectDto">
         SELECT a.*, b.*

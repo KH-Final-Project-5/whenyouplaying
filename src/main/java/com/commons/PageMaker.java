@@ -83,6 +83,17 @@ public class PageMaker {
         return uriComponents.toUriString();
     }
     
+    
+    public String makeQuery3(int page) {
+        UriComponents uriComponents =
+                UriComponentsBuilder.newInstance()
+                        .queryParam("page", page)
+                        .queryParam("perPageNum", cri.getPerPageNum())
+                        .queryParam("prTalent", cri.getPrTalent())
+                        .build();
+
+        return uriComponents.toUriString();
+    }
 
     
 }

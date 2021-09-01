@@ -2,8 +2,6 @@ package com.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.biz.ProjectBiz;
+import com.commons.Criteria;
 import com.commons.FtpClient;
+import com.commons.PageMaker;
 import com.commons.ScriptUtils;
 import com.dto.ProjectDto;
 import com.dto.UserDto;
@@ -37,14 +37,20 @@ public class ProjectController {
 
 
     @RequestMapping("/category.do")
-    public String designProject(Model model, String prTalent, HttpServletRequest request) {
+    public String designProject(Model model, String prTalent,Criteria cri, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
         session.setAttribute("dto", session);
 
 
         logger.info("Select Category");
-        model.addAttribute("pr_dto", biz.selectCategory(prTalent));
+        model.addAttribute("pr_dto", biz.selectCategory(cri));
+        
+        PageMaker pageMaker = new PageMaker();
+        pageMaker.setCri(cri);
+        pageMaker.setTotalCount(biz.listCount());
 
+        model.addAttribute("pr_PageMaker", pageMaker);
+        
         return "projectBoard/talentBoard";
     }
 

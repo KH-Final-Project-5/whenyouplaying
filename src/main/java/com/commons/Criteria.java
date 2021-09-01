@@ -6,10 +6,28 @@ public class Criteria {
     private int rowStart;
     private int rowEnd;
     private int usNo;
+    
+    
 
+	private String prTalent;
+    
     private String change;
 
-    public String getChange() {
+    
+
+    
+    
+    
+    
+    public String getPrTalent() {
+		return prTalent;
+	}
+
+	public void setPrTalent(String prTalent) {
+		this.prTalent = prTalent;
+	}
+
+	public String getChange() {
         return change;
     }
 

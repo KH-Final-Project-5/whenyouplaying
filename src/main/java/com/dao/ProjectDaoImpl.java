@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.commons.Criteria;
 import com.dto.ProjectDto;
 import com.dto.UserDto;
 
@@ -19,12 +20,12 @@ public class ProjectDaoImpl implements ProjectDao {
 
 
     @Override
-    public List<ProjectDto> selectCategory(String prTalent) {
+    public List<ProjectDto> selectCategory(Criteria cri) {
 
         List<ProjectDto> dto = new ArrayList<ProjectDto>();
 
         try {
-            dto = sqlSession.selectList(NAMESPACE + "selectDesign", prTalent);
+            dto = sqlSession.selectList(NAMESPACE + "selectDesign", cri);
         } catch (Exception e) {
             System.out.println("[error] : selectDesign");
             e.printStackTrace();
@@ -33,7 +34,17 @@ public class ProjectDaoImpl implements ProjectDao {
 
         return dto;
     }
-
+    
+    @Override
+	public int listCount() throws Exception {
+		
+    	int res =0;
+    	
+    	res = sqlSession.selectOne(NAMESPACE+"prListCount");
+    	
+		return res;
+	}
+    
 
     @Override
     public ProjectDto selectDetail(int prNo) {
@@ -120,6 +131,10 @@ public class ProjectDaoImpl implements ProjectDao {
 
         return dto;
     }
+
+
+
+	
 
 
 }

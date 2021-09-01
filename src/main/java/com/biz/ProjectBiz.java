@@ -2,13 +2,16 @@ package com.biz;
 
 import java.util.List;
 
+import com.commons.Criteria;
 import com.dto.ProjectDto;
 import com.dto.UserDto;
 
 public interface ProjectBiz {
 
-    public List<ProjectDto> selectCategory(String prTalent);
+    public List<ProjectDto> selectCategory(Criteria cri) throws Exception;
 
+    public int listCount() throws Exception;
+    
     public ProjectDto selectDetail(int prNo);
 
     public int insertProject(ProjectDto dto);
