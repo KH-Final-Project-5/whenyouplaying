@@ -49,12 +49,12 @@ public class MyPageDaoImpl implements MyPageDao {
 	}
 
 	@Override
-	public int chargeListCount(int usNo) {
+	public int chargeListCount(Criteria cri) {
 
 		int res = 0;
 		
 		try {
-			res = sqlSessionTemplate.selectOne(NAMESPACE+"cashRecordCount", usNo);
+			res = sqlSessionTemplate.selectOne(NAMESPACE+"cashRecordCount", cri);
 		} catch (Exception e) {
 			System.out.println("[error] : MyPageDao, cashRecordCount 에러");
 			e.printStackTrace();
@@ -62,7 +62,8 @@ public class MyPageDaoImpl implements MyPageDao {
 		
 		return res;
 	}
-	
+
+
 	
 	
 	

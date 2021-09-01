@@ -11,5 +11,6 @@ public interface UserDao {
     public String findPw(UserDto dto);
     public int regi(UserDto dto);
     public int userEdit(UserDto dto);
+    public int idChk(UserDto dto) throws Exception;
     
 }

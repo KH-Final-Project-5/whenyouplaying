@@ -19,6 +19,7 @@ public class MyPageController {
 	@Autowired
 	MyPageBiz biz;
 	
+	//마이페이지 메인
 	@RequestMapping("/mypage.do")
 	public String myPage(Model model, int usNo) {
 		
@@ -30,24 +31,55 @@ public class MyPageController {
 		
 	}
 	
-	
+	//충전내역 조회 페이지
 	@RequestMapping("/cashrecord.do")
-	public String cashRecord(Model model, Criteria cri, int usNo) {
+	public String cashRecord(Model model, Criteria cri, int usNo, String startDate, String endDate) {
 		
 		logger.info("cashrecord.do : 충전내역확인 페이지 이동");
 		
+		//넘어오는 날짜데이터 합치기
+		String[] startArr = startDate.split("-");
+		String startDateAdd = "";
+		
+		for(int i=0; i<startArr.length; i++) {
+			startDateAdd += startArr[i];
+		}
+		
+		String[] endArr = endDate.split("-");
+		
+		String endDateAdd = "";
+		
+		for(int i=0; i<endArr.length; i++) {
+			endDateAdd += endArr[i];
+		}
+		
 		cri.setUsNo(usNo);
+		cri.setStartDate(startDateAdd);
+		cri.setEndDate(endDateAdd);
 		
 		model.addAttribute("chargeList", biz.chargeList(cri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(biz.chargeListCount(usNo));
-		
+		pageMaker.setTotalCount(biz.chargeListCount(cri));
 		
 		model.addAttribute("chargePageMaker", pageMaker);
+		model.addAttribute("criDate", cri);
 		
 		return "mypage/rechargeHistory";
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -14,18 +14,20 @@
 		FROM (
         		SELECT CHNO, USNO, CHCASH, CHDATE, CHBANK, ROW_NUMBER() OVER(ORDER BY CHNO DESC) AS RNUM
         		FROM W_CHARGEHISTORY
-        		WHERE USNO=#{usNo})
+        		WHERE USNO=#{usNo}
+        		AND CHDATE BETWEEN TO_DATE(#{startDate}) AND TO_DATE(#{endDate}) + INTERVAL '1' DAY
+        		)
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY CHNO DESC
 	</select>
 
-	<select id="cashRecordCount" resultType="int">
+	<select id="cashRecordCount" parameterType="com.commons.Criteria" resultType="int">
 		SELECT COUNT(CHNO)
 		FROM W_CHARGEHISTORY
 		WHERE CHNO > 0
 		AND USNO = #{usNo}
+		AND CHDATE BETWEEN TO_DATE(#{startDate}) AND TO_DATE(#{endDate}) + INTERVAL '1' DAY
 	</select>
-
 
 
 </mapper>

@@ -342,19 +342,26 @@
             <div class="col-12 page-nav">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
+                    	<c:if test="${pr_PageMaker.prev }">
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
+                            <a class="page-link" href="${pr_PageMaker.makeQuery(pr_PageMaker.startPage - 1) }" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;이전</span>
                             </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        </c:if>
+                        <c:forEach begin="${pr_PageMaker.startPage }" end="${pr_PageMaker.endPage }" var="idx">
+	                        <li class="page-item">
+	                        	<a class="page-link" href="category.do${pr_PageMaker.makeQuery3(idx) }">${idx }</a>
+	                        </li>
+                        </c:forEach>
+                        
+                        <c:if test="${pr_PageMaker.next && pr_PageMaker.endPage > 0 }">
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link"  href="category.do${pr_PageMaker.makeQuery(pr_PageMaker.endPage + 1) }" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        </c:if>
                     </ul>
                 </nav>
             </div>

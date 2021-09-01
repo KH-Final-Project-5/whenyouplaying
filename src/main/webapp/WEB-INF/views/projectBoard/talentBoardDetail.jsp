@@ -50,7 +50,12 @@
         if(projectUsNo!==userNo){
         	 $("#deleteBtn").hide();
         	 $("#updateBtn").hide();
+        	 $("#reserbtn").hide();
+        }else if(projectUsNo==userNo){
+        	$("#reserChk").hide();
         }
+        
+        
     });
 
 </script>
@@ -226,6 +231,27 @@
                             ${detail_dto.prContent }
                         </div>
                     </div>
+                    
+                    
+                    <div class="row" style="margin-left:200px;">
+                    	<div class="col-12">
+                    		<span class="detail-content"><b>거래 지역</b></span>
+                    	</div>
+                    		<div id="map" style="width:500px;height:400px;"></div>
+							<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ab159e5abb2442cfed56949c9439ba9"></script>
+							<script>
+								var container = document.getElementById('map');
+								var options = {
+									center: new kakao.maps.LatLng(33.450701, 126.570667),
+									level: 3
+								};
+						
+								var map = new kakao.maps.Map(container, options);
+							</script>
+                    	
+                    </div>
+                    
+                    
                     <div class="row">
                         <div class="col-12">
 
@@ -238,10 +264,10 @@
                             <!-- class를 detail-button3로 주었으며
                                  로그인된 회원의 여부에 따라 class를 추가해줌으로 display를 조절하면 될 것 같아요   -->
                             <!--구매자 일 경우-->
-                            <button onclick="" class="detail-button btn btn-outline-primary btn-lg detail-button3">예약확인
+                            <button onclick="" id="reserChk" class="detail-button btn btn-outline-primary btn-lg detail-button3" style="margin-left:560px;">예약확인
                             </button>
                             <!--판매자 일 경우-->
-                            <button onclick="" id="reserbtn" class="detail-button btn btn-outline-primary btn-lg">예약변경</button>
+                            <button onclick="" id="reserbtn" class="detail-button btn btn-outline-primary btn-lg" style="margin-left:560px;">예약변경</button>
                         </div>
                     </div>
                     <!--거래방법을 통한 구매하기 submit-->
@@ -288,7 +314,7 @@
                         <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
                         <label for="1-star" class="star">★</label>
                     </div>
-                    <textarea style="width: 510px; height: 200px;" class="text-area"></textarea>
+                    <textarea style="width: 510px; height: 200px; margin-left: 68px;" class="text-area"></textarea>
                     <input type="submit" class="btn btn-outline-primary btn-sm" value="등록하기" id="review-submit">
                 </form>
             </div>

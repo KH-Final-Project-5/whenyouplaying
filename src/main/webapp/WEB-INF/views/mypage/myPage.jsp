@@ -62,7 +62,7 @@
                     <a href="cashrecord.do?usNo=${userDto.usNo }"><img src="../image/ImgBox.PNG"></a>
                  </div>
                  <div class="col-8">
-                    <a href="cashrecord.do?usNo=${userDto.usNo }"><b>충전 내역확인</b></a>
+                    <a href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01"><b>충전 내역확인</b></a>
                  </div>
                 
                  <div class="col-8">
