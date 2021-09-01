@@ -53,6 +53,20 @@ public class ProjectController {
         
         return "projectBoard/talentBoard";
     }
+    
+    @RequestMapping("search.do")
+    public String Search(Model model, String prTalent, HttpServletRequest request){
+    	
+    	
+    	HttpSession session = request.getSession();
+        session.setAttribute("dto", session);
+        
+        logger.info("Search content");
+        model.addAttribute("pr_dto");
+        
+        
+    	return "projectBoard/talentBoard";
+    }
 
 
     @RequestMapping("/Detail.do")
@@ -242,6 +256,7 @@ public class ProjectController {
 
 
     }
-
+    
+ 
 
 }

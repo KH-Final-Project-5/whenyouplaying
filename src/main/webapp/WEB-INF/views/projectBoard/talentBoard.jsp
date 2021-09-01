@@ -302,31 +302,17 @@
         <br><br>
         <div class="row">
             <div class="col-12 search">
-                <form action="#">
+                <form action="search.do">
                     <div class="row">
 
+                       
                         <div class="col-2 search-select">
 
-
-                            <select style="width: 120px;">
-                                <option disabled selected>카테고리</option>
-                                <option value="#">카테고리1</option>
-                                <option value="#">카테고리2</option>
-                            </select>
-
+                            
                         </div>
-                        <div class="col-2 search-select">
-
-                            <select>
-                                <option disabled selected>검색방법</option>
-                                <option value="#">글 제목</option>
-                                <option value="#">글 내용</option>
-                                <option value="#">글 제목 + 글 내용</option>
-                            </select>
-                        </div>
-                        <div class="col-8">
+                        <div class="col-8" style="margin-left:150px;">
                             <img src="<c:url value="/resources/ProjectImg/search.png"/>" class="search-img">
-                            <input type="text" placeholder="검색어를 입력해 주세요." class="search-bar" style="height: 40px;">
+                            <input type="text" name="searchContent" placeholder="검색어를 입력해 주세요." class="search-bar" style="height: 40px;">
                             <input type="submit" class="btn btn-outline-primary" value="검색하기" id="search-button">
 
                             <img src="<c:url value="/resources/ProjectImg/mike.jpg"/>" class="search-img2">

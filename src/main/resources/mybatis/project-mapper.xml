@@ -76,5 +76,13 @@
                  JOIN W_USER WU on W_PROJECT.USNO = WU.USNO
         WHERE PRNO = #{prNo}
     </select>
-
+	
+	
+	<select id="search" parameterType="String" resultType="ProjectDto">
+		SELECT *
+		FROM (SELECT *
+			  FROM W_PROJECT
+			  WHERE PRTALENT=#{prTalent})
+		WHERE PRCONTENT LIKE '#{searchContent}%'
+	</select>
 </mapper>

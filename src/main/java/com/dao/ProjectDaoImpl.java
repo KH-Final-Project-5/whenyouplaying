@@ -132,6 +132,22 @@ public class ProjectDaoImpl implements ProjectDao {
         return dto;
     }
 
+	@Override
+	public List<ProjectDto> search(String prTalent, String searchContent) {
+		
+		List<ProjectDto> list = new ArrayList<>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "search",searchContent );
+		} catch (Exception e) {
+			System.out.println("search 에러");
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+	}
+
 
 
 	
