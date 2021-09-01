@@ -33,7 +33,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
           rel="stylesheet">
-
+          
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          
+    <script type="text/javascript">
+		function fn_idChk(){
+			$.ajax({
+				url : "/idChk.do",
+				type : "post",
+				dataType : "json",
+				data : {"usId" : $("#usId").val()},
+				success : function(data){
+					if(data == 1){
+						alert("중복된 아이디입니다.");
+					}else if(data == 0){
+						$("#idChk").attr("value", "Y");
+						alert("사용가능한 아이디입니다.");
+					}
+				}
+			})
+		}
+	</script>      
+          
+          
 </head>
 <body>
 
@@ -69,10 +92,8 @@
                             <br>
                             <input type="text" class="form-control" id="usId" placeholder="" value="" required
                                    name="usId">
-
-                            <div class="invalid-feedback"> 아이디를 입력해주세요.
-
-                            </div>
+							<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+                            <div class="invalid-feedback"> 아이디를 입력해주세요.</div>
                         </div>
 
 
@@ -189,21 +210,8 @@
     </footer>
 </div>
 
-<script>
-    window.addEventListener('load', () => {
-        const forms = document.getElementsByClassName('validation-form');
 
-        Array.prototype.filter.call(forms, (form) => {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-</script>
+
 
 
 </body>

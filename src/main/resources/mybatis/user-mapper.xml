@@ -17,7 +17,12 @@
                 #{usAddress1}, #{usAddress2}, #{usEmail}, NULL, 'N', SYSDATE, 'Y', 'user', '0')
 
     </insert>
-
+    
+    <select id="idChk" parameterType="userDto" resultType="int">
+    SELECT COUNT(*) FROM W_USER
+	WHERE USID = #{usId}
+    </select>
+    
     <select id="findId" parameterType="userDto" resultType="string">
         SELECT USID
         FROM W_USER
