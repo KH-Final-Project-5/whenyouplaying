@@ -13,8 +13,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MessageDto extends ProjectDto {
-	private int mesNo;
-	private int usSendNo;
-	private String mesContents;
-	private String mesStatus;
+    private int mesNo;
+    private String usSendId;
+    private String mesContents;
+    private String mesStatus;
+    private Date mesDate;
+    private String mesDateSt;
 }

@@ -59,11 +59,15 @@
 
 
                 $.ajax({
-                    type:"post",
-                    url:"mesCountChk.do?usNo=${user.usNo}",
+                    type: "post",
+                    url: "mesCountChk.do?usNo=${user.usNo}",
                     dataType: 'json',
                     success: function (data) {
-                        alert("성공");
+                        if (data.check == true) {
+                            $('.badgeSize').show();
+                        } else {
+                            $('.badgeSize').hide();
+                        }
                     },
                     error: function (request, status, error) {
 
@@ -71,7 +75,6 @@
                     }
 
                 })
-
 
 
             } else if (userrole === "admin") {

@@ -31,6 +31,8 @@
 
     <script>
         $(function () {
+            var a = '${mesDto.prNo}';
+            console.log(a);
             $('#msg-submit').click(function () {
 
                 var form1 = $('#mesForm').serialize();
@@ -41,11 +43,11 @@
 
                 $.ajax({
                     type: "post",
-                    url: "messageSend.do",
+                    url: "ReMessageSend.do",
                     data: form1,
                     dataType: 'json',
                     success: function (data) {
-                        alert("쪽지 전송 완료");
+                        alert("답장 전송 완료");
                         window.close();
                     },
                     error: function (request, status, error) {
@@ -64,19 +66,17 @@
     <div class="row">
         <div class="col-12">
             <form action="" id="mesForm">
-                <input type="hidden" value="${user.usId}" name="usSendId">
-                <input type="hidden" value="${popupDto.usNo}" name="usNo">
                 <table>
                     <tr>
                         <th>보내는이 :</th>
-                        <td><input type="text" value="${user.usId}" class="msgPop-input"
+                        <td><input type="text" name="usId" value="${user.usId}" class="msgPop-input"
                                    readonly="readonly">
                         </td>
                     </tr>
 
                     <tr>
                         <th>받는이 :</th>
-                        <td><input type="text" value="${popupDto.usId}" readonly class="msgPop-input"></td>
+                        <td><input type="text" name="usSendId" value="${mesDto.usSendId}" readonly class="msgPop-input"></td>
                     </tr>
 
                     <tr>
