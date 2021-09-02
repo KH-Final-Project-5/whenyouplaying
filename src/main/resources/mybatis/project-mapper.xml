@@ -35,7 +35,7 @@
 		SELECT  PRNO,RVCONTENT,RVDATE,RVGRADE,USNAME
 		FROM W_REVIEW 
 		JOIN W_USER  USING(USNO)
-		WHERE PRNO=16;
+		WHERE PRNO=#{prNo};
 	</select>
 	
     <select id="detail" parameterType="int" resultType="ProjectDto">
