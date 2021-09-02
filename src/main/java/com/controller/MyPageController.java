@@ -70,7 +70,17 @@ public class MyPageController {
 	}
 
 	
-	
+	//재능구매내역
+	@RequestMapping("/buylist.do")
+	public String buyList(Model model, String usNo) {
+		
+		
+		
+		
+		
+		
+		return "mypage/talentPurchase";
+	}
 	
 	
 	
