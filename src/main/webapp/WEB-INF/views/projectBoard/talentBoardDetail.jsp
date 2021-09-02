@@ -336,18 +336,34 @@
         </div>
         <br><hr><br>
         <div class="row">
-            <div class="col-3">
-                <b class="review-user">000님</b>
-            </div>
-            <div class="col-9 review-col">
-                <div class="review">
-                    [구매 후기]<br>
-                    후기 작성일 : <br>
-                    평점 : 5점 [5점만점]
-                    -----------------------------------<br>
-                    감사합니다<br>
-                </div>
-            </div>
+        
+        <c:choose>
+        	<c:when test="${empty review }">
+        		<h1>-------------등록된 리뷰가 없습니다-----------</h1>
+        	</c:when>
+        	
+        	<c:otherwise>
+        		<c:forEach items="${review }" var="review">
+        			<div class="col-3">
+                		<b class="review-user">${review.usName }</b>
+            		</div>
+            
+            		<div class="col-9 review-col">
+                		<div class="review">
+	                    	[구매 후기]<br>
+	                    	후기 작성일 :<p>${review.rvDate }</p> <br>
+                    		평점 : <p>${review.rvGrade }점</p> [5점만점]
+              				-----------------------------------<br>
+                    		<p>${review.rvContent }</p><br>
+                		</div>
+            		</div>	
+        		
+        		
+        		</c:forEach>
+        	</c:otherwise>
+        </c:choose>
+        
+            
         </div>
         <br>
         

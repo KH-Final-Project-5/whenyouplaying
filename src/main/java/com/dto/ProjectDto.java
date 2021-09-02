@@ -31,12 +31,12 @@ public class ProjectDto extends UserDto{
 	private String prAddress;
 	
 	
-	
+	private String usName;
 	private Date rvDate;
-	private String reviewContent;
+	private String rvContent;
 	private int usWriterNo;
 	private int usWriter;
-	private int rating;
+	private int rvGrade;
 	private String searchContent;
 	private int result;
 	private MultipartFile prImage2;
