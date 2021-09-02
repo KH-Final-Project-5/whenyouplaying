@@ -61,6 +61,8 @@
         	$("#perchase-button1").hide();
         	$("#perchase-button2").hide();
         	$("#reserChk").hide();
+        }else if(userId=='admin'){
+        	$("#reserChk").hide();
         }
         
         
@@ -304,12 +306,15 @@
             <div class="col-3">
                 <br><br><br><br>
                 <br><br><br><br>
-                <b id="review-write-user">000님</b>
+                <b id="review-write-user">${user.usName }</b>
             </div>
             <!--평점선택-->
             <div class="col-9">
                 <h3>구매자 후기</h3>
-                <form action="">
+                <form action="review.do">
+                	<input type="hidden" name="prNo" value="${detail_dto.prNo }">
+                	<input type="hidden" name="usNo" value="${detail_dto.usNo }">
+                	<input type="hidden" name="usWriterNo" value="${user.usNo }">
                     <div class="star-rating space-x-4 mx-auto">
                         <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
                         <label for="5-stars" class="star pr-4">★</label>
@@ -322,8 +327,10 @@
                         <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
                         <label for="1-star" class="star">★</label>
                     </div>
-                    <textarea style="width: 510px; height: 200px; margin-left: 68px;" class="text-area"></textarea>
+                    <textarea style="width: 510px; height: 200px; margin-left: 68px;" name="reviewContent" class="text-area"></textarea>
                     <input type="submit" class="btn btn-outline-primary btn-sm" value="등록하기" id="review-submit">
+                    <button onclick="" class="btn btn-outline-primary btn-sm">수정</button>
+                    <button onclick="" class="btn btn-outline-primary btn-sm">삭제</button>
                 </form>
             </div>
         </div>
@@ -335,7 +342,7 @@
             <div class="col-9 review-col">
                 <div class="review">
                     [구매 후기]<br>
-                    후기 작성일 : 0000년/00월/00일 00:00<br>
+                    후기 작성일 : <br>
                     평점 : 5점 [5점만점]
                     -----------------------------------<br>
                     감사합니다<br>
@@ -343,20 +350,7 @@
             </div>
         </div>
         <br>
-        <div class="row">
-            <div class="col-3">
-                <b class="review-user">000님</b>
-            </div>
-            <div class="col-9 review-col">
-                <div class="review">
-                    [구매 후기]<br>
-                    후기 작성일 : 0000년/00월/00일 00:00<br>
-                    평점 : 5점 [5점만점]
-                    -----------------------------------<br>
-                    감사합니다<br>
-                </div>
-            </div>
-        </div>
+        
     </div>
     <!-- footer 영역-->
     

@@ -25,4 +25,9 @@ public interface ProjectBiz {
     public ProjectDto messagePopup(int prNo);
     
     public List<ProjectDto> search(ProjectDto dto);
+    
+    public int insertReivew(ProjectDto dto);
+    
+    
+    public List<ProjectDto> reviewSelect(int prNo);
 }

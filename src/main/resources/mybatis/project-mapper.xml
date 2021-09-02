@@ -14,7 +14,8 @@
         WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
         ORDER BY PRNO DESC
 	</select>
-
+	
+	
 
 	<select id="prListCount" resultType="int">
 		SELECT COUNT(PRNO)
@@ -28,20 +29,35 @@
         WHERE PRTALENT = #{prTalent}
     </select>
 	 -->
-
+	
+	
+	<select id="reviewSelect" parameterType="int" resultType="ProjectDto">
+		SELECT  PRNO,RVCONTENT,RVDATE,RVGRADE,USNAME
+		FROM W_REVIEW 
+		JOIN W_USER  USING(USNO)
+		WHERE PRNO=16;
+	</select>
+	
     <select id="detail" parameterType="int" resultType="ProjectDto">
         SELECT a.*, b.*
         FROM W_PROJECT a
                  JOIN W_USER b ON a.USNO = b.USNO
         WHERE PRNO = #{prNo}
     </select>
-
+	
+	
 
     <insert id="insert" parameterType="ProjectDto">
         INSERT INTO W_PROJECT
         VALUES (PROJECTSEQ.NEXTVAL, #{usNo}, #{prTitle}, #{prContent}, #{prPrice}, SYSDATE, #{prTalent}, #{prDeal},
                 #{prYoutube}, #{prImage}, SYSDATE, '1', 'test위도', 'test경도', '주소')
 
+    </insert>
+    
+    
+    <insert id="insertReview" parameterType="ProjectDto">
+    INSERT INTO W_REVIEW
+	VALUES (RVSEQ.NEXTVAL,#{prNo},#{usNo},#{usWriterNo},#{reviewContent},SYSDATE,#{rating})
     </insert>
 
 

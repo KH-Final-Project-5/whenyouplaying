@@ -76,6 +76,19 @@ public class ProjectDaoImpl implements ProjectDao {
         }
         return res;
     }
+    
+    @Override
+	public int insertReview(ProjectDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE + "insertReview", dto);
+		} catch (Exception e) {
+			System.out.println("insertReview 에러");
+			e.printStackTrace();
+		}
+		return res;
+	}
 
 
     @Override
@@ -147,6 +160,23 @@ public class ProjectDaoImpl implements ProjectDao {
 		
 		return list;
 	}
+
+	@Override
+	public List<ProjectDto> reviewSelect(int prNo) {
+		List<ProjectDto> list = new ArrayList<>();
+		
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "reviewSelect", prNo);
+		} catch (Exception e) {
+			System.out.println("review Select 에러");
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	
 
 
 

@@ -42,7 +42,7 @@ public class ProjectController {
     	
     	
     	
-
+    	
 
         logger.info("Select Category");
         model.addAttribute("pr_dto", biz.selectCategory(cri));
@@ -54,8 +54,11 @@ public class ProjectController {
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCri(cri);
         pageMaker.setTotalCount(biz.listCount());
-
+        
         model.addAttribute("pr_PageMaker", pageMaker);
+        
+       
+        
         
         return "projectBoard/talentBoard";
     }
@@ -69,6 +72,8 @@ public class ProjectController {
         model.addAttribute("pr_dto",biz.search(dto));
         
         
+        
+        
     	return "projectBoard/talentBoard";
     }
 
@@ -78,8 +83,9 @@ public class ProjectController {
 
         logger.info("Detail");
         model.addAttribute("detail_dto", biz.selectDetail(prNo));
-
-
+        
+        model.addAttribute("review",biz.reviewSelect(prNo));
+        
         return "projectBoard/talentBoardDetail";
     }
 
@@ -92,7 +98,19 @@ public class ProjectController {
         return "trade/messagePopup";
 
     }
-
+    @RequestMapping("review.do")
+    public String Review(ProjectDto dto) throws IOException {
+    	int res= 0;
+    	
+    	res = biz.insertReivew(dto);
+    	
+    	if(res>0) {
+    		return "redirect:Detail.do?prNo="+dto.getPrNo();
+    	}else {
+    		return "redirect:Detail.do?prNo="+dto.getPrNo();
+    	}
+    	 
+    }
 
     @RequestMapping("insertProject.do")
     public String insertProject(Model model) {
@@ -261,6 +279,6 @@ public class ProjectController {
 
     }
     
- 
+    
 
 }
