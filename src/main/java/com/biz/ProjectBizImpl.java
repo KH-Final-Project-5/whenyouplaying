@@ -106,9 +106,9 @@ public class ProjectBizImpl implements ProjectBiz{
 
 
 	@Override
-	public List<ProjectDto> search(String prTalent,String searchContent) {
+	public List<ProjectDto> search(ProjectDto dto) {
 		
-		return dao.search(prTalent,searchContent);
+		return dao.search(dto);
 	}
 
 

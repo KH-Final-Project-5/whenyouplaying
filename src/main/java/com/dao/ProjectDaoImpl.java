@@ -133,19 +133,19 @@ public class ProjectDaoImpl implements ProjectDao {
     }
 
 	@Override
-	public List<ProjectDto> search(String prTalent, String searchContent) {
+	public List<ProjectDto> search(ProjectDto dto) {
 		
 		List<ProjectDto> list = new ArrayList<>();
 		
 		try {
-			list = sqlSession.selectList(NAMESPACE + "search",searchContent );
+			list = sqlSession.selectList(NAMESPACE + "search",dto );
 		} catch (Exception e) {
 			System.out.println("search 에러");
 			e.printStackTrace();
 		}
 		
 		
-		return null;
+		return list;
 	}
 
 

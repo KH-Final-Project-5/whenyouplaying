@@ -37,13 +37,19 @@ public class ProjectController {
 
 
     @RequestMapping("/category.do")
-    public String designProject(Model model, String prTalent,Criteria cri, HttpServletRequest request) throws Exception {
-        HttpSession session = request.getSession();
-        session.setAttribute("dto", session);
+    public String designProject(Model model, String prTalent, Criteria cri) throws Exception {
+        
+    	
+    	
+    	
 
 
         logger.info("Select Category");
         model.addAttribute("pr_dto", biz.selectCategory(cri));
+        
+        cri.setPrTalent(prTalent);
+        model.addAttribute("pr_cri",cri);
+        System.out.println( "prtalent값 확인: " + cri.getPrTalent());
         
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCri(cri);
@@ -55,14 +61,12 @@ public class ProjectController {
     }
     
     @RequestMapping("search.do")
-    public String Search(Model model, String prTalent, HttpServletRequest request){
+    public String Search(Model model, ProjectDto dto){
     	
     	
-    	HttpSession session = request.getSession();
-        session.setAttribute("dto", session);
         
         logger.info("Search content");
-        model.addAttribute("pr_dto");
+        model.addAttribute("pr_dto",biz.search(dto));
         
         
     	return "projectBoard/talentBoard";

@@ -24,5 +24,5 @@ public interface ProjectBiz {
 
     public ProjectDto messagePopup(int prNo);
     
-    public List<ProjectDto> search(String prTalent,String searchContent);
+    public List<ProjectDto> search(ProjectDto dto);
 }

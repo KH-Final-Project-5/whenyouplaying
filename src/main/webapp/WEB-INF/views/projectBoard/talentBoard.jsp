@@ -302,7 +302,7 @@
         <br><br>
         <div class="row">
             <div class="col-12 search">
-                <form action="search.do">
+               
                     <div class="row">
 
                        
@@ -310,16 +310,22 @@
 
                             
                         </div>
-                        <div class="col-8" style="margin-left:150px;">
-                            <img src="<c:url value="/resources/ProjectImg/search.png"/>" class="search-img">
-                            <input type="text" name="searchContent" placeholder="검색어를 입력해 주세요." class="search-bar" style="height: 40px;">
-                            <input type="submit" class="btn btn-outline-primary" value="검색하기" id="search-button">
-
-                            <img src="<c:url value="/resources/ProjectImg/mike.jpg"/>" class="search-img2">
+                        <div class="col-8" style="margin-left:150px; float:left;">
+                        	
+                            <img src="<c:url value="/resources/ProjectImg/search.png"/>" class="search-img" style="float:left; margin-right:10px; margin-top:6px;">
+                            <form action="search.do">
+                            	<input type="hidden" name="prTalent" value="${pr_cri.prTalent }">
+                            	<input type="text" name="searchContent" placeholder="글 내용으로 검색" class="search-bar">
+                            	<input type="submit" class="btn btn-outline-primary" value="검색하기" id="search-button">
+                            	<img src="<c:url value="/resources/ProjectImg/mike.jpg"/>" class="search-img2">
+							</form>
+                            
+                            
                             <button class="search-img2" onclick=""></button>
+                            
                         </div>
                     </div>
-                </form>
+                
                 <hr>
             </div>
         </div>

@@ -78,11 +78,11 @@
     </select>
 	
 	
-	<select id="search" parameterType="String" resultType="ProjectDto">
+	<select id="search" parameterType="ProjectDto" resultType="ProjectDto">
 		SELECT *
 		FROM (SELECT *
 			  FROM W_PROJECT
 			  WHERE PRTALENT=#{prTalent})
-		WHERE PRCONTENT LIKE '#{searchContent}%'
+		WHERE PRCONTENT LIKE #{searchContent}||'%'
 	</select>
 </mapper>
