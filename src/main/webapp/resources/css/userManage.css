@@ -61,15 +61,18 @@ body{
     height: 100px;
 }
 
-a {
+.menuText {
     color: black;
     
 }
 
-a:hover{
+.menuText:hover{
     color: black;
     text-decoration: none;
+}
 
+.menuText:visited {
+    color: black;
 }
 
 h3{
@@ -110,12 +113,13 @@ h3{
 }
 
 
-th{
+.theadclass{
     text-align: center;
 }
 
 td{
     text-align: center;
+    height: 60px;
 }
 
 #lastTh{
@@ -126,9 +130,10 @@ td{
 #pagingArea{
 
     position: relative;
-    top: 450px;
+    top: 100px;
     left: 330px;
-    
+    display: block;
+
 }
 
 .line{
