@@ -130,6 +130,7 @@ CREATE TABLE W_REVIEW
     RVNO      NUMBER         NOT NULL,
     PRNO      NUMBER         NOT NULL,
     USNO      NUMBER         NOT NULL,
+    USWRITER  NUMBER 		 NOT NULL,
     RVCONTENT VARCHAR2(2000) NULL,
     RVDATE    DATE           NULL,
     RVGRADE   NUMBER         NULL
@@ -202,6 +203,19 @@ CREATE TABLE W_PROJECTIMG
     PRIMGSRC VARCHAR2(2000) NULL
 );
 
+
+CREATE TABLE W_FINISHDEAL(
+	FINNO NUMBER PRIMARY KEY,
+	DEALNO NUMBER NOT NULL,
+	PRNO NUMBER NOT NULL,
+	USSELLNO NUMBER NOT NULL,
+	USBUYNO NUMBER NOT NULL,
+	FINSTATUS VARCHAR2(2000),
+	FINDATE DATE
+ );
+
+
+
 ALTER TABLE W_NOTIFICATION
     ADD CONSTRAINT PK_W_NOTIFICATION PRIMARY KEY (
                                                   NOTINO,
@@ -263,7 +277,8 @@ ALTER TABLE W_REVIEW
     ADD CONSTRAINT PK_W_REVIEW PRIMARY KEY (
                                             RVNO,
                                             PRNO,
-                                            USNO
+                                            USNO,
+                                            USWRITER
         );
 
 ALTER TABLE W_CHAT
@@ -321,6 +336,26 @@ ALTER TABLE W_PROJECTIMG
                                                 PRNO,
                                                 USNO
         );
+
+
+
+ALTER TABLE W_FINISHDEAL
+	ADD CONSTRAINT FK_DEALSTATUS_TO_FINISHDEAL_1 FOREIGN KEY(
+														DEALNO,
+														PRNO,
+														USSELLNO,
+														USBUYNO
+	)
+	REFERENCES W_DEALSTATUS (
+						DEALNO,
+						PRNO,
+						USSELLNO,
+						USBUYNO
+	);
+
+
+
+
 
 ALTER TABLE W_NOTIFICATION
     ADD CONSTRAINT FK_W_USER_TO_W_NOTIFICATION_1 FOREIGN KEY (
@@ -419,6 +454,15 @@ ALTER TABLE W_REVIEW
                               PRNO,
                               USNO
             );
+            
+ALTER TABLE W_REVIEW
+	ADD CONSTRAINT FK_W_USER_TO_W_REVIEW_1 FOREIGN KEY(
+														USWRITER
+	)
+	REFERENCES W_USER(
+					USNO
+	);
+		
 
 
 ALTER TABLE W_CHAT

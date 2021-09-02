@@ -28,4 +28,5 @@ public interface ProjectDao {
 
     public ProjectDto messagePopup(int prNo);
 
+    public List<ProjectDto> search(ProjectDto dto);
     }

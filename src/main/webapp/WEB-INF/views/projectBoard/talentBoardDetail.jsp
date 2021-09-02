@@ -46,12 +46,20 @@
         var user = "<%=session.getAttribute("user")%>";
         var userNo = "${user.usNo}"
         var projectUsNo ="${detail_dto.usNo}"
+        var userId = "${user.usId}"
         console.log(user);
         if(projectUsNo!==userNo){
         	 $("#deleteBtn").hide();
         	 $("#updateBtn").hide();
         	 $("#reserbtn").hide();
         }else if(projectUsNo==userNo){
+        	$("#reserChk").hide();
+        }
+        
+        console.log(userNo);
+        if(userId==null||userId==""){
+        	$("#perchase-button1").hide();
+        	$("#perchase-button2").hide();
         	$("#reserChk").hide();
         }
         
@@ -256,18 +264,18 @@
                         <div class="col-12">
 
                             <input type="submit" value="온라인 구매" class="detail-button btn btn-outline-primary btn-lg"
-                                   id="perchase-button" formaction="online.do">
+                                   id="perchase-button1" formaction="online.do" style="margin-left:200px">
                             <input type="submit" value="직거래 구매" class="detail-button btn btn-outline-primary btn-lg"
-                                 	id="perchase-button" formaction="direct.do">
+                                 	id="perchase-button2" formaction="direct.do" style="margin-left:200px" >
 
 
                             <!-- class를 detail-button3로 주었으며
                                  로그인된 회원의 여부에 따라 class를 추가해줌으로 display를 조절하면 될 것 같아요   -->
                             <!--구매자 일 경우-->
-                            <button onclick="" id="reserChk" class="detail-button btn btn-outline-primary btn-lg detail-button3" style="margin-left:560px;">예약확인
+                            <button onclick="" id="reserChk" class="detail-button btn btn-outline-primary btn-lg detail-button3" style="margin-left:555px;">예약확인
                             </button>
                             <!--판매자 일 경우-->
-                            <button onclick="" id="reserbtn" class="detail-button btn btn-outline-primary btn-lg" style="margin-left:560px;">예약변경</button>
+                            <button onclick="" id="reserbtn" class="detail-button btn btn-outline-primary btn-lg" style="margin-left:555px;">예약변경</button>
                         </div>
                     </div>
                     <!--거래방법을 통한 구매하기 submit-->

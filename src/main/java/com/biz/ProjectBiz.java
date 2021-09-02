@@ -23,5 +23,6 @@ public interface ProjectBiz {
     public UserDto selectSession(int usNo);
 
     public ProjectDto messagePopup(int prNo);
-
+    
+    public List<ProjectDto> search(ProjectDto dto);
 }

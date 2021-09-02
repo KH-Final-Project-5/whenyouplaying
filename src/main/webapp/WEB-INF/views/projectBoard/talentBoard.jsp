@@ -302,38 +302,30 @@
         <br><br>
         <div class="row">
             <div class="col-12 search">
-                <form action="#">
+               
                     <div class="row">
 
+                       
                         <div class="col-2 search-select">
 
-
-                            <select style="width: 120px;">
-                                <option disabled selected>카테고리</option>
-                                <option value="#">카테고리1</option>
-                                <option value="#">카테고리2</option>
-                            </select>
-
+                            
                         </div>
-                        <div class="col-2 search-select">
-
-                            <select>
-                                <option disabled selected>검색방법</option>
-                                <option value="#">글 제목</option>
-                                <option value="#">글 내용</option>
-                                <option value="#">글 제목 + 글 내용</option>
-                            </select>
-                        </div>
-                        <div class="col-8">
-                            <img src="<c:url value="/resources/ProjectImg/search.png"/>" class="search-img">
-                            <input type="text" placeholder="검색어를 입력해 주세요." class="search-bar" style="height: 40px;">
-                            <input type="submit" class="btn btn-outline-primary" value="검색하기" id="search-button">
-
-                            <img src="<c:url value="/resources/ProjectImg/mike.jpg"/>" class="search-img2">
+                        <div class="col-8" style="margin-left:150px; float:left;">
+                        	
+                            <img src="<c:url value="/resources/ProjectImg/search.png"/>" class="search-img" style="float:left; margin-right:10px; margin-top:6px;">
+                            <form action="search.do">
+                            	<input type="hidden" name="prTalent" value="${pr_cri.prTalent }">
+                            	<input type="text" name="searchContent" placeholder="글 내용으로 검색" class="search-bar">
+                            	<input type="submit" class="btn btn-outline-primary" value="검색하기" id="search-button">
+                            	<img src="<c:url value="/resources/ProjectImg/mike.jpg"/>" class="search-img2">
+							</form>
+                            
+                            
                             <button class="search-img2" onclick=""></button>
+                            
                         </div>
                     </div>
-                </form>
+                
                 <hr>
             </div>
         </div>

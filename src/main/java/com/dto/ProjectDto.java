@@ -30,7 +30,7 @@ public class ProjectDto extends UserDto{
 	private String prLongitude;
 	private String prAddress;
 	
-	
+	private String searchContent;
 	private int result;
 	private MultipartFile prImage2;
 	

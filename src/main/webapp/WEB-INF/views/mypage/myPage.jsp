@@ -49,7 +49,7 @@
                     <a href="useredit.do"><img src="<c:url value="/resources/img_mypage/accountManage.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="useredit.do"><b>회원 정보 수정</b></a>
+                    <a class="myA"  href="useredit.do"><b>회원 정보 수정</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -65,7 +65,7 @@
                     <a href="#"><img src="<c:url value="/resources/img_mypage/favoriteList.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>찜 내역 확인</b></a>
+                    <a class="myA" href="#"><b>찜 내역 확인</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -80,7 +80,7 @@
                     <a href="#"><img src="<c:url value="/resources/img_mypage/bank.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>계좌 관리</b></a>
+                    <a class="myA" href="#"><b>계좌 관리</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -98,7 +98,7 @@
                     <a href="#"><img src="<c:url value="/resources/img_mypage/buy.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>재능 구매 내역</b></a>
+                    <a class="myA" href="#"><b>재능 구매 내역</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -113,7 +113,7 @@
                     <a href="#"><img src="<c:url value="/resources/img_mypage/sell.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>재능 판매 내역</b></a>
+                    <a class="myA" href="#"><b>재능 판매 내역</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -126,8 +126,8 @@
                 <div class="col-8">
                     <a href="cashrecord.do?usNo=${userDto.usNo }"><img src="<c:url value="/resources/img_mypage/chargehistory.png"/>"></a>
                  </div>
-                 <div class="col-8">
-                    <a href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01"><b>충전 내역확인</b></a>
+                 <div  class="col-8">
+                    <a class="myA" href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01"><b>충전 내역확인</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -146,7 +146,7 @@
                     <a href="#"><img src="<c:url value="/resources/img_mypage/point.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>포인트 출금</b></a>
+                    <a class="myA" href="#"><b>포인트 출금</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -160,7 +160,7 @@
                     <a href="#"><img src="<c:url value="/resources/img_mypage/pointhistory.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a href="#"><b>포인트 출금 내역</b></a>
+                    <a class="myA" href="#"><b>포인트 출금 내역</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -173,8 +173,8 @@
                  <div class="col-8">
                     <a href="#"><img src="<c:url value="/resources/img_mypage/closeAccount.png"/>"></a>
                  </div>
-                 <div class="col-8">
-                    <a href="#"><b>회원 탈퇴</b></a>
+                 <div  class="col-8">
+                    <a class="myA" href="#"><b>회원 탈퇴</b></a>
                  </div>
                 
                  <div class="col-8">

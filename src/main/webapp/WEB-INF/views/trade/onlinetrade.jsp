@@ -93,7 +93,7 @@ var user = "<%=session.getAttribute("user")%>";
                         </tr>
                         <tr>
                             <td class="nameClass">가격</td>
-                            <td>${dto.prPrice }</td>
+                            <td>${dto.prPrice } Point</td>
                         </tr>
                         <tr>
                             <td class="nameClass">결제 후 포인트</td>

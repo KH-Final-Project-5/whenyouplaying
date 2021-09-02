@@ -295,9 +295,7 @@
     margin-bottom: 5px;
 }
 
-#perchase-button {
-    margin-left: 203px;
-}
+
 
 #array-button {
     height: 27px;
@@ -453,3 +451,13 @@ a:visited {
 .trade-th {
     background-color: #d6d8db;
 }
+
+.myA{
+	color: black;
+}
+
+.myA:hover {
+	color: black;
+	text-decoration: none;
+}
+
