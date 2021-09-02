@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,20 +18,21 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <!-- css -->
     
      <!--css 가져오는 방법-->
 	<link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
+	
 </head>
 <body>
-	 <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
 
-    <div class="container">
-          
-    
 
-    <div class="container">
+
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+    </header>
+
+    <div class="container" style="margin-top: 60px;">
         <div class="row">
             <div class="col-3">
                 <div id="sideBarImgArea">
@@ -38,7 +42,7 @@
                              alt="사진">
                     </div>
                     <div id="userName">
-                        ADMIN
+                        USER
                     </div>
                 </div>
                 <hr>
@@ -47,46 +51,32 @@
 
                 <div id="menuList">
                     <br>
-                    <span class="menuText"><a href="#">공지 사항</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 기부 승인</a></span><br><br>
-                    <span class="menuText"><a href="#">신고 내역 확인</a></span><br><br>
-                    <span class="menuText"><a href="#">회원 목록 확인</a></span><br><br>
-                    <span class="menuText"><a href="#">기부 캐쉬 출금</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">회원정보</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">공지사항</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">찜 내역</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#"><u><b>재능 구매내역</b></u></a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">재능 판매내역</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">충전 내역확인</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">계좌 관리</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">포인트 출금</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">포인트 출금내역</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">회원 탈퇴</a></span><br><br>
                 </div>
             </div>
             <div class="col-9">
-                <h2><img src="../image/UserImg.PNG">00님의 재능 구매 내역 확인</h2> <hr>
-                <div class="row">
-                    <!--정렬기능1-->
-                    <div class="col-2 search-select2">
-                        <select>
-                            <option onclick="#">프로젝트명</option>
-                            <option onclick="#">판매자</option>
-                        </select>
-                    </div>
+                <h2 style="text-align: center;">재능 구매 내역</h2> <hr>
+                	<form action="">
+	                    <div style="float: right;">
+	                        <select >
+	                            <option>전체</option>
+	                            <option>거래완료</option>
+	                            <option>진행중</option>
+	                        </select>
+	                        <button class="btn btn-outline-primary btn-sm" id="array-button">정렬하기</button>
+	                    </div>
+					</form>
 
-                    <!--검색 기능-->
-                     <div class="col-7">           
-                        <form action="#" method="#">
-                            <img src="../image/search.png" class="search-img"> <input type="text" placeholder="검색어를 입력해 주세요." class="search-bar">
-                            <input type="submit" value="검색하기" class="btn btn-outline-primary btn-sm" id="search-button">
-                        </form>
-                    </div>
-                            
-                       
-                    
-
-                    <!--정렬기능2-->
-                    <div class="col-3 search-select2">
-                        <select>
-                            <option>완료</option>
-                            <option>진행중</option>
-                        </select>
-                        <button class="btn btn-outline-primary btn-sm" id="array-button">정렬하기</button>
-                    </div>
-                </div>
-
-                    <div class="buy-table-div">
+                    <div class="buy-table-div" style="margin-top: 70px;">
                         <table border="1" class="buy-table">
                             <colgroup>
                                 <col width="9%">
@@ -94,15 +84,14 @@
                                 <col width="16%">
                                 <col width="10%">
                                 <col width="15%">
-                                
                             </colgroup>
                             
 
-                            <tr>
-                                <th>NO</th>
-                                <th>프로젝트명</th>
-                                <th>진행 상태</th>
-                                <th>판매자</th>
+                            <tr class="tr_bottom_line">
+                                <th class="th_right_line">NO</th>
+                                <th class="th_right_line">프로젝트명</th>
+                                <th class="th_right_line">진행 상태</th>
+                                <th class="th_right_line">판매자</th>
                                 <th>판매등록일</th>
                                 
                             </tr>
@@ -126,15 +115,14 @@
             </div>
         </div>
         
-    </div>
 
-    <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
-
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+    </footer>
       
       
 
-
+</div>
 	
 </body>
 </html>

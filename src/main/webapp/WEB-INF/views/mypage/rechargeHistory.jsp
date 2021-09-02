@@ -108,12 +108,9 @@
                     
                 </form>
                 <br>
-                    
-                
 
                 <div class="tableDiv">
                     <table border="1" align="center" class="table">
-                            
                         <colgroup>
                             <col width="130" />
                             <col width="110" />

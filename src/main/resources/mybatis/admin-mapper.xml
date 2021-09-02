@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+    <select id="SelectUserAll" parameterType="criteria" resultType="userDto">
+        SELECT *
+        FROM (SELECT b.*, row_number() over (order by USNO) as rnum
+              FROM W_USER b
+              WHERE USROLE = 'user'
+             ) a
+        WHERE a.rnum between #{rowStart} and #{rowEnd}
+        order by USNO
+    </select>
+
+    <select id="SelectUserCount" resultType="int">
+        SELECT COUNT(USNO)
+        FROM W_USER
+        WHERE USROLE = 'user'
+    </select>
+
+    <update id="UserStop" parameterType="int">
+        UPDATE W_USER
+        SET USSTATUS = 'N'
+        WHERE USNO = #{usNo}
+    </update>
+
+    <update id="UserStopCancel" parameterType="int">
+        UPDATE W_USER
+        SET USSTATUS = 'Y'
+        WHERE USNO = #{usNo}
+    </update>
+
+    <select id="SelectUser" parameterType="userDto" resultType="userDto">
+        SELECT *
+        FROM W_USER
+        WHERE USID LIKE '%' || #{usId} || '%'
+    </select>
+</mapper>
