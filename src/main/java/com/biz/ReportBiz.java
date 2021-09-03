@@ -12,4 +12,17 @@ public interface ReportBiz {
     public List<ReportDto> ReportListPaing(Criteria criteria);
 
     public int ReportListCount(Criteria criteria);
+
+    public List<ReportDto> ReportListUser(Criteria criteria);
+
+    public ReportDto ReportCheck(ReportDto reportDto);
+
+    public ReportDto ReportCheckUser(ReportDto reportDto);
+
+    public int ReportComplete(int prNo, int decNo);
+
+    public int ReportNega(int decNo);
+
+
+
 }

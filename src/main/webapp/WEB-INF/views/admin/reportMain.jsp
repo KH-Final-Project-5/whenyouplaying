@@ -79,7 +79,21 @@
 
             }
 
+            $('.reason').each(function () {
+                if ($(this).text().trim() == "기타") {
+                    $(this).css('cursor', 'pointer');
+                }
+            });
+
+
         });
+        function openreason(no){
+            var decNo = $(no).attr('id');
+            // console.log();
+            if ($(no).text().trim() == "기타") {
+                var popup = window.open('reportCheck.do?decNo=' + decNo, '신고확인', 'width=720px,height=950px,scrollbars=no');
+            }
+        }
     </script>
 
 
@@ -159,16 +173,16 @@
                                 </tr>
                             </c:when>
                             <c:otherwise>
-                                <c:forEach items="${decList}" var="decList">
+                                <c:forEach items="${decList}" var="decList" varStatus="status">
                                     <tr class="decListTr">
                                         <td height="50">${decList.decNo}</td>
                                         <td class="tdTitle"><a class="menuText"
-                                               href="abilitydetail.do?abNo=${abList.abNo}">${decList.prTitle}</a></td>
+                                               href="reportDetail.do?prNo=${decList.prNo}&decNo=${decList.decNo}">${decList.prTitle}</a></td>
                                         <td onclick="suspend()" class="suspend">${decList.usId}</td>
-                                        <td>신고자</td>
+                                        <td>${userList[status.index].usId}</td>
                                         <td id="decStatus">${decList.decStatus}</td>
                                         <td><fmt:formatDate value="${decList.decDate}" pattern="yyyy.MM.dd"/></td>
-                                        <td>
+                                        <td class="reason" id="${decList.decNo}" onclick="openreason(this)">
                                             ${decList.decReason}
                                         </td>
                                     </tr>
