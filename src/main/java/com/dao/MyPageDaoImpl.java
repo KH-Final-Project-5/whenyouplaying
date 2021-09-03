@@ -77,6 +77,21 @@ public class MyPageDaoImpl implements MyPageDao {
 		return res;
 	}
 
+	@Override
+	public List<FinishDealDto> selectOneList(FinishDealDto dto) {
+		List<FinishDealDto> res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectList(NAMESPACE+"onePurHistory", dto);
+		} catch (Exception e) {
+			System.out.println("내용물 확인: " + dto.getUsBuyNo() + " : " + dto.getFinStatus());
+			System.out.println("[error] : MyPageDao, 재능구매내역 전체불러오기 에러");
+			e.printStackTrace();
+		}
+	
+		return res;
+	}
+
 
 	
 	

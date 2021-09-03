@@ -65,14 +65,15 @@
             </div>
             <div class="col-9">
                 <h2 style="text-align: center;">재능 구매 내역</h2> <hr>
-                	<form action="">
+                	<form action="buylist.do" method="get">
+                		<input type="hidden" name="usNo" value="${user.usNo }" >
 	                    <div style="float: right;">
-	                        <select >
-	                            <option>전체</option>
-	                            <option>거래완료</option>
-	                            <option>진행중</option>
+	                        <select name="finStatus" >
+	                            <option value="거래취소">전체</option>
+	                            <option value="거래완료">거래완료</option>
+	                            <option value="진행중">진행중</option>
 	                        </select>
-	                        <button class="btn btn-outline-primary btn-sm" id="array-button">정렬하기</button>
+	                        <button type="submit" class="btn btn-outline-primary btn-sm" id="array-button">정렬하기</button>
 	                    </div>
 					</form>
 
@@ -88,11 +89,11 @@
                             
 
                             <tr class="tr_bottom_line">
-                                <th class="th_right_line">NO</th>
+                                <th class="th_right_line">거래번호</th>
                                 <th class="th_right_line">프로젝트명</th>
-                                <th class="th_right_line">진행 상태</th>
+                                <th class="th_right_line">거래 상태</th>
                                 <th class="th_right_line">판매자</th>
-                                <th>판매등록일</th>
+                                <th>거래날짜</th>
                                 
                             </tr>
 
@@ -104,29 +105,17 @@
 								</c:when>
 								<c:otherwise>
 									<c:forEach items="${AllList}" var="dto">
-										<tr>
-											<td>${dto.finNo }</td>
-											<td>${dto. }</td>
-											<td>${dto.finStatus }</td>
-											<td>${dto. }</td>
+										<tr class="tr_bottom_line">
+											<td class="th_right_line">${dto.prNo }</td>
+											<td class="th_right_line">${dto.prTitle}</td>
+											<td class="th_right_line">${dto.finStatus }</td>
+											<td class="th_right_line">${dto.usName }</td>
 											<td>${dto.finDate }</td>
 										</tr>
 									</c:forEach>								
 								</c:otherwise>
 							</c:choose>
-
-
-                            
-                        
-                            <tr>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
-                                
-                            </tr>
-
+  
                         </table>
                        
                     </div>

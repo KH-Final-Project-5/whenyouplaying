@@ -31,10 +31,25 @@
 
 	
 	<select id="allPurHistory" parameterType="finishDealDto" resultType="finishDealDto">
-		SELECT * FROM W_FINISHDEAL
-		WHERE USBUYNO = #{usBuyNo}
+		SELECT FINNO, PRTITLE, FINSTATUS, USNAME, FINDATE, PRNO
+		FROM W_FINISHDEAL a
+		JOIN W_DEALSTATUS b USING(DEALNO)
+		JOIN W_PROJECT c ON(a.PRNO = c.PRNO)
+		JOIN W_USER d ON(c.USNO = d.USNO)
+		WHERE a.USBUYNO = #{usBuyNo}
 		AND NOT(FINSTATUS = #{finStatus})
 	</select>
+
+	<select id="onePurHistory" parameterType="finishDealDto" resultType="finishDealDto">
+		SELECT FINNO, PRTITLE, FINSTATUS, USNAME, FINDATE, PRNO
+		FROM W_FINISHDEAL a
+		JOIN W_DEALSTATUS b USING(DEALNO)
+		JOIN W_PROJECT c ON(a.PRNO = c.PRNO)
+		JOIN W_USER d ON(c.USNO = d.USNO)
+		WHERE a.USBUYNO = #{usBuyNo}
+		AND FINSTATUS = #{finStatus}
+	</select>
+
 
 
 </mapper>

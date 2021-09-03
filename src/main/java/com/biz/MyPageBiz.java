@@ -13,5 +13,5 @@ public interface MyPageBiz {
 	public List<ChargeHistoryDto> chargeList(Criteria cri);
 	public int chargeListCount(Criteria cri) ;
 	public List<FinishDealDto> selectAllList(FinishDealDto dto);
-
+	public List<FinishDealDto> selectOneList(FinishDealDto dto);
 }
