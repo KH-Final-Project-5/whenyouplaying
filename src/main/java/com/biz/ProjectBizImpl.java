@@ -9,6 +9,7 @@ import com.commons.Criteria;
 import com.dao.ProjectDao;
 import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
+import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 @Service
@@ -114,23 +115,23 @@ public class ProjectBizImpl implements ProjectBiz{
 
 
 	@Override
-	public int insertReivew(ProjectDto dto) {
+	public int insertReivew(ReviewDto dto) {
 		// TODO Auto-generated method stub
 		return dao.insertReview(dto);
 	}
 
 
 	@Override
-	public List<ProjectDto> reviewSelect(int prNo) {
+	public List<ReviewDto> reviewSelect(int prNo) {
 		// TODO Auto-generated method stub
 		return dao.reviewSelect(prNo);
 	}
 
 
 	@Override
-	public FinishDealDto selectReview(String finStatus) {
+	public List<FinishDealDto> selectReview(FinishDealDto dto) {
 		// TODO Auto-generated method stub
-		return dao.selectReview(finStatus);
+		return dao.selectReview(dto);
 	}
 
 	

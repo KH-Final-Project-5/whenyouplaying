@@ -19,8 +19,8 @@ public class FinishDealDto extends DealStatusDto {
 	private Date finDate;
 	
 	
-	private int prNo;
-	private int usNo;
+	
+	
 	
 	
 }

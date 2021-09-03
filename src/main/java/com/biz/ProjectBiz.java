@@ -5,6 +5,7 @@ import java.util.List;
 import com.commons.Criteria;
 import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
+import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 public interface ProjectBiz {
@@ -15,7 +16,7 @@ public interface ProjectBiz {
     
     public ProjectDto selectDetail(int prNo);
     
-    public FinishDealDto selectReview(String finStatus);
+    public List<FinishDealDto> selectReview(FinishDealDto dto);
     
     public int insertProject(ProjectDto dto);
 
@@ -29,8 +30,8 @@ public interface ProjectBiz {
     
     public List<ProjectDto> search(ProjectDto dto);
     
-    public int insertReivew(ProjectDto dto);
+    public int insertReivew(ReviewDto dto);
     
     
-    public List<ProjectDto> reviewSelect(int prNo);
+    public List<ReviewDto> reviewSelect(int prNo);
 }

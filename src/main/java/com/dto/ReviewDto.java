@@ -12,9 +12,15 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReviewDto {
+public class ReviewDto extends ProjectDto{
     private int rvNo;
     private String rvContent;
     private Date rvDate;
     private double rvGrade;
+    
+    
+    private int prNo;
+    private int usBuyNo;
+    private int usSellNo;
+    private double rating;
 }

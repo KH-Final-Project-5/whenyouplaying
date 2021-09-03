@@ -31,10 +31,10 @@
 	 -->
 	
 	
-	<select id="reviewSelect" parameterType="int" resultType="ProjectDto">
+	<select id="reviewSelect" parameterType="int" resultType="reviewDto">
 		SELECT  PRNO,RVCONTENT,RVDATE,RVGRADE,USNAME
-		FROM W_REVIEW 
-		JOIN W_USER  USING(USNO)
+		FROM W_REVIEW a
+		JOIN W_USER b ON b.USNO = a.USWRITER
 		WHERE PRNO=#{prNo}
 	</select>
 	
@@ -57,16 +57,16 @@
    
     
     
-    <insert id="insertReview" parameterType="ProjectDto">
+    <insert id="insertReview" parameterType="reviewDto">
     INSERT INTO W_REVIEW
-	VALUES (RVSEQ.NEXTVAL,#{prNo},#{usNo},#{usWriterNo},#{reviewContent},SYSDATE,#{rating})
+	VALUES (RVSEQ.NEXTVAL,#{prNo},#{usSellNo},#{usBuyNo},#{rvContent},SYSDATE,#{rating})
     </insert>
 
 
- 	<select id="selectReview" parameterType="String" resultType="FinishDealDto">
+ 	<select id="selectReview" parameterType="FinishDealDto" resultType="finishDealDto">
     	SELECT *
 		FROM W_FINISHDEAL
-		WHERE PRNO=#{prNo} AND USBUYNO=#{usNo} AND FINSTATUS='거래완료'
+		WHERE PRNO=#{prNo} AND USBUYNO=#{usBuyNo} AND FINSTATUS='거래완료'
     </select>
 
     <update id="update" parameterType="ProjectDto">

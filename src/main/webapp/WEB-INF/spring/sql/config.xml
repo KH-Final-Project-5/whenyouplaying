@@ -12,6 +12,7 @@
         <typeAlias type="com.commons.Criteria" alias="criteria"/>
         <typeAlias type="com.dto.ReportDto" alias="reportDto"/>
         <typeAlias type="com.dto.FinishDealDto" alias="finishDealDto"/>
+        <typeAlias type="com.dto.ReviewDto" alias="reviewDto"/>
     </typeAliases>
 
     <mappers>

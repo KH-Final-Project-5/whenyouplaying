@@ -1,11 +1,11 @@
 package com.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.commons.Criteria;
 import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
+import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 public interface ProjectDao {
@@ -19,7 +19,7 @@ public interface ProjectDao {
 
     public ProjectDto selectDetail(int prNo);
 
-    public FinishDealDto selectReview(String finStauts);	
+    public List<FinishDealDto> selectReview(FinishDealDto dto);	
     
     public int insertProject(ProjectDto dto);
 
@@ -33,7 +33,8 @@ public interface ProjectDao {
 
     public List<ProjectDto> search(ProjectDto dto);
     
-    public int insertReview(ProjectDto dto);
+    public int insertReview(ReviewDto dto);
     
-    public List<ProjectDto> reviewSelect(int prNo);
+    public List<ReviewDto> reviewSelect(int prNo);
+    
     }

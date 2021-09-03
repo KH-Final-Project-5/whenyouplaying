@@ -348,8 +348,9 @@
                 <form action="review.do">
 
                 	<input type="hidden" name="prNo" value="${detail_dto.prNo }">
-                	<input type="hidden" name="usNo" value="${detail_dto.usNo }">
-                	<input type="hidden" name="usWriterNo" value="${user.usNo }">
+                	<input type="hidden" name="usSellNo" value="${detail_dto.usNo }">
+                	<input type="hidden" name="usBuyNo" value="${user.usNo }">
+                	
                 	<input type="hidden" name="finStatus" value="거래완료">
 
                     <div class="star-rating space-x-4 mx-auto">
@@ -364,7 +365,7 @@
                         <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
                         <label for="1-star" class="star">★</label>
                     </div>
-                    <textarea style="width: 510px; height: 200px; margin-left: 68px;" name="reviewContent"
+                    <textarea style="width: 510px; height: 200px; margin-left: 68px;" name="rvContent"
                               class="text-area"></textarea>
                     <input type="submit" class="btn btn-outline-primary btn-sm" value="등록하기" id="review-submit">
                     <button onclick="" class="btn btn-outline-primary btn-sm">수정</button>
@@ -405,36 +406,9 @@
         </c:choose>
         
             
-=======
-
-            <c:choose>
-                <c:when test="${empty review }">
-                    <h1>-------------등록된 리뷰가 없습니다-----------</h1>
-                </c:when>
-
-                <c:otherwise>
-                    <c:forEach items="${review }" var="review">
-                        <div class="col-3">
-                            <b class="review-user">${review.usName }</b>
-                        </div>
-
-                        <div class="col-9 review-col">
-                            <div class="review">
-                                [구매 후기]<br>
-                                후기 작성일 :<p>${review.rvDate }</p> <br>
-                                평점 : <p>${review.rvGrade }점</p> [5점만점]
-                                -----------------------------------<br>
-                                <p>${review.rvContent }</p><br>
-                            </div>
-                        </div>
 
 
-                    </c:forEach>
-                </c:otherwise>
-            </c:choose>
-
-
->>>>>>> 90affd8c43a01606055d482bb276f32b070c0922
+          
         </div>
         <br>
 

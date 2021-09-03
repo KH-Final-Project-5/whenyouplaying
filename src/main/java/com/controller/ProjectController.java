@@ -2,6 +2,8 @@ package com.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.biz.ProjectBiz;
@@ -22,6 +23,7 @@ import com.commons.PageMaker;
 import com.commons.ScriptUtils;
 import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
+import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 @Controller
@@ -105,13 +107,22 @@ public class ProjectController {
 
     }
     @RequestMapping("review.do")
-    public void Review(ProjectDto dto,HttpServletResponse response,String finStatus) throws IOException {
+    public void Review(ProjectDto dto,ReviewDto dto3,HttpServletResponse response,FinishDealDto dto2) throws IOException {
     	
-    	FinishDealDto finDto = biz.selectReview(finStatus);
     	
+    	
+    	List<FinishDealDto> finDto = new ArrayList<>();
+    	
+    	System.out.println(dto3.getUsNo());
+    	System.out.println(dto3.getUsNo());
+    	System.out.println(dto3.getUsWriter());
+    	System.out.println(dto3.getRvContent());
+    	System.out.println(dto3.getRating());
+    	finDto = biz.selectReview(dto2);
+    	System.out.println(finDto);
     	if(finDto!=null) {
     		int res= 0;
-    		res = biz.insertReivew(dto);
+    		res = biz.insertReivew(dto3);
     		
     		if(res>0) {
     			ScriptUtils.alertAndMovePage(response, "작성완료", "Detail.do?prNo="+dto.getPrNo());
@@ -125,11 +136,6 @@ public class ProjectController {
     	
     	
     	
-    	/*if(res>0) {
-    		return "redirect:Detail.do?prNo="+dto.getPrNo();
-    	}else {
-    		return "redirect:Detail.do?prNo="+dto.getPrNo();
-    	}*/
     	
     	
     	

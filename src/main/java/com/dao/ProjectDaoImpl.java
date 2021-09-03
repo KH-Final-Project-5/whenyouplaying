@@ -1,7 +1,6 @@
 package com.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.commons.Criteria;
 import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
+import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 @Repository
@@ -79,7 +79,7 @@ public class ProjectDaoImpl implements ProjectDao {
     }
     
     @Override
-	public int insertReview(ProjectDto dto) {
+	public int insertReview(ReviewDto dto) {
 		int res = 0;
 		
 		try {
@@ -163,8 +163,8 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
-	public List<ProjectDto> reviewSelect(int prNo) {
-		List<ProjectDto> list = new ArrayList<>();
+	public List<ReviewDto> reviewSelect(int prNo) {
+		List<ReviewDto> list = new ArrayList<>();
 		
 		
 		try {
@@ -178,18 +178,18 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
-	public FinishDealDto selectReview(String finStatus) {
+	public List<FinishDealDto> selectReview(FinishDealDto dto) {
 		
-		FinishDealDto dto = null;
+		List<FinishDealDto> list = new ArrayList<FinishDealDto>();
 		
 		try {
-			dto = sqlSession.selectOne(NAMESPACE + "selectReview",finStatus);
+			list = sqlSession.selectList(NAMESPACE + "selectReview",dto);
 			System.out.println(dto);
 		} catch (Exception e) {
 			System.out.println("리뷰를 찾지 못했습니다");
 			e.printStackTrace();
 		}
-		return dto;
+		return list;
 	}
 
 	
