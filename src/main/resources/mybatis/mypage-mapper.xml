@@ -29,5 +29,12 @@
 		AND CHDATE BETWEEN TO_DATE(#{startDate}) AND TO_DATE(#{endDate}) + INTERVAL '1' DAY
 	</select>
 
+	
+	<select id="allPurHistory" parameterType="finishDealDto" resultType="finishDealDto">
+		SELECT * FROM W_FINISHDEAL
+		WHERE USBUYNO = #{usBuyNo}
+		AND NOT(FINSTATUS = #{finStatus})
+	</select>
+
 
 </mapper>
