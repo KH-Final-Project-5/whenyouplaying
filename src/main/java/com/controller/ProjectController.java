@@ -87,6 +87,9 @@ public class ProjectController {
         model.addAttribute("review",biz.reviewSelect(prNo));
         
         return "projectBoard/talentBoardDetail";
+        
+        
+        
     }
 
 
@@ -99,16 +102,20 @@ public class ProjectController {
 
     }
     @RequestMapping("review.do")
-    public String Review(ProjectDto dto) throws IOException {
+    public void Review(ProjectDto dto,HttpServletResponse response,@RequestParam String finSatus) throws IOException {
+    	
+    	
+    	
+    	
     	int res= 0;
     	
     	res = biz.insertReivew(dto);
     	
-    	if(res>0) {
+    	/*if(res>0) {
     		return "redirect:Detail.do?prNo="+dto.getPrNo();
     	}else {
     		return "redirect:Detail.do?prNo="+dto.getPrNo();
-    	}
+    	}*/
     	 
     }
 

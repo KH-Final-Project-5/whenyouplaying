@@ -315,6 +315,7 @@
                 	<input type="hidden" name="prNo" value="${detail_dto.prNo }">
                 	<input type="hidden" name="usNo" value="${detail_dto.usNo }">
                 	<input type="hidden" name="usWriterNo" value="${user.usNo }">
+                	<input type="hidden" name="finStatus" value="거래완료">
                     <div class="star-rating space-x-4 mx-auto">
                         <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
                         <label for="5-stars" class="star pr-4">★</label>
@@ -351,8 +352,8 @@
             		<div class="col-9 review-col">
                 		<div class="review">
 	                    	[구매 후기]<br>
-	                    	후기 작성일 :<p>${review.rvDate }</p> <br>
-                    		평점 : <p>${review.rvGrade }점</p> [5점만점]
+	                    	후기 작성일 :${review.rvDate } <br>
+                    		평점 : ${review.rvGrade }점 [5점만점]<br>
               				-----------------------------------<br>
                     		<p>${review.rvContent }</p><br>
                 		</div>
