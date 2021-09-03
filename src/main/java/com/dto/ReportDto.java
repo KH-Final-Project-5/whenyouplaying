@@ -12,9 +12,11 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReportDto {
+public class ReportDto extends ProjectDto{
     private int decNo;
+    private int usWriteNum;
+    private String deContent;
+    private String decStatus;
     private String decReason;
-    private String decContent;
     private Date decDate;
 }
