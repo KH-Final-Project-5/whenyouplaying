@@ -29,6 +29,7 @@ public class ProjectDto extends UserDto{
 	private String prLatitude;
 	private String prLongitude;
 	private String prAddress;
+	private String prDelStatus;
 	
 	
 	private String usName;
