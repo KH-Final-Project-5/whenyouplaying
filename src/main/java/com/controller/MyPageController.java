@@ -90,7 +90,25 @@ public class MyPageController {
 		return "mypage/talentPurchase";
 	}
 	
-
+	
+	//재능판매내역
+	@RequestMapping("/selllist.do")
+	public String sellList(Model model, int usNo, String finStatus) {
+		
+		logger.info("selllist.do : 재능판매내역 페이지");
+		
+		FinishDealDto dto = new FinishDealDto();
+		dto.setUsSellNo(usNo);
+		dto.setFinStatus(finStatus);
+		
+		if(finStatus.equals("거래취소")) {
+			model.addAttribute("AllList", biz.sellerAllList(dto));
+		}else {
+			model.addAttribute("AllList", biz.sellerOneList(dto));
+		}
+		
+		return "mypage/talentSales";
+	}
 	
 	
 	

@@ -80,21 +80,20 @@
                     <div class="buy-table-div" style="margin-top: 70px;">
                         <table border="1" class="buy-table">
                             <colgroup>
-                                <col width="9%">
-                                <col width="50%">
-                                <col width="16%">
-                                <col width="10%">
-                                <col width="15%">
+                                <col width="70px">
+                                <col width="440">
+                                <col width="90px">
+                                <col width="80px">
+                                <col width="100px">
+                                <col width="90px">
                             </colgroup>
                             
-
                             <tr class="tr_bottom_line">
                                 <th class="th_right_line">거래번호</th>
                                 <th class="th_right_line">프로젝트명</th>
                                 <th class="th_right_line">거래 상태</th>
                                 <th class="th_right_line">판매자</th>
                                 <th>거래날짜</th>
-                                
                             </tr>
 
 							<c:choose>
@@ -106,11 +105,13 @@
 								<c:otherwise>
 									<c:forEach items="${AllList}" var="dto">
 										<tr class="tr_bottom_line">
-											<td class="th_right_line">${dto.prNo }</td>
+											<td class="th_right_line">${dto.dealNo }</td>
 											<td class="th_right_line">${dto.prTitle}</td>
 											<td class="th_right_line">${dto.finStatus }</td>
-											<td class="th_right_line">${dto.usName }</td>
-											<td>${dto.finDate }</td>
+											<td class="th_right_line">${dto.usId }</td>
+											<td class="">${dto.finDate }</td>
+											<td><button class="btn btn-outline-success btn-sm rounded-pill" onclick="location.href=''">거래페이지</button></td>
+											<!-- 완주님 dealNo값이랑 같이 넘기실려면 ${dto.dealNo }값 넘기시면 됩니다! -->
 										</tr>
 									</c:forEach>								
 								</c:otherwise>

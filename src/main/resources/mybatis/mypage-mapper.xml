@@ -31,7 +31,7 @@
 
 	
 	<select id="allPurHistory" parameterType="finishDealDto" resultType="finishDealDto">
-		SELECT FINNO, PRTITLE, FINSTATUS, USNAME, FINDATE, PRNO
+		SELECT FINNO, PRTITLE, FINSTATUS, USID, FINDATE, DEALNO
 		FROM W_FINISHDEAL a
 		JOIN W_DEALSTATUS b USING(DEALNO)
 		JOIN W_PROJECT c ON(a.PRNO = c.PRNO)
@@ -41,7 +41,7 @@
 	</select>
 
 	<select id="onePurHistory" parameterType="finishDealDto" resultType="finishDealDto">
-		SELECT FINNO, PRTITLE, FINSTATUS, USNAME, FINDATE, PRNO
+		SELECT FINNO, PRTITLE, FINSTATUS, USID, FINDATE, DEALNO
 		FROM W_FINISHDEAL a
 		JOIN W_DEALSTATUS b USING(DEALNO)
 		JOIN W_PROJECT c ON(a.PRNO = c.PRNO)
@@ -50,6 +50,25 @@
 		AND FINSTATUS = #{finStatus}
 	</select>
 
+	<select id="allSelHistory" parameterType="finishDealDto" resultType="finishDealDto">
+		SELECT FINNO, PRTITLE, FINSTATUS, USID, FINDATE, DEALNO
+		FROM W_FINISHDEAL a
+		JOIN W_DEALSTATUS b USING(DEALNO)
+		JOIN W_PROJECT c ON(a.PRNO = c.PRNO)
+		JOIN W_USER d ON(b.USBUYNO = d.USNO)
+		WHERE a.USSELLNO = #{usSellNo}
+		AND NOT(FINSTATUS = #{finStatus})
+	</select>
+
+	<select id="oneSelHistory" parameterType="finishDealDto" resultType="finishDealDto">
+		SELECT FINNO, PRTITLE, FINSTATUS, USID, FINDATE, DEALNO
+		FROM W_FINISHDEAL a
+		JOIN W_DEALSTATUS b USING(DEALNO)
+		JOIN W_PROJECT c ON(a.PRNO = c.PRNO)
+		JOIN W_USER d ON(b.USBUYNO = d.USNO)
+		WHERE a.USSELLNO = #{usSellNo}
+		AND FINSTATUS = #{finStatus}
+	</select>
 
 
 </mapper>
