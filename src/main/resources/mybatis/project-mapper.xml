@@ -50,7 +50,7 @@
     <insert id="insert" parameterType="ProjectDto">
         INSERT INTO W_PROJECT
         VALUES (PROJECTSEQ.NEXTVAL, #{usNo}, #{prTitle}, #{prContent}, #{prPrice}, SYSDATE, #{prTalent}, #{prDeal},
-                #{prYoutube}, #{prImage}, SYSDATE, '1', 'test위도', 'test경도', '주소')
+                #{prYoutube}, #{prImage}, SYSDATE, '대기중', 'test위도', 'test경도', '주소')
 
     </insert>
     
