@@ -139,7 +139,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="tradeAddrTd tradeContent">
-                                김완주
+                                ${Deal.usName}
                             </td>
                         </tr>
                         <tr>
@@ -147,7 +147,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="tradeAddrTd tradeContent">
-                                010-2134-5678
+                                ${Deal.usPhone}
                             </td>
                         </tr>
                         <tr>
@@ -157,7 +157,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="tradeAddrTd tradeContent">
-                                5,000 Point
+                                ${Deal.prPrice}
                             </td>
                         </tr>
                     </table>

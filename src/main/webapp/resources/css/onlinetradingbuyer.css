@@ -134,3 +134,8 @@ body{
     height: 2px;
     background: #ccc;
 }
+
+.figure {
+    width: 250px;
+    margin-left: 30px;
+}
