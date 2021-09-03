@@ -3,7 +3,6 @@ package com.controller;
 import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.biz.ProjectBiz;
@@ -20,6 +20,7 @@ import com.commons.Criteria;
 import com.commons.FtpClient;
 import com.commons.PageMaker;
 import com.commons.ScriptUtils;
+import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
 import com.dto.UserDto;
 
@@ -84,6 +85,8 @@ public class ProjectController {
         logger.info("Detail");
         model.addAttribute("detail_dto", biz.selectDetail(prNo));
         
+        
+        //리뷰 뿌려주기
         model.addAttribute("review",biz.reviewSelect(prNo));
         
         return "projectBoard/talentBoardDetail";
@@ -102,20 +105,34 @@ public class ProjectController {
 
     }
     @RequestMapping("review.do")
-    public void Review(ProjectDto dto,HttpServletResponse response,@RequestParam String finSatus) throws IOException {
+    public void Review(ProjectDto dto,HttpServletResponse response,String finStatus) throws IOException {
+    	
+    	FinishDealDto finDto = biz.selectReview(finStatus);
+    	
+    	if(finDto!=null) {
+    		int res= 0;
+    		res = biz.insertReivew(dto);
+    		
+    		if(res>0) {
+    			ScriptUtils.alertAndMovePage(response, "작성완료", "Detail.do?prNo="+dto.getPrNo());
+    		}else {
+    			ScriptUtils.alertAndMovePage(response, "작성실패", "Detail.do?prNo="+dto.getPrNo());
+    		}
+    	}else {
+    		ScriptUtils.alertAndMovePage(response, "구매후 작성이 가능합니다.", "Detail.do?prNo="+dto.getPrNo());
+    	}
     	
     	
     	
-    	
-    	int res= 0;
-    	
-    	res = biz.insertReivew(dto);
     	
     	/*if(res>0) {
     		return "redirect:Detail.do?prNo="+dto.getPrNo();
     	}else {
     		return "redirect:Detail.do?prNo="+dto.getPrNo();
     	}*/
+    	
+    	
+    	
     	 
     }
 

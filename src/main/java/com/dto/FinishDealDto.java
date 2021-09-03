@@ -12,10 +12,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FinishDealDto extends DealStatusDto {
-
+	
+	
 	private int finNo;
 	private String finStatus;
 	private Date finDate;
+	
+	
+	private int prNo;
+	private int usNo;
 	
 	
 }

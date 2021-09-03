@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.commons.Criteria;
+import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
 import com.dto.UserDto;
 
@@ -174,6 +175,21 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public FinishDealDto selectReview(String finStatus) {
+		
+		FinishDealDto dto = null;
+		
+		try {
+			dto = sqlSession.selectOne(NAMESPACE + "selectReview",finStatus);
+			System.out.println(dto);
+		} catch (Exception e) {
+			System.out.println("리뷰를 찾지 못했습니다");
+			e.printStackTrace();
+		}
+		return dto;
 	}
 
 	

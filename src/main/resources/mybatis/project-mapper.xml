@@ -53,6 +53,8 @@
                 #{prYoutube}, #{prImage}, SYSDATE, '대기중', 'test위도', 'test경도', '주소')
 
     </insert>
+     
+   
     
     
     <insert id="insertReview" parameterType="ProjectDto">
@@ -60,6 +62,12 @@
 	VALUES (RVSEQ.NEXTVAL,#{prNo},#{usNo},#{usWriterNo},#{reviewContent},SYSDATE,#{rating})
     </insert>
 
+
+ 	<select id="selectReview" parameterType="String" resultType="FinishDealDto">
+    	SELECT *
+		FROM W_FINISHDEAL
+		WHERE PRNO=#{prNo} AND USBUYNO=#{usNo} AND FINSTATUS='거래완료'
+    </select>
 
     <update id="update" parameterType="ProjectDto">
         UPDATE W_PROJECT

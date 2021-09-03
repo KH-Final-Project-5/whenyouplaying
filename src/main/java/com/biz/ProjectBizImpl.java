@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.commons.Criteria;
 import com.dao.ProjectDao;
+import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
 import com.dto.UserDto;
 
@@ -123,6 +124,13 @@ public class ProjectBizImpl implements ProjectBiz{
 	public List<ProjectDto> reviewSelect(int prNo) {
 		// TODO Auto-generated method stub
 		return dao.reviewSelect(prNo);
+	}
+
+
+	@Override
+	public FinishDealDto selectReview(String finStatus) {
+		// TODO Auto-generated method stub
+		return dao.selectReview(finStatus);
 	}
 
 	

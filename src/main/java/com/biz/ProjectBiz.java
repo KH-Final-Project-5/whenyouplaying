@@ -3,6 +3,7 @@ package com.biz;
 import java.util.List;
 
 import com.commons.Criteria;
+import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
 import com.dto.UserDto;
 
@@ -13,7 +14,9 @@ public interface ProjectBiz {
     public int listCount() throws Exception;
     
     public ProjectDto selectDetail(int prNo);
-
+    
+    public FinishDealDto selectReview(String finStatus);
+    
     public int insertProject(ProjectDto dto);
 
     public int updateProject(ProjectDto dto);
