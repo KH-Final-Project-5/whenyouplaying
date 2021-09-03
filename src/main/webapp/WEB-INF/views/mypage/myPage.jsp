@@ -30,7 +30,7 @@
     </header>
 
     <!-- grid영역, 컬럼은 12줄로 이루어져 있고 갯수 비율로 틀을 잡는다. -->
-    <div class="container" style="margin-top:60px; height: 30px; padding-bottom: 100px;">
+    <div class="container" style="margin-top:60px; height: 30px; padding-bottom: 100px; min-height: 0px;">
         <div class="row">
             <div class="col-12 userNav">
             <h2><img src="../image/UserImg.PNG">${userDto.usName }님의 mypage</h2> <hr>
