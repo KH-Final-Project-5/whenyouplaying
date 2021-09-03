@@ -95,6 +95,27 @@
                                 <th>판매등록일</th>
                                 
                             </tr>
+
+							<c:choose>
+								<c:when test="${empty AllList}">
+									<tr>
+										<td colspan="5" align="center"> -------- 기록이 없습니다 --------- </td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${AllList}" var="dto">
+										<tr>
+											<td>${dto.finNo }</td>
+											<td>${dto. }</td>
+											<td>${dto.finStatus }</td>
+											<td>${dto. }</td>
+											<td>${dto.finDate }</td>
+										</tr>
+									</c:forEach>								
+								</c:otherwise>
+							</c:choose>
+
+
                             
                         
                             <tr>

@@ -1,8 +1,6 @@
 package com.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.commons.Criteria;
 import com.dto.ChargeHistoryDto;
+import com.dto.FinishDealDto;
 import com.dto.UserDto;
 
 @Repository
@@ -60,6 +59,21 @@ public class MyPageDaoImpl implements MyPageDao {
 			e.printStackTrace();
 		}
 		
+		return res;
+	}
+
+	@Override
+	public List<FinishDealDto> selectAllList(FinishDealDto dto) {
+
+		List<FinishDealDto> res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectList(NAMESPACE+"allPurHistory", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : MyPageDao, 재능구매내역 전체불러오기 에러");
+			e.printStackTrace();
+		}
+	
 		return res;
 	}
 

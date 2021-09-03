@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.commons.Criteria;
 import com.dao.MyPageDao;
 import com.dto.ChargeHistoryDto;
+import com.dto.FinishDealDto;
 import com.dto.UserDto;
 
 @Service
@@ -29,6 +30,11 @@ public class MyPageBizImpl implements MyPageBiz {
 	@Override
 	public int chargeListCount(Criteria cri) {
 		return dao.chargeListCount(cri);
+	}
+
+	@Override
+	public List<FinishDealDto> selectAllList(FinishDealDto dto) {
+		return dao.selectAllList(dto);
 	}
 
 

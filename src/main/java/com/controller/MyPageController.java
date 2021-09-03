@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.biz.MyPageBiz;
 import com.commons.Criteria;
 import com.commons.PageMaker;
+import com.dto.FinishDealDto;
 
 @Controller
 public class MyPageController {
@@ -72,12 +73,15 @@ public class MyPageController {
 	
 	//재능구매내역
 	@RequestMapping("/buylist.do")
-	public String buyList(Model model, String usNo) {
+	public String buyList(Model model, int usNo, String finStatus) {
 		
+		logger.info("buylist.do : 재능구매내역 페이지");
 		
+		FinishDealDto dto = new FinishDealDto();
+		dto.setUsBuyNo(usNo);
+		dto.setFinStatus(finStatus);
 		
-		
-		
+		model.addAttribute("AllList", biz.selectAllList(dto));
 		
 		return "mypage/talentPurchase";
 	}
