@@ -116,13 +116,13 @@ body{
     cursor: pointer;
 }
 
-a{
+.menuText{
     color: black;
 }
-a:hover {
+.menuText:hover {
     color: black;
 }
 
-a:active {
+.menuText:active {
     color: black;
 }

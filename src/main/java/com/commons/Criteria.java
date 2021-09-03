@@ -10,6 +10,7 @@ public class Criteria {
     private String endDate;
 	private String change;
 	private String prTalent;
+
     
     public String getPrTalent() {
 		return prTalent;

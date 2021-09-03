@@ -63,7 +63,7 @@
                     <br>
                     <span class="menuText"><a href="noticeListAdmin.do"><u><b>공지 사항</b></u></a></span><br><br>
                     <span class="menuText"><a href="abilitymain.do">재능 기부 승인</a></span><br><br>
-                    <span class="menuText"><a href="reportMain.do">신고 내역 확인</a></span><br><br>
+                    <span class="menuText"><a href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
                     <span class="menuText"><a href="userManage.do">회원 목록 확인</a></span><br><br>
                     <span class="menuText"><a href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
                 </div>

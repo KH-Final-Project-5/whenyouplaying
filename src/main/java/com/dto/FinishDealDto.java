@@ -1,6 +1,6 @@
 package com.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +11,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DealStatusDto extends ProjectDto{
-	private int dealNo;
+public class FinishDealDto extends DealStatusDto {
+
+	private int finNo;
+	private String finStatus;
+	private Date finDate;
+	
+	
 }
