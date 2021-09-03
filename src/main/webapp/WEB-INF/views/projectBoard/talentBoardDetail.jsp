@@ -376,7 +376,7 @@
         <hr>
         <br>
         <div class="row">
-<<<<<<< HEAD
+
         
         <c:choose>
         	<c:when test="${empty review }">
