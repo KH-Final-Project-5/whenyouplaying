@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="report">
+
+    <insert id="ReportSend" parameterType="reportDto">
+        INSERT INTO W_REPORT
+        VALUES (ReportSEQ.NEXTVAL, #{usWriteNum}, #{prNo}, #{usNo}, '삭제 대기', #{decContent}, SYSDATE)
+    </insert>
+
+    <select id="ReportListPaging" parameterType="criteria" resultType="reportDto">
+        SELECT *
+        FROM (SELECT b.*, row_number() over (order by DECNO DESC) as rnum
+              FROM W_REPORT b
+              WHERE DECSTATUS LIKE '%' || #{change} || '%'
+             ) a
+                 JOIN W_USER ON W_USER.USNO = a.USWRITENUM
+                 JOIN W_PROJECT WP ON WP.PRNO = a.PRNO
+        WHERE a.rnum between #{rowStart} and #{rowEnd}
+        order by DECNO desc
+    </select>
+
+    <select id="ReportListCount" resultType="int">
+        SELECT COUNT(DECNO)
+        FROM W_REPORT
+        WHERE DECSTATUS LIKE '%' || #{change} || '%'
+    </select>
+
+</mapper>

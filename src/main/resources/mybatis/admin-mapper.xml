@@ -36,4 +36,5 @@
         FROM W_USER
         WHERE USID LIKE '%' || #{usId} || '%'
     </select>
+
 </mapper>
