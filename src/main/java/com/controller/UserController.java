@@ -4,12 +4,14 @@ package com.controller;
 import com.biz.UserBiz;
 import com.commons.ScriptUtils;
 import com.dto.AbilityDto;
+import com.dto.ReportDto;
 import com.dto.UserDto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,12 +72,12 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value="/idChk.do", method = RequestMethod.POST)
-    public int idChk(UserDto dto) throws Exception{
-    	int res = biz.idChk(dto);
-    	return res;
+    @RequestMapping(value = "/idChk.do", method = RequestMethod.POST)
+    public int idChk(UserDto dto) throws Exception {
+        int res = biz.idChk(dto);
+        return res;
     }
-    
+
     @RequestMapping("/login.do")
     public String login(HttpSession session, UserDto dto) {
 
@@ -192,5 +194,12 @@ public class UserController {
 
     }
 
+    @RequestMapping("/reportpopup.do")
+    public String ReportPopup(Model model, ReportDto dto) {
 
+        model.addAttribute("dto", dto);
+
+
+        return "user/reportPageForm";
+    }
 }
