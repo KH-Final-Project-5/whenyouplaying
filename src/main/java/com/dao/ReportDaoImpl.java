@@ -1,7 +1,6 @@
 package com.dao;
 
 import com.commons.Criteria;
-import com.dto.ProjectDto;
 import com.dto.ReportDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +36,35 @@ public class ReportDaoImpl implements ReportDao{
     public int ReportListCount(Criteria criteria) {
         return sqlSessionTemplate.selectOne(NAMESPACE + "ReportListCount", criteria);
     }
+
+    @Override
+    public List<ReportDto> ReportListUser(Criteria criteria) {
+        return sqlSessionTemplate.selectList(NAMESPACE+"ReportListUser", criteria);
+    }
+
+    @Override
+    public ReportDto ReportCheck(ReportDto reportDto) {
+        return sqlSessionTemplate.selectOne(NAMESPACE+"ReportCheck", reportDto);
+    }
+
+    @Override
+    public ReportDto ReportCheckUser(ReportDto reportDto) {
+        return sqlSessionTemplate.selectOne(NAMESPACE+"ReportCheckUser", reportDto);
+    }
+
+    @Override
+    public void ReportComplete(int prNo) {
+        sqlSessionTemplate.update(NAMESPACE + "ReportComplete", prNo);
+    }
+
+    @Override
+    public int ReportCompleteRE(int decNo) {
+        return sqlSessionTemplate.update(NAMESPACE+"ReportCompleteRe", decNo);
+    }
+
+    @Override
+    public int ReportNega(int decNo) {
+        return sqlSessionTemplate.update(NAMESPACE+"ReportNega", decNo);
+    }
+
 }
