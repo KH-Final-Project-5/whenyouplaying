@@ -13,6 +13,7 @@
         <typeAlias type="com.dto.ReportDto" alias="reportDto"/>
         <typeAlias type="com.dto.FinishDealDto" alias="finishDealDto"/>
         <typeAlias type="com.dto.ReviewDto" alias="reviewDto"/>
+        <typeAlias type="com.dto.DealStatusDto" alias="dealDto"/>
     </typeAliases>
 
     <mappers>
@@ -23,6 +24,7 @@
         <mapper resource="mybatis/mes-mapper.xml"/>
         <mapper resource="mybatis/admin-mapper.xml"/>
         <mapper resource="mybatis/report-mapper.xml"/>
+        <mapper resource="mybatis/deal-mapper.xml"/>
     </mappers>
 
 

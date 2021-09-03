@@ -95,7 +95,7 @@
             
             <div class="col-4">
                  <div class="col-8">
-                    <a href="buylist.do?usNo=${user.usNo }"><img src="<c:url value="/resources/img_mypage/buy.png"/>"></a>
+                    <a href="buylist.do?usNo=${user.usNo }&finStatus=거래취소""><img src="<c:url value="/resources/img_mypage/buy.png"/>"></a>
                  </div>
                  <div class="col-8">
                     <a class="myA" href="buylist.do?usNo=${user.usNo }&finStatus=거래취소"><b>재능 구매 내역</b></a>

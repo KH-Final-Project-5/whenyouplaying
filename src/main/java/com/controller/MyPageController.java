@@ -81,13 +81,16 @@ public class MyPageController {
 		dto.setUsBuyNo(usNo);
 		dto.setFinStatus(finStatus);
 		
-		model.addAttribute("AllList", biz.selectAllList(dto));
+		if(finStatus.equals("거래취소")) {
+			model.addAttribute("AllList", biz.selectAllList(dto));
+		}else {
+			model.addAttribute("AllList", biz.selectOneList(dto));
+		}
 		
 		return "mypage/talentPurchase";
 	}
 	
-	
-	
+
 	
 	
 	
