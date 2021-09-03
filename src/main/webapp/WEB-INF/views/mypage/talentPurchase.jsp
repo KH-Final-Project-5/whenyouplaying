@@ -22,6 +22,26 @@
      <!--css 가져오는 방법-->
 	<link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
 	
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		
+		$(function(){
+			
+			var finStatus = "${finStatus}";
+			
+			if(finStatus == '거래취소'){
+				$('#status').val('거래취소').prop("selected", ture);
+			}else if(finStatus == '거래완료'){
+				$('#status').val('거래완료').prop("selected", ture);
+			}else if(finStatus == '진행중'){
+				$('#status').val('진행중').prop("selected", ture);
+			}
+			
+		});		
+	
+	</script>
+	
 </head>
 <body>
 
@@ -68,7 +88,7 @@
                 	<form action="buylist.do" method="get">
                 		<input type="hidden" name="usNo" value="${user.usNo }" >
 	                    <div style="float: right;">
-	                        <select name="finStatus" >
+	                        <select id="status" name="finStatus" >
 	                            <option value="거래취소">전체</option>
 	                            <option value="거래완료">거래완료</option>
 	                            <option value="진행중">진행중</option>
@@ -109,7 +129,7 @@
 											<td class="th_right_line">${dto.prTitle}</td>
 											<td class="th_right_line">${dto.finStatus }</td>
 											<td class="th_right_line">${dto.usId }</td>
-											<td class="">${dto.finDate }</td>
+											<td>${dto.finDate }</td>
 											<td><button class="btn btn-outline-success btn-sm rounded-pill" onclick="location.href=''">거래페이지</button></td>
 											<!-- 완주님 dealNo값이랑 같이 넘기실려면 ${dto.dealNo }값 넘기시면 됩니다! -->
 										</tr>

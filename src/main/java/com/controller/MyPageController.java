@@ -81,6 +81,8 @@ public class MyPageController {
 		dto.setUsBuyNo(usNo);
 		dto.setFinStatus(finStatus);
 		
+		model.addAttribute("finStatus", finStatus);
+		
 		if(finStatus.equals("거래취소")) {
 			model.addAttribute("AllList", biz.selectAllList(dto));
 		}else {
@@ -100,6 +102,8 @@ public class MyPageController {
 		FinishDealDto dto = new FinishDealDto();
 		dto.setUsSellNo(usNo);
 		dto.setFinStatus(finStatus);
+		
+		model.addAttribute("finStatus", finStatus);
 		
 		if(finStatus.equals("거래취소")) {
 			model.addAttribute("AllList", biz.sellerAllList(dto));
