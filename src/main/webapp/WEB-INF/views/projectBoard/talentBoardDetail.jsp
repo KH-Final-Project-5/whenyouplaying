@@ -93,10 +93,7 @@
             } else if (projectUsNo == userNo) {
                 $("#reserChk").hide();
             }
-
-
         });
-
     </script>
 </head>
 
