@@ -98,7 +98,6 @@
 		FROM W_WITHDRAW
 		WHERE USNO = #{usNo}
 	</select>
->>>>>>> 014510091f420020a6f9694bccb2b4224986faa8
 
 
 </mapper>
