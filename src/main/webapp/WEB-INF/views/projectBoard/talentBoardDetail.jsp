@@ -379,8 +379,7 @@
                     <textarea style="width: 510px; height: 200px; margin-left: 68px;" name="rvContent"
                               class="text-area"></textarea>
                     <input type="submit" class="btn btn-outline-primary btn-sm" value="등록하기" id="review-submit">
-                    <button onclick="" class="btn btn-outline-primary btn-sm">수정</button>
-                    <button onclick="" class="btn btn-outline-primary btn-sm">삭제</button>
+                    
                 </form>
             </div>
         </div>
@@ -402,32 +401,28 @@
             		</div>
             
             		<div class="col-9 review-col">
-                		<div class="review">
-	                    	[구매 후기]<br>
-	                    	후기 작성일 :${review.rvDate } <br>
-                    		평점 : ${review.rvGrade }점 [5점만점]<br>
-              				-----------------------------------<br>
-                    		<p>${review.rvContent }</p><br>
+                		
+                		<form action="reviewUpdate.do">
+                		<input type="hidden" name="rvNo" value="${review.rvNo }">
+                		<input type="hidden" name="prNo" value="${review.prNo }">
+                		<div style="margin-left:70px;">
+                		[구매 후기]<br>
+                		
+                		후기작성일 :  <p>${review.rvDate }</p>
+                		평점	   : <p  style="margin-left:45px; margin-top:10px; margin-bottom:10px;">${review.rvGrade }</p>
                 		</div>
+                		<textarea rows="6" cols="60" style="margin-left:70px; margin-bottom:10px;" name="rvContent">${review.rvContent }</textarea>
+                		
+                		<input type="submit" class="btn btn-outline-primary btn-sm" style="margin-bottom:40px;" value="수정">
+                    	<button onclick="" class="btn btn-outline-primary btn-sm" style="margin-bottom:40px;">삭제</button>
+                		</form>
             		</div>
         		
         		
         		</c:forEach>
         	</c:otherwise>
         </c:choose>
-        <!-- <div class="col-3">
-                		<b class="review-user">${review.usName }</b>
-            		</div>
-            
-            		<div class="col-9 review-col">
-                		<div class="review">
-	                    	[구매 후기]<br>
-	                    	후기 작성일 :${review.rvDate } <br>
-                    		평점 : ${review.rvGrade }점 [5점만점]<br>
-              				-----------------------------------<br>
-                    		<p>${review.rvContent }</p><br>
-                		</div>
-            		</div>	 -->
+      
             
 
 

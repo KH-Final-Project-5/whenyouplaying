@@ -231,6 +231,22 @@ public class ProjectController {
         }
 
     }
+    
+    @RequestMapping("reviewUpdate.do")
+    public void UpdateReview(HttpServletResponse response, ReviewDto dto,ProjectDto dto2) throws IOException {
+    	
+    	int res;
+    	System.out.println(dto.getRvNo());
+    	res = biz.reviewUpdate(dto);
+    	
+    	if(res > 0) {
+    		ScriptUtils.alertAndMovePage(response,  "리뷰 수정 완료", "detail.do?prNo=" + dto2.getPrNo());
+    	}else {
+    		ScriptUtils.alertAndMovePage(response, "리뷰 수정 실패", "detail.do?prNo=" + dto2.getPrNo());
+    	}
+    
+    	
+    }
 
 
     @RequestMapping("ProjectDelete.do")
@@ -309,6 +325,8 @@ public class ProjectController {
 
     }
     
+    
+   
     
 
 }

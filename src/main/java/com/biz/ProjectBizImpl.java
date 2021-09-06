@@ -134,6 +134,13 @@ public class ProjectBizImpl implements ProjectBiz{
 		return dao.selectReview(dto);
 	}
 
+
+	@Override
+	public int reviewUpdate(ReviewDto dto) {
+		// TODO Auto-generated method stub
+		return dao.reviewUpdate(dto);
+	}
+
 	
 
 

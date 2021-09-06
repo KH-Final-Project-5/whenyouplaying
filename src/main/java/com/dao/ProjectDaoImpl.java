@@ -192,6 +192,20 @@ public class ProjectDaoImpl implements ProjectDao {
 		return list;
 	}
 
+	@Override
+	public int reviewUpdate(ReviewDto dto) {
+		int res = 0;
+		System.out.println(dto.getRvNo());
+		try {
+			res = sqlSession.update(NAMESPACE+ "reviewUpdate", dto);
+		} catch (Exception e) {
+			System.out.println("reviewUpdate 실패");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
 	
 
 

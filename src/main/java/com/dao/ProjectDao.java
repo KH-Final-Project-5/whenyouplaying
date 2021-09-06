@@ -37,4 +37,6 @@ public interface ProjectDao {
     
     public List<ReviewDto> reviewSelect(int prNo);
     
+    
+    public int reviewUpdate(ReviewDto dto);
     }
