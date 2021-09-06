@@ -35,6 +35,7 @@
         if($('#orderCheckBox').is(":checked")===true){
             if (pay > 0) {
                 if (confirm("결제하시겠습니까?")) {
+
                     payForm.submit();
                 }
             } else {
@@ -120,15 +121,15 @@
                                 <c:if test="${result1 < 0}">
                                     <td>보유 포인트가<br>부족합니다.</td>
                                 </c:if>
-                                <c:if test="${result > 0}">
+                                <c:if test="${result1 > 0}">
                                     <td>${result1} Point</td>
                                 </c:if>
-
                             </tr>
                         </table>
                     </div>
                     <hr>
                     <br>
+                    <input type="hidden" name="dealPrice" value="${dto.prPrice}">
                     <label id="orderCheckLabel">
                         <input type="checkbox" name="orderCheckBox" id="orderCheckBox">&nbsp;&nbsp;주문 확인(필수)</label><br><br>
                     <input type="button" class="btn btn-outline-primary" id="payBtn" value="결제하기"

@@ -5,7 +5,7 @@
 <mapper namespace="deal">
     <insert id="InsertDealStatus" parameterType="dealDto">
         INSERT INTO W_DEALSTATUS
-        VALUES (DEALSTATUSSEQ.NEXTVAL, #{prNo}, #{usSellNo}, #{usBuyNo})
+        VALUES (DEALSTATUSSEQ.NEXTVAL, #{prNo}, #{usSellNo}, #{usBuyNo}, ${dealPrice})
     </insert>
 
     <insert id="InsertFinDeal" parameterType="dealDto">
@@ -71,13 +71,27 @@
         DECLARE
         FINISHSTATUS VARCHAR2(200);
         BEGIN
-        SELECT w.FINIF INTO FINISHSTATUS FROM W_FINISHDEAL w WHERE DEALNO = #{dealNo};
+        SELECT w.FINIF
+        INTO FINISHSTATUS
+        FROM W_FINISHDEAL w
+        WHERE DEALNO = #{dealNo};
         IF
         FINISHSTATUS = 'N' THEN
-        UPDATE W_FINISHDEAL SET FINIF = 'B' WHERE DEALNO = #{dealNo};
+        UPDATE W_FINISHDEAL
+        SET FINIF = 'B'
+        WHERE DEALNO = #{dealNo};
         ELSE
-        UPDATE W_FINISHDEAL SET FINSTATUS = '거래완료', FINIF = 'Y' WHERE DEALNO = #{dealNo};
+        UPDATE W_FINISHDEAL
+        SET FINSTATUS = '거래완료',
+            FINIF     = 'Y'
+        WHERE DEALNO = #{dealNo};
         end if;
         end;
+    </update>
+
+    <update id="UpdateDealUser" parameterType="userDto">
+        UPDATE W_USER
+        SET USCASH = #{usCash}
+        WHERE USNO = #{usNo}
     </update>
 </mapper>

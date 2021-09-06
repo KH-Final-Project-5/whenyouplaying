@@ -2,10 +2,12 @@ package com.controller;
 
 
 import com.biz.DealBiz;
+import com.biz.UserBiz;
 import com.commons.FtpClient;
 import com.commons.ScriptUtils;
 import com.dto.DealStatusDto;
 import com.dto.DealStatusImgDto;
+import com.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -29,14 +32,26 @@ public class DealController {
     DealBiz biz;
 
     @Autowired
+    UserBiz biz1;
+
+    @Autowired
     FtpClient ftpClient;
 
     @RequestMapping("/onlinetrade.do")
-    public String OnlineTradeForm(Model model, DealStatusDto dto) {
-
+    public String OnlineTradeForm(Model model, DealStatusDto dto, HttpSession session) {
 
         DealStatusDto dealStatusDto = biz.SelectDeal(dto);
         biz.InsertFinDealStatus(dealStatusDto);
+        UserDto dto1 = (UserDto) session.getAttribute("user");
+        dto1.setUsCash(dto1.getUsCash() - dto.getDealPrice());
+        biz.UpdateDealUser(dto1);
+
+        biz1.login(dto1);
+
+        session.setAttribute("user", dto1);
+
+
+
         List<DealStatusImgDto> list = biz.SelectDealImg(dto.getDealNo());
 
 

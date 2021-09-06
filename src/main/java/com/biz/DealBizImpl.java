@@ -3,6 +3,7 @@ package com.biz;
 import com.dao.DealDao;
 import com.dto.DealStatusDto;
 import com.dto.DealStatusImgDto;
+import com.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,5 +60,10 @@ public class DealBizImpl implements DealBiz{
     @Override
     public int TradeComplete(int dealNo) {
         return dao.TradeComplete(dealNo);
+    }
+
+    @Override
+    public int UpdateDealUser(UserDto dto) {
+        return dao.UpdateDealUser(dto);
     }
 }

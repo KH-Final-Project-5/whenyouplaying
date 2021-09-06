@@ -2,6 +2,7 @@ package com.dao;
 
 import com.dto.DealStatusDto;
 import com.dto.DealStatusImgDto;
+import com.dto.UserDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -65,5 +66,10 @@ public class DealDaoImpl implements DealDao{
     @Override
     public int TradeComplete(int dealNo) {
         return sqlSessionTemplate.update(NAMESPACE+"TradeComplete", dealNo);
+    }
+
+    @Override
+    public int UpdateDealUser(UserDto dto) {
+        return sqlSessionTemplate.update(NAMESPACE + "UpdateDealUser", dto);
     }
 }

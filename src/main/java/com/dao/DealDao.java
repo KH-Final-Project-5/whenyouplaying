@@ -2,6 +2,7 @@ package com.dao;
 
 import com.dto.DealStatusDto;
 import com.dto.DealStatusImgDto;
+import com.dto.UserDto;
 
 import java.util.List;
 
@@ -28,4 +29,6 @@ public interface DealDao {
     public void InsertFinDealStatus(DealStatusDto dto);
 
     public int TradeComplete(int dealNo);
+
+    public int UpdateDealUser(UserDto dto);
 }
