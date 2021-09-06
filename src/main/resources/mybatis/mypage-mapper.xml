@@ -69,6 +69,32 @@
 		WHERE a.USSELLNO = #{usSellNo}
 		AND FINSTATUS = #{finStatus}
 	</select>
+	
+	<select id="pointList" parameterType="com.commons.Criteria" resultType="withDrawDto">
+		SELECT WINO, USNO, WICASH, WIDATE, WIBANK
+		FROM (
+        		SELECT WINO, USNO, WICASH, WIDATE, WIBANK, ROW_NUMBER() OVER(ORDER BY WINO DESC) AS RNUM
+        		FROM W_WITHDRAW
+        		WHERE USNO=#{usNo}
+        		AND WIDATE BETWEEN TO_DATE(#{startDate}) AND TO_DATE(#{endDate}) + INTERVAL '1' DAY
+        		)
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY WINO DESC
+	</select>
+	
+	<select id="pointListCount" parameterType="com.commons.Criteria" resultType="int">
+		SELECT COUNT(WINO)
+		FROM W_WITHDRAW
+		WHERE WINO > 0
+		AND USNO = #{usNo}
+		AND WIDATE BETWEEN TO_DATE(#{startDate}) AND TO_DATE(#{endDate}) + INTERVAL '1' DAY
+	</select>
+	
+	<select id="totalPriceList" parameterType="int" resultType="withDrawDto">
+		SELECT *
+		FROM W_WITHDRAW
+		WHERE USNO = #{usNo}
+	</select>
 
 
 </mapper>
