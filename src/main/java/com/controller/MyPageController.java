@@ -78,6 +78,9 @@ public class MyPageController {
 		logger.info("buylist.do : 재능구매내역 페이지");
 		
 		FinishDealDto dto = new FinishDealDto();
+		if (finStatus.equals("1")) {
+			finStatus = "거래취소";
+		}
 		dto.setUsBuyNo(usNo);
 		dto.setFinStatus(finStatus);
 		

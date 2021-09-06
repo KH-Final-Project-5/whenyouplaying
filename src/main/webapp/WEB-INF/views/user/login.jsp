@@ -37,7 +37,7 @@
 <body style="overflow-y: hidden">
 <div class="wwrap">
     <header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
     <div class="container">
         <div class="row">

@@ -73,8 +73,8 @@
         if (userrole === "user") {
             $('#defaultHeader').hide();
             $("#loginHeader").show();
-            $("#userWelcome").text("${user.usName}님 환영합니다!");
-            $("#userPoint").text("포인트 : ${user.usCash}Point");
+            // $("#userWelcome").text("");
+            // $("#userPoint").text("");
             if (usertalnet === "N") {
                 $('.enroll').show();
             } else {
@@ -189,12 +189,12 @@
 
 
                     <div class="contentList">
-                        <label id="userWelcome"></label>
+                        <label id="userWelcome">${user.usName}님 환영합니다!</label>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav"
                                 onclick="location.href='logout.do'">logOut
                         </button>
                         |
-                        <label id="userPoint"></label>
+                        <label id="userPoint">포인트 : ${user.usCash}Point</label>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">충전</button>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">출금</button>
                         |
