@@ -409,13 +409,25 @@
               				-----------------------------------<br>
                     		<p>${review.rvContent }</p><br>
                 		</div>
-            		</div>	
+            		</div>
         		
         		
         		</c:forEach>
         	</c:otherwise>
         </c:choose>
-        
+        <!-- <div class="col-3">
+                		<b class="review-user">${review.usName }</b>
+            		</div>
+            
+            		<div class="col-9 review-col">
+                		<div class="review">
+	                    	[구매 후기]<br>
+	                    	후기 작성일 :${review.rvDate } <br>
+                    		평점 : ${review.rvGrade }점 [5점만점]<br>
+              				-----------------------------------<br>
+                    		<p>${review.rvContent }</p><br>
+                		</div>
+            		</div>	 -->
             
 
 
