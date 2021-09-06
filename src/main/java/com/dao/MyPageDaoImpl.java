@@ -85,7 +85,7 @@ public class MyPageDaoImpl implements MyPageDao {
 		try {
 			res = sqlSessionTemplate.selectList(NAMESPACE+"onePurHistory", dto);
 		} catch (Exception e) {
-			System.out.println("[error] : MyPageDao, 재능구매내역 전체불러오기 에러");
+			System.out.println("[error] : MyPageDao, 재능구매내역 조건불러오기 에러");
 			e.printStackTrace();
 		}
 	
@@ -101,7 +101,7 @@ public class MyPageDaoImpl implements MyPageDao {
 		try {
 			res = sqlSessionTemplate.selectList(NAMESPACE+"allSelHistory", dto);
 		} catch (Exception e) {
-			System.out.println("[error] : MyPageDao, 재능구매내역 전체불러오기 에러");
+			System.out.println("[error] : MyPageDao, 재능판매내역 전체불러오기 에러");
 			e.printStackTrace();
 		}
 	
@@ -115,7 +115,7 @@ public class MyPageDaoImpl implements MyPageDao {
 		try {
 			res = sqlSessionTemplate.selectList(NAMESPACE+"oneSelHistory", dto);
 		} catch (Exception e) {
-			System.out.println("[error] : MyPageDao, 재능구매내역 전체불러오기 에러");
+			System.out.println("[error] : MyPageDao, 재능판매내역 조건불러오기 에러");
 			e.printStackTrace();
 		}
 	
