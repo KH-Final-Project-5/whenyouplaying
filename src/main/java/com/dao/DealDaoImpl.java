@@ -13,14 +13,19 @@ public class DealDaoImpl implements DealDao{
 
 
     @Override
-    public int InsertDealStatus(DealStatusDto dto) {
+    public void InsertDealStatus(DealStatusDto dto) {
 
-        return sqlSessionTemplate.insert(NAMESPACE+"InsertDealStatus", dto);
+        sqlSessionTemplate.insert(NAMESPACE + "InsertDealStatus", dto);
     }
 
     @Override
     public DealStatusDto SelectDeal(DealStatusDto dto) {
 
         return sqlSessionTemplate.selectOne(NAMESPACE + "DealSelect", dto);
+    }
+
+    @Override
+    public void UpdateProject(DealStatusDto dto) {
+        sqlSessionTemplate.update(NAMESPACE + "DealUpdate", dto);
     }
 }

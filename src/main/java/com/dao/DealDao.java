@@ -6,9 +6,10 @@ public interface DealDao {
 
     String NAMESPACE = "deal.";
 
-    public int InsertDealStatus(DealStatusDto dto);
+    public void InsertDealStatus(DealStatusDto dto);
 
     public DealStatusDto SelectDeal(DealStatusDto dto);
 
+    public void UpdateProject(DealStatusDto dto);
 
 }
