@@ -32,7 +32,7 @@
 	
 	
 	<select id="reviewSelect" parameterType="int" resultType="reviewDto">
-		SELECT  PRNO,RVNO,RVCONTENT,RVDATE,RVGRADE,USNAME
+		SELECT  PRNO,b.USNO,RVNO,RVCONTENT,RVDATE,RVGRADE,USNAME
 		FROM W_REVIEW a
 		JOIN W_USER b ON b.USNO = a.USWRITER
 		WHERE PRNO=#{prNo}
@@ -116,4 +116,10 @@
 		SET RVCONTENT=#{rvContent}
 		WHERE RVNO=#{rvNo}
 	</update>
+	
+	<delete id="reviewDelete" parameterType="int">
+		DELETE
+		FROM W_REVIEW
+		WHERE RVNO=#{rvNo}
+	</delete>
 </mapper>

@@ -45,15 +45,22 @@
 
 
     </script>
-
+		
+	
+	
     <script>
         $(function () {
             var user = "<%=session.getAttribute("user")%>";
+            
             var userNo = "${user.usNo}"
             var projectUsNo = "${detail_dto.usNo}"
             var userId = "${user.usId}"
             var prDeal = "${detail_dto.prDeal}"
-            console.log(prDeal);
+            
+            
+            
+            
+            
             if(prDeal == "online"){
             	$("#perchase-button2").hide();
             	$("#map").hide();
@@ -63,7 +70,7 @@
             }
             
             
-            console.log(user);
+            
             if (projectUsNo !== userNo) {
                 $("#deleteBtn").hide();
                 $("#updateBtn").hide();
@@ -72,7 +79,7 @@
                 $("#reserChk").hide();
             }
 
-            console.log(userNo);
+            
             if (userId == null || userId == "") {
                 $("#perchase-button1").hide();
                 $("#perchase-button2").hide();
@@ -81,12 +88,15 @@
                 $("#reserChk").hide();
 
             }
-            console.log(userNo);
+            
             if (userId == null || userId == "") {
                 $("#perchase-button1").hide();
                 $("#perchase-button2").hide();
                 $("#reserChk").hide();
             }
+            
+            
+            
         });
     </script>
 
@@ -398,24 +408,47 @@
         		<c:forEach items="${review }" var="review">
         			<div class="col-3">
                 		<b class="review-user">${review.usName }</b>
+                		
             		</div>
             
             		<div class="col-9 review-col">
+                		<script type="text/javascript">
                 		
+                			$(function(){
+                				var rvUsNo = "${review.usNo}"
+                	            
+                	            var userNo = "${user.usNo}"
+                	            
+                	            if(rvUsNo==userNo){
+                	            	$("#rv_update").show();
+                	            	$("#rv_delete").show();
+                	            }else{
+                	            	$("#rv_update").hide();
+                	            	$("#rv_delete").hide();
+                	            }
+                			});
+                		
+                		</script>
                 		<form action="reviewUpdate.do">
+                		
                 		<input type="hidden" name="rvNo" value="${review.rvNo }">
                 		<input type="hidden" name="prNo" value="${review.prNo }">
                 		<div style="margin-left:70px;">
                 		[구매 후기]<br>
                 		
-                		후기작성일 :  <p>${review.rvDate }</p>
-                		평점	   : <p  style="margin-left:45px; margin-top:10px; margin-bottom:10px;">${review.rvGrade }</p>
+                		후기작성일 : ${review.rvDate }<br>
+                		평점	   : ${review.rvGrade }
+                		
                 		</div>
                 		<textarea rows="6" cols="60" style="margin-left:70px; margin-bottom:10px;" name="rvContent">${review.rvContent }</textarea>
-                		
-                		<input type="submit" class="btn btn-outline-primary btn-sm" style="margin-bottom:40px;" value="수정">
-                    	<button onclick="" class="btn btn-outline-primary btn-sm" style="margin-bottom:40px;">삭제</button>
+                		<br>
+                		<c:if test="${review.usNo eq user.usNo }"> 
+                		<input type="submit" class="btn btn-outline-primary btn" style="margin-left :515px " value="수정" id="rv_update" >
+                		</c:if>
                 		</form>
+                		<c:if test="${review.usNo eq user.usNo }">
+                		<button onclick="location.href='deleteReview.do?rvNo=${review.rvNo}&prNo=${review.prNo }'" id="rv_delete" class="btn btn-outline-primary btn" style="margin-left:515px;">삭제</button>
+                		</c:if>
             		</div>
         		
         		

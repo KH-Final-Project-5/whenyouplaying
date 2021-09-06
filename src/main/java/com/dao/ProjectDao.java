@@ -39,4 +39,6 @@ public interface ProjectDao {
     
     
     public int reviewUpdate(ReviewDto dto);
+    
+    public int reviewDelete(int rvNo);
     }

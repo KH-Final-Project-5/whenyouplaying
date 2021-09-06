@@ -36,4 +36,6 @@ public interface ProjectBiz {
     public List<ReviewDto> reviewSelect(int prNo);
     
     public int reviewUpdate(ReviewDto dto);
+    
+    public int reviewDelete(int rvNo);
 }

@@ -84,7 +84,7 @@ public class ProjectController {
     @RequestMapping("/Detail.do")
     public String ProjectDetail(Model model, int prNo) {
 
-        logger.info("Detail");
+        logger.info("Detail test");
         model.addAttribute("detail_dto", biz.selectDetail(prNo));
         
         
@@ -110,17 +110,16 @@ public class ProjectController {
     public void Review(ProjectDto dto,ReviewDto dto3,HttpServletResponse response,FinishDealDto dto2) throws IOException {
     	
     	
-    	
+    	int dealNo = dto2.getDealNo();
     	List<FinishDealDto> finDto = new ArrayList<>();
     	
-    	System.out.println(dto3.getUsNo());
-    	System.out.println(dto3.getUsNo());
-    	System.out.println(dto3.getUsWriter());
-    	System.out.println(dto3.getRvContent());
-    	System.out.println(dto3.getRating());
+    	
     	finDto = biz.selectReview(dto2);
-    	System.out.println(finDto);
-    	if(finDto!=null) {
+    	
+    	
+    	System.out.println(finDto+"finDto 확인!!!!!!!!!!!!!!");
+    	
+    	if(finDto.size()!=0) {
     		int res= 0;
     		res = biz.insertReivew(dto3);
     		
@@ -236,13 +235,13 @@ public class ProjectController {
     public void UpdateReview(HttpServletResponse response, ReviewDto dto,ProjectDto dto2) throws IOException {
     	
     	int res;
-    	System.out.println(dto.getRvNo());
+    	
     	res = biz.reviewUpdate(dto);
     	
     	if(res > 0) {
-    		ScriptUtils.alertAndMovePage(response,  "리뷰 수정 완료", "detail.do?prNo=" + dto2.getPrNo());
+    		ScriptUtils.alertAndMovePage(response,  "리뷰 수정 완료", "Detail.do?prNo=" + dto2.getPrNo());
     	}else {
-    		ScriptUtils.alertAndMovePage(response, "리뷰 수정 실패", "detail.do?prNo=" + dto2.getPrNo());
+    		ScriptUtils.alertAndMovePage(response, "리뷰 수정 실패", "Detail.do?prNo=" + dto2.getPrNo());
     	}
     
     	
@@ -326,6 +325,19 @@ public class ProjectController {
     }
     
     
+    @RequestMapping("deleteReview.do")
+    public void deleteReview(HttpServletResponse response,int rvNo,int prNo) throws IOException {
+    	int res = 0;
+    	System.out.println(rvNo);
+    	System.out.println(prNo);
+    	res = biz.reviewDelete(rvNo);
+    	
+    	if(res>0) {
+    		ScriptUtils.alertAndMovePage(response, "리뷰 삭제 완료", "Detail.do?prNo="+prNo);
+    	}else {
+    		ScriptUtils.alertAndMovePage(response, "리뷰 삭제 실패", "Detail.do?prNo="+prNo);
+    	}
+    }
    
     
 
