@@ -1,5 +1,6 @@
 package com.controller;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,49 @@ public class MyPageController {
 		
 		return "mypage/rechargeHistory";
 	}
+	
+	//포인트출금내역
+	@RequestMapping("/withdrawhistory.do")
+	public String withdrawHistory(Model model, Criteria cri, int usNo, String startDate, String endDate) {
+		
+		logger.info("witdrawhistory.do : 포인트 출금내역 페이지 이동");
+	
+		//넘어오는 날짜데이터 합치기
+		String[] startArr = startDate.split("-");
+		String startDateAdd = "";
+		
+		for(int i=0; i<startArr.length; i++) {
+			startDateAdd += startArr[i];
+		}
+		
+		String[] endArr = endDate.split("-");
+		
+		String endDateAdd = "";
+		
+		for(int i=0; i<endArr.length; i++) {
+			endDateAdd += endArr[i];
+		}
+		
+		cri.setUsNo(usNo);
+		cri.setStartDate(startDateAdd);
+		cri.setEndDate(endDateAdd);
+		
+		
+		model.addAttribute("pointList", biz.pointList(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(biz.pointListCount(cri));
+		
+		model.addAttribute("pointPageMaker", pageMaker);
+		model.addAttribute("criDate", cri);
+		
+		//전체 출금 포인트 조회
+	    model.addAttribute("totalPriceList", biz.totalPriceList(usNo));
+		
+		return "mypage/withdrawHistory";
+	}
+	
 
 	
 	//재능구매내역
@@ -113,6 +157,8 @@ public class MyPageController {
 		
 		return "mypage/talentSales";
 	}
+	
+
 	
 	
 	
