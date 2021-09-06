@@ -52,6 +52,17 @@
             var userNo = "${user.usNo}"
             var projectUsNo = "${detail_dto.usNo}"
             var userId = "${user.usId}"
+            var prDeal = "${detail_dto.prDeal}"
+            console.log(prDeal);
+            if(prDeal == "online"){
+            	$("#perchase-button2").hide();
+            	$("#map").hide();
+            	$("#location").hide();
+            }else if(prDeal == "direct"){
+            	$("#perchase-button1").hide();
+            }
+            
+            
             console.log(user);
             if (projectUsNo !== userNo) {
                 $("#deleteBtn").hide();
@@ -272,7 +283,7 @@
 
                     <div class="row" style="margin-left:200px;">
                         <div class="col-12">
-                            <span class="detail-content"><b>거래 지역</b></span>
+                            <span class="detail-content"><b id="location">거래 지역</b></span>
                         </div>
                         <div id="map" style="width:500px;height:400px;"></div>
                         <script type="text/javascript"

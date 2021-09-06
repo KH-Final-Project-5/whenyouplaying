@@ -110,10 +110,10 @@
             </div>
             <div class="col-4">
                 <div class="col-8">
-                    <a href="#"><img src="<c:url value="/resources/img_mypage/sell.png"/>"></a>
+                    <a href="selllist.do?usNo=${user.usNo }&finStatus=거래취소"><img src="<c:url value="/resources/img_mypage/sell.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a class="myA" href="#"><b>재능 판매 내역</b></a>
+                    <a class="myA" href="selllist.do?usNo=${user.usNo }&finStatus=거래취소"><b>재능 판매 내역</b></a>
                  </div>
                 
                  <div class="col-8">

@@ -42,7 +42,15 @@ public class MyPageBizImpl implements MyPageBiz {
 		return dao.selectOneList(dto);
 	}
 
+	@Override
+	public List<FinishDealDto> sellerAllList(FinishDealDto dto) {
+		return dao.sellerAllList(dto);
+	}
 
+	@Override
+	public List<FinishDealDto> sellerOneList(FinishDealDto dto) {
+		return dao.sellerOneList(dto);
+	}
 	
 	
 	
