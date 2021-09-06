@@ -103,7 +103,7 @@
 <div class="wwrap">
     <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
     <header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
     <div class="container">
@@ -215,7 +215,7 @@
     <br><br><br><br><br><br>
     <!-- footer 영역-->
     <footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
 </div>
 

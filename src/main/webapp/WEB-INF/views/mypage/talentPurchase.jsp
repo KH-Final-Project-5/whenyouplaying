@@ -29,16 +29,25 @@
 		$(function(){
 			
 			var finStatus = "${finStatus}";
-			
+
+            console.log(finStatus);
+
 			if(finStatus == '거래취소'){
-				$('#status').val('거래취소').prop("selected", ture);
+				$('#status').val('1').prop("selected", ture);
 			}else if(finStatus == '거래완료'){
 				$('#status').val('거래완료').prop("selected", ture);
 			}else if(finStatus == '진행중'){
 				$('#status').val('진행중').prop("selected", ture);
 			}
 			
-		});		
+		});
+
+        function tradeForm(form) {
+            var dealNo = $(form).parent().prevAll(".dealNo").text()
+            if ($(form).attr('id') == "online") {
+                location.href = 'onlineTradeBuyForm.do?dealNo=' + dealNo;
+            }
+        }
 	
 	</script>
 	
@@ -49,7 +58,7 @@
 
 <div class="wwrap">
     <header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
     <div class="container" style="margin-top: 60px;">
@@ -89,7 +98,7 @@
                 		<input type="hidden" name="usNo" value="${user.usNo }" >
 	                    <div style="float: right;">
 	                        <select id="status" name="finStatus" >
-	                            <option value="거래취소">전체</option>
+	                            <option value="1">전체</option>
 	                            <option value="거래완료">거래완료</option>
 	                            <option value="진행중">진행중</option>
 	                        </select>
@@ -113,7 +122,8 @@
                                 <th class="th_right_line">프로젝트명</th>
                                 <th class="th_right_line">거래 상태</th>
                                 <th class="th_right_line">판매자</th>
-                                <th>거래날짜</th>
+                                <th class="th_right_line">거래날짜</th>
+                                <th>이동</th>
                             </tr>
 
 							<c:choose>
@@ -125,13 +135,25 @@
 								<c:otherwise>
 									<c:forEach items="${AllList}" var="dto">
 										<tr class="tr_bottom_line">
-											<td class="th_right_line">${dto.dealNo }</td>
+											<td class="th_right_line dealNo">${dto.dealNo }</td>
 											<td class="th_right_line">${dto.prTitle}</td>
 											<td class="th_right_line">${dto.finStatus }</td>
 											<td class="th_right_line">${dto.usId }</td>
-											<td>${dto.finDate }</td>
-											<td><button class="btn btn-outline-success btn-sm rounded-pill" onclick="location.href=''">거래페이지</button></td>
-											<!-- 완주님 dealNo값이랑 같이 넘기실려면 ${dto.dealNo }값 넘기시면 됩니다! -->
+											<td class="th_right_line">${dto.finDate }</td>
+                                            <c:if test="${dto.finStatus eq '거래완료'}">
+                                                <td>완료</td>
+                                            </c:if>
+                                            <c:if test="${dto.finIf eq 'B' && dto.finStatus ne '거래완료'}">
+                                                <td>대기중</td>
+                                            </c:if>
+                                            <c:if test="${dto.finIf ne 'B' && dto.finStatus ne '거래완료'}">
+                                                <td>
+                                                    <button class="btn btn-outline-success btn-sm rounded-pill moveBtn"
+                                                            id="${dto.prDeal}"
+                                                            onclick=tradeForm(this);>거래페이지
+                                                    </button>
+                                                </td>
+                                            </c:if>
 										</tr>
 									</c:forEach>								
 								</c:otherwise>
@@ -148,7 +170,7 @@
         
 
     <footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
       
       

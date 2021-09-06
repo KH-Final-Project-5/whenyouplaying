@@ -17,6 +17,7 @@ public class FinishDealDto extends DealStatusDto {
 	private int finNo;
 	private String finStatus;
 	private Date finDate;
+	private String finIf;
 	
 	
 	

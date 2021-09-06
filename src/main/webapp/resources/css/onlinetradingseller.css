@@ -9,9 +9,14 @@
     margin-bottom: 30px;
 }
 
-#tradingLabel {
+#tradingLabel, #backLabel {
     font-weight: bold;
     font-size: 30px;
+}
+
+#backLabel:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 body{
@@ -66,8 +71,11 @@ body{
     resize: none;
 }
 
-#faceChatBtn, #uploadBtn, #contentBtn{
+#faceChatBtn, #uploadBtn{
     width: 130px;
+}
+#contentBtn{
+    width: 160px;
 }
 #uploadBtn, #contentBtn {
     margin-left: 55px;
@@ -131,4 +139,13 @@ body{
 
 .abcdef {
     height: 500px;
+}
+
+.figure {
+    width: 250px;
+    margin-left: 30px;
+}
+
+input[class=imgName] {
+    width: 180px;
 }

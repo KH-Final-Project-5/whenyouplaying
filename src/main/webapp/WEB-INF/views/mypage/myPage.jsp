@@ -26,7 +26,7 @@
 
 <div class="wwrap">    
 	<header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
     <!-- grid영역, 컬럼은 12줄로 이루어져 있고 갯수 비율로 틀을 잡는다. -->
@@ -95,10 +95,10 @@
             
             <div class="col-4">
                  <div class="col-8">
-                    <a href="buylist.do?usNo=${user.usNo }&finStatus=거래취소""><img src="<c:url value="/resources/img_mypage/buy.png"/>"></a>
+                    <a href="buylist.do?usNo=${user.usNo }&finStatus=1"><img src="<c:url value="/resources/img_mypage/buy.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a class="myA" href="buylist.do?usNo=${user.usNo }&finStatus=거래취소"><b>재능 구매 내역</b></a>
+                    <a class="myA" href="buylist.do?usNo=${user.usNo }&finStatus=1"><b>재능 구매 내역</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -187,7 +187,7 @@
     </div>
     
    	<footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
 </div>
 

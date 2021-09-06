@@ -28,16 +28,28 @@
 <link href="<c:url value="/resources/css/onlinetrade.css"/>" rel="stylesheet">
 <script src="<c:url value="/resources/js/onlinetrade.js"/>"></script>
 <script>
-
-    $(function () {
-        var user = "<%=session.getAttribute("user")%>";
-    });
-
+    function paySubmit(){
+        var pay = '${result1}';
+        // console.log($('#orderCheckBox').is(":checked"));
+        var payForm = $('#payForm');
+        if($('#orderCheckBox').is(":checked")===true){
+            if (pay > 0) {
+                if (confirm("결제하시겠습니까?")) {
+                    payForm.submit();
+                }
+            } else {
+                alert("보유 포인트가 부족합니다.");
+                return false;
+            }
+        }else{
+            alert("주문 확인을 체크해주세요.");
+        }
+    }
 </script>
 <body>
 <div class="wwrap">
     <header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
     <div class="container">
         <div class="row">
@@ -105,7 +117,13 @@
                             </tr>
                             <tr>
                                 <td class="nameClass">결제 후 포인트</td>
-                                <td>${result1} Point</td>
+                                <c:if test="${result1 < 0}">
+                                    <td>보유 포인트가<br>부족합니다.</td>
+                                </c:if>
+                                <c:if test="${result > 0}">
+                                    <td>${result1} Point</td>
+                                </c:if>
+
                             </tr>
                         </table>
                     </div>
@@ -121,7 +139,7 @@
 
     </div>
     <footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
 </div>
 
