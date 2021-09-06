@@ -11,7 +11,7 @@
     <select id="DealSelect" parameterType="dealDto" resultType="dealDto">
         SELECT *
         FROM (
-                 SELECT b.*, WU.* ,WP.PRPRICE,  ROW_NUMBER() OVER (ORDER BY DEALNO DESC) AS RN
+                 SELECT b.*, WU.*, WP.PRPRICE, ROW_NUMBER() OVER (ORDER BY DEALNO DESC) AS RN
                  FROM W_DEALSTATUS b
                           JOIN W_PROJECT WP on b.PRNO = WP.PRNO
                           JOIN W_USER WU on wu.USNO = b.USSELLNO
@@ -21,4 +21,10 @@
              ) a
         WHERE a.RN = 1
     </select>
+
+    <update id="DealUpdate" parameterType="dealDto">
+        UPDATE W_PROJECT
+        SET PRSTATUS = 'Y'
+        WHERE PRNO = #{prNo}
+    </update>
 </mapper>

@@ -18,6 +18,7 @@ public class DealBizImpl implements DealBiz{
     @Override
     @Transactional
     public DealStatusDto SelectDeal(DealStatusDto dto) {
+        dao.UpdateProject(dto);
         dao.InsertDealStatus(dto);
         return dao.SelectDeal(dto);
     }

@@ -22,6 +22,26 @@
      <!--css 가져오는 방법-->
 	<link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
 	
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		
+		$(function(){
+			
+			var finStatus = "${finStatus}";
+			
+			if(finStatus == '거래취소'){
+				$('#status').val('거래취소').prop("selected", ture);
+			}else if(finStatus == '거래완료'){
+				$('#status').val('거래완료').prop("selected", ture);
+			}else if(finStatus == '진행중'){
+				$('#status').val('진행중').prop("selected", ture);
+			}
+			
+		});		
+	
+	</script>
+	
 </head>
 <body>
 
@@ -68,7 +88,7 @@
                 	<form action="buylist.do" method="get">
                 		<input type="hidden" name="usNo" value="${user.usNo }" >
 	                    <div style="float: right;">
-	                        <select name="finStatus" >
+	                        <select id="status" name="finStatus" >
 	                            <option value="거래취소">전체</option>
 	                            <option value="거래완료">거래완료</option>
 	                            <option value="진행중">진행중</option>
@@ -80,21 +100,20 @@
                     <div class="buy-table-div" style="margin-top: 70px;">
                         <table border="1" class="buy-table">
                             <colgroup>
-                                <col width="9%">
-                                <col width="50%">
-                                <col width="16%">
-                                <col width="10%">
-                                <col width="15%">
+                                <col width="70px">
+                                <col width="440">
+                                <col width="90px">
+                                <col width="80px">
+                                <col width="100px">
+                                <col width="90px">
                             </colgroup>
                             
-
                             <tr class="tr_bottom_line">
                                 <th class="th_right_line">거래번호</th>
                                 <th class="th_right_line">프로젝트명</th>
                                 <th class="th_right_line">거래 상태</th>
                                 <th class="th_right_line">판매자</th>
                                 <th>거래날짜</th>
-                                
                             </tr>
 
 							<c:choose>
@@ -106,11 +125,13 @@
 								<c:otherwise>
 									<c:forEach items="${AllList}" var="dto">
 										<tr class="tr_bottom_line">
-											<td class="th_right_line">${dto.prNo }</td>
+											<td class="th_right_line">${dto.dealNo }</td>
 											<td class="th_right_line">${dto.prTitle}</td>
 											<td class="th_right_line">${dto.finStatus }</td>
-											<td class="th_right_line">${dto.usName }</td>
+											<td class="th_right_line">${dto.usId }</td>
 											<td>${dto.finDate }</td>
+											<td><button class="btn btn-outline-success btn-sm rounded-pill" onclick="location.href=''">거래페이지</button></td>
+											<!-- 완주님 dealNo값이랑 같이 넘기실려면 ${dto.dealNo }값 넘기시면 됩니다! -->
 										</tr>
 									</c:forEach>								
 								</c:otherwise>
