@@ -2,6 +2,11 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="com.commons.Criteria" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.dto.WithDrawDto" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,12 +29,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/withdrawHistory.css"/>">
     <script src="<c:url value="/resources/js/withdrawHistory.js"/>"></script>
+
+
 </head>
 <body>
 
-    <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
-
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+    </header>
 
     <div class="container">
         <div class="row">
@@ -50,18 +58,53 @@
                 <div id="pageName"><b>MY PAGE</b></div><br>
 
                 <div id="menuList">
-                    <span class="menuText"><a href="#">회원정보</a></span><br><br>
-                    <span class="menuText"><a href="#">공지사항</a></span><br><br>
-                    <span class="menuText"><a href="#">찜 내역</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 구매내역</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 판매내역</a></span><br><br>
-                    <span class="menuText"><a href="#">충전 내역확인</a></span><br><br>
-                    <span class="menuText"><a href="#">계좌 관리</a></span><br><br>
-                    <span class="menuText"><a href="#">포인트 출금</a></span><br><br>
-                    <span class="menuText"><a href="#"><u><b>포인트 출금내역</b></u></a></span><br><br>
-                    <span class="menuText"><a href="#">회원 탈퇴</a></span><br><br>
+                    <span class="menuText"><a class="wiA" href="#">회원정보</a></span><br><br>
+                    <span class="menuText"><a class="wiA" href="#">공지사항</a></span><br><br>
+                    <span class="menuText"><a class="wiA" href="#">찜 내역</a></span><br><br>
+                    <span class="menuText"><a class="wiA" href="#">재능 구매내역</a></span><br><br>
+                    <span class="menuText"><a class="wiA" href="#">재능 판매내역</a></span><br><br>
+                    <span class="menuText"><a class="wiA" href="#">충전 내역확인</a></span><br><br>
+                    <span class="menuText"><a class="wiA" href="#">계좌 관리</a></span><br><br>
+                    <span class="menuText"><a class="wiA" href="#">포인트 출금</a></span><br><br>
+                    <span class="menuText"><a class="wiA" href="#"><u><b>포인트 출금내역</b></u></a></span><br><br>
+                    <span class="menuText"><a class="wiA" href="#">회원 탈퇴</a></span><br><br>
                 </div>
             </div>
+
+<% 
+			Criteria cri = (Criteria)request.getAttribute("criDate");
+			
+			String start = cri.getStartDate();
+			String start1 = start.substring(0, 4);
+			String start2 = start.substring(4, 6);
+			String start3 = start.substring(6);
+			
+			String startDate = start1+"-"+start2+"-"+start3;
+			
+			String end = cri.getEndDate();
+			String end1 = end.substring(0,4);
+			String end2 = end.substring(4,6);
+			String end3 = end.substring(6);
+			
+			String endDate = end1+"-"+end2+"-"+end3;
+			
+			//출금금액 total
+			int totalPrice = 0;
+			
+			List<WithDrawDto> list = (List<WithDrawDto>)request.getAttribute("totalPriceList");
+			
+			for(int i=0; i<list.size(); i++){
+				
+				WithDrawDto tmp = list.get(i);
+				
+				totalPrice += tmp.getWiCash();
+			}
+
+			System.out.println("totalPrice : " + totalPrice);
+			
+%>            
+            
+            
             <div class="col-9">
                 <div id="titleName"><h1>출금내역</h1></div><br><br>
                 <div id="divBox">
@@ -72,36 +115,27 @@
                 <div id="amount">
                     <input type="text" value="총 출금액" id="bold"><br>
                     <input type="text" value="(2021.08.20)까지 출금된 금액"><br>
-                    <input type="text" value="10,000,000원">
+                    <input type="text" value="<%=totalPrice %>원">
                 </div>
                 <div id="point">
-                    <input type="text" value="총 수익Point" id="bold"><br>
-                    <input type="text" value="현재 잔여 Point"><br>
-                    <input type="text" value="10,000 Point">
+                    <input type="text" value="현재 잔여 Point" id="bold"><br>
+                    <input type="text" value="${user.usCash }Point">
                 </div>
                 <hr>
 
                 <h2 id="h2">출금내역 확인</h2><br>
-                <form>
+                <form action="withdrawhistory.do" method="get">
+                	<input type="hidden" name="usNo" value="${user.usNo }">
                     <span id="fromDateSpan">조회 시작일</span>
-                    <input type="date" max="9999-12-31" id = "fromDate"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="date" max="9999-12-31" id ="fromDate" name="startDate" value="<%=startDate %>"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            
                     <span id="toDateSpan">~ 조회 종료일</span>
-                    <input type="date" max="9999-12-31" id = "toDate">
-
-                    <!-- 날짜 스크립트 해당form태그를 벗어나 js나 haed영역에 작성시 안먹혀서 이곳에 작성-->
-                    <script>
-                        var today = new Date();
-                        yyyy = today.getFullYear();
-                        mm = today.getMonth() + 1; mm = (mm < 10) ? '0' + mm : mm;
-                        dd = today.getDate(); dd = (dd < 10) ? '0' + dd : dd;
-                        fromDate.value = yyyy + "-" + mm + "-01";
-                        toDate.value   = yyyy + "-" + mm + "-" + dd;
-                    </script>
+                    <input type="date" max="9999-12-31" id ="toDate" name="endDate" value="<%=endDate%>">
 
                     <input type="submit" value="조회" id="btn" class="btn btn-secondary btn-sm">
                     
-                </form><br>
+                </form>
+                <br>
                     
 
                 <div class="tableDiv">
@@ -122,87 +156,51 @@
 
                         </tr>
 
-                        <tr>
-                            <td>21.08.20</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-
-                        </tr>
-                    <!-- 임시데이터 -->
-                        <tr>
-                            <td>21.08.19</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.18</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.17</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.16</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.15</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.14</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.13</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.12</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-                        <tr>
-                            <td>21.08.11</td>
-                            <td>1000</td>
-                            <td>신한은행</td>
-                            <td>100,000 원</td>
-                        </tr>
-
-                    <!-- 임시데이터 -->
+                        <c:choose>
+                        	<c:when test="${empty pointList}">
+								<tr>
+									<td colspan="4" align="center">--------- 기록이 없습니다 ---------- </td>
+								</tr>                        	
+                        	</c:when>
+                        	<c:otherwise>
+                        		<c:forEach items="${pointList }" var="dto" >
+                        			<tr>
+                        				<td>${dto.wiDate}</td>
+                        				<td>${dto.wiNo }</td>
+                        				<td>${dto.wiBank }</td>
+                        				<td>${dto.wiCash }</td>
+                        			</tr>
+                        		</c:forEach>
+                        	</c:otherwise>
+                        </c:choose>   
                     </table>
+                    
                     <div id="pagingArea" class="pagingDiv">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
-                              <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                  <span aria-hidden="true">&laquo;</span>
-                                </a>
-                              </li>
-                              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item"><a class="page-link" href="#">2</a></li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                  <span aria-hidden="true">&raquo;</span>
-                                </a>
-                              </li>
+                            
+                               <c:if test="${pointPageMaker.prev}" >
+                            		<li class="page-item">
+                            			<a class="page-link" aria-label="Previous" href="${pointPageMaker.makeQuery(pointPageMaker.startPage - 1)}">
+											<span aria-hidden="true">&laquo;</span>                          		
+                            			</a> 
+                            		</li>
+                            	</c:if>
+                           
+                            	<c:forEach begin="${pointPageMaker.startPage}" end="${pointPageMaker.endPage}" var="idx">
+                            		<li class="page-item">
+										<a class="page-link" href="withdrawhistory.do${pointPageMaker.makeQuery2(idx)}">${idx}</a>                            		
+                            		</li>
+                            	</c:forEach>
+                            	
+								<c:if test="${pointPageMaker.next && pointPageMaker.endPage > 0 }">
+									<li class="page-item">
+										<a class="page-link" aria-label="Next" href="withdrawhistory.do${pointPageMaker.makeQuery(pointPageMaker.endPage + 1)}">
+											<span aria-hidden="true">&raquo;</span>
+										</a>
+									</li>
+								</c:if>	
+                              
                             </ul>
                           </nav>
                     </div>
@@ -216,10 +214,10 @@
         </div>
     </div><br><br>
 
-    <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
-
-      
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+    </footer>
+</div>
       
 
 </body>

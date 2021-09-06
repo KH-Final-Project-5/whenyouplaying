@@ -10,6 +10,7 @@ import com.dao.MyPageDao;
 import com.dto.ChargeHistoryDto;
 import com.dto.FinishDealDto;
 import com.dto.UserDto;
+import com.dto.WithDrawDto;
 
 @Service
 public class MyPageBizImpl implements MyPageBiz {
@@ -50,6 +51,21 @@ public class MyPageBizImpl implements MyPageBiz {
 	@Override
 	public List<FinishDealDto> sellerOneList(FinishDealDto dto) {
 		return dao.sellerOneList(dto);
+	}
+
+	@Override
+	public List<WithDrawDto> pointList(Criteria cri) {
+		return dao.pointList(cri);
+	}
+
+	@Override
+	public int pointListCount(Criteria cri) {
+		return dao.pointListCount(cri);
+	}
+
+	@Override
+	public List<WithDrawDto> totalPriceList(int usNo) {
+		return dao.totalPriceList(usNo);
 	}
 	
 	

@@ -10,6 +10,7 @@ import com.commons.Criteria;
 import com.dto.ChargeHistoryDto;
 import com.dto.FinishDealDto;
 import com.dto.UserDto;
+import com.dto.WithDrawDto;
 
 @Repository
 public class MyPageDaoImpl implements MyPageDao {
@@ -84,7 +85,7 @@ public class MyPageDaoImpl implements MyPageDao {
 		try {
 			res = sqlSessionTemplate.selectList(NAMESPACE+"onePurHistory", dto);
 		} catch (Exception e) {
-			System.out.println("[error] : MyPageDao, 재능구매내역 전체불러오기 에러");
+			System.out.println("[error] : MyPageDao, 재능구매내역 조건불러오기 에러");
 			e.printStackTrace();
 		}
 	
@@ -100,7 +101,7 @@ public class MyPageDaoImpl implements MyPageDao {
 		try {
 			res = sqlSessionTemplate.selectList(NAMESPACE+"allSelHistory", dto);
 		} catch (Exception e) {
-			System.out.println("[error] : MyPageDao, 재능구매내역 전체불러오기 에러");
+			System.out.println("[error] : MyPageDao, 재능판매내역 전체불러오기 에러");
 			e.printStackTrace();
 		}
 	
@@ -114,10 +115,53 @@ public class MyPageDaoImpl implements MyPageDao {
 		try {
 			res = sqlSessionTemplate.selectList(NAMESPACE+"oneSelHistory", dto);
 		} catch (Exception e) {
-			System.out.println("[error] : MyPageDao, 재능구매내역 전체불러오기 에러");
+			System.out.println("[error] : MyPageDao, 재능판매내역 조건불러오기 에러");
 			e.printStackTrace();
 		}
 	
+		return res;
+	}
+
+	@Override
+	public List<WithDrawDto> pointList(Criteria cri) {
+		List<WithDrawDto> res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectList(NAMESPACE+"pointList", cri);
+		} catch (Exception e) {
+			System.out.println("[error] : MyPageDao, pointList 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int pointListCount(Criteria cri) {
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.selectOne(NAMESPACE+"pointListCount", cri);
+		} catch (Exception e) {
+			System.out.println("[error] : MyPageDao, pointListCount 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public List<WithDrawDto> totalPriceList(int usNo) {
+
+		List<WithDrawDto> res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectList(NAMESPACE+"totalPriceList", usNo);
+		} catch (Exception e) {
+			System.out.println("[error] : MyPageDao, totalPriceList 에러");
+			e.printStackTrace();
+		}
+		
 		return res;
 	}
 
