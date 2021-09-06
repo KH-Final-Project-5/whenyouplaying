@@ -108,7 +108,7 @@
                         <b class="logoText" onclick="location.href='main.do'">놀면 뭐하니?</b>
                     </a>
                     <div class="contentList">
-                        <a href="" class="navA">공지사항</a>
+                        <a href="noticemain.do" class="navA">공지사항</a>
                         |
                         <a href="loginform.do" class="navA">로그인</a>
                         |
@@ -291,7 +291,7 @@
                         |
                         <a href="noticeListAdmin.do" class="navA">Admin page</a>
                         |
-                        <a href="" class="navA">공지사항</a>
+                        <a href="noticemainadmin.do" class="navA">공지사항</a>
                         |
                         <a href="messagechk.do?usNo=${user.usNo}" class="chatA">
                             <span class="material-icons md-36 chaticon">

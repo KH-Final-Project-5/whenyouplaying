@@ -202,4 +202,40 @@ public class UserController {
 
         return "user/reportPageForm";
     }
+    
+    
+    //공지사항(유저)
+    @RequestMapping("/noticemain.do")
+    public String noticeMain() {
+    	
+    	
+    	
+    	
+    	
+    	
+    	return "user/noticeListUser";
+    }
+    
+    //공지사항(관리자)
+    @RequestMapping("/noticemainadmin.do")
+    public String noticeMainAdmin() {
+    	
+    	
+    	
+    	return "admin/noticeListAdmin";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
