@@ -22,8 +22,7 @@
      <!-- css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/noticeWrite.css"/>">
-    <script src="<c:url value="/resources/js/noticeWrite.js"/>"></script>
-    
+    <script src="resources/ckeditor/ckeditor.js"></script> 
     
     
 </head>
@@ -62,15 +61,24 @@
     
             <div class="col-9">
                 <div id="titleName"><h1>공지사항</h1></div><br>
-                <div id="divBox">
-                    <input type="text" placeholder="공지사항 제목을 입력하세요" id="title"> <br>
-                    
-                    <textarea placeholder="내용을 입력하세요" id="content"></textarea>
-
-                    <div class="box-file-input"><label><input type="file" name="ev_display" class="file-input" accept="image/*"></label><span class="filename">첨부할 파일을 선택해주세요.</div>
-                    <input type="submit" value="작성 완료" id="btn" class="btn btn-outline-primary">
-                    <input type="button" value="작성 취소" id="btn" class="btn btn-outline-primary">
-                </div>
+                <form action="insertnotice.do" method="get">
+                	<input type="hidden" value="${user.usNo }" name="usNo" >
+	                <div id="divBox" style="padding: 0px;">
+	                    <input type="text" placeholder="공지사항 제목을 입력하세요" id="title" name="notiTitle" style="margin-bottom: 60px;"> <br>
+	                    
+	                    <div id="editorArea" style="height: 880px;">
+	                    	<textarea name="notiContent" id="editor1"></textarea>
+	                   	</div>
+	                   	<script>
+	                   		CKEDITOR.replace('editor1');
+	                   	</script>
+	                    
+						<div style="float: right;">
+	                    	<input type="submit" value="작성 완료" id="btnSave" class="btn btn-outline-primary">
+	                    	<input type="reset" value="작성 취소" id="btnCancel" class="btn btn-outline-primary" onclick="location.href='noticemainadmin.do'">
+	                    </div>
+	                </div>
+	            </form>
             </div>
         </div>
     </div><br><br>
