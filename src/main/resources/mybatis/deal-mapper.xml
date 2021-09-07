@@ -5,7 +5,7 @@
 <mapper namespace="deal">
     <insert id="InsertDealStatus" parameterType="dealDto">
         INSERT INTO W_DEALSTATUS
-        VALUES (DEALSTATUSSEQ.NEXTVAL, #{prNo}, #{usSellNo}, #{usBuyNo}, ${dealPrice})
+        VALUES (DEALSTATUSSEQ.NEXTVAL, #{prNo}, #{usSellNo}, #{usBuyNo}, #{dealPrice})
     </insert>
 
     <insert id="InsertFinDeal" parameterType="dealDto">
