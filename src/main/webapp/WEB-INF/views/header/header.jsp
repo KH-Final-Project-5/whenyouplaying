@@ -41,6 +41,38 @@
     <!-- js -->
     <script src="<c:url value="/resources/js/header.js"/>"></script>
 </head>
+
+<script>
+    var socket = null;
+    $(document).ready(function () {
+        connectWS();
+    });
+
+    function connectWS() {
+        var ws = new WebSocket("ws://localhost:8105/");
+
+        socket = ws;
+
+        ws.onopen = function () {
+            console.log("info : connection opened.");
+        };
+
+        ws.onmessage = function (evt) {
+            var data = evt.data;
+            console.log("ReceiveMessage : " + data + "\n");
+        };
+
+        ws.onclose = function (event) {
+            console.log("Info : Connection closed.");
+        };
+
+        ws.onerror = function (err) {
+            console.log("Error : " + err);
+        };
+    }
+</script>
+
+
 <script>
     $(function () {
         <c:choose>
