@@ -126,51 +126,59 @@
 
         <div class="col-3 tradeAllDiv">
             <div class="tradeDiv">
-                <table id="tradeTable">
-                    <colgroup>
-                        <col width="130px">
-                        <col width="140px">
-                    </colgroup>
-                    <tr>
-                        <th colspan="2" class="tradeAddrTd tradeBuyerInfo">판매자 정보</th>
-                    </tr>
-                    <tr>
-                        <td class="tradeAddrTd tradeBold">이름</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeContent">
-                            김완주
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tradeAddrTd tradeBold">번호</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeContent">
-                            010-2134-5678
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeBold">주소</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeContent">
-                            서울시 어쩌구 어디동 203길 20 /<br> @@아파트 ~~동 ~~호
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeBold">
-                            가격
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeContent">
-                            5,000 Point
-                        </td>
-                    </tr>
-                </table>
+                <form method="post" action="" id="buyerForm">
+
+                        <table id="tradeTable">
+                            <colgroup>
+                                <col width="130px">
+                                <col width="140px">
+                            </colgroup>
+                            <tr>
+                                <th colspan="2" class="tradeAddrTd tradeBuyerInfo">판매자 정보</th>
+                            </tr>
+                            <tr>
+                                <td class="tradeAddrTd tradeBold">이름</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="tradeAddrTd tradeContent">
+                                    ${Deal.usName}
+                                    ${dto.usName}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tradeAddrTd tradeBold">번호</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="tradeAddrTd tradeContent">
+                                    ${Deal.usPhone}
+                                    ${dto.usPhone}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="tradeAddrTd tradeBold">
+                                                                                가격
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="tradeAddrTd tradeContent">
+                                    ${Deal.prPrice}
+                                    ${dto.prPrice}
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
                 <br>
-                <button type="button" class="btn btn-outline-primary" id="sellCompBtn">구매 완료</button>
+                 <form action="buytradecomplete.do" method="post">
+                        <input type="hidden" name="usSellNo" value="${dto.usSellNo}">
+                        <input type="hidden" name="dealNo" value="${dto.dealNo}">
+                        <input type="hidden" name="dealPrice" value="${dto.dealPrice}">
+                        <input type="hidden" name="usNo" value="${user.usNo}">
+
+                        <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">
+                            	구매 완료
+                        </button>
+                    </form>
+                   
             </div>
         </div>
     </div>

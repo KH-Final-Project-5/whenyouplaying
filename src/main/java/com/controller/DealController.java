@@ -1,14 +1,14 @@
 package com.controller;
 
 
-import com.biz.DealBiz;
-import com.biz.UserBiz;
-import com.commons.FtpClient;
-import com.commons.ScriptUtils;
-import com.dto.DealStatusDto;
-import com.dto.DealStatusImgDto;
-import com.dto.FinishDealDto;
-import com.dto.UserDto;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
+import com.biz.DealBiz;
+import com.biz.UserBiz;
+import com.commons.FtpClient;
+import com.commons.ScriptUtils;
+import com.dto.DealStatusDto;
+import com.dto.DealStatusImgDto;
+import com.dto.FinishDealDto;
+import com.dto.UserDto;
 
 @Controller
 public class DealController {
@@ -53,6 +56,23 @@ public class DealController {
 
 
         return "redirect:buylist.do?usNo=" + dto1.getUsNo() + "&finStatus=1";
+    }
+    
+    @RequestMapping("/directtrade.do")
+    public String DirectTradeForm(Model model, DealStatusDto dto, HttpSession session) {
+    	
+    	DealStatusDto dealStatusDto = biz.SelectDeal(dto);
+    	biz.InsertFinDealStatus(dealStatusDto);
+    	UserDto dto1 = (UserDto) session.getAttribute("user");
+        dto1.setUsCash(dto1.getUsCash() - dto.getDealPrice());
+        biz.UpdateDealUser(dto1);
+        
+        biz1.login(dto1);
+        session.setAttribute("user", dto1);
+        
+        model.addAttribute("Deal", dealStatusDto);
+        
+    	return "redirect:buylist.do?usNo="+ dto1.getUsNo() + "&finStatus=1";
     }
 
     @RequestMapping("/onlineTradeSellForm.do")

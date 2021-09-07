@@ -29,9 +29,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<c:url value="/resources/js/directtradingseller.js"/>"></script>
 <body>
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
 <!--채팅 출처-->
 <!--https://dororongju.tistory.com/151-->
-<div class="container">
+	<div class="container">
     <div class="row">
         <div class="col-12">
             <label id="tradingLabel">거래 진행 중</label><br>
@@ -100,7 +104,7 @@
                                                               placeholder="설명을 입력해주세요">
                     </figcaption>
                 </figure>
-                <div id="map" style="width:100%;height:90%;">faewfew</div>
+                <div id="map" style="width:100%;height:90%;"></div>
 
                 <script type="text/javascript"
                         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36484ecb4bc45702e85b48b3ddeabe57"></script>
@@ -125,56 +129,60 @@
         </div>
 
         <div class="col-3 tradeAllDiv">
-            <div class="tradeDiv">
-                <table id="tradeTable">
-                    <colgroup>
-                        <col width="130px">
-                        <col width="140px">
-                    </colgroup>
-                    <tr>
-                        <th colspan="2" class="tradeAddrTd tradeBuyerInfo">구매자 정보</th>
-                    </tr>
-                    <tr>
-                        <td class="tradeAddrTd tradeBold">이름</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeContent">
-                            김완주
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tradeAddrTd tradeBold">번호</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeContent">
-                            010-2134-5678
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeBold">주소</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeContent">
-                            서울시 어쩌구 어디동 203길 20 /<br> @@아파트 ~~동 ~~호
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeBold">
-                            받을 포인트
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="tradeAddrTd tradeContent">
-                            3,500 Point
-                        </td>
-                    </tr>
-                </table>
-                <br>
-                <button type="button" class="btn btn-outline-primary" id="sellCompBtn">기부 완료</button>
+                <div class="tradeDiv">
+                    <table id="tradeTable">
+                        <colgroup>
+                            <col width="130px">
+                            <col width="140px">
+                        </colgroup>
+                        <tr>
+                            <th colspan="2" class="tradeAddrTd tradeBuyerInfo">구매자 정보</th>
+                        </tr>
+                        <tr>
+                            <td class="tradeAddrTd tradeBold">이름</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="tradeAddrTd tradeContent">
+                                ${dto.usName}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tradeAddrTd tradeBold">번호</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="tradeAddrTd tradeContent">
+                                ${dto.usPhone}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="tradeAddrTd tradeBold">주소</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="tradeAddrTd tradeContent">
+                                ${dto.usAddress1} / <br> ${dto.usAddress2}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="tradeAddrTd tradeBold">
+                                받을 포인트
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="tradeAddrTd tradeContent">
+                                ${dto.prPrice}
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <button type="button" class="btn btn-outline-primary" id="sellCompBtn">기부 완료</button>
             </div>
         </div>
     </div>
-
+	 
+	</div>
+	<footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
 </div>
 </body>
 </html>
