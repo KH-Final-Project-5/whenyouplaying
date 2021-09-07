@@ -1,9 +1,9 @@
 package com.dto;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotificationDto {
+public class NotificationDto extends UserDto {
 	
 	private int notiNo;
 	private String notiTitle;

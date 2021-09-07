@@ -16,6 +16,7 @@
         <typeAlias type="com.dto.DealStatusDto" alias="dealDto"/>
         <typeAlias type="com.dto.DealStatusImgDto" alias="dealImgDto"/>
         <typeAlias type="com.dto.WithDrawDto" alias="withDrawDto"/>
+        <typeAlias type="com.dto.NotificationDto" alias="notificationDto"/>
     </typeAliases>
 
     <mappers>
@@ -27,6 +28,7 @@
         <mapper resource="mybatis/admin-mapper.xml"/>
         <mapper resource="mybatis/report-mapper.xml"/>
         <mapper resource="mybatis/deal-mapper.xml"/>
+		<mapper resource="mybatis/notice-mapper.xml" />
     </mappers>
 
 

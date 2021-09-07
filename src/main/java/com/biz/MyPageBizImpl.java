@@ -16,7 +16,7 @@ import com.dto.WithDrawDto;
 public class MyPageBizImpl implements MyPageBiz {
 
 	@Autowired
-	MyPageDao dao;
+	private MyPageDao dao;
 
 	@Override
 	public UserDto selectUser(int usNo) {
