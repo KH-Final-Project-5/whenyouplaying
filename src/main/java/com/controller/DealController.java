@@ -87,6 +87,20 @@ public class DealController {
 
         return "trade/onlinetradingseller";
     }
+    
+    @RequestMapping("/directTradeSellForm.do")
+    public String DirectTradeSellerForm(Model model, int dealNo) {
+
+        DealStatusDto dto = biz.SelectDealOne(dealNo);
+        dto.setPrPrice((int) (dto.getPrPrice() * 0.7));
+        List<DealStatusImgDto> list = biz.SelectDealImg(dealNo);
+
+        model.addAttribute("dto", dto);
+        model.addAttribute("list", list);
+
+        return "trade/directtradingseller";
+    }
+    
 
 
     @RequestMapping("/onlineSellerImgUpload.do")
@@ -146,6 +160,22 @@ public class DealController {
         model.addAttribute("list", list);
 
         return "trade/onlinetradingbuyer";
+    }
+    
+    
+    @RequestMapping("/directTradeBuyForm.do")
+    public String DirectTradeBuyerForm(Model model, int dealNo) {
+
+        logger.info("buyForm.do : 온라인 구매자 거래페이지");
+
+
+        DealStatusDto dto = biz.SelectDealOneBuyer(dealNo);
+        List<DealStatusImgDto> list = biz.SelectDealImg(dealNo);
+
+        model.addAttribute("dto", dto);
+        model.addAttribute("list", list);
+
+        return "trade/directtradingbuyer";
     }
 
     @RequestMapping("/buytradecomplete.do")

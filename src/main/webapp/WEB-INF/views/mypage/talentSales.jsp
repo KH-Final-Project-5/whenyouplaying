@@ -53,6 +53,8 @@
             var dealNo = $(form).parent().prevAll(".dealNo").text()
             if ($(form).attr('id') == "online") {
                 location.href = 'onlineTradeSellForm.do?dealNo=' + dealNo;
+            }else if($(form).attr('id') =="direct"){
+            	location.href = 'directTradeSellForm.do?dealNo=' + dealNo;
             }
         }
 
@@ -160,10 +162,11 @@
                                             <td>대기중</td>
                                         </c:if>
                                         <c:if test="${dto.finIf ne 'S' && dto.finStatus ne '거래완료'}">
+                                        
                                             <td>
                                                 <button class="btn btn-outline-success btn-sm rounded-pill moveBtn"
                                                         id="${dto.prDeal}"
-                                                        onclick=tradeForm(this);>거래페이지
+                                                        onclick=tradeForm(this); >거래페이지
                                                 </button>
                                             </td>
                                         </c:if>

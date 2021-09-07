@@ -203,7 +203,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="tradeAddrTd tradeBold">
-                                받을 포인트
+                               	 받을 포인트
                             </td>
                         </tr>
                         <tr>
