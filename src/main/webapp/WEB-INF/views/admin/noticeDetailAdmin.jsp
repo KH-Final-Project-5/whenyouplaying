@@ -23,25 +23,33 @@
     <!-- css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/noticeDetailAdmin.css"/>">
-<%--    <script src="<c:url value="/resources/js/no"/>"></script>--%>
+
+	<script type="text/javascript">
+	
+		$(function(){
+			
+			var text = "${noticeDetail.notiContent}"; 
+			
+			
+			
+		});
+		
+		
+		
+	
+	
+	
+	
+	</script>
+
 </head>
 <body>
 	
-    <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
-
-    <div>
-        <div class="row">
-            <div class="col-3">
-
-            </div>
-            
-            <div class="col-6"><p><u>놀면 뭐하니? 의 소식을 알려드립니다!</u></p></div>
-
-            <div class="col-3"></div>
-        </div>
-    </div>
-    <hr>
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
+    
 
     <div class="container">
         <div class="row">
@@ -61,51 +69,41 @@
     
                 <div id="menuList">
                     <br>
-                    <span class="menuText"><a href="noticeListAdmin.do"><u><b>공지 사항</b></u></a></span><br><br>
-                    <span class="menuText"><a href="abilitymain.do">재능 기부 승인</a></span><br><br>
-                    <span class="menuText"><a href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
-                    <span class="menuText"><a href="userManage.do">회원 목록 확인</a></span><br><br>
-                    <span class="menuText"><a href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="noticemainadmin.do?usNo=${user.usNo }"><u><b>공지 사항</b></u></a></span><br><br>
+                    <span class="menuText"><a class="noA" href="abilitymain.do">재능 기부 승인</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="userManage.do">회원 목록 확인</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
                 </div>
             </div>
     
 
             <div class="col-9">
                 <div id="title">
-                    <div id="titleName"><h3>놀면뭐하지? 의 '개인정보 처리방침' 에 대한 안내 말씀 드립니다.</h3></div>
+                    <div id="titleName"><h3>${noticeDetail.notiTitle }</h3></div>
                 </div>
+
                 <div id="divBox">
-                <textarea readonly="readonly">
-안녕하세요, 놀면뭐하지? 입니다.  
-
-놀면뭐하지? 는 8월 9일자로 약관 및 개인정보보호정책을 변경하게 되어 공지드립니다. 
-약관 및 개인정보보호정책의 주요개정사항은 아래와 같습니다.
-                    
-1.타인의 개인정보도용등의 문제점을 해결하기위해 놀면뭐하지? 회원 가입시 휴대폰 인증제도를 마련하였습니다.
-                    
-2. 놀면뭐하지? 회원가입시 받는 개인정보항목을 수정했습니다. 약관 및 개인정보보호정책은 
-탑화면 하단에 있는 서비스이용약관 및 개인정보보호정책 메뉴에서 확인해 보실 수 있습니다. 
-                    
-앞으로도 저희 놀면뭐하지? 는 더 나은 인터넷 서비스를 위해 노력을 아끼지 않을 것을 약속 드립니다. 감사합니다.
-                    
-----글 내용 불러옴----
-                    
-                </textarea>
-
-
-
-                <input type="button" value="목록으로" id="listbtn" class="btn btn-outline-primary">
-
-                <input type="button" value="수정하기" id="btn" class="btn btn-outline-primary">
-                <input type="button" value="삭제하기" id="btn" class="btn btn-outline-primary">
+              	  	<textarea id="contentArea" readonly="readonly"></textarea>
                 </div>
+
+
+
+				<div id="buttonArea">
+		                <input type="button" value="목록으로" id="listbtn" class="btn btn-outline-primary" onclick="location.href='noticemainadmin.do?usNo=${user.usNo}'">
+		
+	    	            <input type="button" value="수정하기" id="btn1" class="btn btn-outline-primary">
+	        	        <input type="button" value="삭제하기" id="btn" class="btn btn-outline-primary">
+	        	</div>
             </div>
         </div>
     </div><br><br><br>
 
-    <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
-
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
+    
+</div>
 	
 </body>
 </html>

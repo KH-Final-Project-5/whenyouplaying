@@ -289,9 +289,9 @@
                                 onclick="location.href='logout.do'">logOut
                         </button>
                         |
-                        <a href="noticeListAdmin.do" class="navA">Admin page</a>
+                        <a href="noticemainadmin.do?usNo=${user.usNo }" class="navA">Admin page</a>
                         |
-                        <a href="noticemainadmin.do" class="navA">공지사항</a>
+                        <a href="noticemainadmin.do?usNo=${user.usNo }" class="navA">공지사항</a>
                         |
                         <a href="messagechk.do?usNo=${user.usNo}" class="chatA">
                             <span class="material-icons md-36 chaticon">
