@@ -150,7 +150,7 @@
                         <input type="hidden" name="usNo" value="${user.usNo}">
 
                         <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">
-                            구매 완료
+                           	 구매 완료
                         </button>
                     </form>
 
