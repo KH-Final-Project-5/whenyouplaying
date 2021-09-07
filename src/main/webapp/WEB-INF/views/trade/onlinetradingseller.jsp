@@ -203,7 +203,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="tradeAddrTd tradeBold">
-                               	 받을 포인트
+                                받을 포인트
                             </td>
                         </tr>
                         <tr>
@@ -213,7 +213,12 @@
                         </tr>
                     </table>
                     <br>
-                    <button type="button" class="btn btn-outline-primary" id="sellCompBtn">기부 완료</button>
+                    <form action="onlinesellcomplete.do" method="post">
+                        <input type="hidden" name="dealNo" value="${dto.dealNo}">
+                        <input type="hidden" name="dealPrice" value="${dto.dealPrice}">
+                        <input type="hidden" name="usNo" value="${user.usNo}">
+                        <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">기부 완료</button>
+                    </form>
                 </div>
             </div>
         </div>
