@@ -23,25 +23,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/noticeWrite.css"/>">
     <script src="<c:url value="/resources/js/noticeWrite.js"/>"></script>
+    
+    
+    
 </head>
 <body>
 
-    <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
-
-    <div>
-        <div class="row">
-            <div class="col-3">
-
-            </div>
-            
-            <div class="col-6"><p><u>놀면 뭐하니? 의 소식을 알려드립니다!</u></p></div>
-
-            <div class="col-3"></div>
-        </div>
-    </div>
-    <hr>
-
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
+    
     <div class="container">
         <div class="row">
             <div class="col-3">
@@ -60,11 +52,11 @@
     
                 <div id="menuList">
                     <br>
-                    <span class="menuText"><a href="noticeListAdmin.do"><u><b>공지 사항</b></u></a></span><br><br>
-                    <span class="menuText"><a href="abilitymain.do">재능 기부 승인</a></span><br><br>
-                    <span class="menuText"><a href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
-                    <span class="menuText"><a href="userManage.do">회원 목록 확인</a></span><br><br>
-                    <span class="menuText"><a href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="noticemainadmin.do"><u><b>공지 사항</b></u></a></span><br><br>
+                    <span class="menuText"><a class="noA" href="abilitymain.do">재능 기부 승인</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="userManage.do">회원 목록 확인</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
                 </div>
             </div>
     
@@ -83,11 +75,10 @@
         </div>
     </div><br><br>
 
-    <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
-
-      
-      
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
+</div>
 
 </body>
 </html>

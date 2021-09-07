@@ -8,14 +8,13 @@ function fnImgPop(url) {
     var OpenWindow = window.open('', '_blank', 'width=' + win_width + ', height=' + win + ', menubars=no, scrollbars=auto');
     OpenWindow.document.write("<style>body{margin:0px;}</style><img src='" + url + "' width='" + win_width + "'>");
 }
-$(function () {
-    var buyForm = $("#buyerForm");
+/*$(function () {
     $('#sellCompBtn').click(function () {
         if (confirm("구매 완료 하시겠습니까?")) {
-            buyForm.submit();
+
         }
     });
-});
+});*/
 /*
 
 const Chat = (function(){

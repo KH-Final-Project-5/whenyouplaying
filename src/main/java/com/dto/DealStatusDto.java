@@ -15,4 +15,5 @@ public class DealStatusDto extends ProjectDto{
 	private int dealNo;
 	private int usSellNo;
 	private int usBuyNo;
+	private int dealPrice;
 }

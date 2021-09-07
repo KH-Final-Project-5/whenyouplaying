@@ -2,9 +2,13 @@ package com.biz;
 
 import com.dao.DealDao;
 import com.dto.DealStatusDto;
+import com.dto.DealStatusImgDto;
+import com.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class DealBizImpl implements DealBiz{
@@ -21,5 +25,45 @@ public class DealBizImpl implements DealBiz{
         dao.UpdateProject(dto);
         dao.InsertDealStatus(dto);
         return dao.SelectDeal(dto);
+    }
+
+    @Override
+    public DealStatusDto SelectDealOne(int dealNo) {
+        return dao.SelectDealOne(dealNo);
+    }
+
+    @Override
+    public int InsertImg(DealStatusImgDto dto) {
+        return dao.InsertImg(dto);
+    }
+
+    @Override
+    public List<DealStatusImgDto> SelectDealImg(int dealNo) {
+        return dao.SelectDealImg(dealNo);
+    }
+
+    @Override
+    public int DeleteOnlineImg(int dealImgNo) {
+        return dao.DeleteOnlineImg(dealImgNo);
+    }
+
+    @Override
+    public DealStatusDto SelectDealOneBuyer(int dealNo) {
+        return dao.SelectDealOneBuyer(dealNo);
+    }
+
+    @Override
+    public void InsertFinDealStatus(DealStatusDto dto) {
+        dao.InsertFinDealStatus(dto);
+    }
+
+    @Override
+    public int TradeComplete(int dealNo) {
+        return dao.TradeComplete(dealNo);
+    }
+
+    @Override
+    public int UpdateDealUser(UserDto dto) {
+        return dao.UpdateDealUser(dto);
     }
 }

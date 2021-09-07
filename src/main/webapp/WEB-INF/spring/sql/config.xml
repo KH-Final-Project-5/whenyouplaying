@@ -14,6 +14,7 @@
         <typeAlias type="com.dto.FinishDealDto" alias="finishDealDto"/>
         <typeAlias type="com.dto.ReviewDto" alias="reviewDto"/>
         <typeAlias type="com.dto.DealStatusDto" alias="dealDto"/>
+        <typeAlias type="com.dto.DealStatusImgDto" alias="dealImgDto"/>
         <typeAlias type="com.dto.WithDrawDto" alias="withDrawDto"/>
     </typeAliases>
 
