@@ -119,7 +119,6 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="tradeAddrTd tradeContent">
-                                    ${Deal.usName}
                                     ${dto.usName}
                                 </td>
                             </tr>
@@ -128,7 +127,6 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="tradeAddrTd tradeContent">
-                                    ${Deal.usPhone}
                                     ${dto.usPhone}
                                 </td>
                             </tr>
@@ -139,18 +137,23 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="tradeAddrTd tradeContent">
-                                    ${Deal.prPrice}
                                     ${dto.prPrice}
                                 </td>
                             </tr>
                         </table>
                     </form>
                     <br>
-                    <button type="button"
-                            onclick="location.href='buytradecomplete.do?dealNo=${dto.dealNo}&usNo=${user.usNo}&prPrice=${dto.prPrice}'";
-                            class="btn btn-outline-primary" id="sellCompBtn">구매
-                        완료
-                    </button>
+                    <form action="buytradecomplete.do" method="post">
+                        <input type="hidden" name="usSellNo" value="${dto.usSellNo}">
+                        <input type="hidden" name="dealNo" value="${dto.dealNo}">
+                        <input type="hidden" name="dealPrice" value="${dto.dealPrice}">
+                        <input type="hidden" name="usNo" value="${user.usNo}">
+
+                        <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">
+                            구매 완료
+                        </button>
+                    </form>
+
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@ package com.biz;
 
 import com.dto.DealStatusDto;
 import com.dto.DealStatusImgDto;
+import com.dto.FinishDealDto;
 import com.dto.UserDto;
 
 import java.util.List;
@@ -28,5 +29,10 @@ public interface DealBiz {
 
     public int UpdateDealUser(UserDto dto);
 
+    public int TradeSellerComplete(int dealNo);
+
+    public FinishDealDto DealCheck(int dealNo);
+
+    public UserDto IdCheck(int usNo);
 
 }

@@ -2,6 +2,7 @@ package com.dao;
 
 import com.dto.DealStatusDto;
 import com.dto.DealStatusImgDto;
+import com.dto.FinishDealDto;
 import com.dto.UserDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class DealDaoImpl implements DealDao{
+public class DealDaoImpl implements DealDao {
 
     @Autowired
     SqlSessionTemplate sqlSessionTemplate;
@@ -40,7 +41,7 @@ public class DealDaoImpl implements DealDao{
 
     @Override
     public int InsertImg(DealStatusImgDto dto) {
-        return sqlSessionTemplate.insert(NAMESPACE+"InsertDealImg", dto);
+        return sqlSessionTemplate.insert(NAMESPACE + "InsertDealImg", dto);
     }
 
     @Override
@@ -65,11 +66,26 @@ public class DealDaoImpl implements DealDao{
 
     @Override
     public int TradeComplete(int dealNo) {
-        return sqlSessionTemplate.update(NAMESPACE+"TradeComplete", dealNo);
+        return sqlSessionTemplate.update(NAMESPACE + "TradeComplete", dealNo);
     }
 
     @Override
     public int UpdateDealUser(UserDto dto) {
         return sqlSessionTemplate.update(NAMESPACE + "UpdateDealUser", dto);
+    }
+
+    @Override
+    public int TradeSellerComplete(int dealNo) {
+        return sqlSessionTemplate.update(NAMESPACE + "TradeSellerComplete", dealNo);
+    }
+
+    @Override
+    public FinishDealDto DealCheck(int dealNo) {
+        return sqlSessionTemplate.selectOne(NAMESPACE + "DealCheck", dealNo);
+    }
+
+    @Override
+    public UserDto IdCheck(int usNo) {
+        return sqlSessionTemplate.selectOne(NAMESPACE+"IdCheck", usNo);
     }
 }
