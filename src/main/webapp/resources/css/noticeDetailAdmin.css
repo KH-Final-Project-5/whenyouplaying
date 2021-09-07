@@ -53,19 +53,6 @@
 
 
 
-
-h2{
-    position: relative;
-    top: 5px;
-    left: 10px;
-}
-
-p{
-    position: relative;
-    top: 20px;
-    left: 50%;
-}
-
 #title{
     border-bottom: outset 2px;
     text-align: center;
@@ -74,7 +61,6 @@ p{
 }
 
 #contentArea{
-    resize: none;
     position: relative;
     top: 3%;
     width:99%;
@@ -95,19 +81,6 @@ p{
 
 body{
     font-family: 'Noto Sans KR', sans-serif;
-}
-
-
-
-a{
-    color: black;
-}
-a:hover {
-    color: black;
-}
-
-a:active {
-    color: black;
 }
 
 .noA{

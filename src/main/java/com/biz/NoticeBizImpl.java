@@ -29,6 +29,11 @@ public class NoticeBizImpl implements NoticeBiz {
 		return dao.noticeOne(notiNo);
 	}
 
+	@Override
+	public int updateNotice(NotificationDto dto) {
+		return dao.updateNotice(dto);
+	}
+
 	
 	
 }

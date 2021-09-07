@@ -58,6 +58,25 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 		return res;
 	}
+
+	@Override
+	public int updateNotice(NotificationDto dto) {
+		
+		int res = 0;
+		
+		System.out.println("notiNo: "+dto.getNotiNo());
+		System.out.println("notiTitle: "+dto.getNotiTitle());
+		System.out.println("notiContent: "+dto.getNotiContent());
+		
+		try {
+			res = sqlSessionTemplate.update(NAMESPACE+"updateNotice", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : updateNotice 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 	
 	
 }

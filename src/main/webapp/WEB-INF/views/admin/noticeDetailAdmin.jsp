@@ -24,26 +24,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/noticeDetailAdmin.css"/>">
 
-<!-- 
-	<script type="text/javascript">
-	
-		$(function(){
-			
-			var text = "${noticeDetail.notiContent}"; 
-			
-			
-			
-			
-		});
- -->		
-		
-		
-	
-	
-	
-	
-	</script>
-
 </head>
 <body>
 	
@@ -86,15 +66,13 @@
                 </div>
 
                 <div id="divBox">
-              	  	<textarea id="contentArea" readonly="readonly"></textarea>
+                	${noticeDetail.notiContent }
                 </div>
-
-
 
 				<div id="buttonArea">
 		                <input type="button" value="목록으로" id="listbtn" class="btn btn-outline-primary" onclick="location.href='noticemainadmin.do?usNo=${user.usNo}'">
 		
-	    	            <input type="button" value="수정하기" id="btn1" class="btn btn-outline-primary">
+	    	            <input type="button" value="수정하기" id="btn1" class="btn btn-outline-primary" onclick="location.href='noticeupdate.do?notiNo=${noticeDetail.notiNo}'">
 	        	        <input type="button" value="삭제하기" id="btn" class="btn btn-outline-primary">
 	        	</div>
             </div>

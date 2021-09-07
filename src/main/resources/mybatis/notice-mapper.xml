@@ -22,7 +22,12 @@
 		WHERE NOTINO = #{notiNo}
 	</select>
 
-
+	<select id="updateNotice" parameterType="notificationDto" >
+		UPDATE W_NOTIFICATION
+		SET NOTITITLE=#{notiTitle}, NOTICONTENT=#{notiContent}
+		WHERE NOTINO = #{notiNo}
+	</select>
+	
 
 
 
