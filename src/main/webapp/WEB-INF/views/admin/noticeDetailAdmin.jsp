@@ -24,6 +24,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/noticeDetailAdmin.css"/>">
 
+<!-- 
 	<script type="text/javascript">
 	
 		$(function(){
@@ -32,8 +33,9 @@
 			
 			
 			
+			
 		});
-		
+ -->		
 		
 		
 	
