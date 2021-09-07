@@ -83,7 +83,21 @@
 	    };
 	    reader.readAsDataURL(event.target.files[0]);
 	}
+	
+	$(document).ready(function(){
+		$("#selectTrade").change(function(){
+			var result= $('#selectTrade option:selected').val();
+			
+			if(result == 'online'){
+				$('#map_tr').hide();
+				$('#prLati').hide();
+				$('#prLongi').hide();
+			}
+			
+		})
+	})
 	</script>
+	
 
     
 </head>
@@ -190,15 +204,15 @@
                             <tr>
                                 <th class="deal-th">거래 방법</th>
                                 <td>
-                                    <select name="prDeal" class="accountInput"  required>
+                                    <select name="prDeal" class="accountInput" id="selectTrade"  required>
                                         <option value="" disabled selected>선택해주세요</option>
-                                        <option value="online">온라인</option>
+                                        <option value="online" onclick="onlineTrade();">온라인</option>
                                         <option value="direct">직거래</option>
                                     </select>
                                     <hr style="margin: 3px;">
                                 </td>
                             </tr>
-                           <tr> 
+                           <tr id="map_tr"> 
                           
                           <!-- 거래 지역 지도 -->
                           <th class="deal-th">직거래 지도</th>
@@ -267,14 +281,14 @@
 							</td>
 							
 							</tr>
-							<tr>
+							<tr id="prLati">
 								<th class="deal-th">위도</th>
 								<td>
 									<input type="text" name="prLatitude" id="prLatitude">
 								</td>
 							</tr>
 							
-							<tr>
+							<tr id="prLongi">
 								<th class="deal-th">경도</th>
 								<td>
 									<input type="text" name="prLongitude" id="prLongitude">

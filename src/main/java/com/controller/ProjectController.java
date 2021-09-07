@@ -77,6 +77,7 @@ public class ProjectController {
         
         
         
+        
     	return "projectBoard/talentBoard";
     }
 
