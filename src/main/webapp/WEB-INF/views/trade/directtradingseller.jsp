@@ -107,6 +107,17 @@
                         // 마우스 드래그로 지도 이동 가능여부를 설정합니다
                         map.setDraggable(false);
                     }
+                    
+                 	// 마커가 표시될 위치입니다 
+                    var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+                    // 마커를 생성합니다
+                    var marker = new kakao.maps.Marker({
+                        position: markerPosition
+                    });
+
+                    // 마커가 지도 위에 표시되도록 설정합니다
+                    marker.setMap(map);
                 </script>
             </form>
         </div>
@@ -157,7 +168,13 @@
                         </tr>
                     </table>
                     <br>
-                    <button type="button" class="btn btn-outline-primary" id="sellCompBtn">기부 완료</button>
+                    <form action="directsellcomplete.do" method="post">
+                        <input type="hidden" name="dealNo" value="${dto.dealNo}">
+                        <input type="hidden" name="dealPrice" value="${dto.dealPrice}">
+                        <input type="hidden" name="usNo" value="${user.usNo}">
+                        <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">기부 완료</button>
+                    </form>
+                    
             </div>
         </div>
     </div>
