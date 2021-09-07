@@ -7,6 +7,7 @@ import com.commons.FtpClient;
 import com.commons.ScriptUtils;
 import com.dto.DealStatusDto;
 import com.dto.DealStatusImgDto;
+import com.dto.FinishDealDto;
 import com.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,20 +47,12 @@ public class DealController {
         dto1.setUsCash(dto1.getUsCash() - dto.getDealPrice());
         biz.UpdateDealUser(dto1);
 
-        biz1.login(dto1);
+        dto1 = biz1.login(dto1);
 
         session.setAttribute("user", dto1);
 
 
-
-        List<DealStatusImgDto> list = biz.SelectDealImg(dto.getDealNo());
-
-
-        model.addAttribute("Deal", dealStatusDto);
-        model.addAttribute("list", list);
-
-
-        return "trade/onlinetradingbuyer";
+        return "redirect:buylist.do?usNo=" + dto1.getUsNo() + "&finStatus=1";
     }
 
     @RequestMapping("/onlineTradeSellForm.do")
@@ -136,19 +129,70 @@ public class DealController {
     }
 
     @RequestMapping("/buytradecomplete.do")
-    public void TradingComplete(HttpServletResponse response, int dealNo, int usNo) throws IOException {
+    public void TradingComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws IOException {
         logger.info("buytradecomplete.do : 재능거래완료");
 
+        int res = biz.TradeComplete(dto.getDealNo());
+        FinishDealDto finishDealDto = biz.DealCheck(dto.getDealNo());
+        if (finishDealDto.getFinIf().equals("Y")) {
+            UserDto userDto = biz.IdCheck(dto.getUsSellNo());
+
+            int price = (int) (dto.getDealPrice() * 0.7);
+
+            userDto.setUsCash(userDto.getUsCash() + price);
+            biz.UpdateDealUser(userDto);
 
 
-        int res = biz.TradeComplete(dealNo);
+            UserDto userDto1 = new UserDto();
+            userDto1.setUsNo(4);
 
-        System.out.println(res);
+            userDto1 = biz.IdCheck(userDto1.getUsNo());
+
+            price = (int) (dto.getDealPrice() * 0.3);
+
+            userDto1.setUsCash(userDto1.getUsCash() + price);
+            biz.UpdateDealUser(userDto1);
+        }
+
 
         if (res == -1) {
             ScriptUtils.alertAndMovePage(response, "구매 완료",
-                    "buylist.do?usNo=" + usNo + "&finStatus=1");
+                    "buylist.do?usNo=" + dto.getUsNo() + "&finStatus=1");
         }
+
+
+    }
+
+    @RequestMapping("/onlinesellcomplete.do")
+    public void OnlineSellComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws IOException {
+        biz.TradeSellerComplete(dto.getDealNo());
+        FinishDealDto finishDealDto = biz.DealCheck(dto.getDealNo());
+
+        if (finishDealDto.getFinIf().equals("Y")) {
+            UserDto userDto = (UserDto) session.getAttribute("user");
+
+            int price = (int) (dto.getDealPrice() * 0.7);
+
+
+            userDto.setUsCash(userDto.getUsCash() + price);
+            biz.UpdateDealUser(userDto);
+
+            userDto = biz.IdCheck(userDto.getUsNo());
+
+            session.setAttribute("user", userDto);
+
+            UserDto userDto1 = new UserDto();
+            userDto1.setUsNo(4);
+
+            userDto1 = biz.IdCheck(userDto1.getUsNo());
+
+            price = (int) (dto.getDealPrice() * 0.3);
+
+            userDto1.setUsCash(userDto1.getUsCash() + price);
+            biz.UpdateDealUser(userDto1);
+        }
+
+        ScriptUtils.alertAndMovePage(response, "판매완료!", "main.do");
 
 
     }

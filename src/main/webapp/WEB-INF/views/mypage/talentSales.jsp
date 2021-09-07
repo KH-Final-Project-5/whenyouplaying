@@ -145,13 +145,21 @@
                                     <tr class="tr_bottom_line">
                                         <td class="th_right_line dealNo">${dto.dealNo }</td>
                                         <td class="th_right_line">${dto.prTitle}</td>
-                                        <td class="th_right_line">${dto.finStatus }</td>
+                                        <c:if test="${dto.finIf eq 'B'}">
+                                            <td class="th_right_line">완료 대기중</td>
+                                        </c:if>
+                                        <c:if test="${dto.finIf ne 'B'}">
+                                            <td class="th_right_line">${dto.finStatus }</td>
+                                        </c:if>
                                         <td class="th_right_line">${dto.usId }</td>
                                         <td class="th_right_line">${dto.finDate }</td>
                                         <c:if test="${dto.finStatus eq '거래완료'}">
                                             <td>완료</td>
                                         </c:if>
-                                        <c:if test="${dto.finStatus ne '거래완료'}">
+                                        <c:if test="${dto.finIf eq 'S' && dto.finStatus ne '거래완료'}">
+                                            <td>대기중</td>
+                                        </c:if>
+                                        <c:if test="${dto.finIf ne 'S' && dto.finStatus ne '거래완료'}">
                                             <td>
                                                 <button class="btn btn-outline-success btn-sm rounded-pill moveBtn"
                                                         id="${dto.prDeal}"
