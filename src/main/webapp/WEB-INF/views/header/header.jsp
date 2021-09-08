@@ -140,7 +140,7 @@
                         <b class="logoText" onclick="location.href='main.do'">놀면 뭐하니?</b>
                     </a>
                     <div class="contentList">
-                        <a href="noticemain.do" class="navA">공지사항</a>
+                        <a href="noticemainuser.do" class="navA">공지사항</a>
                         |
                         <a href="loginform.do" class="navA">로그인</a>
                         |
@@ -232,7 +232,7 @@
                         |
                         <a href="mypage.do?usNo=${user.usNo }" class="navA">MY PAGE</a>
                         |
-                        <a href="" class="navA">공지사항</a>
+                        <a href="noticemainuser.do" class="navA">공지사항</a>
                         |
                         <a href="messagechk.do?usNo=${user.usNo}" class="chatA">
                             <span class="material-icons md-36 chaticon">

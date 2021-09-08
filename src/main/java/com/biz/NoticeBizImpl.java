@@ -34,6 +34,21 @@ public class NoticeBizImpl implements NoticeBiz {
 		return dao.updateNotice(dto);
 	}
 
+	@Override
+	public int deleteNotice(int notiNo) {
+		return dao.deleteNotice(notiNo);
+	}
+
+	@Override
+	public List<NotificationDto> allList() {
+		return dao.allList();
+	}
+
+	@Override
+	public int countViews(NotificationDto dto) {
+		return dao.countViews(dto);
+	}
+
 	
 	
 }

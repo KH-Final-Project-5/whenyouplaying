@@ -73,6 +73,51 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 		return res;
 	}
+
+	@Override
+	public int deleteNotice(int notiNo) {
+
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.delete(NAMESPACE+"deleteNotice", notiNo);
+		} catch (Exception e) {
+			System.out.println("[error] : deleteNotice 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public List<NotificationDto> allList() {
+		
+		List<NotificationDto> res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectList(NAMESPACE+"allList");
+		} catch (Exception e) {
+			System.out.println("[error] : allList 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int countViews(NotificationDto dto) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.update(NAMESPACE+"countViews", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : countViews에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 	
 	
 }

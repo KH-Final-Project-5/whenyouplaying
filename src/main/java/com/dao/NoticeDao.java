@@ -12,6 +12,9 @@ public interface NoticeDao {
 	 public List<NotificationDto> noticeList(int usNo);
 	 public NotificationDto noticeOne(int notiNo);
 	 public int updateNotice(NotificationDto dto);
+	 public int deleteNotice(int notiNo);
+	public List<NotificationDto> allList();
+	public int countViews(NotificationDto dto);
 	 
 	
 }

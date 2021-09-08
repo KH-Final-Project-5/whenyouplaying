@@ -23,24 +23,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/noticeListUser.css"/>">
     <script src="<c:url value="/resources/js/noticeListUser.js"/>"></script>
+    
+    
 </head>
 <body>
 
-    <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
 
-    <div>
-        <div class="row">
-            <div class="col-3">
-  
-            </div>
-            
-            <div class="col-6"><p><u>놀면 뭐하니? 의 소식을 알려드립니다!</u></p></div>
-
-            <div class="col-3"></div>
-        </div>
-    </div>
-    <hr>
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
 
     <div class="container">
         <div class="row">
@@ -59,16 +51,16 @@
                 <div id="pageName"><b>MY PAGE</b></div><br>
 
                 <div id="menuList">
-                    <span class="menuText"><a href="#">회원정보</a></span><br><br>
-                    <span class="menuText"><a href="#"><u><b>공지사항</b></u></a></span><br><br>
-                    <span class="menuText"><a href="#">찜 내역</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 구매내역</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 판매내역</a></span><br><br>
-                    <span class="menuText"><a href="#">충전 내역확인</a></span><br><br>
-                    <span class="menuText"><a href="#">계좌 관리</a></span><br><br>
-                    <span class="menuText"><a href="#">포인트 출금</a></span><br><br>
-                    <span class="menuText"><a href="#">포인트 출금내역</a></span><br><br>
-                    <span class="menuText"><a href="#">회원 탈퇴</a></span><br><br>
+                    <span class="menuText"><a class="noM" href="#">회원정보</a></span><br><br>
+                    <span class="menuText"><a class="noM" href="noticemainuser.do"><u><b>공지사항</b></u></a></span><br><br>
+                    <span class="menuText"><a class="noM" href="#">찜 내역</a></span><br><br>
+                    <span class="menuText"><a class="noM" href="#">재능 구매내역</a></span><br><br>
+                    <span class="menuText"><a class="noM" href="#">재능 판매내역</a></span><br><br>
+                    <span class="menuText"><a class="noM" href="#">충전 내역확인</a></span><br><br>
+                    <span class="menuText"><a class="noM" href="#">계좌 관리</a></span><br><br>
+                    <span class="menuText"><a class="noM" href="#">포인트 출금</a></span><br><br>
+                    <span class="menuText"><a class="noM" href="#">포인트 출금내역</a></span><br><br>
+                    <span class="menuText"><a class="noM" href="#">회원 탈퇴</a></span><br><br>
                 </div>
             </div>
     
@@ -77,7 +69,7 @@
 
             <div class="col-9">
                 <div id="titleName"><h1>공지사항</h1></div><br><br>
-                <div class="tableDiv">
+                <div class="tableDiv" style="margin-bottom: 100px;">
                     <table border="1" align="center" class="table">
                         
                         <colgroup>
@@ -96,112 +88,37 @@
                             <th>조회수</th>
                         </tr>
 
-                        <tr>
-                            <td>10</td>
-                            <td>10번글 입니다.</td>
-                            <td>관리자</td>
-                            <td>21.08.17</td>
-                            <td>20</td>
-                        </tr>
-
-                        <!-- 임시데이터 -->
-                        <tr>
-                            <td>9</td>
-                            <td>9번글 입니다.</td>
-                            <td>관리자</td>
-                            <td>21.08.17</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>8번글 입니다.</td>
-                            <td>관리자</td>
-                            <td>21.08.17</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>7번글 입니다.</td>
-                            <td>관리자</td>
-                            <td>21.08.17</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>6번글 입니다.</td>
-                            <td>관리자</td>
-                            <td>21.08.17</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>5번글 입니다.</td>
-                            <td>관리자</td>
-                            <td>21.08.17</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>4번글 입니다.</td>
-                            <td>관리자</td>
-                            <td>21.08.17</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>3번글 입니다.</td>
-                            <td>관리자</td>
-                            <td>21.08.17</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>2번글 입니다.</td>
-                            <td>관리자</td>
-                            <td>21.08.17</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1번글 입니다.</td>
-                            <td>관리자</td>
-                            <td>21.08.17</td>
-                            <td>20</td>
-                        </tr>
-                        <!--임시데이터 끝 삭제예정-->
+						<c:choose>
+							<c:when test="${empty allList }">
+								<tr>
+									<td colspan="5" align="center"> ----------- 공지사항이 없습니다 ---------- </td>								
+								</tr>						
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${allList }" var="dto" >
+									<tr>
+										<td>${dto.notiNo }</td>
+										<td><a class="noM" href="noticedetailuser.do?notiNo=${dto.notiNo }">${dto.notiTitle }</a></td>
+										<td>관리자</td>
+										<td>${dto.notiDate }</td>
+										<td>${dto.notiViews }</td>
+									</tr>	
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
                     </table>
-                        <div id="pagingArea" class="pagingDiv">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                      <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                  </li>
-                                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                      <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </nav>
-                        </div>
 
                 </div>
-
-    
 
             </div>
         </div>
     </div>
 
-    <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
-
-      
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
+    
+</div>
       
 </body>
 </html>
