@@ -86,6 +86,14 @@ body{
     height: 120px;
 }
 
+.atagtext, .atagtext:hover, .atagtext:visited {
+    color: black;
+}
+
+.twoimg {
+    height: 200px;
+}
+
 #sellerName{
 
     position: absolute;

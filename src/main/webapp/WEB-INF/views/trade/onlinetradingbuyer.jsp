@@ -151,7 +151,7 @@
                     </form>
                     <br>
 
-                        <button type="button" class="btn btn-outline-primary" id="sellCompBtn">
+                        <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">
                            	 구매 완료
                         </button>
 

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,6 @@ import com.biz.DealBiz;
 import com.biz.UserBiz;
 import com.commons.FtpClient;
 import com.commons.ScriptUtils;
-import com.dto.DealStatusDto;
-import com.dto.DealStatusImgDto;
-import com.dto.FinishDealDto;
-import com.dto.UserDto;
 
 @Controller
 public class DealController {
@@ -206,10 +203,12 @@ public class DealController {
 
             }
         }
+        List<ProjectDto> list = biz.SelectTwo(finishDealDto.getPrTalent());
         int price = (int) (finishDealDto.getDealPrice() * 0.3);
         model.addAttribute("price", price);
         model.addAttribute("SellUser", userDto);
         model.addAttribute("All", finishDealDto);
+        model.addAttribute("list", list);
 
 
         return "trade/dealFin";
@@ -219,16 +218,18 @@ public class DealController {
     @RequestMapping("/onlinesellcomplete.do")
     public void OnlineSellComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws
             IOException {
-        biz.TradeSellerComplete(dto.getDealNo());
-        FinishDealDto finishDealDto = biz.DealCheck(dto.getDealNo());
+        int res = biz.TradeSellerComplete(dto.getDealNo());
+        int price = 0;
+        UserDto userDto = null;
 
-        if (finishDealDto.getFinIf().equals("Y")) {
-            UserDto userDto = (UserDto) session.getAttribute("user");
+        if (res == 2) {
+            userDto = (UserDto) session.getAttribute("user");
 
-            int price = (int) (dto.getDealPrice() * 0.7);
+            price = (int) (dto.getDealPrice() * 0.7);
 
 
             userDto.setUsCash(userDto.getUsCash() + price);
+
             biz.UpdateDealUser(userDto);
 
             userDto = biz.IdCheck(userDto.getUsNo());
@@ -246,7 +247,7 @@ public class DealController {
             biz.UpdateDealUser(userDto1);
         }
 
-        ScriptUtils.alertAndMovePage(response, "구매완료!", "main.do");
+        ScriptUtils.alertAndMovePage(response, "판매 완료!", "main.do");
 
 
     }

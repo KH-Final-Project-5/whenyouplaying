@@ -68,35 +68,11 @@
     </delete>
 
     <update id="TradeComplete" statementType="CALLABLE" parameterType="map">
-        {call PC_UPDATE(
+        {call PB_UPDATE(
                 #{dealNo, mode=IN, jdbcType=NUMERIC, javaType=java.lang.Integer},
                 #{FF_UPDATE, mode=OUT, jdbcType=NUMERIC, javaType=java.lang.Integer}
-                )}
+            )}
     </update>
-
-    <!--<update id="TradeComplete" parameterType="int">
-        DECLARE
-        FINISHSTATUS VARCHAR2(200);
-        BEGIN
-        SELECT w.FINIF
-        INTO FINISHSTATUS
-        FROM W_FINISHDEAL w
-        WHERE DEALNO = #{dealNo};
-        IF
-        FINISHSTATUS = 'N' THEN
-        UPDATE W_FINISHDEAL
-        SET FINIF = 'B'
-        WHERE DEALNO = #{dealNo};
-        ELSIF
-        FINISHSTATUS = 'S' THEN
-        UPDATE W_FINISHDEAL
-        SET FINSTATUS = '거래완료',
-            FINIF     = 'Y'
-        WHERE DEALNO = #{dealNo};
-        end if;
-        end;
-    </update>-->
-
 
     <update id="UpdateDealUser" parameterType="userDto">
         UPDATE W_USER
@@ -104,26 +80,11 @@
         WHERE USNO = #{usNo}
     </update>
 
-    <update id="TradeSellerComplete" parameterType="int">
-        DECLARE
-        FINISHSTATUS VARCHAR2(200);
-        BEGIN
-        SELECT w.FINIF
-        INTO FINISHSTATUS
-        FROM W_FINISHDEAL w
-        WHERE DEALNO = #{dealNo};
-        IF
-        FINISHSTATUS = 'N' THEN
-        UPDATE W_FINISHDEAL
-        SET FINIF = 'S'
-        WHERE DEALNO = #{dealNo};
-        ELSE
-        UPDATE W_FINISHDEAL
-        SET FINSTATUS = '거래완료',
-            FINIF     = 'Y'
-        WHERE DEALNO = #{dealNo};
-        end if;
-        end;
+    <update id="TradeSellerComplete" statementType="CALLABLE" parameterType="map">
+        {call PS_UPDATE(
+                #{dealNo, mode=IN, jdbcType=NUMERIC, javaType=java.lang.Integer},
+                #{FF_UPDATE, mode=OUT, jdbcType=NUMERIC, javaType=java.lang.Integer}
+            ) }
     </update>
 
     <select id="DealCheck" parameterType="int" resultType="finishDealDto">
@@ -139,5 +100,13 @@
         SELECT *
         FROM W_USER
         WHERE USNO = #{usNo}
+    </select>
+
+    <select id="SelectTwo" resultType="projectDto" parameterType="String">
+        SELECT ROWNUM, a.*
+        FROM W_PROJECT a
+        WHERE ROWNUM &lt; 3
+          AND PRTALENT = #{prTalent}
+        ORDER BY PRNO DESC
     </select>
 </mapper>

@@ -121,7 +121,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="tradeAddrTd tradeContent">
-                                    ${Deal.usName}
+                                    
                                     ${dto.usName}
                                 </td>
                             </tr>
@@ -130,7 +130,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="tradeAddrTd tradeContent">
-                                    ${Deal.usPhone}
+                                    
                                     ${dto.usPhone}
                                 </td>
                             </tr>
@@ -141,7 +141,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="tradeAddrTd tradeContent">
-                                    ${Deal.prPrice}
+                                    
                                     ${dto.prPrice}
                                 </td>
                             </tr>
