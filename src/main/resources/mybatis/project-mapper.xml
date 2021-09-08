@@ -85,4 +85,10 @@
 			  WHERE PRTALENT=#{prTalent})
 		WHERE PRCONTENT LIKE #{searchContent}||'%'
 	</select>
+	
+	<select id="newest">
+	
+		<![CDATA[SELECT * FROM W_PROJECT WHERE ROWNUM <=4 ORDER BY PRNO DESC]]>
+		
+	</select>
 </mapper>

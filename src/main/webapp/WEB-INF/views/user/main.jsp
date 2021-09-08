@@ -45,6 +45,11 @@
         </div>
         <hr class="hrClass1">
         <div class="row">
+        <div class="board-content">
+        <c:forEach items="${list}" var="pr_dto">
+           <a href="Detail.do?prNo=${pr_dto.prNo }">${pr_dto.prTitle }</a>
+        </c:forEach>
+        </div>
             <div class="col-2 mainNewImgDiv">
                 <img class="mainNewImg" src="../lion.jpeg"/><br>
                 <a class="mainNewLink" href="#">제목이 입력 만약 이게 길게되면 아래로 내려가나?</a>

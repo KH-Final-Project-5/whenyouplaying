@@ -148,6 +148,19 @@ public class ProjectDaoImpl implements ProjectDao {
 		return list;
 	}
 
+	@Override
+	public List<ProjectDto> newest() {
+		
+		List<ProjectDto> list = new ArrayList<>();
+		try {
+			list = sqlSession.selectList(NAMESPACE + "newest");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
 
 
 	

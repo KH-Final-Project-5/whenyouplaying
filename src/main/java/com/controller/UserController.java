@@ -1,21 +1,25 @@
 package com.controller;
 
 
+import com.biz.ProjectBiz;
 import com.biz.UserBiz;
 import com.commons.ScriptUtils;
 import com.dto.AbilityDto;
+import com.dto.ProjectDto;
 import com.dto.UserDto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,10 +31,18 @@ public class UserController {
 
     @Autowired
     UserBiz biz;
-
+    ProjectBiz biz2;
+    
     //mainpage
     @RequestMapping("/main.do")
-    public String main() {
+    public String main(Model model) {
+    	biz2.newest();
+    	
+    	List<ProjectDto> list = biz2.newest(); 
+    	
+    	model.addAttribute("list", list);
+    	
+    	
         return "user/main";
     }
 

@@ -112,6 +112,13 @@ public class ProjectBizImpl implements ProjectBiz{
 	}
 
 
+	@Override
+	public List<ProjectDto> newest() {
+
+		return dao.newest();
+	}
+
+
 
 
 
