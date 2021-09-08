@@ -11,7 +11,7 @@ function fnImgPop(url) {
 $(function () {
     $('#sellCompBtn').click(function () {
         if (confirm("구매 완료 하시겠습니까?")) {
-            $('#buytrade').submit();
+            location.href = 'buytradecomplete.do?dealNo=' + dealNo;
         }
     });
 });

@@ -28,5 +28,5 @@ public class UserDto {
 	private String usStatus;
 	private String usRole;
 	private int usCash;
-	
+	private String usImg;
 }

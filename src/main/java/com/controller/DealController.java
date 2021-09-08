@@ -179,42 +179,40 @@ public class DealController {
     }
 
     @RequestMapping("/buytradecomplete.do")
-    public void TradingComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws IOException {
+    public String  TradingComplete(DealStatusDto dto, Model model){
         logger.info("buytradecomplete.do : 재능거래완료");
+        UserDto userDto = null;
 
         int res = biz.TradeComplete(dto.getDealNo());
         FinishDealDto finishDealDto = biz.DealCheck(dto.getDealNo());
-        if (finishDealDto.getFinIf().equals("Y")) {
-            UserDto userDto = biz.IdCheck(dto.getUsSellNo());
+        userDto = biz.IdCheck(finishDealDto.getUsSellNo());
+        System.out.println(res);
+        if (res == 2) {
+            if (finishDealDto.getFinIf().equals("Y")) {
 
-            int price = (int) (dto.getDealPrice() * 0.7);
+                int price = (int) (dto.getDealPrice() * 0.7);
 
-            userDto.setUsCash(userDto.getUsCash() + price);
-            biz.UpdateDealUser(userDto);
-
-
-            UserDto userDto1 = new UserDto();
-            userDto1.setUsNo(4);
-
-            userDto1 = biz.IdCheck(userDto1.getUsNo());
-
-            price = (int) (dto.getDealPrice() * 0.3);
-
-            userDto1.setUsCash(userDto1.getUsCash() + price);
-            biz.UpdateDealUser(userDto1);
+                userDto.setUsCash(userDto.getUsCash() + price);
+                biz.UpdateDealUser(userDto);
 
 
+                UserDto userDto1 = new UserDto();
+                userDto1.setUsNo(4);
+
+                userDto1 = biz.IdCheck(userDto1.getUsNo());
+
+                price = (int) (dto.getDealPrice() * 0.3);
+
+                userDto1.setUsCash(userDto1.getUsCash() + price);
+                biz.UpdateDealUser(userDto1);
+
+            }
         }
+        int price = (int) (finishDealDto.getDealPrice()*0.3);
+        model.addAttribute("price", price);
+        model.addAttribute("SellUser", userDto);
+        model.addAttribute("All", finishDealDto);
 
-
-        if (res == -1) {
-            ScriptUtils.alertAndMovePage(response, "구매 완료",
-                    "dealfin.do");
-        }
-    }
-
-    @RequestMapping("/dealfin.do")
-    public String dealFinForm() {
 
         return "trade/dealFin";
     }
