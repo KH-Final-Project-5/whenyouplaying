@@ -75,7 +75,7 @@
 	                    
 						<div style="float: right;">
 	                    	<input type="submit" value="작성 완료" id="btnSave" class="btn btn-outline-primary">
-	                    	<input type="reset" value="작성 취소" id="btnCancel" class="btn btn-outline-primary" onclick="location.href='noticemainadmin.do'">
+	                    	<input type="reset" value="작성 취소" id="btnCancel" class="btn btn-outline-primary" onclick="location.href='noticemainadmin.do?usNo=${user.usNo}'">
 	                    </div>
 	                </div>
 	            </form>

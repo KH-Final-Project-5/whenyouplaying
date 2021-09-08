@@ -21,16 +21,40 @@ public class NoticeController {
 	private NoticeBiz biz;
 	
     //공지사항목록(유저)
-    @RequestMapping("/noticemain.do")
-    public String noticeMain() {
+    @RequestMapping("/noticemainuser.do")
+    public String noticeMain(Model model) {
     	
+    	logger.info("noticemainuser.do : 공지사항 게시판 (유저)");
     	
-    	
-    	
-    	
+    	model.addAttribute("allList", biz.allList());
     	
     	return "user/noticeListUser";
     }
+    
+    //공지사항 디테일(유저)
+    @RequestMapping("/noticedetailuser.do")
+    public String noticeDetailUser(Model model, int notiNo) {
+    	
+    	logger.info("noticedetailuser.do : 공지사항 상세조회(유저)");
+
+    	NotificationDto dto = biz.noticeOne(notiNo);
+    	
+    	model.addAttribute("noticeDetail", dto);
+    	
+    	if(dto != null) {
+    		int res = 0;
+    		res = biz.countViews(dto);
+    		
+    		if(res>0) {
+    			System.out.println("조회수 1증가 성공");
+    		}else {
+    			System.out.println("조회수 1증가 실패 ㅠㅠ");
+    		}
+    	}
+    	
+    	return "user/noticeDetailUser";
+    }
+    
     
     //공지사항목록(관리자)
     @RequestMapping("/noticemainadmin.do")
@@ -49,14 +73,14 @@ public class NoticeController {
     }
     
     @RequestMapping("/insertnotice.do")
-    public String insertNotice(NotificationDto dto) {
+    public String insertNotice(NotificationDto dto, int usNo) {
     	
     	logger.info("updatenotice.do : 공지사항 추가(업데이트)");
     	
     	int res = biz.insertNotice(dto);
     	
     	if(res>0) {
-    		return "redirect:noticemainadmin.do";
+    		return "redirect:noticemainadmin.do?usNo="+usNo;
     	}else {
     		return "redirect:noticeform.do";
     	}
@@ -102,7 +126,21 @@ public class NoticeController {
     	
     }
     
-    
+    //공지사항 삭제
+    @RequestMapping("noticedelete.do")
+    public String noticeDelete(int notiNo, int usNo) {
+    	
+    	logger.info("noticedelete.do : 공지사항 삭제");
+    	
+    	int res = biz.deleteNotice(notiNo);
+    	
+    	if(res>0) {
+    		return "redirect:noticemainadmin.do?usNo="+usNo;
+    	}else {
+    		return "redirect:noticeDetailAdmin.do?notiNo="+notiNo;
+    	}
+    	
+    }
     
     
     
