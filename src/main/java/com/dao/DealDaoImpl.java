@@ -70,8 +70,8 @@ public class DealDaoImpl implements DealDao {
         map.put("dealNo", dealNo);
 
         sqlSessionTemplate.update(NAMESPACE + "TradeComplete", map);
-        int FF_UPDATE = map.get("FF_UPDATE");
-        return FF_UPDATE;
+        int res = map.get("FF_UPDATE");
+        return res;
     }
 
     @Override
@@ -81,7 +81,12 @@ public class DealDaoImpl implements DealDao {
 
     @Override
     public int TradeSellerComplete(int dealNo) {
-        return sqlSessionTemplate.update(NAMESPACE + "TradeSellerComplete", dealNo);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("dealNo", dealNo);
+
+        sqlSessionTemplate.update(NAMESPACE + "TradeSellerComplete", map);
+        int res = map.get("FF_UPDATE");
+        return res;
     }
 
     @Override

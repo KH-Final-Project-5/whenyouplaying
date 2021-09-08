@@ -218,16 +218,18 @@ public class DealController {
     @RequestMapping("/onlinesellcomplete.do")
     public void OnlineSellComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws
             IOException {
-        biz.TradeSellerComplete(dto.getDealNo());
-        FinishDealDto finishDealDto = biz.DealCheck(dto.getDealNo());
+        int res = biz.TradeSellerComplete(dto.getDealNo());
+        int price = 0;
+        UserDto userDto = null;
 
-        if (finishDealDto.getFinIf().equals("Y")) {
-            UserDto userDto = (UserDto) session.getAttribute("user");
+        if (res == 2) {
+            userDto = (UserDto) session.getAttribute("user");
 
-            int price = (int) (dto.getDealPrice() * 0.7);
+            price = (int) (dto.getDealPrice() * 0.7);
 
 
             userDto.setUsCash(userDto.getUsCash() + price);
+
             biz.UpdateDealUser(userDto);
 
             userDto = biz.IdCheck(userDto.getUsNo());
@@ -245,7 +247,7 @@ public class DealController {
             biz.UpdateDealUser(userDto1);
         }
 
-        ScriptUtils.alertAndMovePage(response, "구매완료!", "main.do");
+        ScriptUtils.alertAndMovePage(response, "판매 완료!", "main.do");
 
 
     }
