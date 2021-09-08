@@ -50,20 +50,6 @@
     
 }
 
-
-
-h2{
-    position: relative;
-    top: 5px;
-    left: 10px;
-}
-
-p{
-    position: relative;
-    top: 20px;
-    left: 50%;
-}
-
 #title{
     position: relative;
     top: 30px;
@@ -72,6 +58,7 @@ p{
     border-radius: 30px;
     padding-left: 2%;
 }
+
 #title:focus{
     border-radius: 30px;
     outline:none;
@@ -102,7 +89,7 @@ p{
     position: relative;
     top: 20px;
     width: 866px;
-    height: 1050px;
+    height: 1020px;
     padding-left: 10px;
     padding-top: 10px;
 }
@@ -159,14 +146,14 @@ body{
     top: 55px;
     left: 30px;
   }
-
-  a{
-    color: black;
-}
-a:hover {
-    color: black;
+  
+.noA{
+	color: black;
 }
 
-a:active {
-    color: black;
-}
+.noA:hover{
+	color:black;
+	text-decoration: none;
+}  
+  
+

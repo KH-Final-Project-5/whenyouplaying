@@ -51,41 +51,16 @@
     
 }
 
-#listbtn{
-    position: relative;
-    top: 60px;
-    left: 40%;
-}
 
-#btn{
-    position: relative;
-    top:60px;
-    float: right;
-    margin-left: 2%;
-}
-
-h2{
-    position: relative;
-    top: 5px;
-    left: 10px;
-}
-
-p{
-    position: relative;
-    top: 20px;
-    left: 50%;
-}
 
 #title{
     border-bottom: outset 2px;
     text-align: center;
-    position: relative;
-    top:30px;
+
    
 }
 
-textarea{
-    resize: none;
+#contentArea{
     position: relative;
     top: 3%;
     width:99%;
@@ -97,8 +72,7 @@ textarea{
 
 #divBox{
     border: 0.5px solid gray;
-    position: relative;
-    top: 50px;
+  	margin-top: 30px;
     width: 866px;
     height: 860px;
     padding-left: 10px;
@@ -109,15 +83,24 @@ body{
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-
-
-a{
-    color: black;
-}
-a:hover {
-    color: black;
+.noA{
+	color: black;
 }
 
-a:active {
-    color: black;
+.noA:hover{
+	color:black;
+	text-decoration: none;
 }
+
+#buttonArea{
+	margin-top: 30px;
+	text-align: right;
+}
+
+#btn1{
+	margin-left: 230px;
+}
+
+
+
+
