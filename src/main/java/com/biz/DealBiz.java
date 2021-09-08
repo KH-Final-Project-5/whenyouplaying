@@ -1,9 +1,6 @@
 package com.biz;
 
-import com.dto.DealStatusDto;
-import com.dto.DealStatusImgDto;
-import com.dto.FinishDealDto;
-import com.dto.UserDto;
+import com.dto.*;
 
 import java.util.List;
 
@@ -34,5 +31,7 @@ public interface DealBiz {
     public FinishDealDto DealCheck(int dealNo);
 
     public UserDto IdCheck(int usNo);
+
+    public List<ProjectDto> SelectTwo(String prTalent);
 
 }

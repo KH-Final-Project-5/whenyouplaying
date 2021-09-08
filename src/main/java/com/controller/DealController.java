@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,6 @@ import com.biz.DealBiz;
 import com.biz.UserBiz;
 import com.commons.FtpClient;
 import com.commons.ScriptUtils;
-import com.dto.DealStatusDto;
-import com.dto.DealStatusImgDto;
-import com.dto.FinishDealDto;
-import com.dto.UserDto;
 
 @Controller
 public class DealController {
@@ -206,10 +203,12 @@ public class DealController {
 
             }
         }
+        List<ProjectDto> list = biz.SelectTwo(finishDealDto.getPrTalent());
         int price = (int) (finishDealDto.getDealPrice() * 0.3);
         model.addAttribute("price", price);
         model.addAttribute("SellUser", userDto);
         model.addAttribute("All", finishDealDto);
+        model.addAttribute("list", list);
 
 
         return "trade/dealFin";

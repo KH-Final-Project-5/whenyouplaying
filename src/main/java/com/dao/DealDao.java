@@ -1,9 +1,6 @@
 package com.dao;
 
-import com.dto.DealStatusDto;
-import com.dto.DealStatusImgDto;
-import com.dto.FinishDealDto;
-import com.dto.UserDto;
+import com.dto.*;
 
 import java.util.List;
 
@@ -38,4 +35,6 @@ public interface DealDao {
     public FinishDealDto DealCheck(int dealNo);
 
     public UserDto IdCheck(int usNo);
+
+    public List<ProjectDto> SelectTwo(String prTalent);
 }
