@@ -202,6 +202,8 @@ public class DealController {
 
             userDto1.setUsCash(userDto1.getUsCash() + price);
             biz.UpdateDealUser(userDto1);
+
+
         }
 
 

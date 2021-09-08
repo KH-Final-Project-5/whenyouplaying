@@ -43,13 +43,13 @@
 </head>
 
 <script>
-    var socket = null;
+    /*var socket = null;
     $(document).ready(function () {
         connectWS();
     });
 
     function connectWS() {
-        var ws = new WebSocket("ws://localhost:8105/");
+        var ws = new WebSocket("ws://localhost:8105/replyEcho");
 
         socket = ws;
 
@@ -67,9 +67,9 @@
         };
 
         ws.onerror = function (err) {
-            console.log("Error : " + err);
+            console.log("Error : " + err.type);
         };
-    }
+    }*/
 </script>
 
 

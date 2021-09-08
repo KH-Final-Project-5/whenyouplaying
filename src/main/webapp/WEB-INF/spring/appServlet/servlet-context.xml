@@ -31,8 +31,8 @@
 
     <!--websocket handler-->
     <bean id="replyEchochoHandler" class="com.jade.swp.handler.ReplyEchoHandler"/>
-    <websocket:handlers>
-        <websocket:mapping path="/*.do" handler="replyEchochoHandler"/>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping handler="replyEchochoHandler" path="/echo.do"/>
         <websocket:handshake-interceptors>
             <bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
         </websocket:handshake-interceptors>
