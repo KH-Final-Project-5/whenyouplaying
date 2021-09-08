@@ -73,7 +73,7 @@
 		                <input type="button" value="목록으로" id="listbtn" class="btn btn-outline-primary" onclick="location.href='noticemainadmin.do?usNo=${user.usNo}'">
 		
 	    	            <input type="button" value="수정하기" id="btn1" class="btn btn-outline-primary" onclick="location.href='noticeupdate.do?notiNo=${noticeDetail.notiNo}'">
-	        	        <input type="button" value="삭제하기" id="btn" class="btn btn-outline-primary">
+	        	        <input type="button" value="삭제하기" id="btn" class="btn btn-outline-primary" onclick="location.href='noticedelete.do?notiNo=${noticeDetail.notiNo}'">
 	        	</div>
             </div>
         </div>
