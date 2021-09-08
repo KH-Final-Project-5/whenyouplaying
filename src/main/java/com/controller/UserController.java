@@ -103,7 +103,7 @@ public class UserController {
 
     @RequestMapping("/talentform.do")
     public String talentForm() {
-        return "user/abilityRegister";
+        return "user/main2";
     }
 
 

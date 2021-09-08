@@ -29,7 +29,11 @@
 <script src="<c:url value="/resources/js/tradingbuyer.js"/>"></script>
 
 <script>
+    let writer = '${user.usId}';
+        dealNo = '${dto.dealNo}';
+    $(function () {
 
+    });
 </script>
 
 
@@ -149,7 +153,7 @@
                         <input type="hidden" name="dealPrice" value="${dto.dealPrice}">
                         <input type="hidden" name="usNo" value="${user.usNo}">
 
-                        <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">
+                        <button type="button" class="btn btn-outline-primary" id="sellCompBtn">
                            	 구매 완료
                         </button>
                     </form>

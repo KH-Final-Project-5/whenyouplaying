@@ -1,13 +1,16 @@
 package com.jade.swp.handler;
 
 import com.dto.UserDto;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.*;
 
@@ -28,8 +31,13 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 
     private String getMemberId(WebSocketSession session) {
         Map<String, Object> httpSession = session.getAttributes();
-        String m_id = (String) httpSession.get("usId");
-        return m_id == null ? null : m_id;
+        UserDto dto = (UserDto) httpSession.get("user");
+        if (dto == null) {
+            return session.getId();
+        } else {
+            return dto.getUsId();
+        }
+
     }
 
     //메세지를 보냈을 때
@@ -41,16 +49,14 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
         if (msg != null) {
             String[] strs = msg.split(",");
             log(strs.toString());
-            if (strs != null && strs.length == 4) {
-                String type = strs[0];
+            if (strs != null && strs.length == 2) {
+                String url = strs[0];
                 String target = strs[1];
-                String content = strs[2];
-                String url = strs[3];
                 WebSocketSession targetSession = user.get(target);
 
                 if (targetSession != null) {
-                    TextMessage tmpMsg = new TextMessage("<a target='_blank' href='" + url + "'>[<b>" + type + "</b>] " + content + "</a>");
-                    targetSession.sendMessage(tmpMsg);
+//                    TextMessage tmpMsg = new TextMessage();
+//                    targetSession.sendMessage(tmpMsg);
                 }
             }
         }
