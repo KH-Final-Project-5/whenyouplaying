@@ -64,10 +64,6 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 		int res = 0;
 		
-		System.out.println("notiNo: "+dto.getNotiNo());
-		System.out.println("notiTitle: "+dto.getNotiTitle());
-		System.out.println("notiContent: "+dto.getNotiContent());
-		
 		try {
 			res = sqlSessionTemplate.update(NAMESPACE+"updateNotice", dto);
 		} catch (Exception e) {
