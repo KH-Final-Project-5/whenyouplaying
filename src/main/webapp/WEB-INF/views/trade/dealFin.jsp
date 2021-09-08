@@ -102,18 +102,15 @@
                 <div id="contentArea">
                     <c:forEach items="${list}" var="list">
                         <figure class="figure float-start shadow">
-                            <a href="Detail.do?prNo=${list.prNo}"><img src="${list.prImage}"
-                                                                       class="figure-img img-fluid rounded" alt="섬네일1">
-                                <figcaption class="figure-cpation">${list.prTitle}</figcaption>
+                            <a href="Detail.do?prNo=${list.prNo}"><img style="height: 200px" src="${list.prImage}"
+                                                                       class="figure-img img-fluid rounded twoimg" alt="섬네일1">
+                                <figcaption class="figure-cpation atagtext">${list.prTitle}</figcaption>
                             </a>
                         </figure>
                     </c:forEach>
 
 
-                    <%--<figure class="figure float-end shadow">
-                        <img src="..." class="figure-img img-fluid rounded" alt="섬네일1">
-                        <figcaption class="figure-cpation">내용</figcaption>
-                    </figure>--%>
+
 
                 </div>
             </div>

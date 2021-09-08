@@ -119,8 +119,9 @@
 
     <select id="SelectTwo" resultType="projectDto" parameterType="String">
         SELECT ROWNUM, a.*
-        FROM W_PROJECT
+        FROM W_PROJECT a
         WHERE ROWNUM &lt; 3
-          AND PRTALENT = ${prTalent}
+          AND PRTALENT = #{prTalent}
+        ORDER BY PRNO DESC
     </select>
 </mapper>
