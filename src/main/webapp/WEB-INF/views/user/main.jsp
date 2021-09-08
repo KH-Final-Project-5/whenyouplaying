@@ -60,10 +60,12 @@
 </head>
 
 <body>
+
 <div class="wwrap">
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
+    
     <div class="container">
         <div class="row">
             <h2>최신순</h2>

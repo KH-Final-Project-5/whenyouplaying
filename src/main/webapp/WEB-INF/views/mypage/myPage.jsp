@@ -77,10 +77,10 @@
             
             <div class="col-4">
                 <div class="col-8">
-                    <a href="#"><img src="<c:url value="/resources/img_mypage/bank.png"/>"></a>
+                    <a href="manageaccount.do?usNo=${user.usNo }"><img src="<c:url value="/resources/img_mypage/bank.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a class="myA" href="#"><b>계좌 관리</b></a>
+                    <a class="myA" href="manageaccount.do?usNo=${user.usNo }"><b>계좌 관리</b></a>
                  </div>
                 
                  <div class="col-8">

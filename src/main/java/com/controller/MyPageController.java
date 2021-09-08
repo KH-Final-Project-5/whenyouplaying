@@ -1,6 +1,10 @@
 package com.controller;
 
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.biz.MyPageBiz;
 import com.commons.Criteria;
 import com.commons.PageMaker;
+import com.commons.ScriptUtils;
+import com.dto.BankAccountDto;
 import com.dto.FinishDealDto;
 
 @Controller
@@ -161,9 +167,60 @@ public class MyPageController {
 		return "mypage/talentSales";
 	}
 	
+	//계좌관리
+	@RequestMapping("/manageaccount.do")
+	public String manageAccount(Model model, int usNo) {
+		
+		logger.info("manageaccount.do : 계좌관리 페이지 이동");
+		
+		model.addAttribute("accountList", biz.accountList(usNo));
+		
+		return "mypage/bankAccount";
+	}
 
 	
+	//계좌등록
+	@RequestMapping("/insertaccount.do")
+	public String insertAccount(BankAccountDto dto) {
+		
+		logger.info("insertaccount.do : 계좌 등록");
+		
+		int res = biz.insertAccount(dto);
+		
+		if(res>0) {
+			return "redirect:manageaccount.do?usNo="+dto.getUsNo();
+		}else {
+			return "redirect:failinsertaccount.do?usNo="+dto.getUsNo();
+		}
+		
+	}
 	
+	//계좌등록실패 팝업
+	@RequestMapping("/failinsertaccount.do")
+	public void failInsert(HttpServletResponse response, int usNo) {
+		
+		try {
+			ScriptUtils.alertAndMovePage(response, "실패! 다시 시도해주세요", "manageaccount.do?usNo="+usNo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//계좌 삭제
+	@RequestMapping("/deleteaccount.do")
+	public String deleteAccount(int baNo, int usNo) {
+		
+		logger.info("deleteaccount.do : 계좌 삭제");
+		
+		int res = biz.deleteAccount(baNo);
+		
+		if(res>0) {
+			return "redirect:manageaccount.do?usNo="+usNo;
+		}else {
+			return "redirect:failinsertaccount.do?usNo="+usNo;
+		}
+		 
+	}
 	
 	
 	
