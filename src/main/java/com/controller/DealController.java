@@ -130,7 +130,7 @@ public class DealController {
         }
 
         if (result == fileList.size()) {
-            ScriptUtils.alertAndMovePage(response, "입력 성공하였습니다.", "onlineTradeSellForm.do?dealNo=" + dto.getDealNo());
+            ScriptUtils.alertAndMovePage(response, "�엯�젰 �꽦怨듯븯���뒿�땲�떎.", "onlineTradeSellForm.do?dealNo=" + dto.getDealNo());
         }
     }
 
@@ -140,7 +140,7 @@ public class DealController {
         int res = biz.DeleteOnlineImg(dealImgNo);
 
         if (res > 0) {
-            ScriptUtils.alertAndMovePage(response, "삭제가 완료되었습니다.",
+            ScriptUtils.alertAndMovePage(response, "�궘�젣媛� �셿猷뚮릺�뿀�뒿�땲�떎.",
                     "onlineTradeSellForm.do?dealNo=" + dealNo);
         }
 
@@ -150,7 +150,7 @@ public class DealController {
     @RequestMapping("/onlineTradeBuyForm.do")
     public String OnlineTradeBuyerForm(Model model, int dealNo) {
 
-        logger.info("buyForm.do : 온라인 구매자 거래페이지");
+        logger.info("buyForm.do : �삩�씪�씤 援щℓ�옄 嫄곕옒�럹�씠吏�");
 
 
         DealStatusDto dto = biz.SelectDealOneBuyer(dealNo);
@@ -166,7 +166,7 @@ public class DealController {
     @RequestMapping("/directTradeBuyForm.do")
     public String DirectTradeBuyerForm(Model model, int dealNo) {
 
-        logger.info("buyForm.do : 온라인 구매자 거래페이지");
+        logger.info("buyForm.do : �삩�씪�씤 援щℓ�옄 嫄곕옒�럹�씠吏�");
 
 
         DealStatusDto dto = biz.SelectDealOneBuyer(dealNo);
@@ -180,7 +180,7 @@ public class DealController {
 
     @RequestMapping("/buytradecomplete.do")
     public void TradingComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws IOException {
-        logger.info("buytradecomplete.do : 재능거래완료");
+        logger.info("buytradecomplete.do : �옱�뒫嫄곕옒�셿猷�");
 
         int res = biz.TradeComplete(dto.getDealNo());
         FinishDealDto finishDealDto = biz.DealCheck(dto.getDealNo());
@@ -208,7 +208,7 @@ public class DealController {
 
 
         if (res == -1) {
-            ScriptUtils.alertAndMovePage(response, "구매 완료",
+            ScriptUtils.alertAndMovePage(response, "援щℓ �셿猷�",
                     "dealfin.do");
         }
     }
@@ -248,7 +248,7 @@ public class DealController {
             biz.UpdateDealUser(userDto1);
         }
 
-        ScriptUtils.alertAndMovePage(response, "판매완료!", "main.do");
+        ScriptUtils.alertAndMovePage(response, "구매완료!", "main.do");
 
 
     }
@@ -282,7 +282,7 @@ public class DealController {
             biz.UpdateDealUser(userDto1);
         }
 
-        ScriptUtils.alertAndMovePage(response, "판매완료!", "main.do");
+        ScriptUtils.alertAndMovePage(response, "구매완료!", "main.do");
 
 
     }
