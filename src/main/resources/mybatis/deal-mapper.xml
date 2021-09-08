@@ -67,7 +67,14 @@
         WHERE DEALIMGNO = #{dealImgNo}
     </delete>
 
-    <update id="TradeComplete" parameterType="int">
+    <update id="TradeComplete" statementType="CALLABLE" parameterType="map">
+        {call PC_UPDATE(
+                #{dealNo, mode=IN, jdbcType=NUMERIC, javaType=java.lang.Integer},
+                #{FF_UPDATE, mode=OUT, jdbcType=NUMERIC, javaType=java.lang.Integer}
+                )}
+    </update>
+
+    <!--<update id="TradeComplete" parameterType="int">
         DECLARE
         FINISHSTATUS VARCHAR2(200);
         BEGIN
@@ -80,14 +87,16 @@
         UPDATE W_FINISHDEAL
         SET FINIF = 'B'
         WHERE DEALNO = #{dealNo};
-        ELSE
+        ELSIF
+        FINISHSTATUS = 'S' THEN
         UPDATE W_FINISHDEAL
         SET FINSTATUS = '거래완료',
             FINIF     = 'Y'
         WHERE DEALNO = #{dealNo};
         end if;
         end;
-    </update>
+    </update>-->
+
 
     <update id="UpdateDealUser" parameterType="userDto">
         UPDATE W_USER
@@ -119,13 +128,16 @@
 
     <select id="DealCheck" parameterType="int" resultType="finishDealDto">
         SELECT *
-        FROM W_FINISHDEAL
-        WHERE DEALNO = ${dealNo}
+        FROM W_FINISHDEAL WF
+                 JOIN W_DEALSTATUS WD on WF.DEALNO = WD.DEALNO
+                 JOIN W_USER WU on WF.USBUYNO = WU.USNO
+                 JOIN W_PROJECT WP on WD.PRNO = WP.PRNO
+        WHERE WD.DEALNO = #{dealNo}
     </select>
 
     <select id="IdCheck" resultType="userDto" parameterType="int">
         SELECT *
         FROM W_USER
-        WHERE USNO = ${usNo}
+        WHERE USNO = #{usNo}
     </select>
 </mapper>

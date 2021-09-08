@@ -8,7 +8,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class DealDaoImpl implements DealDao {
@@ -66,7 +68,12 @@ public class DealDaoImpl implements DealDao {
 
     @Override
     public int TradeComplete(int dealNo) {
-        return sqlSessionTemplate.update(NAMESPACE + "TradeComplete", dealNo);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("dealNo", dealNo);
+
+        sqlSessionTemplate.update(NAMESPACE + "TradeComplete", map);
+        int FF_UPDATE = map.get("FF_UPDATE");
+        return FF_UPDATE;
     }
 
     @Override

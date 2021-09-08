@@ -25,6 +25,9 @@
       rel="stylesheet">
 
 
+<script>
+    let dealNo = '${dto.dealNo}';
+</script>
 <link rel="stylesheet" href="<c:url value="/resources/css/onlinetradingbuyer.css"/>">
 <script src="<c:url value="/resources/js/tradingbuyer.js"/>"></script>
 
@@ -147,16 +150,10 @@
                         </table>
                     </form>
                     <br>
-                    <form action="buytradecomplete.do" method="post" id="buytrade">
-                        <input type="hidden" name="usSellNo" value="${dto.usSellNo}">
-                        <input type="hidden" name="dealNo" value="${dto.dealNo}">
-                        <input type="hidden" name="dealPrice" value="${dto.dealPrice}">
-                        <input type="hidden" name="usNo" value="${user.usNo}">
 
                         <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">
                            	 구매 완료
                         </button>
-                    </form>
 
                 </div>
             </div>
