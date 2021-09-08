@@ -28,13 +28,13 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/onlinetradingbuyer.css"/>">
 <script src="<c:url value="/resources/js/tradingbuyer.js"/>"></script>
 
-<script>
+<%--<script>
     let writer = '${user.usId}';
         dealNo = '${dto.dealNo}';
     $(function () {
 
     });
-</script>
+</script>--%>
 
 
 <body>
@@ -147,7 +147,7 @@
                         </table>
                     </form>
                     <br>
-                    <form action="buytradecomplete.do" method="post">
+                    <form action="buytradecomplete.do" method="post" id="buytrade">
                         <input type="hidden" name="usSellNo" value="${dto.usSellNo}">
                         <input type="hidden" name="dealNo" value="${dto.dealNo}">
                         <input type="hidden" name="dealPrice" value="${dto.dealPrice}">

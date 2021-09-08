@@ -209,10 +209,14 @@ public class DealController {
 
         if (res == -1) {
             ScriptUtils.alertAndMovePage(response, "구매 완료",
-                    "buylist.do?usNo=" + dto.getUsNo() + "&finStatus=1");
+                    "dealfin.do");
         }
+    }
 
+    @RequestMapping("/dealfin.do")
+    public String dealFinForm() {
 
+        return "trade/dealFin";
     }
 
     @RequestMapping("/onlinesellcomplete.do")
