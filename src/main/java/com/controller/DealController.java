@@ -1,7 +1,6 @@
 package com.controller;
 
 
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -57,22 +56,22 @@ public class DealController {
 
         return "redirect:buylist.do?usNo=" + dto1.getUsNo() + "&finStatus=1";
     }
-    
+
     @RequestMapping("/directtrade.do")
     public String DirectTradeForm(Model model, DealStatusDto dto, HttpSession session) {
-    	
-    	DealStatusDto dealStatusDto = biz.SelectDeal(dto);
-    	biz.InsertFinDealStatus(dealStatusDto);
-    	UserDto dto1 = (UserDto) session.getAttribute("user");
+
+        DealStatusDto dealStatusDto = biz.SelectDeal(dto);
+        biz.InsertFinDealStatus(dealStatusDto);
+        UserDto dto1 = (UserDto) session.getAttribute("user");
         dto1.setUsCash(dto1.getUsCash() - dto.getDealPrice());
         biz.UpdateDealUser(dto1);
-        
+
         biz1.login(dto1);
         session.setAttribute("user", dto1);
-        
+
         model.addAttribute("Deal", dealStatusDto);
-        
-    	return "redirect:buylist.do?usNo="+ dto1.getUsNo() + "&finStatus=1";
+
+        return "redirect:buylist.do?usNo=" + dto1.getUsNo() + "&finStatus=1";
     }
 
     @RequestMapping("/onlineTradeSellForm.do")
@@ -87,7 +86,7 @@ public class DealController {
 
         return "trade/onlinetradingseller";
     }
-    
+
     @RequestMapping("/directTradeSellForm.do")
     public String DirectTradeSellerForm(Model model, int dealNo) {
 
@@ -100,7 +99,6 @@ public class DealController {
 
         return "trade/directtradingseller";
     }
-    
 
 
     @RequestMapping("/onlineSellerImgUpload.do")
@@ -130,7 +128,7 @@ public class DealController {
         }
 
         if (result == fileList.size()) {
-            ScriptUtils.alertAndMovePage(response, "�엯�젰 �꽦怨듯븯���뒿�땲�떎.", "onlineTradeSellForm.do?dealNo=" + dto.getDealNo());
+            ScriptUtils.alertAndMovePage(response, "사진 업로드 완료.", "onlineTradeSellForm.do?dealNo=" + dto.getDealNo());
         }
     }
 
@@ -140,7 +138,7 @@ public class DealController {
         int res = biz.DeleteOnlineImg(dealImgNo);
 
         if (res > 0) {
-            ScriptUtils.alertAndMovePage(response, "�궘�젣媛� �셿猷뚮릺�뿀�뒿�땲�떎.",
+            ScriptUtils.alertAndMovePage(response, "삭제 완료.",
                     "onlineTradeSellForm.do?dealNo=" + dealNo);
         }
 
@@ -150,7 +148,7 @@ public class DealController {
     @RequestMapping("/onlineTradeBuyForm.do")
     public String OnlineTradeBuyerForm(Model model, int dealNo) {
 
-        logger.info("buyForm.do : �삩�씪�씤 援щℓ�옄 嫄곕옒�럹�씠吏�");
+//        logger.info("buyForm.do : �삩�씪�씤 援щℓ�옄 嫄곕옒�럹�씠吏�");
 
 
         DealStatusDto dto = biz.SelectDealOneBuyer(dealNo);
@@ -161,12 +159,12 @@ public class DealController {
 
         return "trade/onlinetradingbuyer";
     }
-    
-    
+
+
     @RequestMapping("/directTradeBuyForm.do")
     public String DirectTradeBuyerForm(Model model, int dealNo) {
 
-        logger.info("buyForm.do : �삩�씪�씤 援щℓ�옄 嫄곕옒�럹�씠吏�");
+//        logger.info("buyForm.do : �삩�씪�씤 援щℓ�옄 嫄곕옒�럹�씠吏�");
 
 
         DealStatusDto dto = biz.SelectDealOneBuyer(dealNo);
@@ -179,48 +177,48 @@ public class DealController {
     }
 
     @RequestMapping("/buytradecomplete.do")
-    public void TradingComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws IOException {
-        logger.info("buytradecomplete.do : �옱�뒫嫄곕옒�셿猷�");
+    public String TradingComplete(DealStatusDto dto, Model model) {
+        logger.info("buytradecomplete.do : 재능거래완료");
+        UserDto userDto = null;
 
         int res = biz.TradeComplete(dto.getDealNo());
         FinishDealDto finishDealDto = biz.DealCheck(dto.getDealNo());
-        if (finishDealDto.getFinIf().equals("Y")) {
-            UserDto userDto = biz.IdCheck(dto.getUsSellNo());
+        userDto = biz.IdCheck(finishDealDto.getUsSellNo());
+        System.out.println(res);
+        if (res == 2) {
+            if (finishDealDto.getFinIf().equals("Y")) {
 
-            int price = (int) (dto.getDealPrice() * 0.7);
+                int price = (int) (dto.getDealPrice() * 0.7);
 
-            userDto.setUsCash(userDto.getUsCash() + price);
-            biz.UpdateDealUser(userDto);
-
-
-            UserDto userDto1 = new UserDto();
-            userDto1.setUsNo(4);
-
-            userDto1 = biz.IdCheck(userDto1.getUsNo());
-
-            price = (int) (dto.getDealPrice() * 0.3);
-
-            userDto1.setUsCash(userDto1.getUsCash() + price);
-            biz.UpdateDealUser(userDto1);
+                userDto.setUsCash(userDto.getUsCash() + price);
+                biz.UpdateDealUser(userDto);
 
 
+                UserDto userDto1 = new UserDto();
+                userDto1.setUsNo(4);
+
+                userDto1 = biz.IdCheck(userDto1.getUsNo());
+
+                price = (int) (dto.getDealPrice() * 0.3);
+
+                userDto1.setUsCash(userDto1.getUsCash() + price);
+                biz.UpdateDealUser(userDto1);
+
+            }
         }
+        int price = (int) (finishDealDto.getDealPrice() * 0.3);
+        model.addAttribute("price", price);
+        model.addAttribute("SellUser", userDto);
+        model.addAttribute("All", finishDealDto);
 
-
-        if (res == -1) {
-            ScriptUtils.alertAndMovePage(response, "援щℓ �셿猷�",
-                    "dealfin.do");
-        }
-    }
-
-    @RequestMapping("/dealfin.do")
-    public String dealFinForm() {
 
         return "trade/dealFin";
+
     }
 
     @RequestMapping("/onlinesellcomplete.do")
-    public void OnlineSellComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws IOException {
+    public void OnlineSellComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws
+            IOException {
         biz.TradeSellerComplete(dto.getDealNo());
         FinishDealDto finishDealDto = biz.DealCheck(dto.getDealNo());
 
@@ -252,9 +250,10 @@ public class DealController {
 
 
     }
-    
+
     @RequestMapping("/directsellcomplete.do")
-    public void directSellComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws IOException {
+    public void directSellComplete(HttpSession session, HttpServletResponse response, DealStatusDto dto) throws
+            IOException {
         biz.TradeSellerComplete(dto.getDealNo());
         FinishDealDto finishDealDto = biz.DealCheck(dto.getDealNo());
 
@@ -286,4 +285,5 @@ public class DealController {
 
 
     }
+}
 }
