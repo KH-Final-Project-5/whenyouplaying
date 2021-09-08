@@ -76,7 +76,7 @@
 	        <div class="col-9">
 	            <div id="titleName"><h1>공지사항</h1></div>
 	            <br><br>
-	            <div class="tableDiv">
+	            <div class="tableDiv" style="margin-bottom: 60px;">
 	                <table border="1" align="center" class="table">
 	
 	                    <colgroup>
@@ -95,41 +95,31 @@
 	                        <th>조회수</th>
 	                    </tr>
 	
-	                    <tr>
-	                        <td>10</td>
-	                        <td>10번글 입니다.</td>
-	                        <td>관리자</td>
-	                        <td>21.08.17</td>
-	                        <td>20</td>
-	                    </tr>
-	
-
-
+						<c:choose>
+							<c:when test="${empty noticeList }">
+								<tr>
+									<td colspan="5" align="center"> ----------- 공지사항이 없습니다 ---------- </td>								
+								</tr>						
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${noticeList }" var="dto" >
+									<tr>
+										<td>${dto.notiNo }</td>
+										<td><a class="noA" href="noticeDetailAdmin.do?notiNo=${dto.notiNo }">${dto.notiTitle }</a></td>
+										<td>관리자</td>
+										<td>${dto.notiDate }</td>
+										<td>${dto.notiViews }</td>
+									</tr>	
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 	                </table>
-	                <div id="pagingArea" class="pagingDiv">
-	                    <nav aria-label="Page navigation example">
-	                        <ul class="pagination">
-	                            <li class="page-item">
-	                                <a class="page-link" href="#" aria-label="Previous">
-	                                    <span aria-hidden="true">&laquo;</span>
-	                                </a>
-	                            </li>
-	                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-	                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-	                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-	                            <li class="page-item">
-	                                <a class="page-link" href="#" aria-label="Next">
-	                                    <span aria-hidden="true">&raquo;</span>
-	                                </a>
-	                            </li>
-	                        </ul>
-	                    </nav>
-	                </div>
+
+					<div id="btnArea">	
+		            	<input type="button" value="공지사항 작성" class="btn btn-outline-primary" onclick="location.href='noticeform.do'">
+					</div>	
 	
 	            </div>
-	
-	
-	            <input type="button" value="공지사항 작성" id="btn" class="btn btn-outline-primary" onclick="location.href='noticeform.do'">
 	        </div>
 	    </div>
 	</div>

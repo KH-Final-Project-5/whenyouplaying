@@ -9,11 +9,25 @@
 		INSERT INTO W_NOTIFICATION
 		VALUES(NOTISEQ.NEXTVAL, #{usNo}, #{notiTitle}, #{notiContent}, SYSDATE, 0)
 	</insert>
+	
+	<select id="noticeList" parameterType="int" resultType="notificationDto">
+		SELECT * FROM W_NOTIFICATION
+		WHERE USNO = #{usNo}
+		ORDER BY NOTINO DESC
+	</select>
 
+	
+	<select id="noticeOne" parameterType="int" resultType="notificationDto">
+		SELECT * FROM W_NOTIFICATION
+		WHERE NOTINO = #{notiNo}
+	</select>
 
-
-
-
+	<select id="updateNotice" parameterType="notificationDto" >
+		UPDATE W_NOTIFICATION
+		SET NOTITITLE=#{notiTitle}, NOTICONTENT=#{notiContent}
+		WHERE NOTINO = #{notiNo}
+	</select>
+	
 
 
 
