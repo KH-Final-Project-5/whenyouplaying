@@ -9,6 +9,14 @@
         <typeAlias type="com.dto.AbilityDto" alias="abilityDto"/>
         <typeAlias type="com.dto.ChargeHistoryDto" alias="chargeHistoryDto"/>
         <typeAlias type="com.dto.MessageDto" alias="messageDto"/>
+        <typeAlias type="com.commons.Criteria" alias="criteria"/>
+        <typeAlias type="com.dto.ReportDto" alias="reportDto"/>
+        <typeAlias type="com.dto.FinishDealDto" alias="finishDealDto"/>
+        <typeAlias type="com.dto.ReviewDto" alias="reviewDto"/>
+        <typeAlias type="com.dto.DealStatusDto" alias="dealDto"/>
+        <typeAlias type="com.dto.DealStatusImgDto" alias="dealImgDto"/>
+        <typeAlias type="com.dto.WithDrawDto" alias="withDrawDto"/>
+        <typeAlias type="com.dto.NotificationDto" alias="notificationDto"/>
     </typeAliases>
 
     <mappers>
@@ -17,6 +25,10 @@
         <mapper resource="mybatis/ability-mapper.xml"/>
         <mapper resource="mybatis/mypage-mapper.xml"/>
         <mapper resource="mybatis/mes-mapper.xml"/>
+        <mapper resource="mybatis/admin-mapper.xml"/>
+        <mapper resource="mybatis/report-mapper.xml"/>
+        <mapper resource="mybatis/deal-mapper.xml"/>
+		<mapper resource="mybatis/notice-mapper.xml" />
     </mappers>
 
 

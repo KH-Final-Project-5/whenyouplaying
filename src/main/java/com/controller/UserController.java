@@ -5,7 +5,11 @@ import com.biz.ProjectBiz;
 import com.biz.UserBiz;
 import com.commons.ScriptUtils;
 import com.dto.AbilityDto;
+
 import com.dto.ProjectDto;
+
+import com.dto.ReportDto;
+
 import com.dto.UserDto;
 
 import org.slf4j.Logger;
@@ -82,12 +86,12 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value="/idChk.do", method = RequestMethod.POST)
-    public int idChk(UserDto dto) throws Exception{
-    	int res = biz.idChk(dto);
-    	return res;
+    @RequestMapping(value = "/idChk.do", method = RequestMethod.POST)
+    public int idChk(UserDto dto) throws Exception {
+        int res = biz.idChk(dto);
+        return res;
     }
-    
+
     @RequestMapping("/login.do")
     public String login(HttpSession session, UserDto dto) {
 
@@ -204,5 +208,17 @@ public class UserController {
 
     }
 
+    @RequestMapping("/reportpopup.do")
+    public String ReportPopup(Model model, ReportDto dto) {
 
+        model.addAttribute("dto", dto);
+
+
+        return "user/reportPageForm";
+    }
+    
+    
+    
+    
+    
 }

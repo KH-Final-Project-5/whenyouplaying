@@ -9,15 +9,7 @@ function suspend(){
 
 
 $(function (){
-    $('.tdTitle').click(function(){
-        if($(this).nextAll('.reportReason').text()==="기타"){
-            openPop();
-        }
-       
-    });
+
 });
 
 
-function openPop(){
-    var popup = window.open('reportCheck.html', '신고확인', 'width=720px,height=830px,scrollbars=no');
-}

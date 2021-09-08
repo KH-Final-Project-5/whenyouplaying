@@ -10,11 +10,12 @@
         FROM (
                 SELECT PRNO,USNO,PRTITLE, PRCONTENT, PRPRICE, PRWRITEDATE, PRTALENT, PRDEAL,PRYOUTUBE,PRIMAGE,PRDATE,PRSTATUS,PRLATITUDE,PRLONGITUDE,PRADDRESS, ROW_NUMBER() OVER(ORDER BY PRNO DESC) AS RNUM
                 FROM W_PROJECT
-                WHERE PRTALENT=#{prTalent})
+                WHERE PRTALENT=#{prTalent} AND PRDELSTATUS = 'Y' )
         WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
         ORDER BY PRNO DESC
 	</select>
-
+	
+	
 
 	<select id="prListCount" resultType="int">
 		SELECT COUNT(PRNO)
@@ -28,22 +29,45 @@
         WHERE PRTALENT = #{prTalent}
     </select>
 	 -->
-
+	
+	
+	<select id="reviewSelect" parameterType="int" resultType="reviewDto">
+		SELECT  PRNO,b.USNO,RVNO,RVCONTENT,RVDATE,RVGRADE,USNAME
+		FROM W_REVIEW a
+		JOIN W_USER b ON b.USNO = a.USWRITER
+		WHERE PRNO=#{prNo}
+	</select>
+	
     <select id="detail" parameterType="int" resultType="ProjectDto">
         SELECT a.*, b.*
         FROM W_PROJECT a
                  JOIN W_USER b ON a.USNO = b.USNO
         WHERE PRNO = #{prNo}
     </select>
-
+	
+	
 
     <insert id="insert" parameterType="ProjectDto">
         INSERT INTO W_PROJECT
         VALUES (PROJECTSEQ.NEXTVAL, #{usNo}, #{prTitle}, #{prContent}, #{prPrice}, SYSDATE, #{prTalent}, #{prDeal},
-                #{prYoutube}, #{prImage}, SYSDATE, '1', 'test위도', 'test경도', '주소')
+                #{prYoutube}, #{prImage}, SYSDATE, '대기중', #{prLatitude}, #{prLongitude}, '주소','Y')
 
     </insert>
+     
+   
+    
+    
+    <insert id="insertReview" parameterType="reviewDto">
+    INSERT INTO W_REVIEW
+	VALUES (RVSEQ.NEXTVAL,#{prNo},#{usSellNo},#{usBuyNo},#{rvContent},SYSDATE,#{rating})
+    </insert>
 
+
+ 	<select id="selectReview" parameterType="FinishDealDto" resultType="finishDealDto">
+    	SELECT *
+		FROM W_FINISHDEAL
+		WHERE PRNO=#{prNo} AND USBUYNO=#{usBuyNo} AND FINSTATUS='거래완료'
+    </select>
 
     <update id="update" parameterType="ProjectDto">
         UPDATE W_PROJECT
@@ -83,12 +107,26 @@
 		FROM (SELECT *
 			  FROM W_PROJECT
 			  WHERE PRTALENT=#{prTalent})
-		WHERE PRCONTENT LIKE #{searchContent}||'%'
+		WHERE PRCONTENT LIKE '%'||#{searchContent}||'%'
 	</select>
 	
+
 	<select id="newest">
 	
 		<![CDATA[SELECT * FROM W_PROJECT WHERE ROWNUM <=4 ORDER BY PRNO DESC]]>
 		
 	</select>
+
+	
+	<update id="reviewUpdate" parameterType="ReviewDto" >
+		UPDATE W_REVIEW
+		SET RVCONTENT=#{rvContent}
+		WHERE RVNO=#{rvNo}
+	</update>
+	
+	<delete id="reviewDelete" parameterType="int">
+		DELETE
+		FROM W_REVIEW
+		WHERE RVNO=#{rvNo}
+	</delete>
 </mapper>

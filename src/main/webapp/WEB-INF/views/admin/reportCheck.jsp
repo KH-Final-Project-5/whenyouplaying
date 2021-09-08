@@ -31,40 +31,42 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/reportCheck.css"/>">
     <%--    <script src="<c:url value="/resources/js/reportCheck.js"/>"></script>--%>
+
+    <script>
+        function movingpage() {
+            opener.location.href = 'reportDetail.do?prNo=${reportDto.prNo}&decNo=${reportDto.decNo}';
+            window.close();
+        }
+    </script>
+
+
 </head>
 <body>
 
 <div id="divBox">
     <div id="titleName"><h1>신고확인</h1><br></div>
     <br><br>
-    <label>신고자 ID : </label>&nbsp;<input type="text" value="admin" id="userId" readonly="readonly">
-    <label>신고자 :</label>&nbsp;<input type="text" value="이순신" id="userId" readonly="readonly">
+    <label>신고자 ID : </label>&nbsp;<input type="text" value="${userDto.usId}" id="userId" readonly="readonly">
     <hr>
-
-
-    <label>신고된 게시물 번호 : </label> &nbsp;<input type="text" value="1" id="reportNo" readonly="readonly"><br>
-    <label>해당 글 작성자 : </label> &nbsp;<input type="text" value="홍길동" id="userId" readonly="readonly"><br>
-    <label>신고 사유 : </label> &nbsp;<input type="text" value="기타" readonly="readonly"> <br>
-    <label>해당 글 제목 : </label> &nbsp;<input type="text" value="한번 클릭해봐!! " id="titleName2" readonly="readonly">
+    <label>해당 글 작성자 : </label> &nbsp;<input type="text" value="${reportDto.usId}" id="userId" readonly="readonly"><br>
+    <label>해당 글 제목 : </label> &nbsp;<input type="text" value="${reportDto.prTitle}" id="titleName2" readonly="readonly">
     <hr>
 
     <h3>신고 내용</h3><br>
     <textarea readonly="readonly">
-안녕하세요 관리자님.
-해당 게시물 신고합니다. 확인후 처리 부탁드립니다!!
-                    </textarea> <br>
+        ${reportDto.deContent}
+    </textarea> <br>
 
 
 </div>
 
 
 <div id="btn">
-    <input type="button" value="신고 반려" class="btn btn-outline-primary"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="submit" value="신고 승인" class="btn btn-outline-primary">
+    <input type="button" onclick="movingpage()" value="게시글로 이동" class="btn btn-outline-primary"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" onclick="window.close()" value="닫기" class="btn btn-outline-primary">
 </div>
-</div>
-</div>
-</div><br>
+
+<br>
 
 
 </body>

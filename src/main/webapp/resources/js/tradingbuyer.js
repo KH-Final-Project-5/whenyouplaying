@@ -9,10 +9,9 @@ function fnImgPop(url) {
     OpenWindow.document.write("<style>body{margin:0px;}</style><img src='" + url + "' width='" + win_width + "'>");
 }
 $(function () {
-    var buyForm = $("#buyerForm");
     $('#sellCompBtn').click(function () {
         if (confirm("구매 완료 하시겠습니까?")) {
-            buyForm.submit();
+            $('#buytrade').submit();
         }
     });
 });

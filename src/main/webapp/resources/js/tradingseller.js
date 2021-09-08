@@ -8,13 +8,7 @@ function fnImgPop(url) {
     var OpenWindow = window.open('', '_blank', 'width=' + win_width + ', height=' + win + ', menubars=no, scrollbars=auto');
     OpenWindow.document.write("<style>body{margin:0px;}</style><img src='" + url + "' width='" + win_width + "'>");
 }
-$(function () {
-    $('#sellCompBtn').click(function () {
-        if (confirm("기부 완료 하시겠습니까?")) {
-            location.href = 'naver.com';
-        }
-    });
-});
+
 /*
 
 const Chat = (function(){

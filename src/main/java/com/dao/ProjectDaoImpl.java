@@ -1,7 +1,6 @@
 package com.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -9,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.commons.Criteria;
+import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
+import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 @Repository
@@ -76,6 +77,19 @@ public class ProjectDaoImpl implements ProjectDao {
         }
         return res;
     }
+    
+    @Override
+	public int insertReview(ReviewDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE + "insertReview", dto);
+		} catch (Exception e) {
+			System.out.println("insertReview 에러");
+			e.printStackTrace();
+		}
+		return res;
+	}
 
 
     @Override
@@ -149,17 +163,79 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
+
 	public List<ProjectDto> newest() {
 		
 		List<ProjectDto> list = new ArrayList<>();
 		try {
 			list = sqlSession.selectList(NAMESPACE + "newest");
 		} catch (Exception e) {
+			System.out.println("newest 에러");
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public List<ReviewDto> reviewSelect(int prNo) {
+		List<ReviewDto> list = new ArrayList<>();
+		
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "reviewSelect", prNo);
+		} catch (Exception e) {
+			System.out.println("review Select 에러");
+
 			e.printStackTrace();
 		}
 		
 		return list;
 	}
+
+
+	@Override
+	public List<FinishDealDto> selectReview(FinishDealDto dto) {
+		
+		List<FinishDealDto> list = new ArrayList<FinishDealDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "selectReview",dto);
+			System.out.println(dto);
+		} catch (Exception e) {
+			System.out.println("리뷰를 찾지 못했습니다");
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int reviewUpdate(ReviewDto dto) {
+		int res = 0;
+		System.out.println(dto.getRvNo());
+		try {
+			res = sqlSession.update(NAMESPACE+"reviewUpdate", dto);
+		} catch (Exception e) {
+			System.out.println("reviewUpdate 실패");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int reviewDelete(int rvNo) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE+"reviewDelete", rvNo);
+			System.out.println("reviewDelete 실행"+":"+ rvNo);
+		} catch (Exception e) {
+			System.out.println("reviewDelete 실패");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	
 
 
 

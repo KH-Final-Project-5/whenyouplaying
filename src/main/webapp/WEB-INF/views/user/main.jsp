@@ -31,13 +31,38 @@
     <%--css 가져오는 방법--%>
     <link rel="stylesheet" href="<c:url value="/resources/css/mainpage.css"/>">
 
+    <script>
+        $(function () {
+            var ws = new WebSocket("ws://localhost:8105/echo.do");
+
+            // socket = ws;
+
+            ws.onopen = function () {
+                console.log("info : connection opened.");
+            };
+
+            ws.onmessage = function (evt) {
+                var data = evt.data;
+                console.log("ReceiveMessage : " + data + "\n");
+            };
+
+            ws.onclose = function (event) {
+                console.log("Info : Connection closed.");
+            };
+
+            ws.onerror = function (err) {
+                console.log("Error : ", err);
+            };
+        });
+
+    </script>
 
 </head>
 
 <body>
 <div class="wwrap">
     <header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
     <div class="container">
         <div class="row">
@@ -127,7 +152,7 @@
         </div>
     </div>
     <footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
 </div>
 

@@ -56,11 +56,13 @@
             var getType = urlParam.get("change");
 
             if (getType == "a") {
+                $('#selectOption').val("applySubmit").attr('selected', true);
                 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
                 $('.pagenumber${idx}').attr('href', 'ajaxabilitymain.do${pageMaker.makeQuery(idx)}&change=a');
                 $('.pagenext').attr("href", 'ajaxabilitymain.do${pageMaker.makeQuery(pageMaker.endPage + 1)}&change=a');
                 </c:forEach>
             } else if (getType == "b") {
+                $('#selectOption').val("applyNega").attr('selected', true);
                 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 
                 $('.pagenumber${idx}').attr('href', 'ajaxabilitymain.do${pageMaker.makeQuery(idx)}&change=b');
@@ -68,6 +70,7 @@
                 </c:forEach>
 
             } else if (getType == "c") {
+                $('#selectOption').val("applyWait").attr('selected', true);
                 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
                 $('.pagenumber${idx}').attr('href', 'ajaxabilitymain.do${pageMaker.makeQuery(idx)}&change=c');
                 $('.pagenext').attr("href", 'ajaxabilitymain.do${pageMaker.makeQuery(pageMaker.endPage + 1)}&change=c');
@@ -88,7 +91,7 @@
 
     <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
     <header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
     <div class="container">
@@ -112,7 +115,7 @@
                     <span class="menuText"><a class="menuText" href="noticeListAdmin.do">공지 사항</a></span><br><br>
                     <span class="menuText"><a class="menuText"
                                               href="abilitymain.do"><u><b>재능 기부 승인</b></u></a></span><br><br>
-                    <span class="menuText"><a class="menuText" href="reportMain.do">신고 내역 확인</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
                     <span class="menuText"><a class="menuText" href="userManage.do">회원 목록 확인</a></span><br><br>
                     <span class="menuText"><a class="menuText" href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
                 </div>
@@ -124,7 +127,7 @@
 
                 <div id="selectBar">
                     <select id="selectOption">
-                        <option value="" selected disabled>진행 상태</option>
+                        <option value="" selected >진행 상태</option>
                         <option value="applySubmit">승인 완료</option>
                         <option value="applyNega">승인 거절</option>
                         <option value="applyWait">승인 대기</option>
@@ -211,7 +214,7 @@
 
     <!-- footer 영역-->
     <footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
 </div>
 

@@ -9,10 +9,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DealStatusImgDto {
+public class DealStatusImgDto extends DealStatusDto {
 
 	private int dealImgNo;
 	private String dealImgSrc;
 	private String dealImgContent;
-	
+
+	private String[] imgContent;
+
 }

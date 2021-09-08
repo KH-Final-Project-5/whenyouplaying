@@ -83,7 +83,21 @@
 	    };
 	    reader.readAsDataURL(event.target.files[0]);
 	}
+	
+	$(document).ready(function(){
+		$("#selectTrade").change(function(){
+			var result= $('#selectTrade option:selected').val();
+			
+			if(result == 'online'){
+				$('#map_tr').hide();
+				$('#prLati').hide();
+				$('#prLongi').hide();
+			}
+			
+		})
+	})
 	</script>
+	
 
     
 </head>
@@ -93,7 +107,7 @@
 <body>
 <div class="wwrap">
     <header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
   
@@ -190,34 +204,96 @@
                             <tr>
                                 <th class="deal-th">거래 방법</th>
                                 <td>
-                                    <select name="prDeal" class="accountInput"  required>
+                                    <select name="prDeal" class="accountInput" id="selectTrade"  required>
                                         <option value="" disabled selected>선택해주세요</option>
-                                        <option value="online">온라인</option>
+                                        <option value="online" onclick="onlineTrade();">온라인</option>
                                         <option value="direct">직거래</option>
                                     </select>
                                     <hr style="margin: 3px;">
                                 </td>
                             </tr>
-                           <tr> 
+                           <tr id="map_tr"> 
                           
                           <!-- 거래 지역 지도 -->
-                          <th class="deal-th">지도</th>
+                          <th class="deal-th">직거래 지도</th>
                           	<td>
 						    <div id="map" style="width:500px;height:400px;"></div>
+						    
+						    
 							<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ab159e5abb2442cfed56949c9439ba9"></script>
 							<script>
-								var container = document.getElementById('map');
-								var options = {
-									center: new kakao.maps.LatLng(33.450701, 126.570667),
-									level: 3
-								};
+							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+						    mapOption = { 
+						        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+						        level: 9 // 지도의 확대 레벨
+						    };
+
+						var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 						
-								var map = new kakao.maps.Map(container, options);
+						
+						//위도 & 경도 value 넣어주는 script
+						// 지도를 클릭한 위치에 표출할 마커입니다
+						var marker = new kakao.maps.Marker({ 
+						    // 지도 중심좌표에 마커를 생성합니다 
+						    position: map.getCenter(),
+						    
+						    
+						}); 
+						// 지도에 마커를 표시합니다
+						marker.setMap(map);
+
+						// 지도에 클릭 이벤트를 등록합니다
+						// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+						kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+						    
+							
+							
+						    // 클릭한 위도, 경도 정보를 가져옵니다 
+						    var latlng = mouseEvent.latLng; 
+						    
+						    // 마커 위치를 클릭한 위치로 옮깁니다
+						    marker.setPosition(latlng);
+						    
+						    
+						    
+						    //위도 밸류
+						    var message2 = latlng.getLat();
+						    
+						    //경도 밸류
+						    var message3 = latlng.getLng();
+						    
+						    $('#prLatitude').val(message2);
+						    $('#prLongitude').val(message3);
+						    
+						    
+						    
+						    
+						    
+						});
+						
+						
+						
+						
+						
+								
+								
 							</script>
 							</td>
 							
 							</tr>
+							<tr id="prLati">
+								<th class="deal-th">위도</th>
+								<td>
+									<input type="text" name="prLatitude" id="prLatitude">
+								</td>
+							</tr>
 							
+							<tr id="prLongi">
+								<th class="deal-th">경도</th>
+								<td>
+									<input type="text" name="prLongitude" id="prLongitude">
+								</td>
+							</tr>
 							
 							
 							
@@ -265,7 +341,7 @@
     <!-- footer 영역-->
     <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
    <footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
 </div>
       

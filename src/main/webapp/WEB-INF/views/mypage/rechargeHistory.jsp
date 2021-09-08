@@ -24,8 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
      <!-- css -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/rechargeHistory.css"/>">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <!-- js -->
     <script src="<c:url value="/resources/js/rechargeHistory.js"/>"></script>
@@ -36,7 +36,7 @@
 
 <div class="wwrap">
     <header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
     <div class="container">
@@ -108,12 +108,9 @@
                     
                 </form>
                 <br>
-                    
-                
 
                 <div class="tableDiv">
                     <table border="1" align="center" class="table">
-                            
                         <colgroup>
                             <col width="130" />
                             <col width="110" />
@@ -186,7 +183,7 @@
     </div><br><br>
 
     <footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
 </div>
 

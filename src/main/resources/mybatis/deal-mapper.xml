@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="deal">
+    <insert id="InsertDealStatus" parameterType="dealDto">
+        INSERT INTO W_DEALSTATUS
+        VALUES (DEALSTATUSSEQ.NEXTVAL, #{prNo}, #{usSellNo}, #{usBuyNo}, #{dealPrice})
+    </insert>
+
+    <insert id="InsertFinDeal" parameterType="dealDto">
+        INSERT INTO W_FINISHDEAL
+        VALUES (FINISHDEALSEQ.NEXTVAL, #{dealNo}, #{prNo}, #{usSellNo}, #{usBuyNo}, '진행중', SYSDATE, 'N')
+    </insert>
+
+    <select id="DealSelect" parameterType="dealDto" resultType="dealDto">
+        SELECT *
+        FROM (
+                 SELECT b.*, WU.*, WP.PRPRICE, ROW_NUMBER() OVER (ORDER BY DEALNO DESC) AS RN
+                 FROM W_DEALSTATUS b
+                          JOIN W_PROJECT WP on b.PRNO = WP.PRNO
+                          JOIN W_USER WU on wu.USNO = b.USSELLNO
+                 WHERE b.USBUYNO = #{usBuyNo}
+                   AND b.USSELLNO = #{usSellNo}
+                   AND b.PRNO = #{prNo}
+             ) a
+        WHERE a.RN = 1
+    </select>
+
+    <update id="DealUpdate" parameterType="dealDto">
+        UPDATE W_PROJECT
+        SET PRSTATUS = 'Y'
+        WHERE PRNO = #{prNo}
+    </update>
+
+
+    <select id="DealSelectOne" parameterType="int" resultType="dealDto">
+        SELECT *
+        FROM W_DEALSTATUS
+                 JOIN W_USER WU on wu.USNO = W_DEALSTATUS.USBUYNO
+                 JOIN W_PROJECT WP on W_DEALSTATUS.PRNO = WP.PRNO
+        WHERE DEALNO = #{dealNo}
+    </select>
+
+    <select id="SelectDealBuyer" parameterType="int" resultType="dealDto">
+        SELECT *
+        FROM W_DEALSTATUS
+                 JOIN W_USER WU on wu.USNO = W_DEALSTATUS.USSELLNO
+                 JOIN W_PROJECT WP on W_DEALSTATUS.PRNO = WP.PRNO
+        WHERE DEALNO = #{dealNo}
+    </select>
+
+    <insert id="InsertDealImg" parameterType="dealImgDto">
+        INSERT INTO W_DEALSTATUSIMG
+        VALUES (DealImgSEQ.NEXTVAL, #{dealNo}, #{prNo}, #{usSellNo}, #{usBuyNo}, #{dealImgSrc}, #{dealImgContent})
+    </insert>
+
+    <select id="SelectDealImg" parameterType="int" resultType="dealImgDto">
+        SELECT *
+        FROM W_DEALSTATUSIMG
+        WHERE DEALNO = #{dealNo}
+    </select>
+
+    <delete id="DeleteOnlineImg" parameterType="int">
+        DELETE
+        FROM W_DEALSTATUSIMG
+        WHERE DEALIMGNO = #{dealImgNo}
+    </delete>
+
+    <update id="TradeComplete" parameterType="int">
+        DECLARE
+        FINISHSTATUS VARCHAR2(200);
+        BEGIN
+        SELECT w.FINIF
+        INTO FINISHSTATUS
+        FROM W_FINISHDEAL w
+        WHERE DEALNO = #{dealNo};
+        IF
+        FINISHSTATUS = 'N' THEN
+        UPDATE W_FINISHDEAL
+        SET FINIF = 'B'
+        WHERE DEALNO = #{dealNo};
+        ELSE
+        UPDATE W_FINISHDEAL
+        SET FINSTATUS = '거래완료',
+            FINIF     = 'Y'
+        WHERE DEALNO = #{dealNo};
+        end if;
+        end;
+    </update>
+
+    <update id="UpdateDealUser" parameterType="userDto">
+        UPDATE W_USER
+        SET USCASH = #{usCash}
+        WHERE USNO = #{usNo}
+    </update>
+
+    <update id="TradeSellerComplete" parameterType="int">
+        DECLARE
+        FINISHSTATUS VARCHAR2(200);
+        BEGIN
+        SELECT w.FINIF
+        INTO FINISHSTATUS
+        FROM W_FINISHDEAL w
+        WHERE DEALNO = #{dealNo};
+        IF
+        FINISHSTATUS = 'N' THEN
+        UPDATE W_FINISHDEAL
+        SET FINIF = 'S'
+        WHERE DEALNO = #{dealNo};
+        ELSE
+        UPDATE W_FINISHDEAL
+        SET FINSTATUS = '거래완료',
+            FINIF     = 'Y'
+        WHERE DEALNO = #{dealNo};
+        end if;
+        end;
+    </update>
+
+    <select id="DealCheck" parameterType="int" resultType="finishDealDto">
+        SELECT *
+        FROM W_FINISHDEAL
+        WHERE DEALNO = ${dealNo}
+    </select>
+
+    <select id="IdCheck" resultType="userDto" parameterType="int">
+        SELECT *
+        FROM W_USER
+        WHERE USNO = ${usNo}
+    </select>
+</mapper>

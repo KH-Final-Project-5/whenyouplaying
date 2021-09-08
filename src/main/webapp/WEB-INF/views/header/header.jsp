@@ -41,6 +41,38 @@
     <!-- js -->
     <script src="<c:url value="/resources/js/header.js"/>"></script>
 </head>
+
+<script>
+    /*var socket = null;
+    $(document).ready(function () {
+        connectWS();
+    });
+
+    function connectWS() {
+        var ws = new WebSocket("ws://localhost:8105/replyEcho");
+
+        socket = ws;
+
+        ws.onopen = function () {
+            console.log("info : connection opened.");
+        };
+
+        ws.onmessage = function (evt) {
+            var data = evt.data;
+            console.log("ReceiveMessage : " + data + "\n");
+        };
+
+        ws.onclose = function (event) {
+            console.log("Info : Connection closed.");
+        };
+
+        ws.onerror = function (err) {
+            console.log("Error : " + err.type);
+        };
+    }*/
+</script>
+
+
 <script>
     $(function () {
         <c:choose>
@@ -73,8 +105,8 @@
         if (userrole === "user") {
             $('#defaultHeader').hide();
             $("#loginHeader").show();
-            $("#userWelcome").text("${user.usName}님 환영합니다!");
-            $("#userPoint").text("포인트 : ${user.usCash}Point");
+            // $("#userWelcome").text("");
+            // $("#userPoint").text("");
             if (usertalnet === "N") {
                 $('.enroll').show();
             } else {
@@ -108,7 +140,7 @@
                         <b class="logoText" onclick="location.href='main.do'">놀면 뭐하니?</b>
                     </a>
                     <div class="contentList">
-                        <a href="" class="navA">공지사항</a>
+                        <a href="noticemain.do" class="navA">공지사항</a>
                         |
                         <a href="loginform.do" class="navA">로그인</a>
                         |
@@ -189,12 +221,12 @@
 
 
                     <div class="contentList">
-                        <label id="userWelcome"></label>
+                        <label id="userWelcome">${user.usName}님 환영합니다!</label>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav"
                                 onclick="location.href='logout.do'">logOut
                         </button>
                         |
-                        <label id="userPoint"></label>
+                        <label id="userPoint">포인트 : ${user.usCash}Point</label>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">충전</button>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">출금</button>
                         |
@@ -289,9 +321,9 @@
                                 onclick="location.href='logout.do'">logOut
                         </button>
                         |
-                        <a href="noticeListAdmin.do" class="navA">Admin page</a>
+                        <a href="noticemainadmin.do?usNo=${user.usNo }" class="navA">Admin page</a>
                         |
-                        <a href="" class="navA">공지사항</a>
+                        <a href="noticemainadmin.do?usNo=${user.usNo }" class="navA">공지사항</a>
                         |
                         <a href="messagechk.do?usNo=${user.usNo}" class="chatA">
                             <span class="material-icons md-36 chaticon">

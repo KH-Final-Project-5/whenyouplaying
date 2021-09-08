@@ -1,11 +1,13 @@
 package com.controller;
 
 
+import com.biz.DealBiz;
 import com.biz.MessageBiz;
 import com.commons.Criteria;
 import com.commons.PageMaker;
 import com.commons.ScriptUtils;
 import com.dto.MessageDto;
+import com.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -23,6 +26,9 @@ public class MessageController {
 
     @Autowired
     MessageBiz biz;
+
+    @Autowired
+    DealBiz dealBiz;
 
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
 
@@ -50,9 +56,13 @@ public class MessageController {
 
     @RequestMapping("/mesCountChk.do")
     @ResponseBody
-    public Map<String, Boolean> MesCountChk(int usNo) {
+    public Map<String, Boolean> MesCountChk(int usNo, HttpSession session) {
 
         int res = biz.MesCountChk(usNo);
+
+        UserDto dto = dealBiz.IdCheck(usNo);
+
+        session.setAttribute("user", dto);
 
         boolean check = false;
 
@@ -140,7 +150,7 @@ public class MessageController {
         return map;
     }
 
-    @RequestMapping()
+    @RequestMapping("/StatusUpdate.do")
     @ResponseBody
     public Map<String, Boolean> MessageStatus(int mesNo) {
 

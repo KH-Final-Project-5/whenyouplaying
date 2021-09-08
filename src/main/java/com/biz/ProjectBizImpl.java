@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.commons.Criteria;
 import com.dao.ProjectDao;
+import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
+import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 @Service
@@ -113,10 +115,47 @@ public class ProjectBizImpl implements ProjectBiz{
 
 
 	@Override
+
 	public List<ProjectDto> newest() {
 
 		return dao.newest();
 	}
+
+
+	public int insertReivew(ReviewDto dto) {
+		// TODO Auto-generated method stub
+		return dao.insertReview(dto);
+	}
+
+
+	@Override
+	public List<ReviewDto> reviewSelect(int prNo) {
+		// TODO Auto-generated method stub
+		return dao.reviewSelect(prNo);
+	}
+
+
+	@Override
+	public List<FinishDealDto> selectReview(FinishDealDto dto) {
+		// TODO Auto-generated method stub
+		return dao.selectReview(dto);
+	}
+
+
+	@Override
+	public int reviewUpdate(ReviewDto dto) {
+		// TODO Auto-generated method stub
+		return dao.reviewUpdate(dto);
+	}
+
+
+	@Override
+	public int reviewDelete(int rvNo) {
+		// TODO Auto-generated method stub
+		return dao.reviewDelete(rvNo);
+	}
+
+	
 
 
 

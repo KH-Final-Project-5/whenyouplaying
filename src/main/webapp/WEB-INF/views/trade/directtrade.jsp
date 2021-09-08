@@ -29,8 +29,25 @@
 <link href="<c:url value="/resources/css/directtrade.css"/>" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+	function paySubmit(){
+	    var pay = '${result1}';
+	    // console.log($('#orderCheckBox').is(":checked"));
+	    var payForm = $('#payForm');
+	    if($('#orderCheckBox').is(":checked")===true){
+	        if (pay > 0) {
+	            if (confirm("결제하시겠습니까?")) {
 	
-	
+	                payForm.submit();
+	            }
+	        } else {
+	            alert("보유 포인트가 부족합니다.");
+	            return false;
+	        }
+	    }else{
+	        alert("주문 확인을 체크해주세요.");
+	    }
+	}
+		
 	
 
 	
@@ -103,7 +120,7 @@
 <body>
 <div class="wwrap">
     <header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 <div class="container">
     <div class="row">
@@ -111,7 +128,10 @@
             <label id="payMentLabel">결제하기</label>
         </div>
     </div>
-    <form id="payForm" action="" method="post">
+    <form id="payForm" action="directtrade.do" method="post">
+    		<input type="hidden" name="usBuyNo" value="${user.usNo}">
+            <input type="hidden" name="usSellNo" value="${dto.usNo}">
+            <input type="hidden" name="prNo" value="${dto.prNo}">
         <div class="orderContainsDiv row">
             <div class="col-8">
                 <div id="marginDiv">
@@ -119,9 +139,9 @@
                     <hr class="hrClass1">
                     <img id="orderImg"
                          src="${dto.prImage }">
-                    <label id="titleLabel"><a id="titleA" href="Detail.do?prNo=${dto.prNo }">${dto.prTitle }</a>
+                    <label id="titleLabel"><a id="titleA" href="Detail.do?prNo=${dto.prNo }">프로젝트명 : ${dto.prTitle }</a>
                     </label>
-                    <label id="nameLabel">${dto.usName }</label>
+                    <label id="nameLabel">판매자명 : ${dto.usName }</label>
                 </div>
                 <br>
                 <label id="priceLabel">가격 : (${dto.prPrice })Point</label><br><br>
@@ -204,13 +224,19 @@
                         </tr>
                         <tr>
                             <td class="nameClass">결제 후 포인트</td>
-                            <td>${result1} Point</td>
+                            <c:if test="${result1 < 0 }">
+                            	<td>보유 포인트가<br>부족합니다.</td>
+                            </c:if>
+                            <c:if test="${result1 > 0 }">
+                            	<td>${result1} Point</td>
+                            </c:if>
                         </tr>
                         
                     </table>
                     <hr class="hrClass2">
                 </div>
                 <br>
+                <input type="hidden" name="dealPrice" value="${dto.prPrice}">
                 <label id="orderCheckLabel">
                     <input type="checkbox" name="orderCheckBox" id="orderCheckBox">&nbsp;&nbsp;주문 확인(필수)</label><br><br>
                 <input type="button" class="btn btn-outline-primary" id="payBtn" value="결제하기"
@@ -220,7 +246,7 @@
     </form>
 </div>
 	<footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
     </div>
 </body>

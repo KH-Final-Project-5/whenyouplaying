@@ -1,5 +1,6 @@
 package com.controller;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.biz.MyPageBiz;
 import com.commons.Criteria;
 import com.commons.PageMaker;
+import com.dto.FinishDealDto;
 
 @Controller
 public class MyPageController {
@@ -68,12 +70,98 @@ public class MyPageController {
 		
 		return "mypage/rechargeHistory";
 	}
+	
+	//포인트출금내역
+	@RequestMapping("/withdrawhistory.do")
+	public String withdrawHistory(Model model, Criteria cri, int usNo, String startDate, String endDate) {
+		
+		logger.info("witdrawhistory.do : 포인트 출금내역 페이지 이동");
+	
+		//넘어오는 날짜데이터 합치기
+		String[] startArr = startDate.split("-");
+		String startDateAdd = "";
+		
+		for(int i=0; i<startArr.length; i++) {
+			startDateAdd += startArr[i];
+		}
+		
+		String[] endArr = endDate.split("-");
+		
+		String endDateAdd = "";
+		
+		for(int i=0; i<endArr.length; i++) {
+			endDateAdd += endArr[i];
+		}
+		
+		cri.setUsNo(usNo);
+		cri.setStartDate(startDateAdd);
+		cri.setEndDate(endDateAdd);
+		
+		
+		model.addAttribute("pointList", biz.pointList(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(biz.pointListCount(cri));
+		
+		model.addAttribute("pointPageMaker", pageMaker);
+		model.addAttribute("criDate", cri);
+		
+		//전체 출금 포인트 조회
+	    model.addAttribute("totalPriceList", biz.totalPriceList(usNo));
+		
+		return "mypage/withdrawHistory";
+	}
+	
 
 	
+	//재능구매내역
+	@RequestMapping("/buylist.do")
+	public String buyList(Model model, int usNo, String finStatus) {
+		
+		logger.info("buylist.do : 재능구매내역 페이지");
+		
+		FinishDealDto dto = new FinishDealDto();
+		if (finStatus.equals("1")) {
+			finStatus = "거래취소";
+		}
+		dto.setUsBuyNo(usNo);
+		dto.setFinStatus(finStatus);
+		
+		model.addAttribute("finStatus", finStatus);
+		
+		if(finStatus.equals("거래취소")) {
+			model.addAttribute("AllList", biz.selectAllList(dto));
+		}else {
+			model.addAttribute("AllList", biz.selectOneList(dto));
+		}
+		
+		return "mypage/talentPurchase";
+	}
 	
 	
+	//재능판매내역
+	@RequestMapping("/selllist.do")
+	public String sellList(Model model, int usNo, String finStatus) {
+		
+		logger.info("selllist.do : 재능판매내역 페이지");
+		
+		FinishDealDto dto = new FinishDealDto();
+		dto.setUsSellNo(usNo);
+		dto.setFinStatus(finStatus);
+		
+		model.addAttribute("finStatus", finStatus);
+		
+		if(finStatus.equals("거래취소")) {
+			model.addAttribute("AllList", biz.sellerAllList(dto));
+		}else {
+			model.addAttribute("AllList", biz.sellerOneList(dto));
+		}
+		
+		return "mypage/talentSales";
+	}
 	
-	
+
 	
 	
 	

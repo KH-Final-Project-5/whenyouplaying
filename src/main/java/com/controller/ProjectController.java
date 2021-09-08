@@ -2,8 +2,9 @@ package com.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +21,9 @@ import com.commons.Criteria;
 import com.commons.FtpClient;
 import com.commons.PageMaker;
 import com.commons.ScriptUtils;
+import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
+import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 @Controller
@@ -42,7 +45,7 @@ public class ProjectController {
     	
     	
     	
-
+    	
 
         logger.info("Select Category");
         model.addAttribute("pr_dto", biz.selectCategory(cri));
@@ -54,8 +57,11 @@ public class ProjectController {
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCri(cri);
         pageMaker.setTotalCount(biz.listCount());
-
+        
         model.addAttribute("pr_PageMaker", pageMaker);
+        
+       
+        
         
         return "projectBoard/talentBoard";
     }
@@ -69,6 +75,9 @@ public class ProjectController {
         model.addAttribute("pr_dto",biz.search(dto));
         
         
+        
+        
+        
     	return "projectBoard/talentBoard";
     }
 
@@ -76,11 +85,17 @@ public class ProjectController {
     @RequestMapping("/Detail.do")
     public String ProjectDetail(Model model, int prNo) {
 
-        logger.info("Detail");
+        logger.info("Detail test");
         model.addAttribute("detail_dto", biz.selectDetail(prNo));
-
-
+        
+        
+        //리뷰 뿌려주기
+        model.addAttribute("review",biz.reviewSelect(prNo));
+        
         return "projectBoard/talentBoardDetail";
+        
+        
+        
     }
 
 
@@ -92,7 +107,40 @@ public class ProjectController {
         return "trade/messagePopup";
 
     }
-
+    @RequestMapping("review.do")
+    public void Review(ProjectDto dto,ReviewDto dto3,HttpServletResponse response,FinishDealDto dto2) throws IOException {
+    	
+    	
+    	int dealNo = dto2.getDealNo();
+    	List<FinishDealDto> finDto = new ArrayList<>();
+    	
+    	
+    	finDto = biz.selectReview(dto2);
+    	
+    	
+    	System.out.println(finDto+"finDto 확인!!!!!!!!!!!!!!");
+    	
+    	if(finDto.size()!=0) {
+    		int res= 0;
+    		res = biz.insertReivew(dto3);
+    		
+    		if(res>0) {
+    			ScriptUtils.alertAndMovePage(response, "작성완료", "Detail.do?prNo="+dto.getPrNo());
+    		}else {
+    			ScriptUtils.alertAndMovePage(response, "작성실패", "Detail.do?prNo="+dto.getPrNo());
+    		}
+    	}else {
+    		ScriptUtils.alertAndMovePage(response, "구매후 작성이 가능합니다.", "Detail.do?prNo="+dto.getPrNo());
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	 
+    }
 
     @RequestMapping("insertProject.do")
     public String insertProject(Model model) {
@@ -183,6 +231,22 @@ public class ProjectController {
         }
 
     }
+    
+    @RequestMapping("reviewUpdate.do")
+    public void UpdateReview(HttpServletResponse response, ReviewDto dto,ProjectDto dto2) throws IOException {
+    	
+    	int res;
+    	
+    	res = biz.reviewUpdate(dto);
+    	
+    	if(res > 0) {
+    		ScriptUtils.alertAndMovePage(response,  "리뷰 수정 완료", "Detail.do?prNo=" + dto2.getPrNo());
+    	}else {
+    		ScriptUtils.alertAndMovePage(response, "리뷰 수정 실패", "Detail.do?prNo=" + dto2.getPrNo());
+    	}
+    
+    	
+    }
 
 
     @RequestMapping("ProjectDelete.do")
@@ -261,6 +325,21 @@ public class ProjectController {
 
     }
     
- 
+    
+    @RequestMapping("deleteReview.do")
+    public void deleteReview(HttpServletResponse response,int rvNo,int prNo) throws IOException {
+    	int res = 0;
+    	System.out.println(rvNo);
+    	System.out.println(prNo);
+    	res = biz.reviewDelete(rvNo);
+    	
+    	if(res>0) {
+    		ScriptUtils.alertAndMovePage(response, "리뷰 삭제 완료", "Detail.do?prNo="+prNo);
+    	}else {
+    		ScriptUtils.alertAndMovePage(response, "리뷰 삭제 실패", "Detail.do?prNo="+prNo);
+    	}
+    }
+   
+    
 
 }

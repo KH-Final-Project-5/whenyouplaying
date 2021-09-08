@@ -1,6 +1,6 @@
 package com.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,6 +29,17 @@ public class ProjectDto extends UserDto{
 	private String prLatitude;
 	private String prLongitude;
 	private String prAddress;
+	private String prDelStatus;
+	
+	
+	
+	
+	
+	
+	
+	
+	private int usWriterNo;
+	private int usWriter;
 	
 	private String searchContent;
 	private int result;

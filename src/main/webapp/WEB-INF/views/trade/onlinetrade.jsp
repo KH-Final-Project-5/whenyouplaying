@@ -28,90 +28,121 @@
 <link href="<c:url value="/resources/css/onlinetrade.css"/>" rel="stylesheet">
 <script src="<c:url value="/resources/js/onlinetrade.js"/>"></script>
 <script>
+    function paySubmit(){
+        var pay = '${result1}';
+        // console.log($('#orderCheckBox').is(":checked"));
+        var payForm = $('#payForm');
+        if($('#orderCheckBox').is(":checked")===true){
+            if (pay > 0) {
+                if (confirm("결제하시겠습니까?")) {
 
-$(function () {
-var user = "<%=session.getAttribute("user")%>";
-});
-
+                    payForm.submit();
+                }
+            } else {
+                alert("보유 포인트가 부족합니다.");
+                return false;
+            }
+        }else{
+            alert("주문 확인을 체크해주세요.");
+        }
+    }
 </script>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <label id="payMentLabel">결제하기</label>
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-12" style="margin-top: 50px">
+                <label id="payMentLabel">결제하기</label>
+            </div>
         </div>
-    </div>
-    <form action="" method="post" id="payForm">
-        <div class="orderContainsDiv row">
-            <div class="col-8">
-                <div id="marginDiv">
-                    <label id="orderLabel">주문 내역</label>
-                    <hr class="hrClass1">
-                    <img id="orderImg"
-                         src="${dto.prImage }">
-                    <label id="titleLabel"><a id="titleA" href="Detail.do?prNo=${dto.prNo }">${dto.prTitle }</a>
-                    </label>
-                    <label id="nameLabel">${dto.usName }</label></div>
-                <br>
-                <label id="priceLabel">가격 : (${dto.prPrice })Point</label><br><br>
-                <div class="myContentsDiv">
-                    <label id="myImformLabel">내 정보</label>
-                    <hr class="hrClass1">
-                    <div class="labelDiv">
-                        <table id="myInformTable">
-                            <colgroup>
-                                <col width="120px">
-                            </colgroup>
-                            <tr>
-                                <td class="nameClass">이름&nbsp;&nbsp;&nbsp;</td>
-                                <td>${user.usName }</td>
-                            </tr>
-                            <tr>
-                                <td class="nameClass">전화번호&nbsp;&nbsp;&nbsp;</td>
-                                <td>${user.usPhone }</td>
-                            </tr>
-                            <tr>
-                                <td class="nameClass">주소&nbsp;&nbsp;&nbsp;</td>
-                                <td>${user.usAddress1 }&nbsp;${user.usAddress2 }</td>
-                            </tr>
-                        </table>
-                        <hr>
+        <form action="onlinetrade.do" method="post" id="payForm">
+            <input type="hidden" name="usBuyNo" value="${user.usNo}">
+            <input type="hidden" name="usSellNo" value="${dto.usNo}">
+            <input type="hidden" name="prNo" value="${dto.prNo}">
+
+            <div class="orderContainsDiv row">
+                <div class="col-8">
+                    <div id="marginDiv">
+                        <label id="orderLabel">주문 내역</label>
+                        <hr class="hrClass1">
+                        <img id="orderImg"
+                             src="${dto.prImage }">
+                        <label id="titleLabel"><a id="titleA" href="Detail.do?prNo=${dto.prNo }">${dto.prTitle }</a>
+                        </label>
+                        <label id="nameLabel">${dto.usName }</label></div>
+                    <br>
+                    <label id="priceLabel">가격 : (${dto.prPrice })Point</label><br><br>
+                    <div class="myContentsDiv">
+                        <label id="myImformLabel">내 정보</label>
+                        <hr class="hrClass1">
+                        <div class="labelDiv">
+                            <table id="myInformTable">
+                                <colgroup>
+                                    <col width="120px">
+                                </colgroup>
+                                <tr>
+                                    <td class="nameClass">이름&nbsp;&nbsp;&nbsp;</td>
+                                    <td>${user.usName }</td>
+                                </tr>
+                                <tr>
+                                    <td class="nameClass">전화번호&nbsp;&nbsp;&nbsp;</td>
+                                    <td>${user.usPhone }</td>
+                                </tr>
+                                <tr>
+                                    <td class="nameClass">주소&nbsp;&nbsp;&nbsp;</td>
+                                    <td>${user.usAddress1 }&nbsp;${user.usAddress2 }</td>
+                                </tr>
+                            </table>
+                            <hr>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3 orderdiv">
-                <div class="labelDiv">
-                    <table id="orderTable">
-                        <colgroup>
-                            <col width="130px">
-                            <col width="140px">
-                        </colgroup>
-                        <tr>
-                            <td class="nameClass">보유 포인트</td>
-                            <td>${user.usCash } Point</td>
-                        </tr>
-                        <tr>
-                            <td class="nameClass">가격</td>
-                            <td>${dto.prPrice }</td>
-                        </tr>
-                        <tr>
-                            <td class="nameClass">결제 후 포인트</td>
-                            <td>${result1} Point</td>
-                        </tr>
-                    </table>
+                <div class="col-1"></div>
+                <div class="col-3 orderdiv">
+                    <div class="labelDiv">
+                        <table id="orderTable">
+                            <colgroup>
+                                <col width="130px">
+                                <col width="140px">
+                            </colgroup>
+                            <tr>
+                                <td class="nameClass">보유 포인트</td>
+                                <td>${user.usCash } Point</td>
+                            </tr>
+                            <tr>
+                                <td class="nameClass">가격</td>
+                                <td>${dto.prPrice } Point</td>
+                            </tr>
+                            <tr>
+                                <td class="nameClass">결제 후 포인트</td>
+                                <c:if test="${result1 < 0}">
+                                    <td>보유 포인트가<br>부족합니다.</td>
+                                </c:if>
+                                <c:if test="${result1 > 0}">
+                                    <td>${result1} Point</td>
+                                </c:if>
+                            </tr>
+                        </table>
+                    </div>
+                    <hr>
+                    <br>
+                    <input type="hidden" name="dealPrice" value="${dto.prPrice}">
+                    <label id="orderCheckLabel">
+                        <input type="checkbox" name="orderCheckBox" id="orderCheckBox">&nbsp;&nbsp;주문 확인(필수)</label><br><br>
+                    <input type="button" class="btn btn-outline-primary" id="payBtn" value="결제하기"
+                           onclick="paySubmit();">
                 </div>
-                <hr>
-                <br>
-                <label id="orderCheckLabel">
-                    <input type="checkbox" name="orderCheckBox" id="orderCheckBox">&nbsp;&nbsp;주문 확인(필수)</label><br><br>
-                <input type="button" class="btn btn-outline-primary" id="payBtn" value="결제하기" onclick="paySubmit();">
             </div>
-        </div>
-    </form>
-    
+        </form>
+
+    </div>
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
 </div>
-	
 
 </body>
 </html>

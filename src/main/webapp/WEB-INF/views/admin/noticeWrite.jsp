@@ -22,26 +22,17 @@
      <!-- css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/noticeWrite.css"/>">
-    <script src="<c:url value="/resources/js/noticeWrite.js"/>"></script>
+    <script src="resources/ckeditor/ckeditor.js"></script> 
+    
+    
 </head>
 <body>
 
-    <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
-
-    <div>
-        <div class="row">
-            <div class="col-3">
-
-            </div>
-            
-            <div class="col-6"><p><u>놀면 뭐하니? 의 소식을 알려드립니다!</u></p></div>
-
-            <div class="col-3"></div>
-        </div>
-    </div>
-    <hr>
-
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
+    
     <div class="container">
         <div class="row">
             <div class="col-3">
@@ -60,34 +51,42 @@
     
                 <div id="menuList">
                     <br>
-                    <span class="menuText"><a href="noticeListAdmin.do"><u><b>공지 사항</b></u></a></span><br><br>
-                    <span class="menuText"><a href="abilitymain.do">재능 기부 승인</a></span><br><br>
-                    <span class="menuText"><a href="reportMain.do">신고 내역 확인</a></span><br><br>
-                    <span class="menuText"><a href="userManage.do">회원 목록 확인</a></span><br><br>
-                    <span class="menuText"><a href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="noticemainadmin.do"><u><b>공지 사항</b></u></a></span><br><br>
+                    <span class="menuText"><a class="noA" href="abilitymain.do">재능 기부 승인</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="userManage.do">회원 목록 확인</a></span><br><br>
+                    <span class="menuText"><a class="noA" href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
                 </div>
             </div>
     
             <div class="col-9">
                 <div id="titleName"><h1>공지사항</h1></div><br>
-                <div id="divBox">
-                    <input type="text" placeholder="공지사항 제목을 입력하세요" id="title"> <br>
-                    
-                    <textarea placeholder="내용을 입력하세요" id="content"></textarea>
-
-                    <div class="box-file-input"><label><input type="file" name="ev_display" class="file-input" accept="image/*"></label><span class="filename">첨부할 파일을 선택해주세요.</div>
-                    <input type="submit" value="작성 완료" id="btn" class="btn btn-outline-primary">
-                    <input type="button" value="작성 취소" id="btn" class="btn btn-outline-primary">
-                </div>
+                <form action="insertnotice.do" method="get">
+                	<input type="hidden" value="${user.usNo }" name="usNo" >
+	                <div id="divBox" style="padding: 0px;">
+	                    <input type="text" placeholder="공지사항 제목을 입력하세요" id="title" name="notiTitle" style="margin-bottom: 60px;"> <br>
+	                    
+	                    <div id="editorArea" style="height: 880px;">
+	                    	<textarea name="notiContent" id="editor1"></textarea>
+	                   	</div>
+	                   	<script>
+	                   		CKEDITOR.replace('editor1');
+	                   	</script>
+	                    
+						<div style="float: right;">
+	                    	<input type="submit" value="작성 완료" id="btnSave" class="btn btn-outline-primary">
+	                    	<input type="reset" value="작성 취소" id="btnCancel" class="btn btn-outline-primary" onclick="location.href='noticemainadmin.do'">
+	                    </div>
+	                </div>
+	            </form>
             </div>
         </div>
     </div><br><br>
 
-    <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
-
-      
-      
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
+</div>
 
 </body>
 </html>

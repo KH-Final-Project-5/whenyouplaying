@@ -26,11 +26,11 @@
 
 <div class="wwrap">    
 	<header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
     <!-- grid영역, 컬럼은 12줄로 이루어져 있고 갯수 비율로 틀을 잡는다. -->
-    <div class="container" style="margin-top:60px; height: 30px; padding-bottom: 100px;">
+    <div class="container" style="margin-top:60px; height: 30px; padding-bottom: 100px; min-height: 0px;">
         <div class="row">
             <div class="col-12 userNav">
             <h2><img src="../image/UserImg.PNG">${userDto.usName }님의 mypage</h2> <hr>
@@ -95,10 +95,10 @@
             
             <div class="col-4">
                  <div class="col-8">
-                    <a href="#"><img src="<c:url value="/resources/img_mypage/buy.png"/>"></a>
+                    <a href="buylist.do?usNo=${user.usNo }&finStatus=1"><img src="<c:url value="/resources/img_mypage/buy.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a class="myA" href="#"><b>재능 구매 내역</b></a>
+                    <a class="myA" href="buylist.do?usNo=${user.usNo }&finStatus=1"><b>재능 구매 내역</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -110,10 +110,10 @@
             </div>
             <div class="col-4">
                 <div class="col-8">
-                    <a href="#"><img src="<c:url value="/resources/img_mypage/sell.png"/>"></a>
+                    <a href="selllist.do?usNo=${user.usNo }&finStatus=거래취소"><img src="<c:url value="/resources/img_mypage/sell.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a class="myA" href="#"><b>재능 판매 내역</b></a>
+                    <a class="myA" href="selllist.do?usNo=${user.usNo }&finStatus=거래취소"><b>재능 판매 내역</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -124,7 +124,7 @@
             
             <div class="col-4">
                 <div class="col-8">
-                    <a href="cashrecord.do?usNo=${userDto.usNo }"><img src="<c:url value="/resources/img_mypage/chargehistory.png"/>"></a>
+                    <a href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01""><img src="<c:url value="/resources/img_mypage/chargehistory.png"/>"></a>
                  </div>
                  <div  class="col-8">
                     <a class="myA" href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01"><b>충전 내역확인</b></a>
@@ -157,10 +157,10 @@
             
             <div class="col-4">
                  <div class="col-8">
-                    <a href="#"><img src="<c:url value="/resources/img_mypage/pointhistory.png"/>"></a>
+                    <a href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01""><img src="<c:url value="/resources/img_mypage/pointhistory.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a class="myA" href="#"><b>포인트 출금 내역</b></a>
+                    <a class="myA" href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01""><b>포인트 출금 내역</b></a>
                  </div>
                 
                  <div class="col-8">
@@ -187,7 +187,7 @@
     </div>
     
    	<footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
 </div>
 

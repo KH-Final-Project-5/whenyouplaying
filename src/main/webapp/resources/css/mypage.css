@@ -97,7 +97,7 @@
 
 .buy-table {
     text-align: center;
-    width: 800px;
+    width: 870px;
 }
 
 .user-leave {
@@ -295,9 +295,7 @@
     margin-bottom: 5px;
 }
 
-#perchase-button {
-    margin-left: 203px;
-}
+
 
 #array-button {
     height: 27px;
@@ -461,5 +459,13 @@ a:visited {
 .myA:hover {
 	color: black;
 	text-decoration: none;
+}
+
+.tr_bottom_line{
+	border-bottom: 1px solid black;
+}
+
+.th_right_line{
+	border-right: 1px solid black;
 }
 

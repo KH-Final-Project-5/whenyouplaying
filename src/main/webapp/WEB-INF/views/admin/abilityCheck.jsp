@@ -103,7 +103,7 @@
 <div class="wwrap">
     <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
     <header>
-        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
     <div class="container">
@@ -127,7 +127,7 @@
                     <span class="menuText"><a class="menuText" href="noticeListAdmin.do">공지 사항</a></span><br><br>
                     <span class="menuText"><a class="menuText"
                                               href="abilitymain.do"><u><b>재능 기부 승인</b></u></a></span><br><br>
-                    <span class="menuText"><a class="menuText" href="reportMain.do">신고 내역 확인</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
                     <span class="menuText"><a class="menuText" href="userManage.do">회원 목록 확인</a></span><br><br>
                     <span class="menuText"><a class="menuText" href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
                 </div>
@@ -215,7 +215,7 @@
     <br><br><br><br><br><br>
     <!-- footer 영역-->
     <footer>
-        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
 </div>
 
