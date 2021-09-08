@@ -71,32 +71,8 @@
         {call PC_UPDATE(
                 #{dealNo, mode=IN, jdbcType=NUMERIC, javaType=java.lang.Integer},
                 #{FF_UPDATE, mode=OUT, jdbcType=NUMERIC, javaType=java.lang.Integer}
-                )}
+            )}
     </update>
-
-    <!--<update id="TradeComplete" parameterType="int">
-        DECLARE
-        FINISHSTATUS VARCHAR2(200);
-        BEGIN
-        SELECT w.FINIF
-        INTO FINISHSTATUS
-        FROM W_FINISHDEAL w
-        WHERE DEALNO = #{dealNo};
-        IF
-        FINISHSTATUS = 'N' THEN
-        UPDATE W_FINISHDEAL
-        SET FINIF = 'B'
-        WHERE DEALNO = #{dealNo};
-        ELSIF
-        FINISHSTATUS = 'S' THEN
-        UPDATE W_FINISHDEAL
-        SET FINSTATUS = '거래완료',
-            FINIF     = 'Y'
-        WHERE DEALNO = #{dealNo};
-        end if;
-        end;
-    </update>-->
-
 
     <update id="UpdateDealUser" parameterType="userDto">
         UPDATE W_USER
@@ -139,5 +115,12 @@
         SELECT *
         FROM W_USER
         WHERE USNO = #{usNo}
+    </select>
+
+    <select id="SelectTwo" resultType="projectDto" parameterType="String">
+        SELECT ROWNUM, a.*
+        FROM W_PROJECT
+        WHERE ROWNUM &lt; 3
+          AND PRTALENT = ${prTalent}
     </select>
 </mapper>

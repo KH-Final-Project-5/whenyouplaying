@@ -1,10 +1,7 @@
 package com.biz;
 
 import com.dao.DealDao;
-import com.dto.DealStatusDto;
-import com.dto.DealStatusImgDto;
-import com.dto.FinishDealDto;
-import com.dto.UserDto;
+import com.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -81,5 +78,10 @@ public class DealBizImpl implements DealBiz{
     @Override
     public UserDto IdCheck(int usNo) {
         return dao.IdCheck(usNo);
+    }
+
+    @Override
+    public List<ProjectDto> SelectTwo(String prTalent) {
+        return dao.SelectTwo(prTalent);
     }
 }
