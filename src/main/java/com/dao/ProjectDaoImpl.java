@@ -163,6 +163,19 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
+
+	public List<ProjectDto> newest() {
+		
+		List<ProjectDto> list = new ArrayList<>();
+		try {
+			list = sqlSession.selectList(NAMESPACE + "newest");
+		} catch (Exception e) {
+			System.out.println("newest 에러");
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	public List<ReviewDto> reviewSelect(int prNo) {
 		List<ReviewDto> list = new ArrayList<>();
 		
@@ -171,11 +184,13 @@ public class ProjectDaoImpl implements ProjectDao {
 			list = sqlSession.selectList(NAMESPACE + "reviewSelect", prNo);
 		} catch (Exception e) {
 			System.out.println("review Select 에러");
+
 			e.printStackTrace();
 		}
 		
 		return list;
 	}
+
 
 	@Override
 	public List<FinishDealDto> selectReview(FinishDealDto dto) {

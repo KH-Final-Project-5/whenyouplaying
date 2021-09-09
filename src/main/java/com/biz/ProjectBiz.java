@@ -30,6 +30,9 @@ public interface ProjectBiz {
     
     public List<ProjectDto> search(ProjectDto dto);
     
+
+    public List<ProjectDto> newest();
+
     public int insertReivew(ReviewDto dto);
     
     
@@ -38,4 +41,5 @@ public interface ProjectBiz {
     public int reviewUpdate(ReviewDto dto);
     
     public int reviewDelete(int rvNo);
+
 }

@@ -115,6 +115,13 @@ public class ProjectBizImpl implements ProjectBiz{
 
 
 	@Override
+
+	public List<ProjectDto> newest() {
+
+		return dao.newest();
+	}
+
+
 	public int insertReivew(ReviewDto dto) {
 		// TODO Auto-generated method stub
 		return dao.insertReview(dto);
@@ -149,6 +156,7 @@ public class ProjectBizImpl implements ProjectBiz{
 	}
 
 	
+
 
 
 

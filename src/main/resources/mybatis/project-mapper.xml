@@ -110,6 +110,13 @@
 		WHERE PRCONTENT LIKE '%'||#{searchContent}||'%'
 	</select>
 	
+
+	<select id="newest" resultType="projectDto">
+	
+		SELECT ROWNUM, a.* FROM W_PROJECT a WHERE ROWNUM &lt; 5 ORDER BY PRNO DESC
+		
+	</select>
+
 	
 	<update id="reviewUpdate" parameterType="ReviewDto" >
 		UPDATE W_REVIEW
