@@ -111,21 +111,26 @@
 	</select>
 	
 
-	<select id="newest" resultType="projectDto">
+	<select id="newest" resultType="ProjectDto">
 	
 		SELECT ROWNUM, a.* FROM W_PROJECT a WHERE ROWNUM &lt; 5 ORDER BY PRNO DESC
 		
 	</select>
 	
 	
-	<select id ="popularity" parameterType="ProjectDto" resultType="projectDto">
+	<select id ="popularity" parameterType="ReviewDto" resultType="ReviewDto">
 	
-		SELECT ROWNUM, c.*
-FROM (SELECT a.*, b.RVGRADE
-FROM W_PROJECT a
-JOIN W_REVIEW b ON (a.PRNO = b.PRNO)
-ORDER BY RVGRADE DESC) c 
-WHERE ROWNUM &lt; 5
+SELECT PRTITLE, PRIMAGE,E,W
+FROM(
+SELECT *
+FROM(SELECT PRNO, COUNT(RVGRADE) w, AVG(RVGRADE) e 
+FROM W_REVIEW
+GROUP BY PRNO
+ORDER BY e DESC) c
+JOIN W_PROJECT d ON (c.PRNO = d.PRNO)
+ORDER BY c.e DESC
+) 
+WHERE ROWNUM &lt; 4;
 	</select>
 
 	

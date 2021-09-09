@@ -23,4 +23,8 @@ public class ReviewDto extends ProjectDto{
     private int usBuyNo;
     private int usSellNo;
     private double rating;
+    
+    
+    private int w;
+    private double e;
 }

@@ -79,7 +79,7 @@
                 <br>
                 <img class="mainStarImg" src="../lion.jpeg"/>
                 <label class="mainStarLabel"></label><br>
-                <label class="mainRating"></label>
+                <label class="mainRating">평점</label>
                 </div>
         </c:forEach>
         </div>
@@ -97,9 +97,9 @@
                   <a class="mainNewLink" href="Detail.do?prNo=${pr_dto2.prNo }"><img class="mainNewImg" src="${pr_dto2.prImage}"/></a><br>
                 <a class="mainNewLink" href="Detail.do?prNo=${pr_dto2.prNo }">${pr_dto2.prTitle }</a>
                 <br>
-                <img class="mainStarImg" src="../lion.jpeg"/>
+                <img class="mainStarImg" src=""/>
                 <label class="mainStarLabel"></label><br>
-                <label class="mainRating"></label>
+                <label class="mainRating">평점</label>
             </div>
         </c:forEach>
         
