@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.commons.Criteria;
 import com.dao.MyPageDao;
+import com.dto.BankAccountDto;
 import com.dto.ChargeHistoryDto;
 import com.dto.FinishDealDto;
 import com.dto.UserDto;
@@ -66,6 +67,21 @@ public class MyPageBizImpl implements MyPageBiz {
 	@Override
 	public List<WithDrawDto> totalPriceList(int usNo) {
 		return dao.totalPriceList(usNo);
+	}
+
+	@Override
+	public List<BankAccountDto> accountList(int usNo) {
+		return dao.accountList(usNo);
+	}
+
+	@Override
+	public int insertAccount(BankAccountDto dto) {
+		return dao.insertAccount(dto);
+	}
+
+	@Override
+	public int deleteAccount(int baNo) {
+		return dao.deleteAccount(baNo);
 	}
 	
 	

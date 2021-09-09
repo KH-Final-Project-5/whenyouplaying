@@ -52,8 +52,10 @@
 </head>
 <body>
 
-    <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
 
 
     <div class="container">
@@ -74,50 +76,54 @@
     
                 <div id="menuList">
                     <br>
-                    <span class="menuText"><a href="#">공지사항</a></span><br><br>
-                    <span class="menuText"><a href="#">회원정보</a></span><br><br>
-                    <span class="menuText"><a href="#">찜 내역</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 구매내역</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 판매내역</a></span><br><br>
-                    <span class="menuText"><a href="#">충전 내역확인</a></span><br><br>
-                    <span class="menuText"><a href="#"><b><u>계좌 관리</u></b></a></span><br><br>
-                    <span class="menuText"><a href="#">포인트 출금</a></span><br><br>
-                    <span class="menuText"><a href="#">포인트 출금내역</a></span><br><br>
-                    <span class="menuText"><a href="#">회원 탈퇴</a></span><br><br>
+                    <span class="menuText"><a class="acA" href="#">공지사항</a></span><br><br>
+                    <span class="menuText"><a class="acA" href="#">회원정보</a></span><br><br>
+                    <span class="menuText"><a class="acA" href="#">찜 내역</a></span><br><br>
+                    <span class="menuText"><a class="acA" href="#">재능 구매내역</a></span><br><br>
+                    <span class="menuText"><a class="acA" href="#">재능 판매내역</a></span><br><br>
+                    <span class="menuText"><a class="acA" href="#">충전 내역확인</a></span><br><br>
+                    <span class="menuText"><a class="acA" href="manageaccount.do?usNo=${user.usNo} "><b><u>계좌 관리</u></b></a></span><br><br>
+                    <span class="menuText"><a class="acA" href="#">포인트 출금</a></span><br><br>
+                    <span class="menuText"><a class="acA" href="#">포인트 출금내역</a></span><br><br>
+                    <span class="menuText"><a class="acA" href="#">회원 탈퇴</a></span><br><br>
                 </div>
             </div>
             <div class="col-9">
                 <div id="titleName"><h3>계좌 관리</h3></div>
 
                 <div id="tableArea">
-                    <table id="table" border="1">
+                    <table id="table">
                         <thead>
                             <tr class="table-secondary">
-                                <th>No.</th>
-                                <th>별칭</th>
-                                <th>은행명</th>
-                                <th>계좌번호</th>
-                                <th>예금주</th>
+                                <th class="thcss">No.</th>
+                                <th class="thcss">별칭</th>
+                                <th class="thcss">은행명</th>
+                                <th class="thcss">계좌번호</th>
+                                <th class="thcss">예금주</th>
                                 <th id="lastTh"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="centerTd">1</td>
-                                <td class="centerTd">주은행</td>
-                                <td class="centerTd">하나은행</td>
-                                <td class="centerTd">123412341234</td>
-                                <td class="centerTd">홍길동</td>
-                                <td class="centerTd"><button class="btn btn-secondary btn-sm">삭제</button></td>
-                            </tr>
-                            <tr>
-                                <td class="centerTd">1</td>
-                                <td class="centerTd">주은행</td>
-                                <td class="centerTd">하나은행</td>
-                                <td class="centerTd">123412341234</td>
-                                <td class="centerTd">홍길동</td>
-                                <td class="centerTd"><button class="btn btn-secondary btn-sm">삭제</button></td>
-                            </tr>
+                        	<c:choose>
+                        		<c:when test="${empty accountList }">
+                        			<tr>
+                        				<td colspan="6" align="center">---------------------- 계좌가 없습니다. -------------------------</td>
+                        			</tr>
+                        		</c:when>
+                        		<c:otherwise>
+                        			<c:forEach items="${accountList }" var="dto">
+                        				<tr>
+			                                <td class="centerTd" style="border-left: 1px solid black;">${dto.baNo }</td>
+			                                <td class="centerTd">${dto.baNickName }</td>
+			                                <td class="centerTd">${dto.baBankName }</td>
+			                                <td class="centerTd">${dto.baBankNumber }</td>
+			                                <td class="centerTd">${dto.baOwner }</td>
+			                                <td class="centerTd"><button class="btn btn-secondary btn-sm" onclick="location.href='deleteaccount.do?baNo=${dto.baNo}&usNo=${user.usNo }'">삭제</button></td>
+                            			</tr>
+                        			</c:forEach>
+                        		</c:otherwise>
+                        	</c:choose>
+
                             <tr id="lastTr">
                                 <td colspan="6">
                                     <button style="margin-top: 10px;" class="btn btn-primary btn-sm" onclick="registForm();">계좌등록</button>
@@ -128,33 +134,44 @@
                 </div>
 
                 <div id="registerArea" class="shadow">
-                    <form action="">
+                    <form action="insertaccount.do">
+                    	<input type="hidden" name="usNo" value="${user.usNo }">
                         <b style="font-size: 17px;">계좌등록</b>
                         <hr style="margin: 3px;">
+                        
                         <label>별칭</label>
                         <br>
-                        <input class="accountInput" type="text" placeholder="별칭을 입력하세요">
+                        <input class="accountInput" type="text" name="baNickName"  placeholder="별칭을 입력하세요">
                         <hr style="margin: 3px;">
+                        
                         <label>은행명</label>
                         <br>
                         <style>
                             select:invalid {color:gray;}
                         </style>
-                        <select name="bankName" class="accountInput" id="selectArea" required>
-                            <option value="" disabled selected>선택해주세요</option>
-                            <option value="">국민은행</option>
+                        <select name="baBankName" class="accountInput" id="selectArea" required>
+                            <option disabled selected>선택해주세요</option>
+                            <option value="국민은행">국민은행</option>
+                            <option value="하나은행">하나은행</option>
+                            <option value="신한은행">신한은행</option>
+                            <option value="카카오뱅크">카카오뱅크</option>
+                            <option value="농협은행">농협은행</option>
+                            <option value="우리은행">우리은행</option>
                         </select>
                         <hr style="margin: 3px;">
+                        
                         <label>계좌번호</label>
                         <br>
-                        <input class="accountInput" type="text" placeholder="계좌를 입력하세요">
+                        <input class="accountInput" type="text" name="baBankNumber" placeholder="계좌를 입력하세요">
                         <hr style="margin: 3px;">
+                        
                         <label>예금주</label>
                         <br>
-                        <input class="accountInput" type="text" placeholder="예금주명을 입력하세요">
+                        <input class="accountInput" type="text" name="baOwner" placeholder="예금주명을 입력하세요">
                         <hr style="margin: 3px;">
+                        
                         <input id="submitButton" class="btn btn-sm btn-outline-primary" type="submit" value="등록하기">
-                        <input id="cancleButton" class="btn btn-sm btn-outline-primary" type="button" value="취소하기" onclick="registerCancle();">
+                        <input id="cancleButton" class="btn btn-sm btn-outline-primary" type="reset" value="취소하기" onclick="registerCancle();">
                     </form>
                 </div>
 
@@ -162,9 +179,10 @@
         </div>
     </div>
 
-    <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
-
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
+</div>
 
 </body>
 </html>

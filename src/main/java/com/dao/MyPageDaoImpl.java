@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.commons.Criteria;
+import com.dto.BankAccountDto;
 import com.dto.ChargeHistoryDto;
 import com.dto.FinishDealDto;
 import com.dto.UserDto;
@@ -159,6 +160,51 @@ public class MyPageDaoImpl implements MyPageDao {
 			res = sqlSessionTemplate.selectList(NAMESPACE+"totalPriceList", usNo);
 		} catch (Exception e) {
 			System.out.println("[error] : MyPageDao, totalPriceList 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public List<BankAccountDto> accountList(int usNo) {
+
+		List<BankAccountDto> res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectList(NAMESPACE+"accountList", usNo);
+		} catch (Exception e) {
+			System.out.println("[error] : MyPagdDao, accountList 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int insertAccount(BankAccountDto dto) {
+
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.insert(NAMESPACE+"insertAccount", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : insertAccount 에러");
+			e.printStackTrace(); 
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int deleteAccount(int baNo) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.delete(NAMESPACE+"deleteAccount", baNo);
+		} catch (Exception e) {
+			System.out.println("[error] : deleteAccount 에러");
 			e.printStackTrace();
 		}
 		

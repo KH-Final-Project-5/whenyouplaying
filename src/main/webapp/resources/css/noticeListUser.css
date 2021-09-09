@@ -54,7 +54,6 @@
 
 .table{
     font-size: 20px;
-    height: 380px;
     text-align: center;
     border: none; background: transparent;
 }
@@ -62,8 +61,8 @@
 .tableDiv{
     border: 0.5px solid gray;
     position: relative;
-    top:30px;
-    height: 780px;
+    top:20px;
+    min-height: 780px;
     padding: 20px 20px 20px 20px;
 }
 
@@ -78,25 +77,6 @@ th{
     right: 20px;
 }
 
-h2{
-    position: relative;
-    top: 5px;
-    left: 10px;
-}
-
-p{
-    position: relative;
-    top: 20px;
-    left: 50%;
-}
-
-#pagingArea{
-
-    position: relative;
-    top: 40px;
-    left: 330px;
-    
-}
 
 h1{
     text-align: center;
@@ -114,13 +94,15 @@ body{
     top:30px;
 }
 
-a{
-    color: black;
-}
-a:hover {
-    color: black;
+.noM{
+	color: black;
 }
 
-a:active {
-    color: black;
+.noM:hover {
+	color: black;
+	text-decoration: none;
 }
+
+
+
+

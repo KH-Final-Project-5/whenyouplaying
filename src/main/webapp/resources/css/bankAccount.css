@@ -1,10 +1,4 @@
-/*
-.container *{
 
-    border: 1px solid gray;
-
-}
-*/
 .container{
 
     width: 1200px;
@@ -66,16 +60,6 @@ body{
     height: 100px;
 }
 
-a {
-    color: black;
-    
-}
-
-a:hover{
-    color: black;
-    text-decoration: none;
-
-}
 
 h3{
     font-weight: bold;
@@ -107,11 +91,6 @@ h3{
 
 #table{
     width: 870px;
-}
-
-
-th{
-    text-align: center;
 }
 
 
@@ -169,8 +148,24 @@ th{
 
 .centerTd{
     text-align: center;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 #line{
     border-top: 1px solid black;
+}
+
+.acA{
+	color: black;
+}
+
+.acA:hover{
+	color: black;
+	text-decoration: none;
+}
+
+.thcss{
+	text-align: center;
+	border-right: 1px solid black;
 }

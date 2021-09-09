@@ -84,13 +84,6 @@ p{
     left: 50%;
 }
 
-#pagingArea{
-
-    position: relative;
-    top: 40px;
-    left: 330px;
-    
-}
 
 h1{
     text-align: center;
@@ -108,16 +101,6 @@ body{
     top:30px;
 }
 
-a{
-    color: black;
-}
-a:hover {
-    color: black;
-}
-
-a:active {
-    color: black;
-}
 
 .noA{
 	color: black;

@@ -29,9 +29,21 @@
 	</select>
 	
 
+	<delete id="deleteNotice" parameterType="int">
+		DELETE FROM W_NOTIFICATION
+		WHERE NOTINO = #{notiNo}
+	</delete>
 
-
-
+	<select id="allList" resultType="notificationDto">
+		SELECT * FROM W_NOTIFICATION
+		ORDER BY NOTINO DESC
+	</select>
+	
+	<update id="countViews" parameterType="notificationDto">
+		UPDATE W_NOTIFICATION
+		SET NOTIVIEWS = #{notiViews}+1
+		WHERE NOTINO = #{notiNo}
+	</update>
 
 
 

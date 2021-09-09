@@ -1,14 +1,14 @@
 package com.dao;
 
-import com.dto.DealStatusDto;
-import com.dto.DealStatusImgDto;
-import com.dto.FinishDealDto;
-import com.dto.UserDto;
+import com.dto.*;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class DealDaoImpl implements DealDao {
@@ -66,7 +66,12 @@ public class DealDaoImpl implements DealDao {
 
     @Override
     public int TradeComplete(int dealNo) {
-        return sqlSessionTemplate.update(NAMESPACE + "TradeComplete", dealNo);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("dealNo", dealNo);
+
+        sqlSessionTemplate.update(NAMESPACE + "TradeComplete", map);
+        int res = map.get("FF_UPDATE");
+        return res;
     }
 
     @Override
@@ -76,7 +81,12 @@ public class DealDaoImpl implements DealDao {
 
     @Override
     public int TradeSellerComplete(int dealNo) {
-        return sqlSessionTemplate.update(NAMESPACE + "TradeSellerComplete", dealNo);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("dealNo", dealNo);
+
+        sqlSessionTemplate.update(NAMESPACE + "TradeSellerComplete", map);
+        int res = map.get("FF_UPDATE");
+        return res;
     }
 
     @Override
@@ -87,5 +97,12 @@ public class DealDaoImpl implements DealDao {
     @Override
     public UserDto IdCheck(int usNo) {
         return sqlSessionTemplate.selectOne(NAMESPACE+"IdCheck", usNo);
+    }
+
+    @Override
+    public List<ProjectDto> SelectTwo(String prTalent) {
+        List<ProjectDto> list = new ArrayList<>();
+        list = sqlSessionTemplate.selectList(NAMESPACE + "SelectTwo", prTalent);
+        return list;
     }
 }
