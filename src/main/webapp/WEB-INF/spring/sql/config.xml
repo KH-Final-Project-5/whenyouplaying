@@ -17,6 +17,7 @@
         <typeAlias type="com.dto.DealStatusImgDto" alias="dealImgDto"/>
         <typeAlias type="com.dto.WithDrawDto" alias="withDrawDto"/>
         <typeAlias type="com.dto.NotificationDto" alias="notificationDto"/>
+        <typeAlias type="com.dto.BankAccountDto" alias="bankAccountDto"/>
     </typeAliases>
 
     <mappers>

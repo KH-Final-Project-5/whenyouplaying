@@ -3,6 +3,7 @@ package com.dao;
 import java.util.List;
 
 import com.commons.Criteria;
+import com.dto.BankAccountDto;
 import com.dto.ChargeHistoryDto;
 import com.dto.FinishDealDto;
 import com.dto.UserDto;
@@ -22,5 +23,8 @@ public interface MyPageDao {
 	 public List<WithDrawDto> pointList(Criteria cri);
 	 public int pointListCount(Criteria cri);
 	 public List<WithDrawDto> totalPriceList(int usNo);
+	public List<BankAccountDto> accountList(int usNo);
+	public int insertAccount(BankAccountDto dto);
+	public int deleteAccount(int baNo);
 	 
 }

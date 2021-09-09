@@ -99,5 +99,28 @@
 		WHERE USNO = #{usNo}
 	</select>
 
+	<select id="accountList" parameterType="int" resultType="bankAccountDto">
+		SELECT * FROM W_BANKACCOUNT
+		WHERE USNO = #{usNo}
+		ORDER BY BANO DESC
+	</select>
+
+	<insert id="insertAccount" parameterType="bankAccountDto">
+		INSERT INTO W_BANKACCOUNT
+		VALUES(BANKSEQ.NEXTVAL, #{usNo}, #{baNickName}, #{baBankName}, #{baBankNumber}, #{baOwner})
+	</insert>
+
+
+	<delete id="deleteAccount" parameterType="int">
+		DELETE FROM W_BANKACCOUNT
+		WHERE BANO = #{baNo}
+	</delete>
+
+
+
+
+
+
+
 
 </mapper>
