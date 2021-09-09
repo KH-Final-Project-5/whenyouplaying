@@ -164,9 +164,9 @@ public class ProjectDaoImpl implements ProjectDao {
 
 	@Override
 
-	public List<ProjectDto> newest() {
+	public List<ReviewDto> newest() {
 		
-		List<ProjectDto> list = new ArrayList<>();
+		List<ReviewDto> list = new ArrayList<>();
 		try {
 			list = sqlSession.selectList(NAMESPACE + "newest");
 		} catch (Exception e) {
@@ -175,6 +175,20 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<ReviewDto> popularity() {
+		List<ReviewDto> list = new ArrayList<>();
+		try {
+			list = sqlSession.selectList(NAMESPACE + "popularity");
+		} catch (Exception e) {
+			System.out.println("popularity 에러");
+			e.printStackTrace();
+			
+		}
+		return list;
+	}
+
 
 	public List<ReviewDto> reviewSelect(int prNo) {
 		List<ReviewDto> list = new ArrayList<>();
@@ -234,7 +248,6 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 		return res;
 	}
-
 	
 
 

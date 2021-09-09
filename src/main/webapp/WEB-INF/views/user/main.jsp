@@ -72,44 +72,16 @@
         </div>
         <hr class="hrClass1">
         <div class="row">
-        <div class="board-content">
         <c:forEach items="${list}" var="pr_dto">
-           <a href="Detail.do?prNo=${pr_dto.prNo }">${pr_dto.prTitle }</a>
+                <div class="col-2 mainNewImgDiv">
+                <img class="mainNewImg" src="${pr_dto.prImage}"/><br>
+                <a class="mainNewLink" href="Detail.do?prNo=${pr_dto.prNo }">${pr_dto.prTitle }</a>
+                <br>
+                <img class="mainStarImg" src="../lion.jpeg"/>
+                <label class="mainStarLabel"></label><br>
+                <label class="mainRating"></label>
+                </div>
         </c:forEach>
-        
-        </div>
-            <div class="col-2 mainNewImgDiv">
-                <img class="mainNewImg" src="../lion.jpeg"/><br>
-                <a class="mainNewLink" href="#">제목이 입력 만약 이게 길게되면 아래로 내려가나?</a>
-                <br>
-                <img class="mainStarImg" src="../lion.jpeg"/>
-                <label class="mainStarLabel">5.0</label><br>
-                <label class="mainRating">100개 평가</label>
-            </div>
-            <div class="col-2 mainNewImgDiv">
-                <img class="mainNewImg" src="../lion.jpeg"/><br>
-                <a class="mainNewLink" href="#">제목이 입력 만약 이게 길게되면 아래로 내려가나?</a>
-                <br>
-                <img class="mainStarImg" src="../lion.jpeg"/>
-                <label class="mainStarLabel">5.0</label><br>
-                <label class="mainRating">100개 평가</label>
-            </div>
-            <div class="col-2 mainNewImgDiv">
-                <img class="mainNewImg" src="../lion.jpeg"/><br>
-                <a class="mainNewLink" href="#">제목이 입력 만약 이게 길게되면 아래로 내려가나?</a>
-                <br>
-                <img class="mainStarImg" src="../lion.jpeg"/>
-                <label class="mainStarLabel">5.0</label><br>
-                <label class="mainRating">100개 평가</label>
-            </div>
-            <div class="col-2 mainNewImgDiv">
-                <img class="mainNewImg" src="../lion.jpeg"/><br>
-                <a class="mainNewLink" href="#">제목이 입력 만약 이게 길게되면 아래로 내려가나?</a>
-                <br>
-                <img class="mainStarImg" src="../lion.jpeg"/>
-                <label class="mainStarLabel">5.0</label><br>
-                <label class="mainRating">100개 평가</label>
-            </div>
         </div>
         <!--    <hr>-->
         <br>
@@ -120,38 +92,17 @@
         </div>
         <hr class="hrClass1">
         <div class="row">
-            <div class="col-2 mainNewImgDiv">
-                <img class="mainNewImg" src="../lion.jpeg"/><br>
-                <a class="mainNewLink" href="#">제목이 입력 만약 이게 길게되면 아래로 내려가나?</a>
+        <c:forEach items="${list2}" var="pr_dto2">
+                <div class="col-2 mainNewImgDiv">
+                <img class="mainNewImg" src="${pr_dto2.prImage}"/><br>
+                <a class="mainNewLink" href="Detail.do?prNo=${pr_dto2.prNo }">${pr_dto2.prTitle }</a>
                 <br>
                 <img class="mainStarImg" src="../lion.jpeg"/>
-                <label class="mainStarLabel">5.0</label><br>
-                <label class="mainRating">100개 평가</label>
+                <label class="mainStarLabel"></label><br>
+                <label class="mainRating"></label>
             </div>
-            <div class="col-2 mainNewImgDiv">
-                <img class="mainNewImg" src="../lion.jpeg"/><br>
-                <a class="mainNewLink" href="#">제목이 입력 만약 이게 길게되면 아래로 내려가나?</a>
-                <br>
-                <img class="mainStarImg" src="../lion.jpeg"/>
-                <label class="mainStarLabel">5.0</label><br>
-                <label class="mainRating">100개 평가</label>
-            </div>
-            <div class="col-2 mainNewImgDiv">
-                <img class="mainNewImg" src="../lion.jpeg"/><br>
-                <a class="mainNewLink" href="#">제목이 입력 만약 이게 길게되면 아래로 내려가나?</a>
-                <br>
-                <img class="mainStarImg" src="../lion.jpeg"/>
-                <label class="mainStarLabel">5.0</label><br>
-                <label class="mainRating">100개 평가</label>
-            </div>
-            <div class="col-2 mainNewImgDiv">
-                <img class="mainNewImg" src="../lion.jpeg"/><br>
-                <a class="mainNewLink" href="#">제목이 입력 만약 이게 길게되면 아래로 내려가나?</a>
-                <br>
-                <img class="mainStarImg" src="../lion.jpeg"/>
-                <label class="mainStarLabel">5.0</label><br>
-                <label class="mainRating">100개 평가</label>
-            </div>
+        </c:forEach>
+        
         </div>
     </div>
     <footer>

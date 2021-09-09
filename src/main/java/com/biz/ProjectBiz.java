@@ -31,7 +31,9 @@ public interface ProjectBiz {
     public List<ProjectDto> search(ProjectDto dto);
     
 
-    public List<ProjectDto> newest();
+    public List<ReviewDto> newest();
+    
+    public List<ReviewDto> popularity();
 
     public int insertReivew(ReviewDto dto);
     

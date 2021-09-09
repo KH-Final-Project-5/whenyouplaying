@@ -9,7 +9,7 @@ import com.dto.AbilityDto;
 import com.dto.ProjectDto;
 
 import com.dto.ReportDto;
-
+import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 import org.slf4j.Logger;
@@ -42,8 +42,12 @@ public class UserController {
     @RequestMapping("/main.do")
     public String main(Model model) {
     	biz2.newest();
-    	List<ProjectDto> list = biz2.newest(); 
+    	List<ReviewDto> list = biz2.newest(); 
     	model.addAttribute("list", list);
+    	
+    	biz2.popularity();
+    	List<ReviewDto> list2 = biz2.popularity();
+    	model.addAttribute("list2", list2);
     	
     	
         return "user/main";

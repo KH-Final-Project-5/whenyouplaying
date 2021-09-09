@@ -30,17 +30,8 @@ public class ProjectDto extends UserDto{
 	private String prLongitude;
 	private String prAddress;
 	private String prDelStatus;
-	
-	
-	
-	
-	
-	
-	
-	
 	private int usWriterNo;
 	private int usWriter;
-	
 	private String searchContent;
 	private int result;
 	private MultipartFile prImage2;

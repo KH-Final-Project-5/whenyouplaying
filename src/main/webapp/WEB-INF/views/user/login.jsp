@@ -65,7 +65,7 @@
                     </button>
                     <br><br>
                 </form>
-                <a class="loginA" href="#">회원가입</a><br><br>
+                <a class="loginA" href="regiform.do">회원가입</a><br><br>
                 <a class="loginA" href="finduser.do">아이디 / 비밀번호 찾기</a>
             </div>
             <div class="col-4"></div>

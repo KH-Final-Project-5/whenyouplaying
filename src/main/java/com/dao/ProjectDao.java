@@ -33,7 +33,9 @@ public interface ProjectDao {
 
     public List<ProjectDto> search(ProjectDto dto);
     
-    public List<ProjectDto> newest();
+    public List<ReviewDto> newest();
+    
+    public List<ReviewDto> popularity();
 
     public int insertReview(ReviewDto dto);
     

@@ -116,6 +116,17 @@
 		SELECT ROWNUM, a.* FROM W_PROJECT a WHERE ROWNUM &lt; 5 ORDER BY PRNO DESC
 		
 	</select>
+	
+	
+	<select id ="popularity" parameterType="ProjectDto" resultType="projectDto">
+	
+		SELECT ROWNUM, c.*
+FROM (SELECT a.*, b.RVGRADE
+FROM W_PROJECT a
+JOIN W_REVIEW b ON (a.PRNO = b.PRNO)
+ORDER BY RVGRADE DESC) c 
+WHERE ROWNUM &lt; 5
+	</select>
 
 	
 	<update id="reviewUpdate" parameterType="ReviewDto" >
