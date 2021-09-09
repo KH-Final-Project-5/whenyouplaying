@@ -157,10 +157,10 @@
             
             <div class="col-4">
                  <div class="col-8">
-                    <a href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01""><img src="<c:url value="/resources/img_mypage/pointhistory.png"/>"></a>
+                    <a href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01"><img src="<c:url value="/resources/img_mypage/pointhistory.png"/>"></a>
                  </div>
                  <div class="col-8">
-                    <a class="myA" href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01""><b>포인트 출금 내역</b></a>
+                    <a class="myA" href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01"><b>포인트 출금 내역</b></a>
                  </div>
                 
                  <div class="col-8">
