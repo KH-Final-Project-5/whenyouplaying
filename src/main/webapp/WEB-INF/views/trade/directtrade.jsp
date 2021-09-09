@@ -69,11 +69,14 @@
     console.log(userPhone3);
     
     
-    $('#tradePhone_1').val(userPhone1);
+     $('#tradePhone_1').val(userPhone1);
 
-    $('#tradePhone_2').val(userPhone2);
+     $('#tradePhone_2').val(userPhone2);
 
-    $('#tradePhone_3').val(userPhone3);
+     $('#tradePhone_3').val(userPhone3);
+    
+    
+    
 	});
 	
 	var result = "${result.result};"
@@ -165,7 +168,7 @@
                             </colgroup>
                             <tr>
                                 <td class="nameClass">이름&nbsp;&nbsp;&nbsp;</td>
-                                <td><input type="text" class="tradeName" name="tradeName" value="${user.usName }"></td>
+                                <td><input type="text" class="tradeName" name="usName" value="${user.usName }"></td>
                             </tr>
                             <tr>
                                 <td class="nameClass">전화번호&nbsp;&nbsp;&nbsp;</td>
@@ -186,7 +189,7 @@
                                 <td class="nameClass">주소&nbsp;&nbsp;&nbsp;</td>
                                 <td>
                                     <input type="text" class="tradeAddrInput" id="tradeNewAddr1"
-                                           name="tradeNewAddr1"
+                                           name="usAddress1"
                                            value="${user.usAddress1 }">
                                     <input type="button" value="우편 찾기">
                                 </td>
@@ -195,16 +198,14 @@
                             <tr style="height: 0;">
                                 <td class="nameClass"></td>
                                 <td><input type="text" class="tradeAddrInput" id="tradeNewAddr2"
-                                           name="tradeNewAddr2"
+                                           name="usAddress2"
                                            placeholder="상세 주소 입력" value="${user.usAddress2 }"></td>
                             </tr>
                         </table>
                     </div>
                 </div>
                 <hr>
-                <div id="directMapDiv">
-                    이곳엔 지도가 들어갑니다.
-                </div>
+                
             </div>
             <div class="col-1"></div>
             <div class="col-3 orderDiv">

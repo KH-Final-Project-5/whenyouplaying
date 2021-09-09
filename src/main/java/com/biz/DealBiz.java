@@ -33,5 +33,7 @@ public interface DealBiz {
     public UserDto IdCheck(int usNo);
 
     public List<ProjectDto> SelectTwo(String prTalent);
+    
+    public int UpdateUserDeal(UserDto dto);
 
 }
