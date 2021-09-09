@@ -77,9 +77,6 @@
                 <a class="mainNewLink" href="Detail.do?prNo=${pr_dto.prNo }"><img class="mainNewImg" src="${pr_dto.prImage}"/></a><br>
                 <a class="mainNewLink" href="Detail.do?prNo=${pr_dto.prNo }">${pr_dto.prTitle }</a>
                 <br>
-                <img class="mainStarImg" src="../lion.jpeg"/>
-                <label class="mainStarLabel"></label><br>
-                <label class="mainRating">${re_dto.e}</label>
                 </div>
         </c:forEach>
         </div>
