@@ -74,6 +74,7 @@
         <c:forEach items="${list}" var="pr_dto">
            <a href="Detail.do?prNo=${pr_dto.prNo }">${pr_dto.prTitle }</a>
         </c:forEach>
+        
         </div>
             <div class="col-2 mainNewImgDiv">
                 <img class="mainNewImg" src="../lion.jpeg"/><br>

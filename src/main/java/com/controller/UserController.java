@@ -35,15 +35,14 @@ public class UserController {
 
     @Autowired
     UserBiz biz;
+    @Autowired
     ProjectBiz biz2;
     
     //mainpage
     @RequestMapping("/main.do")
     public String main(Model model) {
     	biz2.newest();
-    	
     	List<ProjectDto> list = biz2.newest(); 
-    	
     	model.addAttribute("list", list);
     	
     	

@@ -111,9 +111,9 @@
 	</select>
 	
 
-	<select id="newest">
+	<select id="newest" resultType="projectDto">
 	
-		<![CDATA[SELECT * FROM W_PROJECT WHERE ROWNUM <=4 ORDER BY PRNO DESC]]>
+		SELECT ROWNUM, a.* FROM W_PROJECT a WHERE ROWNUM &lt; 5 ORDER BY PRNO DESC
 		
 	</select>
 
