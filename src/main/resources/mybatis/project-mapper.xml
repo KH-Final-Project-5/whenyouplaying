@@ -111,7 +111,7 @@
 	</select>
 	
 
-	<select id="newest" resultType="ProjectDto">
+	<select id="newest" resultType="ReviewDto">
 	
 		SELECT ROWNUM, a.* FROM W_PROJECT a WHERE ROWNUM &lt; 5 ORDER BY PRNO DESC
 		
