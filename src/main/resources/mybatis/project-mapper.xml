@@ -119,8 +119,8 @@
 	
 	
 	<select id ="popularity" parameterType="ReviewDto" resultType="ReviewDto">
-	
-SELECT PRTITLE, PRIMAGE,E,W
+<![CDATA[
+SELECT *
 FROM(
 SELECT *
 FROM(SELECT PRNO, COUNT(RVGRADE) w, AVG(RVGRADE) e 
@@ -130,7 +130,9 @@ ORDER BY e DESC) c
 JOIN W_PROJECT d ON (c.PRNO = d.PRNO)
 ORDER BY c.e DESC
 ) 
-WHERE ROWNUM &lt; 4;
+WHERE ROWNUM <= 4
+]]>
+
 	</select>
 
 	
