@@ -84,4 +84,10 @@ public class DealBizImpl implements DealBiz{
     public List<ProjectDto> SelectTwo(String prTalent) {
         return dao.SelectTwo(prTalent);
     }
+
+	@Override
+	public int UpdateUserDeal(UserDto dto) {
+		
+		return dao.UpdateUserDeal(dto);
+	}
 }

@@ -105,4 +105,10 @@ public class DealDaoImpl implements DealDao {
         list = sqlSessionTemplate.selectList(NAMESPACE + "SelectTwo", prTalent);
         return list;
     }
+
+	@Override
+	public int UpdateUserDeal(UserDto dto) {
+		int res = sqlSessionTemplate.update(NAMESPACE + "NewUserDeal", dto);
+		return res;
+	}
 }

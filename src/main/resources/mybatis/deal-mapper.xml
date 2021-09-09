@@ -79,6 +79,12 @@
         SET USCASH = #{usCash}
         WHERE USNO = #{usNo}
     </update>
+    
+    <update id="NewUserDeal" parameterType="userDto">
+    	UPDATE W_USER
+    	SET USNAME = #{usName}, USPHONE=#{usPhone}, USADDRESS1=#{usAddress1},USADDRESS2=#{usAddress2}
+    	WHERE USNO = #{usNo}
+    </update>
 
     <update id="TradeSellerComplete" statementType="CALLABLE" parameterType="map">
         {call PS_UPDATE(

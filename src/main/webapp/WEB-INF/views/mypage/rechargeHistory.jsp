@@ -58,15 +58,15 @@
                 <div id="pageName"><b>MY PAGE</b></div><br>
 
                 <div id="menuList">
-                    <span class="menuText"><a class="menuA" href="">회원정보</a></span><br><br>
-                    <span class="menuText"><a class="menuA" href="#">공지사항</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="noticemainuser.do">공지사항</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="useredit.do">회원정보</a></span><br><br>
                     <span class="menuText"><a class="menuA" href="#">찜 내역</a></span><br><br>
-                    <span class="menuText"><a class="menuA" href="#">재능 구매내역</a></span><br><br>
-                    <span class="menuText"><a class="menuA" href="#">재능 판매내역</a></span><br><br>
-                    <span class="menuText"><a class="menuA" href="#"><u><b>충전 내역확인</b></u></a></span><br><br>
-                    <span class="menuText"><a class="menuA" href="#">계좌 관리</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="buylist.do?usNo=${user.usNo }&finStatus=1">재능 구매내역</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="selllist.do?usNo=${user.usNo }&finStatus=거래취소">재능 판매내역</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01"><u><b>충전 내역확인</b></u></a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="manageaccount.do?usNo=${user.usNo }">계좌 관리</a></span><br><br>
                     <span class="menuText"><a class="menuA" href="#">포인트 출금</a></span><br><br>
-                    <span class="menuText"><a class="menuA" href="#">포인트 출금내역</a></span><br><br>
+                    <span class="menuText"><a class="menuA" href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01">포인트 출금내역</a></span><br><br>
                     <span class="menuText"><a class="menuA" href="#">회원 탈퇴</a></span><br><br>
                 </div>
             </div>

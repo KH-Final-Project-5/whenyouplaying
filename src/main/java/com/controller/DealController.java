@@ -55,19 +55,32 @@ public class DealController {
     }
 
     @RequestMapping("/directtrade.do")
-    public String DirectTradeForm(Model model, DealStatusDto dto, HttpSession session) {
+    public String DirectTradeForm(Model model, DealStatusDto dto, HttpSession session, String tradePhone_1, String tradePhone_2, String tradePhone_3) {
 
         DealStatusDto dealStatusDto = biz.SelectDeal(dto);
         biz.InsertFinDealStatus(dealStatusDto);
+        
         UserDto dto1 = (UserDto) session.getAttribute("user");
+        
+        dto1.setUsName(dto.getUsName());
+        dto1.setUsAddress1(dto.getUsAddress1());
+        dto1.setUsAddress2(dto.getUsAddress2());
+        
+        
         dto1.setUsCash(dto1.getUsCash() - dto.getDealPrice());
         biz.UpdateDealUser(dto1);
-
+        
+        String phone = tradePhone_1+tradePhone_2+tradePhone_3;
+        dto1.setUsPhone(phone);
+        biz.UpdateUserDeal(dto1);
+        
+        
+        
         biz1.login(dto1);
         session.setAttribute("user", dto1);
 
         model.addAttribute("Deal", dealStatusDto);
-
+        
         return "redirect:buylist.do?usNo=" + dto1.getUsNo() + "&finStatus=1";
     }
 
