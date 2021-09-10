@@ -83,6 +83,11 @@ public class MyPageBizImpl implements MyPageBiz {
 	public int deleteAccount(int baNo) {
 		return dao.deleteAccount(baNo);
 	}
+
+	@Override
+	public int closeUser(int usNo) {
+		return dao.closeUser(usNo);
+	}
 	
 	
 	

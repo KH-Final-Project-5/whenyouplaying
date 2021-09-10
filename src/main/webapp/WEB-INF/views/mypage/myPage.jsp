@@ -171,10 +171,10 @@
             
             <div class="col-4">
                  <div class="col-8">
-                    <a href="#"><img src="<c:url value="/resources/img_mypage/closeAccount.png"/>"></a>
+                    <a href="closeaccountform.do"><img src="<c:url value="/resources/img_mypage/closeAccount.png"/>"></a>
                  </div>
                  <div  class="col-8">
-                    <a class="myA" href="#"><b>회원 탈퇴</b></a>
+                    <a class="myA" href="closeaccountform.do?"><b>회원 탈퇴</b></a>
                  </div>
                 
                  <div class="col-8">

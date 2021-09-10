@@ -117,9 +117,10 @@
 	</delete>
 
 
-
-
-
+	<delete id="closeUser" parameterType="int">
+		DELETE FROM W_USER
+		WHERE USNO = #{usNo}
+	</delete>
 
 
 

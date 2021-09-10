@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,13 +21,37 @@
     <!--css 가져오는 방법-->
 	<link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
 	
+	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		
+		function checkPW(){
+
+			var userPw = "${user.usPw}";
+			var inputPw = $('#inputPW').val();
+			
+			if(userPw == inputPw){
+				return true;
+			}else{
+				alert("올바른 비밀번호가 아닙니다.");
+				return false;
+			}
+		}
+	
+	
+	</script>
+	
+	
+	
 
 </head>
 <body>
 	
-    <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> 
- 
+
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
 
     <div class="container">
         <div class="row">
@@ -36,7 +63,7 @@
                              alt="사진">
                     </div>
                     <div id="userName">
-                        ADMIN
+                        MY PAGE
                     </div>
                 </div>
                 <hr>
@@ -45,42 +72,49 @@
 
                 <div id="menuList">
                     <br>
-                    <span class="menuText"><a href="#">공지 사항</a></span><br><br>
-                    <span class="menuText"><a href="#">재능 기부 승인</a></span><br><br>
-                    <span class="menuText"><a href="#">신고 내역 확인</a></span><br><br>
-                    <span class="menuText"><a href="#">회원 목록 확인</a></span><br><br>
-                    <span class="menuText"><a href="#">기부 캐쉬 출금</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="noticemainuser.do">공지사항</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="useredit.do">회원정보</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">찜 내역</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="buylist.do?usNo=${user.usNo }&finStatus=1">재능 구매내역</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="selllist.do?usNo=${user.usNo }&finStatus=거래취소"><u><b>재능 판매내역</b></u></a></span><br><br>
+                    <span class="menuText"><a class="myA" href="cashrecord.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">충전 내역확인</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="manageaccount.do?usNo=${user.usNo }">계좌 관리</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="#">포인트 출금</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="withdrawhistory.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">포인트 출금내역</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="closeaccountform.do">회원 탈퇴</a></span><br><br>
                 </div>
             </div>
             <div class="col-9" align="center">
-                <h2><img src="../image/UserImg.PNG">회원 탈퇴</h2> <hr>
+                <h2>회원 탈퇴</h2> <hr>
                 <table>
                     <tr>
                        <th class="userleave-th" colspan="3">회원님의 비밀번호를 입력해 주세요.</th> 
                     </tr>
                     <tr><td>&nbsp;</td>
                     <tr><td>&nbsp;</td>
-                    <form action="#" method="#">
-                        
+
+                    <form action="closeaccount.do" method="get" onsubmit="return checkPW()">
+                    	<input type="hidden" name="usNo" value="${user.usNo }" >
                         <tr>
                             <th>Password</th>
-                            <td><input type="password"></td>
+                            <td><input id="inputPW" type="password"></td>
                         </tr>
-                       
-                            <td colspan="3" align="right"><input type="submit" value="탈퇴하기" onclick="#" class="btn btn-outline-primary btn-sm"></td>
+                            <td colspan="3" align="right">
+                            	<input type="submit" value="탈퇴하기" class="btn btn-outline-primary btn-sm">
+                            </td>
                         </tr>
                     </form>
+                    
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- footer 영역-->
-    <div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;" >임시 footer 영역입니다.</div>
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
 
-      
-      
-
+</div>
 
 	
 </body>

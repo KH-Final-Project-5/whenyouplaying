@@ -211,6 +211,21 @@ public class MyPageDaoImpl implements MyPageDao {
 		return res;
 	}
 
+	@Override
+	public int closeUser(int usNo) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.delete(NAMESPACE+"closeUser", usNo);
+		} catch (Exception e) {
+			System.out.println("[error] : closeUser 에러");
+			e.printStackTrace();
+ 		}
+		
+		return res;
+	}
+
 	
 
 	

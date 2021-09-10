@@ -4,6 +4,7 @@ package com.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -223,7 +224,28 @@ public class MyPageController {
 	}
 	
 	
+	//회원탈퇴
+	@RequestMapping("/closeaccountform.do")
+	public String closeAccountForm() {
+
+		logger.info("closeaccountform.do : 회원탈퇴 페이지 이동");
+		
+		return "mypage/userLeave";
+	}
 	
+	@RequestMapping("/closeaccount.do")
+	public void closeAccount(int usNo, HttpServletResponse response, HttpSession session) throws IOException {
+		
+		int res = biz.closeUser(usNo);
+		
+		if(res>0) {
+			session.invalidate();
+			ScriptUtils.alertAndMovePage(response, "회원탈퇴가 정상적으로 이루어졌습니다.", "main.do");
+		}else {
+			ScriptUtils.alertAndMovePage(response, "회원탈퇴 실패 다시 시도해주세요.", "closeaccountform.do");
+		}
+		
+	}
 	
 	
 	

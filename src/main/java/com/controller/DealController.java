@@ -158,7 +158,6 @@ public class DealController {
     @RequestMapping("/onlineTradeBuyForm.do")
     public String OnlineTradeBuyerForm(Model model, int dealNo) {
 
-//        logger.info("buyForm.do : �삩�씪�씤 援щℓ�옄 嫄곕옒�럹�씠吏�");
 
 
         DealStatusDto dto = biz.SelectDealOneBuyer(dealNo);
@@ -173,8 +172,6 @@ public class DealController {
 
     @RequestMapping("/directTradeBuyForm.do")
     public String DirectTradeBuyerForm(Model model, int dealNo) {
-
-//        logger.info("buyForm.do : �삩�씪�씤 援щℓ�옄 嫄곕옒�럹�씠吏�");
 
 
         DealStatusDto dto = biz.SelectDealOneBuyer(dealNo);
