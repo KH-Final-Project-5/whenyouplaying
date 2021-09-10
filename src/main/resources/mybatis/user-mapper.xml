@@ -15,7 +15,7 @@
 
         INSERT INTO W_USER
         VALUES (USERSEQ.NEXTVAL, #{usId}, #{usPw}, #{usName}, #{usPhone},
-                #{usAddress1}, #{usAddress2}, #{usEmail}, NULL, 'N', SYSDATE, 'Y', 'user', '0')
+                #{usAddress1}, #{usAddress2}, #{usEmail}, NULL, 'N', SYSDATE, 'Y', 'user', '0', http://wjwan0.dothome.co.kr/stoarge/personimg.png)
 
     </insert>
     
