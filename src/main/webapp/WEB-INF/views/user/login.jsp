@@ -30,9 +30,60 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
 
-
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/login.css"/>">
+	
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- 구글 소셜 로그인 -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" content="557137904134-232ci9t86836vrm925onj9blpmnh4b2f.apps.googleusercontent.com">
+
+	<script type="text/javascript">
+		function onSignIn(googleUser) {
+			  var profile = googleUser.getBasicProfile();
+				
+			  var googleId = profile.getEmail();
+			  var googlePw = profile.getId();
+			  var googleName = profile.getName();
+			  
+			  
+			  
+			  $("#googleBtn").click(function(){
+				  $.ajax({
+					  type:"post",
+					  url:"googlelogin.do",
+					  data:{
+					  	 usId:googleId,
+					  	 usPw:googlePw
+					  },
+					  success:function(res){
+					    	if(res == '회원'){
+					    		location.href="main.do";
+					    	}else{
+					    		location.href="regigoogle.do?usId="+googleId+"&usPw="+googlePw+"&usName="+googleName;
+					    	}
+					  },
+					  error:function(){
+						  alert("통신실패");
+					  }
+				  });
+				  
+			  });
+				  
+			}
+			  
+		/*  
+			  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+			  console.log('Name: ' + profile.getName());
+			  console.log('Image URL: ' + profile.getImageUrl());
+			  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+			  */
+	</script>
+
+
+
 </head>
 <body style="overflow-y: hidden">
 <div class="wwrap">
@@ -45,9 +96,9 @@
             <!-- Custom styles for this template -->
             <div class="col-3">
                 <form action="login.do" method="post">
-                    <img class="mb-4" src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="72"
-                         height="57" style="margin-left: 90px">
+                    <img class="mb-4" src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="72" height="57" style="margin-left: 90px">
                     <h1 class="h3 mb-3 fw-normal" style="margin: 0 auto; text-align: center">Please sign in</h1>
+                    
                     <input type="text" id="usId" name="usId"
                            style="width: 271px; display: inline-block; margin: 0 auto;"
                            class="form-control"
@@ -63,8 +114,14 @@
                             style="width: 271px; display: inline-block; margin: 0 auto;"
                             type="submit">로그인
                     </button>
+                    
+						                    
                     <br><br>
                 </form>
+                
+                <div class="g-signin2" data-onsuccess="onSignIn" id="googleBtn"></div>
+				<div id="getTest"></div>
+                
                 <a class="loginA" href="regiform.do">회원가입</a><br><br>
                 <a class="loginA" href="finduser.do">아이디 / 비밀번호 찾기</a>
             </div>

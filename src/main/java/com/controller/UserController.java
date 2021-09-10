@@ -1,16 +1,11 @@
 package com.controller;
 
 
-import com.biz.ProjectBiz;
-import com.biz.UserBiz;
-import com.commons.ScriptUtils;
-import com.dto.AbilityDto;
+import java.io.IOException;
+import java.util.List;
 
-import com.dto.ProjectDto;
-
-import com.dto.ReportDto;
-import com.dto.ReviewDto;
-import com.dto.UserDto;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,11 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import com.biz.ProjectBiz;
+import com.biz.UserBiz;
+import com.commons.ScriptUtils;
+import com.dto.ReportDto;
+import com.dto.ReviewDto;
+import com.dto.UserDto;
 
 @Controller
 public class UserController {
@@ -110,11 +106,39 @@ public class UserController {
         }
 
     }
+    
+    //구글 로그인
+    @RequestMapping(value="/googlelogin.do", method=RequestMethod.POST, produces="application/text; charset=utf8")
+    public @ResponseBody String googleLogin(HttpSession session, UserDto dto) {
+    	
+    	UserDto userDto = null;
+    	
+    	userDto = biz.login(dto);
+    	
+    	
+    	if(userDto != null) {
+    		session.setAttribute("user", userDto);
+    		return "회원";
+    	}else {
+    		return "비회원";
+    	}
+    	
+    }
+    
+    //구글 회원가입
+    @RequestMapping("regigoogle.do")
+    public String regiGoogle(Model model, UserDto dto) {
+    	
+    	model.addAttribute("googleInfo", dto);
+    	
+    	return "user/regiGoogle";
+    }
+    
 
     @RequestMapping("/logout.do")
     public String logout(HttpSession session) {
         session.invalidate();
-
+        
         return "redirect:main.do";
     }
 
@@ -219,6 +243,9 @@ public class UserController {
 
         return "user/reportPageForm";
     }
+    
+    
+
     
     
     
