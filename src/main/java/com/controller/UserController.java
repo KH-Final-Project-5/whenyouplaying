@@ -115,7 +115,6 @@ public class UserController {
     	
     	userDto = biz.login(dto);
     	
-    	
     	if(userDto != null) {
     		session.setAttribute("user", userDto);
     		return "회원";
@@ -132,16 +131,6 @@ public class UserController {
     	model.addAttribute("googleInfo", dto);
     	
     	return "user/regiGoogle";
-    }
-    
-    
-    //구글 브라우저 로그인
-    @RequestMapping("/browserlogin.do")
-    public String browserLogin() {
-    	
-    	System.out.println("리다이렉트 성공?");
-    	
-    	return "null";
     }
     
 

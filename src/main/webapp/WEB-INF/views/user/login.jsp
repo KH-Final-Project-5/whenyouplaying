@@ -37,58 +37,51 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<!-- 구글 소셜 로그인 -->
-	<meta name="google-signin-scope" content="profile email">
 	<meta name="google-signin-client_id" content="557137904134-232ci9t86836vrm925onj9blpmnh4b2f.apps.googleusercontent.com">
-	
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
 	<script type="text/javascript">
-
-	
-	
-		function onSignIn() {
-				
+		
+		function onSignIn(googleUser) {
+			  var profile = googleUser.getBasicProfile();
+			  
+			  var googleId = profile.getEmail();
+			  var googlePw = profile.getId();
+			  var googleName = profile.getName();
+			  
 			  var auth2 = gapi.auth2.getAuthInstance();
-			
 			  
-			  if(auth2.isSignedIn.get()){
-				  
-				  var profile = auth2.currentUser.get().getBasicProfile();
-				  
-				  var googleId = profile.getEmail();
-				  var googlePw = profile.getId();
-				  var googleName = profile.getName();
-				  
-				  
-				  $.ajax({
-					  type:"post",
-					  url:"googlelogin.do",
-					  data:{
-					  	 usId:googleId,
-					  	 usPw:googlePw
-					  },
-					  success:function(res){
-					    	if(res == '회원'){
-					    		location.href="main.do";
-					    	}else{
-					    		location.href="regigoogle.do?usId="+googleId+"&usPw="+googlePw+"&usName="+googleName;
-					    	}
-					  },
-					  error:function(){
-						  alert("통신실패");
-					  }
-				  });
-				  
-			  }
-				  
-			}
-			  
-		/*  
-			  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-			  console.log('Name: ' + profile.getName());
-			  console.log('Image URL: ' + profile.getImageUrl());
-			  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-			  */
+			  $.ajax({
+				  type:"post",
+				  url:"googlelogin.do",
+				  data:{
+				  	 usId:googleId,
+				  	 usPw:googlePw
+				  },
+				  success:function(res){
+				    	if(res == '회원'){
+				    		alert("등록된 아이디입니다.");
+				    		
+				    		location.href="main.do";
+				    	}else{
+				    		alert("등록되지 않은 아이디입니다. 회원가입을 진행해 주세요");
+				    		
+					    	var auth2 = gapi.auth2.getAuthInstance();
+					    	auth2.signOut().then(function () {
+					    		console.log('User signed out');
+					    	});
+						    	auth2.disconnect();
+				    		
+				    		location.href="regigoogle.do?usId="+googleId+"&usPw="+googlePw+"&usName="+googleName;
+				    	}
+				  },
+				  error:function(){
+					  alert("통신실패");
+				  }
+			  });			  
+		}
+	
+	
 	</script>
 
 
@@ -128,8 +121,8 @@
                     <br><br>
                 </form>
                 
-                <div class="g-signin2" data-theme="dark" onclick="onSignIn();"></div>
-                
+              	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
+
 				<div id="getTest"></div>
                 	<a class="loginA" href="regiform.do">회원가입</a><br><br>
                 	<a class="loginA" href="finduser.do">아이디 / 비밀번호 찾기</a>
