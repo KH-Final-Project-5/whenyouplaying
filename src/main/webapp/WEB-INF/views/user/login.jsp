@@ -37,20 +37,29 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<!-- 구글 소셜 로그인 -->
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-scope" content="profile email">
 	<meta name="google-signin-client_id" content="557137904134-232ci9t86836vrm925onj9blpmnh4b2f.apps.googleusercontent.com">
+	
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 	<script type="text/javascript">
-		function onSignIn(googleUser) {
-			  var profile = googleUser.getBasicProfile();
+
+	
+	
+		function onSignIn() {
 				
-			  var googleId = profile.getEmail();
-			  var googlePw = profile.getId();
-			  var googleName = profile.getName();
+			  var auth2 = gapi.auth2.getAuthInstance();
+			
 			  
-			  
-			  
-			  $("#googleBtn").click(function(){
+			  if(auth2.isSignedIn.get()){
+				  
+				  var profile = auth2.currentUser.get().getBasicProfile();
+				  
+				  var googleId = profile.getEmail();
+				  var googlePw = profile.getId();
+				  var googleName = profile.getName();
+				  
+				  
 				  $.ajax({
 					  type:"post",
 					  url:"googlelogin.do",
@@ -70,7 +79,7 @@
 					  }
 				  });
 				  
-			  });
+			  }
 				  
 			}
 			  
@@ -119,12 +128,12 @@
                     <br><br>
                 </form>
                 
-                <div class="g-signin2" data-onsuccess="onSignIn" id="googleBtn"></div>
-				<div id="getTest"></div>
+                <div class="g-signin2" data-theme="dark" onclick="onSignIn();"></div>
                 
-                <a class="loginA" href="regiform.do">회원가입</a><br><br>
-                <a class="loginA" href="finduser.do">아이디 / 비밀번호 찾기</a>
-            </div>
+				<div id="getTest"></div>
+                	<a class="loginA" href="regiform.do">회원가입</a><br><br>
+                	<a class="loginA" href="finduser.do">아이디 / 비밀번호 찾기</a>
+            	</div>
             <div class="col-4"></div>
         </div>
     </div>

@@ -134,6 +134,16 @@ public class UserController {
     	return "user/regiGoogle";
     }
     
+    
+    //구글 브라우저 로그인
+    @RequestMapping("/browserlogin.do")
+    public String browserLogin() {
+    	
+    	System.out.println("리다이렉트 성공?");
+    	
+    	return "null";
+    }
+    
 
     @RequestMapping("/logout.do")
     public String logout(HttpSession session) {
