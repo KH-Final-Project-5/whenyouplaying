@@ -30,6 +30,9 @@
 
     <%--css 가져오는 방법--%>
     <link rel="stylesheet" href="<c:url value="/resources/css/mainpage.css"/>">
+    
+
+	<script type="text/javascript">
 
     <script>
         $(function () {

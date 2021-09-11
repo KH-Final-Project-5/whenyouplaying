@@ -40,39 +40,34 @@
 
     <!-- js -->
     <script src="<c:url value="/resources/js/header.js"/>"></script>
-</head>
-
-<script>
-    /*var socket = null;
-    $(document).ready(function () {
-        connectWS();
-    });
-
-    function connectWS() {
-        var ws = new WebSocket("ws://localhost:8105/replyEcho");
-
-        socket = ws;
-
-        ws.onopen = function () {
-            console.log("info : connection opened.");
-        };
-
-        ws.onmessage = function (evt) {
-            var data = evt.data;
-            console.log("ReceiveMessage : " + data + "\n");
-        };
-
-        ws.onclose = function (event) {
-            console.log("Info : Connection closed.");
-        };
-
-        ws.onerror = function (err) {
-            console.log("Error : " + err.type);
-        };
-    }*/
-</script>
-
-
+    
+    <!-- 구글 소셜 로그인 -->
+    <meta name="google-signin-scope" content="profile email">
+	<meta name="google-signin-client_id" content="557137904134-232ci9t86836vrm925onj9blpmnh4b2f.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+    
+   <script type="text/javascript">
+    
+   		//구글 로그인 세션 취소
+	    function signOut(){
+	    	var auth2 = gapi.auth2.getAuthInstance();
+	    	auth2.signOut().then(function () {
+	    		console.log('User signed out');
+		    	location.href="logout.do";
+	    	});
+		    	auth2.disconnect();
+	    	
+	    }
+    
+	    function onLoad() {
+	    	gapi.load('auth2', function() {
+	    		gapi.auth2.init();
+	    	});
+	    }
+	    
+	    
+    </script>
+    
 <script>
     $(function () {
         <c:choose>
@@ -123,8 +118,12 @@
         </c:choose>
 
 
+        
     });
+    
 </script>
+</head>
+
 <body>
 
 
@@ -222,9 +221,7 @@
 
                     <div class="contentList">
                         <label id="userWelcome">${user.usName}님 환영합니다!</label>
-                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav"
-                                onclick="location.href='logout.do'">logOut
-                        </button>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav" onclick="signOut();">logOut</button>
                         |
                         <label id="userPoint">포인트 : ${user.usCash}Point</label>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">충전</button>
