@@ -16,7 +16,6 @@ public class StompController {
 
 
     @MessageMapping("/TTT")
-    @SendTo("/topic/message/{dealNo}")
     public void ttt(ChatSeller seller) throws Exception {
 
 
