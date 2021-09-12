@@ -8,11 +8,33 @@ function fnImgPop(url) {
     var OpenWindow = window.open('', '_blank', 'width=' + win_width + ', height=' + win + ', menubars=no, scrollbars=auto');
     OpenWindow.document.write("<style>body{margin:0px;}</style><img src='" + url + "' width='" + win_width + "'>");
 }
+
 $(function () {
     $('#sellCompBtn').click(function () {
         if (confirm("구매 완료 하시겠습니까?")) {
             location.href = 'buytradecomplete.do?dealNo=' + dealNo;
         }
+    });
+
+    $('#chatArea').on('keydown', function (event) {
+        var chatcontent = $("#chatArea").val();
+        if (event.keyCode == 13)
+            if (!event.shiftKey) {
+                event.preventDefault();
+                let msg = {'writer': writer, 'buyer': buyer, 'dealNo': dealNo, 'content': chatcontent};
+
+                if (isStomp) {
+                    socket.send('/TTT', {}, JSON.stringify(msg));
+                } else {
+                    socket.send(msg);
+                }
+                $('#chatul').append('<li class="right">' + chatcontent + "</li>");
+                $('#chatArea').val("");
+                $('.chat')
+                    .stop()
+                    .animate({ scrollTop: $('.chat')[0].scrollHeight }, 1000);
+
+            }
     });
 });
 /*
@@ -25,7 +47,7 @@ const Chat = (function(){
         // enter 키 이벤트
         $(document).on('keydown', 'div.input-div textarea', function(e){
             if(e.keyCode == 13 && !e.shiftKey) {
-                e.preventDefault();
+                e.preventDefault()
                 const message = $(this).val();
 
                 // 메시지 전송

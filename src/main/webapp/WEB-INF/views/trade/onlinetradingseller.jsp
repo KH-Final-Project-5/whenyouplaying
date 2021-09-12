@@ -31,6 +31,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+        writer = '${user.usId}';
+        dealNo = '${dto.dealNo}';
+        buyer = '${dto.usId}';
         var sel_files = [];
         $(function () {
             $("#uploadBtn2").val("");
@@ -104,7 +107,7 @@
                         CHAT
                     </div>
                     <div class="chat">
-                        <ul>
+                        <ul id="chatul">
                             <li class="left">안녕</li>
                             <li class="right">하이</li>
                         </ul>

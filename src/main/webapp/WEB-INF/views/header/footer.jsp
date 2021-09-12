@@ -30,19 +30,86 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/footer.css"/>">
 </head>
 <body>
-    <div class="foo_div">
-        <img src="<c:url value="/resources/img_header/logo.png"/>">
-    </div>
-    <div class="foo_div1">
-        <span>놀면 뭐하니?</span> <span> | </span>
-        <span>대표 : 김완주</span> <span> | </span>
-        <span>사업자등록번호 : 667-13-5358</span> <span> | </span>
-        <p>주소 : 서울시 강남구 역삼동 1004-1번지 1004호</p>
-        <p>ⓒCopyright © 2021 nolmyeonmohani Inc. All rights reserved.</p>
+<div class="foo_div">
+    <img src="<c:url value="/resources/img_header/logo.png"/>">
+</div>
+<div class="foo_div1">
+    <span>놀면 뭐하니?</span> <span> | </span>
+    <span>대표 : 김완주</span> <span> | </span>
+    <span>사업자등록번호 : 667-13-5358</span> <span> | </span>
+    <p>주소 : 서울시 강남구 역삼동 1004-1번지 1004호</p>
+    <p>ⓒCopyright © 2021 nolmyeonmohani Inc. All rights reserved.</p>
 
-        <img src="<c:url value="/resources/img_header/kakao.png"/>">
-        <img src="<c:url value="/resources/img_header/google.png"/>">
-        <img src="<c:url value="/resources/img_header/naver.png"/>">
-    </div>
+    <img src="<c:url value="/resources/img_header/kakao.png"/>">
+    <img src="<c:url value="/resources/img_header/google.png"/>">
+    <img src="<c:url value="/resources/img_header/naver.png"/>">
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+<script>
+    var socket = null;
+    var isStomp = false;
+    $(function () {
+        // connectWs();
+        connectStopm(dealNo, buyer);
+    });
+
+    function connectStopm(dealNo, buyer) {
+        const ws = new SockJS("/stompTest");
+        var client = Stomp.over(ws);
+        isStomp = true;
+        socket = client;
+
+        client.connect({},function() {
+            console.log("Connected stompTest!!");
+            console.log(dealNo);
+            // client.send('/TTT', {}, "msg:haha");
+
+            client.subscribe('/topic/message/'+dealNo+"/"+writer , function (evnet) {
+                var content = JSON.parse(evnet.body).content;
+                $('#chatul').append('<li class="left">' + content + "</li>");
+                $('#chatArea').val("");
+                $('.chat')
+                    .stop()
+                    .animate({ scrollTop: $('.chat')[0].scrollHeight }, 1000);
+                console.log('!!!!!!!!!!!!!!!!evnt>>', JSON.parse(evnet.body).content);
+                // console.log()
+            });
+        });
+    }
+
+    /*function connectWs() {
+
+
+        ws.onopen = function () {
+            console.log("info : connection opened.");
+
+
+        };
+
+        ws.onmessage = function (evt) {
+            var data = evt.data;
+            console.log("ReceiveMessage : " + data + "\n");
+            let $socketUl = $('ul#chatul');
+            $socketUl.append('<li id="chatUl">' + data + '</li>');
+            let $chatdiv = $('div.chat');
+            $chatdiv.stop()
+                .animate({scrollTop: $('.chat')[0].scrollHeight}, 1000);
+
+
+        };
+
+        ws.onclose = function (event) {
+            console.log("Info : Connection closed.");
+        };
+
+        ws.onerror = function (err) {
+            console.log("Error : ", err);
+        };
+    }*/
+</script>
+
+
 </body>
 </html>

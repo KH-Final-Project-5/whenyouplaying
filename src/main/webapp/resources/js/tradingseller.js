@@ -9,6 +9,29 @@ function fnImgPop(url) {
     OpenWindow.document.write("<style>body{margin:0px;}</style><img src='" + url + "' width='" + win_width + "'>");
 }
 
+$(function () {
+    $('#chatArea').on('keydown', function (event) {
+        var chatcontent = $("#chatArea").val();
+        if (event.keyCode == 13)
+            if (!event.shiftKey) {
+                event.preventDefault();
+                let msg = {'writer': writer, 'buyer': buyer, 'dealNo': dealNo, 'content': chatcontent};
+
+                if (isStomp) {
+                    socket.send('/TTT', {}, JSON.stringify(msg));
+                } else {
+                    socket.send(sockMsg);
+                }
+                $('#chatul').append('<li class="right">' + chatcontent + "</li>");
+                $('#chatArea').val("");
+                $('.chat')
+                    .stop()
+                    .animate({scrollTop: $('.chat')[0].scrollHeight}, 1000);
+
+            }
+    });
+});
+
 /*
 
 const Chat = (function(){

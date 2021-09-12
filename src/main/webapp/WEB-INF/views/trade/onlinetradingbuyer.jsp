@@ -25,19 +25,17 @@
       rel="stylesheet">
 
 
-<script>
-    let dealNo = '${dto.dealNo}';
-</script>
 <link rel="stylesheet" href="<c:url value="/resources/css/onlinetradingbuyer.css"/>">
 <script src="<c:url value="/resources/js/tradingbuyer.js"/>"></script>
 
-<%--<script>
-    let writer = '${user.usId}';
-        dealNo = '${dto.dealNo}';
+<script>
+    writer = '${user.usId}';
+    dealNo = '${dto.dealNo}';
+    buyer = '${dto.usId}';
     $(function () {
 
     });
-</script>--%>
+</script>
 
 
 <body>
@@ -62,7 +60,7 @@
                         CHAT
                     </div>
                     <div class="chat">
-                        <ul>
+                        <ul id="chatul">
                             <li class="left">하이룽</li>
                             <li class="right">방가룽</li>
                         </ul>
@@ -151,9 +149,9 @@
                     </form>
                     <br>
 
-                        <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">
-                           	 구매 완료
-                        </button>
+                    <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">
+                        구매 완료
+                    </button>
 
                 </div>
             </div>

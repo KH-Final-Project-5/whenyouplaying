@@ -7,16 +7,14 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import javax.servlet.http.HttpSession;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.*;
 
+@Component
 public class ReplyEchoHandler extends TextWebSocketHandler {
 
-    Map<String, WebSocketSession> user = new HashMap<>();
+
+    Map<String, WebSocketSession> userSessions = new HashMap<>();
 
     //connection이 연결 됐을 때
     @Override
@@ -24,7 +22,7 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
         String senderId = getMemberId(session);
         if (senderId != null) {
             log(senderId + " 연결 됨");
-            user.put(senderId, session);
+            userSessions.put(senderId, session);
         }
         System.out.println("afterConnectionEstablished : " + session);
     }
@@ -49,14 +47,18 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
         if (msg != null) {
             String[] strs = msg.split(",");
             log(strs.toString());
-            if (strs != null && strs.length == 2) {
-                String url = strs[0];
-                String target = strs[1];
-                WebSocketSession targetSession = user.get(target);
+            if (strs != null && strs.length == 5) {
+                String cmd = strs[0];
+                String ChatWriter = strs[1];
+                String ChatReception = strs[2];
+                String dealNo = strs[3];
+                String dealChat = strs[4];
+
+                WebSocketSession targetSession = userSessions.get(ChatReception);
 
                 if (targetSession != null) {
-//                    TextMessage tmpMsg = new TextMessage();
-//                    targetSession.sendMessage(tmpMsg);
+                    TextMessage tmpMsg = new TextMessage(dealChat);
+                    targetSession.sendMessage(tmpMsg);
                 }
             }
         }
@@ -68,7 +70,7 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
         String senderId = getMemberId(session);
         log(senderId + " 연결 종료됨");
         if (senderId != null) {    // 로그인 값이 있는 경우만
-            user.remove(senderId);
+            userSessions.remove(senderId);
         }
     }
     private void log(String logmsg) {
