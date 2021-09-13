@@ -32,8 +32,6 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/mainpage.css"/>">
     
 
-	<script type="text/javascript">
-
 </head>
 
 <body>
