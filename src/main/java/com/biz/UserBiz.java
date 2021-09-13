@@ -1,5 +1,6 @@
 package com.biz;
 
+import com.dto.ChargeHistoryDto;
 import com.dto.UserDto;
 
 public interface UserBiz {
@@ -11,6 +12,6 @@ public interface UserBiz {
     public int userEdit(UserDto dto);
     public int idChk(UserDto dto) throws Exception;
 
-    public void Charge(UserDto dto);
+    public void Charge(UserDto dto, ChargeHistoryDto chargeHistoryDto);
 
 }

@@ -169,26 +169,16 @@
                     (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
                     */
                 }, function (rsp) {
-                    console.log(rsp);
                     if (rsp.success) {
-                        var msg = '결제가 완료되었습니다.';
-                        msg += '고유ID : ' + rsp.imp_uid;
-                        msg += '상점 거래ID : ' + rsp.merchant_uid;
-                        msg += '결제 금액 : ' + rsp.paid_amount;
-                        msg += '카드 승인번호 : ' + rsp.apply_num;
                         $.ajax({
                             type: "post",
-                            url:"charge.do?usNo=${user.usNo}&usCash=" +rsp.paid_amount,
+                            url:"charge.do?usNo=${user.usNo}&usCash=" +rsp.paid_amount+"&pay_method="+rsp.pay_method,
                             success: function () {
                                 alert("충전이 완료되었습니다.");
                                 location.reload();
                             }
                         });
-                    } else {
-                        var msg = '결제에 실패하였습니다.';
-                        msg += '에러내용 : ' + rsp.error_msg;
                     }
-                    console.log(msg);
                 });
             });
 
@@ -218,7 +208,7 @@
                         |
                         <a href="loginform.do" class="navA">로그인</a>
                         |
-                        <a href="regiform.do" class="navA">회원가입</a>
+                        <a href="regiphone.do" class="navA">회원가입</a>
                     </div>
                 </div>
             </div>

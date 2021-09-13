@@ -27,6 +27,10 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
@@ -35,13 +39,22 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/regiphone.css"/>">
 <script src="<c:url value="/resources/js/regiphone.js"/>"></script>
 
+<script>
+
+
+</script>
+
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-8" style="margin-left: 200px">
-            <br><br>
-            <form name="nJoin" role="form" id="joinForm" method="post" action="" autocomplete="off"
-                  novalidate="novalidate">
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-8" style="margin-left: 200px">
+                <br><br>
+                <%--            <form name="nJoin" role="form" id="joinForm" method="post" action="" autocomplete="off"--%>
+                <%--                  novalidate="novalidate">--%>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="form-group pull-left">
@@ -492,24 +505,45 @@
                     </div><!-- panel body -->
 
                     <div class="panel-footer">
-                        <input type="hidden" name="rq_url" value="">
-                        <input type="hidden" name="nid" value="">
-                        <input type="hidden" name="nname" value="">
-                        <input type="hidden" name="nemail" value="">
-
                         <div style="overflow: hidden">
                             <div class="col-sm-offset-3 col-sm-6">
-                                <button style="margin-left: 180px" class="btn btn-lg btn-primary btn-block"
-                                        onclick="test();">휴대폰 인증
-                                </button>
+                                <form action="regiform.do" method="post" id="regiform">
+                                    <input style="margin-left: 180px; display: inline;" type="text" name="phone"
+                                           id="phone"
+                                           placeholder="번호를 입력하세요(-제외)" onkeypress="return checkNumber(event);">
+                                    <br>
+                                    <button style="margin-left: 180px; display: inline; position: relative;"
+                                            id="numbersend"
+                                            class="btn btn-outline-primary" type="button" onclick="sendSms();">인증번호 발송
+                                    </button>
+
+                                    <br><br>
+                                    <input style="margin-left: 180px; display: inline;" type="text" name="phone2"
+                                           id="phone2"
+                                           placeholder="인증번호 6자리를 입력해주세요">
+                                    <br>
+                                    <button style="margin-left: 180px; display: inline; position: relative;"
+                                            id="numbercheck" onclick="numberchk();" type="button"
+                                            class="btn btn-outline-primary">
+                                        인증번호 확인
+                                    </button>
+                                    <br><br>
+                                    <button style="margin-left: 180px" class="btn btn-lg btn-primary btn-block"
+                                            type="button"
+                                            id="phoneBtn" onclick="test();">가입
+                                    </button>
+                                    <br><br><br>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="csrf_token"
-                       value="4c0f6de3e39b8d2cc5332e2b4291b84d6ad3e53482d0186f23b6dbf2a13d748d"></form>
+            </div>
         </div>
     </div>
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
 </div>
 </body>
 </html>

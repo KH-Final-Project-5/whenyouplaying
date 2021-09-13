@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.dto.ChargeHistoryDto;
 import com.dto.UserDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,11 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public void Charge(UserDto dto) {
 		sqlSessionTemplate.update(NAMESPACE + "charge", dto);
+	}
+
+	@Override
+	public int ChargeHistory(ChargeHistoryDto dto) {
+		return sqlSessionTemplate.insert(NAMESPACE + "chargehistory", dto);
 	}
 
 
