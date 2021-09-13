@@ -119,9 +119,9 @@
                         </colgroup>
 
                         <tr>
+                            <th>번호</th>
                             <th>결제 일자</th>
-                            <th>결제 번호</th>
-                            <th>은행 명</th>
+                            <th>결제 방식</th>
                             <th>충전 금액</th>
 
                         </tr>
@@ -132,11 +132,11 @@
 								</tr>                        	
                         	</c:when>
                         	<c:otherwise>
-                        		<c:forEach items="${chargeList }" var="dto" >
+                        		<c:forEach items="${chargeList }" var="dto" varStatus="status">
                         			<tr>
-                        				<td>${dto.chDate}</td>
-                        				<td>${dto.chNo }</td>
-                        				<td>${dto.chBank }</td>
+                        				<td>${status.count }</td>
+                                        <td>${dto.chDate}</td>
+                                        <td>${dto.chBank }</td>
                         				<td>${dto.chCash }</td>
                         			</tr>
                         		</c:forEach>
