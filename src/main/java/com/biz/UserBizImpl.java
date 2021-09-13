@@ -1,9 +1,11 @@
 package com.biz;
 
 import com.dao.UserDao;
+import com.dto.ChargeHistoryDto;
 import com.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserBizImpl implements UserBiz{
@@ -40,8 +42,10 @@ public class UserBizImpl implements UserBiz{
 		return dao.idChk(dto);
 	}
 
+	@Transactional
 	@Override
-	public void Charge(UserDto dto) {
+	public void Charge(UserDto dto, ChargeHistoryDto chargeHistoryDto) {
+		dao.ChargeHistory(chargeHistoryDto);
 		dao.Charge(dto);
 	}
 

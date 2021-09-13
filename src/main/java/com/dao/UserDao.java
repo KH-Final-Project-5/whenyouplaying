@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.dto.ChargeHistoryDto;
 import com.dto.UserDto;
 
 public interface UserDao {
@@ -14,5 +15,6 @@ public interface UserDao {
     public int idChk(UserDto dto) throws Exception;
 
     public void Charge(UserDto dto);
-    
+
+    public int ChargeHistory(ChargeHistoryDto dto);
 }

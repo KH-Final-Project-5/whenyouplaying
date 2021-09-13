@@ -1,46 +1,80 @@
 package com.commons;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
+import org.apache.http.HttpResponse;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.BasicAuthCache;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.client.AuthCache;
+import org.apache.http.HttpHost;
+import org.apache.http.client.protocol.HttpClientContext;
+
+
+
+/* XXX didn't use org.json to be simple
+import org.json.JSONObject; 
+*/
 
 public class test {
-    public static void main(String[] args) throws Exception {
-        FtpClient ftpClient = new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
-        File tempDir = new File("");
+    public static void main(String[] args) {
+        int rand = (int) (Math.random() * 899999) + 100000;
 
-        String dir = tempDir.getAbsolutePath();
+        String hostname = "api.bluehouselab.com";
+        String url = "https://" + hostname + "/smscenter/v1.0/sendsms";
 
-        File file = ftpClient.downloadTxt("107", dir);
+        CredentialsProvider credsProvider = new BasicCredentialsProvider();
+        credsProvider.setCredentials(
+                new AuthScope(hostname, 443, AuthScope.ANY_REALM),
+                new UsernamePasswordCredentials("whenyouplay", "a2a643d4148311ecacae0cc47a1fcfae")
+        );
 
+        // Create AuthCache instance
+        AuthCache authCache = new BasicAuthCache();
+        authCache.put(new HttpHost(hostname, 443, "https"), new BasicScheme());
 
-        /*try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("107.txt", true)))) {
-            out.println("the text");
-            //more code
-            out.println("more text");
-            //more code
-        }catch (IOException e) {
-            //exception handling left as an exercise for the reader
-        }*/
+        // Add AuthCache to the execution context
+        HttpClientContext context = HttpClientContext.create();
+        context.setCredentialsProvider(credsProvider);
+        context.setAuthCache(authCache);
 
-        /*Path path = Paths.get(dir + "/107.txt");
+        DefaultHttpClient client = new DefaultHttpClient();
 
-        Stream<String> lines = Files.lines(path);
+        try {
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setHeader("Content-type", "application/json; charset=utf-8");
+            String json = "{\"sender\":\"" + "01055763376" + "\",\"receivers\":[\"" + "01055763376" + "\"],\"content\":\"" +
+                    "인증번호는 ["+rand+"] 입니다." + "\"}";
 
-        String conetnt = lines.collect(Collectors.joining(System.lineSeparator()));
-        System.out.println(conetnt);
-        lines.close();
-//        ftpClient.uploadTxt(file, "107.txt");
+            StringEntity se = new StringEntity(json, "UTF-8");
+            httpPost.setEntity(se);
 
-        file.delete();
+            HttpResponse httpResponse = client.execute(httpPost, context);
+            System.out.println(httpResponse.getStatusLine().getStatusCode());
 
-        System.out.println("다운로드 후 삭제");*/
-
-
-
+            InputStream inputStream = httpResponse.getEntity().getContent();
+            if (inputStream != null) {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null)
+                    System.out.println(line);
+                inputStream.close();
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getLocalizedMessage());
+        } finally {
+            client.getConnectionManager().shutdown();
+        }
 
     }
 }

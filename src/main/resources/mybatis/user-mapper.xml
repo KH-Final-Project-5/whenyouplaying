@@ -61,4 +61,11 @@
         WHERE USNO = #{usNo}
     </update>
 
+
+    <insert id="chargehistory" parameterType="chargeHistoryDto">
+        INSERT INTO W_CHARGEHISTORY
+        VALUES (CHARGESEQ.NEXTVAL, #{usNo}, #{chCash}, SYSDATE, #{chBank})
+    </insert>
+
+
 </mapper>
