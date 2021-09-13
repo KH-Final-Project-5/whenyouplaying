@@ -212,9 +212,14 @@
                                     <hr style="margin: 3px;">
                                 </td>
                             </tr>
-                           <tr id="map_tr"> 
-                          
-                          <!-- 거래 지역 지도 -->
+                           <tr id="map_tr">
+                         
+                         
+                         
+                         
+                         
+                       
+                         		
                           <th class="deal-th">직거래 지도</th>
                           	<td>
 						    <div id="map" style="width:500px;height:400px;"></div>
@@ -227,8 +232,33 @@
 						        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 						        level: 9 // 지도의 확대 레벨
 						    };
-
+				
 						var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+						
+						
+						
+
+						// 지도에 마커를 표시하는 함수입니다
+						function displayMarker(place) {
+						    
+						    // 마커를 생성하고 지도에 표시합니다
+						    var marker = new kakao.maps.Marker({
+						        map: map,
+						        position: new kakao.maps.LatLng(place.y, place.x) 
+						    });
+
+						    // 마커에 클릭이벤트를 등록합니다
+						    kakao.maps.event.addListener(marker, 'click', function() {
+						        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+						        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+						        infowindow.open(map, marker);
+						    });
+						}
+						
+					
+						
+						
+						
 						
 						
 						//위도 & 경도 value 넣어주는 script
@@ -239,8 +269,17 @@
 						    
 						    
 						}); 
+						
+						
+						
+						
+						
+						
 						// 지도에 마커를 표시합니다
 						marker.setMap(map);
+						
+						
+						
 
 						// 지도에 클릭 이벤트를 등록합니다
 						// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
@@ -250,6 +289,9 @@
 							
 						    // 클릭한 위도, 경도 정보를 가져옵니다 
 						    var latlng = mouseEvent.latLng; 
+						    
+						    
+						    
 						    
 						    // 마커 위치를 클릭한 위치로 옮깁니다
 						    marker.setPosition(latlng);
@@ -265,35 +307,43 @@
 						    $('#prLatitude').val(message2);
 						    $('#prLongitude').val(message3);
 						    
-						    
-						    
-						    
-						    
+						    var iwContent = '<div style="padding:5px;">거래장소 <br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>'
+						    iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+	
+							// 인포윈도우를 생성합니다
+							var infowindow = new kakao.maps.InfoWindow({
+							    position : iwPosition, 
+							    content : iwContent 
+							});
+							  
+							// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+							infowindow.open(map, marker); 
+							
 						});
 						
+							
 						
 						
-						
-						
-								
 								
 							</script>
 							</td>
 							
 							</tr>
+							
 							<tr id="prLati">
-								<th class="deal-th">위도</th>
+								
 								<td>
-									<input type="text" name="prLatitude" id="prLatitude">
+									<input type="hidden" name="prLatitude" id="prLatitude">
 								</td>
 							</tr>
 							
 							<tr id="prLongi">
-								<th class="deal-th">경도</th>
+								
 								<td>
-									<input type="text" name="prLongitude" id="prLongitude">
+									<input type="hidden" name="prLongitude" id="prLongitude">
 								</td>
 							</tr>
+							
 							
 							
 							
