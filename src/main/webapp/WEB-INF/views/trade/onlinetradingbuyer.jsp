@@ -61,26 +61,11 @@
                     </div>
                     <div class="chat">
                         <ul id="chatul">
-                            <li class="left">하이룽</li>
-                            <li class="right">방가룽</li>
+                            ${chat}
                         </ul>
                     </div>
                     <div class="input-div" style="width: 100%">
                         <textarea id="chatArea" placeholder="Press Enter for send message."></textarea>
-                    </div>
-                    <!-- format -->
-
-                    <div class="chat format">
-                        <ul>
-                            <li>
-                                <div class="sender">
-                                    <span></span>
-                                </div>
-                                <div class="message">
-                                    <span></span>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </div>
 

@@ -51,8 +51,7 @@
     var socket = null;
     var isStomp = false;
     $(function () {
-        // connectWs();
-        connectStopm(dealNo, buyer);
+
     });
 
     function connectStopm(dealNo, buyer) {
@@ -66,14 +65,16 @@
             console.log(dealNo);
             // client.send('/TTT', {}, "msg:haha");
 
-            client.subscribe('/topic/message/'+dealNo+"/"+writer , function (evnet) {
-                var content = JSON.parse(evnet.body).content;
+            client.subscribe('/topic/message/'+dealNo+"/"+writer , function (event) {
+                var content = JSON.parse(event.body).content;
+                var user = JSON.parse(event.body).writer;
+                $('#chatul').append('<li class="left"><b>' + user + "</b></li>");
                 $('#chatul').append('<li class="left">' + content + "</li>");
                 $('#chatArea').val("");
                 $('.chat')
                     .stop()
                     .animate({ scrollTop: $('.chat')[0].scrollHeight }, 1000);
-                console.log('!!!!!!!!!!!!!!!!evnt>>', JSON.parse(evnet.body).content);
+                console.log('!!!!!!!!!!!!!!!!evnt>>', JSON.parse(event.body).content);
                 // console.log()
             });
         });

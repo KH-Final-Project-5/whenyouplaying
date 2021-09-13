@@ -2,8 +2,15 @@ package com.controller;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,7 +45,7 @@ public class DealController {
     FtpClient ftpClient;
 
     @RequestMapping("/onlinetrade.do")
-    public String OnlineTradeForm(Model model, DealStatusDto dto, HttpSession session) {
+    public String OnlineTradeForm(Model model, DealStatusDto dto, HttpSession session) throws Exception {
 
         DealStatusDto dealStatusDto = biz.SelectDeal(dto);
         biz.InsertFinDealStatus(dealStatusDto);
@@ -48,44 +55,80 @@ public class DealController {
 
         dto1 = biz1.login(dto1);
 
+        String dealNo = String.valueOf(dealStatusDto.getDealNo());
+
         session.setAttribute("user", dto1);
 
+        File tempDir = new File("");
+
+        String dir = tempDir.getAbsolutePath();
+
+        File file = new File(dir, dealNo + ".txt");
+
+        FileOutputStream fileOutputStream = new FileOutputStream(file, true);
+
+        String filename = file.getName();
+
+        ftpClient.uploadTxt(file, filename);
+        System.out.println("파일 생성");
+
+        file.delete();
 
         return "redirect:buylist.do?usNo=" + dto1.getUsNo() + "&finStatus=1";
     }
 
     @RequestMapping("/directtrade.do")
-    public String DirectTradeForm(Model model, DealStatusDto dto, HttpSession session, String tradePhone_1, String tradePhone_2, String tradePhone_3) {
+    public String DirectTradeForm(Model model, DealStatusDto dto, HttpSession session, String tradePhone_1, String tradePhone_2, String tradePhone_3) throws Exception {
 
         DealStatusDto dealStatusDto = biz.SelectDeal(dto);
         biz.InsertFinDealStatus(dealStatusDto);
-        
+
         UserDto dto1 = (UserDto) session.getAttribute("user");
-        
+
         dto1.setUsName(dto.getUsName());
         dto1.setUsAddress1(dto.getUsAddress1());
         dto1.setUsAddress2(dto.getUsAddress2());
-        
-        
+
+
         dto1.setUsCash(dto1.getUsCash() - dto.getDealPrice());
         biz.UpdateDealUser(dto1);
-        
-        String phone = tradePhone_1+tradePhone_2+tradePhone_3;
+
+        String phone = tradePhone_1 + tradePhone_2 + tradePhone_3;
         dto1.setUsPhone(phone);
         biz.UpdateUserDeal(dto1);
-        
-        
-        
+
+
         biz1.login(dto1);
+
+        String dealNo = String.valueOf(dealStatusDto.getDealNo());
+
+        session.setAttribute("user", dto1);
+
+        File tempDir = new File("");
+
+        String dir = tempDir.getAbsolutePath();
+
+        File file = new File(dir, dealNo + ".txt");
+
+        FileOutputStream fileOutputStream = new FileOutputStream(file, true);
+
+        String filename = file.getName();
+
+        ftpClient.uploadTxt(file, filename);
+        System.out.println("파일 생성");
+
+        file.delete();
+
+
         session.setAttribute("user", dto1);
 
         model.addAttribute("Deal", dealStatusDto);
-        
+
         return "redirect:buylist.do?usNo=" + dto1.getUsNo() + "&finStatus=1";
     }
 
     @RequestMapping("/onlineTradeSellForm.do")
-    public String OnlineTradeSellerForm(Model model, int dealNo) {
+    public String OnlineTradeSellerForm(Model model, int dealNo) throws Exception {
 
         DealStatusDto dto = biz.SelectDealOne(dealNo);
         dto.setPrPrice((int) (dto.getPrPrice() * 0.7));
@@ -93,12 +136,14 @@ public class DealController {
 
         model.addAttribute("dto", dto);
         model.addAttribute("list", list);
+        String line = ChatDownload(dealNo);
+        model.addAttribute("chat", line);
 
         return "trade/onlinetradingseller";
     }
 
     @RequestMapping("/directTradeSellForm.do")
-    public String DirectTradeSellerForm(Model model, int dealNo) {
+    public String DirectTradeSellerForm(Model model, int dealNo) throws Exception {
 
         DealStatusDto dto = biz.SelectDealOne(dealNo);
         dto.setPrPrice((int) (dto.getPrPrice() * 0.7));
@@ -106,6 +151,8 @@ public class DealController {
 
         model.addAttribute("dto", dto);
         model.addAttribute("list", list);
+        String line = ChatDownload(dealNo);
+        model.addAttribute("chat", line);
 
         return "trade/directtradingseller";
     }
@@ -156,8 +203,7 @@ public class DealController {
     }
 
     @RequestMapping("/onlineTradeBuyForm.do")
-    public String OnlineTradeBuyerForm(Model model, int dealNo) {
-
+    public String OnlineTradeBuyerForm(Model model, int dealNo) throws Exception {
 
 
         DealStatusDto dto = biz.SelectDealOneBuyer(dealNo);
@@ -165,13 +211,17 @@ public class DealController {
 
         model.addAttribute("dto", dto);
         model.addAttribute("list", list);
+
+        String line = ChatDownload(dealNo);
+        model.addAttribute("chat", line);
+
 
         return "trade/onlinetradingbuyer";
     }
 
 
     @RequestMapping("/directTradeBuyForm.do")
-    public String DirectTradeBuyerForm(Model model, int dealNo) {
+    public String DirectTradeBuyerForm(Model model, int dealNo) throws Exception {
 
 
         DealStatusDto dto = biz.SelectDealOneBuyer(dealNo);
@@ -179,6 +229,11 @@ public class DealController {
 
         model.addAttribute("dto", dto);
         model.addAttribute("list", list);
+        String line = ChatDownload(dealNo);
+        model.addAttribute("chat", line);
+
+
+
 
         return "trade/directtradingbuyer";
     }
@@ -295,5 +350,23 @@ public class DealController {
         ScriptUtils.alertAndMovePage(response, "구매완료!", "main.do");
 
 
+    }
+
+    public String ChatDownload(int dealNo) throws Exception {
+        String deal = String.valueOf(dealNo);
+
+        File tempDir = new File("");
+
+        String dir = tempDir.getAbsolutePath();
+
+        File file = ftpClient.downloadTxt(deal, dir);
+
+        Path path = Paths.get(dir + "/" + deal + ".txt");
+
+        Stream<String> lines = Files.lines(path);
+
+        String line = lines.collect(Collectors.joining(System.lineSeparator()));
+        file.delete();
+        return line;
     }
 }

@@ -108,8 +108,7 @@
                     </div>
                     <div class="chat">
                         <ul id="chatul">
-                            <li class="left">안녕</li>
-                            <li class="right">하이</li>
+                            ${chat}
                         </ul>
                     </div>
                     <div class="input-div" style="width: 100%">

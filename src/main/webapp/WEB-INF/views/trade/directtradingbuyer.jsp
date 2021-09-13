@@ -29,84 +29,94 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/directtradingbuyer.css"/>">
 <script src="<c:url value="/resources/js/directtradingbuyer.js"/>"></script>
 
+<script>
+    writer = '${user.usId}';
+    dealNo = '${dto.dealNo}';
+    buyer = '${dto.usId}';
+
+</script>
+
 <body>
 <!--채팅 출처-->
 <!--https://dororongju.tistory.com/151-->
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <label id="tradingLabel">거래 진행 중</label><br>
-            <hr class="hrClass1">
-            <br>
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <label id="tradingLabel">거래 진행 중</label><br>
+                <hr class="hrClass1">
+                <br>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-3 chatting">
-            <div class="chat_wrap">
-                <div class="chatHeader">
-                    CHAT
-                </div>
-                <div class="chat">
-                    <ul>
-                        <li class="left">안녕</li>
-                        <li class="right">하이</li>
-                    </ul>
-                </div>
-                <div class="input-div" style="width: 100%">
-                    <textarea id="chatArea" placeholder="Press Enter for send message."></textarea>
-                </div>
-                <!-- format -->
+        <div class="row">
+            <div class="col-3 chatting">
+                <div class="chat_wrap">
+                    <div class="chatHeader">
+                        CHAT
+                    </div>
+                    <div class="chat">
+                        <ul id="chatul">
+                            ${chat}
+                        </ul>
+                    </div>
+                    <div class="input-div" style="width: 100%">
+                        <textarea id="chatArea" placeholder="Press Enter for send message."></textarea>
+                    </div>
+                    <!-- format -->
 
-                <div class="chat format">
-                    <ul>
-                        <li>
-                            <div class="sender">
-                                <span></span>
-                            </div>
-                            <div class="message">
-                                <span></span>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="chat format">
+                        <ul>
+                            <li>
+                                <div class="sender">
+                                    <span></span>
+                                </div>
+                                <div class="message">
+                                    <span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
             </div>
 
-        </div>
+            <div class="col-6">
+                <form id="buyerForm" action="" method="post" style="height: 350px">
+                    <input type="button" class="btn btn-outline-dark" id="faceChatBtn" value="화상 채팅">
+                    <br>
+                    <br>
 
-        <div class="col-6">
-            <form id="buyerForm" action="" method="post" style="height: 350px">
-                <input type="button" class="btn btn-outline-dark" id="faceChatBtn" value="화상 채팅">
-                <br>
-                <br>
-                
-                <br>
-                <div id="map" style="width:100%;height:160%;"></div>
+                    <br>
+                    <div id="map" style="width:100%;height:160%;"></div>
 
-                <script type="text/javascript"
-                        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36484ecb4bc45702e85b48b3ddeabe57"></script>
-                <script>
-                    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-                        mapOption = {
-                            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                            level: 3 // 지도의 확대 레벨
-                        };
+                    <script type="text/javascript"
+                            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36484ecb4bc45702e85b48b3ddeabe57"></script>
+                    <script>
+                        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                            mapOption = {
+                                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                                level: 3 // 지도의 확대 레벨
+                            };
 
-                    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-                    var map = new kakao.maps.Map(mapContainer, mapOption);
-                    map.setDraggable(false);
-
-                    // 버튼 클릭에 따라 지도 이동 기능을 막거나 풀고 싶은 경우에는 map.setDraggable 함수를 사용합니다
-                    function setDraggable() {
-                        // 마우스 드래그로 지도 이동 가능여부를 설정합니다
+                        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+                        var map = new kakao.maps.Map(mapContainer, mapOption);
                         map.setDraggable(false);
-                    }
-                </script>
-            </form>
-        </div>
 
-        <div class="col-3 tradeAllDiv">
-            <div class="tradeDiv">
-                <form method="post" action="" id="buyerForm">
+                        // 버튼 클릭에 따라 지도 이동 기능을 막거나 풀고 싶은 경우에는 map.setDraggable 함수를 사용합니다
+                        function setDraggable() {
+                            // 마우스 드래그로 지도 이동 가능여부를 설정합니다
+                            map.setDraggable(false);
+                        }
+                    </script>
+                </form>
+            </div>
+
+            <div class="col-3 tradeAllDiv">
+                <div class="tradeDiv">
+                    <form method="post" action="" id="buyerForm">
 
                         <table id="tradeTable">
                             <colgroup>
@@ -121,7 +131,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="tradeAddrTd tradeContent">
-                                    
+
                                     ${dto.usName}
                                 </td>
                             </tr>
@@ -130,39 +140,43 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="tradeAddrTd tradeContent">
-                                    
+
                                     ${dto.usPhone}
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="tradeAddrTd tradeBold">
-                                                                                가격
+                                    가격
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="tradeAddrTd tradeContent">
-                                    
+
                                     ${dto.prPrice}
                                 </td>
                             </tr>
                         </table>
                     </form>
-                <br>
-                 <form action="buytradecomplete.do" method="post">
+                    <br>
+                    <form action="buytradecomplete.do" method="post">
                         <input type="hidden" name="usSellNo" value="${dto.usSellNo}">
                         <input type="hidden" name="dealNo" value="${dto.dealNo}">
                         <input type="hidden" name="dealPrice" value="${dto.dealPrice}">
                         <input type="hidden" name="usNo" value="${user.usNo}">
 
                         <button type="submit" class="btn btn-outline-primary" id="sellCompBtn">
-                            	구매 완료
+                            구매 완료
                         </button>
                     </form>
-                   
+
+                </div>
             </div>
         </div>
-    </div>
 
+    </div>
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
 </div>
 </body>
 </html>
