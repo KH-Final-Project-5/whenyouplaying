@@ -10,6 +10,10 @@ function fnImgPop(url) {
 }
 
 $(function () {
+    $('.chat')
+        .stop()
+        .animate({ scrollTop: $('.chat')[0].scrollHeight }, 1000);
+    connectStopm(dealNo, buyer);
     $('#chatArea').on('keydown', function (event) {
         var chatcontent = $("#chatArea").val();
         if (event.keyCode == 13)
@@ -22,7 +26,8 @@ $(function () {
                 } else {
                     socket.send(sockMsg);
                 }
-                $('#chatul').append('<li class="right">' + chatcontent + "</li>");
+                $('#chatul').append('<li class="left"><b>' + writer + "</b></li>");
+                $('#chatul').append('<li class="left">' + chatcontent + "</li>");
                 $('#chatArea').val("");
                 $('.chat')
                     .stop()

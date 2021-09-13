@@ -28,6 +28,14 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/directtradingseller.css"/>">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<c:url value="/resources/js/directtradingseller.js"/>"></script>
+
+<script>
+    writer = '${user.usId}';
+    dealNo = '${dto.dealNo}';
+    buyer = '${dto.usId}';
+</script>
+
+
 <body>
 <div class="wwrap">
     <header>
@@ -50,28 +58,14 @@
                     CHAT
                 </div>
                 <div class="chat">
-                    <ul>
-                        <li class="left">안녕</li>
-                        <li class="right">하이</li>
+                    <ul id="chatul">
+                        ${chat}
                     </ul>
                 </div>
                 <div class="input-div" style="width: 100%">
                     <textarea id="chatArea" placeholder="Press Enter for send message."></textarea>
                 </div>
-                <!-- format -->
 
-                <div class="chat format">
-                    <ul>
-                        <li>
-                            <div class="sender">
-                                <span></span>
-                            </div>
-                            <div class="message">
-                                <span></span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
             </div>
 
         </div>

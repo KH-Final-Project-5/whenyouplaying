@@ -16,4 +16,5 @@ public class DealStatusDto extends ProjectDto{
 	private int usSellNo;
 	private int usBuyNo;
 	private int dealPrice;
+	private String chatFile;
 }

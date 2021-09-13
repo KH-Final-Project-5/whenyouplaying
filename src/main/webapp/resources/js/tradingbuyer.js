@@ -10,6 +10,10 @@ function fnImgPop(url) {
 }
 
 $(function () {
+    $('.chat')
+        .stop()
+        .animate({ scrollTop: $('.chat')[0].scrollHeight }, 1000);
+    connectStopm(dealNo, buyer);
     $('#sellCompBtn').click(function () {
         if (confirm("구매 완료 하시겠습니까?")) {
             location.href = 'buytradecomplete.do?dealNo=' + dealNo;
@@ -28,7 +32,9 @@ $(function () {
                 } else {
                     socket.send(msg);
                 }
-                $('#chatul').append('<li class="right">' + chatcontent + "</li>");
+                $('#chatul').append('<li class="left"><b>' + writer + "</b></li>");
+                $('#chatul').append('<li class="left">' + chatcontent + "</li>");
+
                 $('#chatArea').val("");
                 $('.chat')
                     .stop()
