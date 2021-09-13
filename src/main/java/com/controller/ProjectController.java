@@ -37,7 +37,16 @@ public class ProjectController {
     private ProjectBiz biz;
 
     private int result;
-
+    
+    @RequestMapping("/prsearch.do")
+    public String Prsearch(Model model, ProjectDto dto) {
+    	logger.info("PrSearch");
+    	model.addAttribute("pr_dto",biz.Prsearch(dto));
+        
+        
+    	return "projectBoard/talentBoard";
+    	
+    }
 
     @RequestMapping("/category.do")
     public String designProject(Model model, String prTalent, Criteria cri) throws Exception {
