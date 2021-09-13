@@ -33,6 +33,17 @@ public class UserController {
     UserBiz biz;
     @Autowired
     ProjectBiz biz2;
+
+    @ResponseBody
+    @RequestMapping("charge.do")
+    public void Charge(UserDto dto, HttpSession session) {
+        UserDto userDto = (UserDto) session.getAttribute("user");
+        dto.setUsCash(userDto.getUsCash() + dto.getUsCash());
+
+        biz.Charge(dto);
+        userDto = biz.login(userDto);
+        session.setAttribute("user", userDto);
+    }
     
     //mainpage
     @RequestMapping("/main.do")

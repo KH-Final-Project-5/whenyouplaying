@@ -35,93 +35,168 @@
     <!-- 구글 아이콘 -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <%--import--%>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+
+
     <!-- jQeury-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- js -->
     <script src="<c:url value="/resources/js/header.js"/>"></script>
-    
+
     <!-- 구글 소셜 로그인 -->
     <meta name="google-signin-scope" content="profile email">
-	<meta name="google-signin-client_id" content="557137904134-232ci9t86836vrm925onj9blpmnh4b2f.apps.googleusercontent.com">
-	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-    
-   <script type="text/javascript">
-    
-   		//구글 로그인 세션 취소
-	    function signOut(){
-	    	var auth2 = gapi.auth2.getAuthInstance();
-	    	auth2.signOut().then(function () {
-	    		console.log('User signed out');
-		    	location.href="logout.do";
-	    	});
-		    	auth2.disconnect();
-	    	
-	    }
-    
-	    function onLoad() {
-	    	gapi.load('auth2', function() {
-	    		gapi.auth2.init();
-	    	});
-	    }
-	    
-	    
-    </script>
-    
-<script>
-    $(function () {
-        <c:choose>
-        <c:when test="${empty user.usNo}">
+    <meta name="google-signin-client_id"
+          content="557137904134-232ci9t86836vrm925onj9blpmnh4b2f.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
-        </c:when>
-        <c:otherwise>
+    <script type="text/javascript">
 
 
-        $.ajax({
-            type: "post",
-            url: "mesCountChk.do?usNo=${user.usNo}",
-            dataType: 'json',
-            success: function (data) {
-                if (data.check == true) {
-                    $('.badgeSize').show();
-                } else {
-                    $('.badgeSize').hide();
-                }
-            },
-            error: function (request, status, error) {
+            //구글 로그인 세션 취소
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.log('User signed out');
+                    location.href = "logout.do";
+                });
+                auth2.disconnect();
 
-                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
             }
+
+            function onLoad() {
+                gapi.load('auth2', function () {
+                    gapi.auth2.init();
+                });
+            }
+
+    </script>
+
+    <script>
+
+        $(function () {
+            <c:choose>
+            <c:when test="${empty user.usNo}">
+
+            </c:when>
+            <c:otherwise>
+
+
+            $.ajax({
+                type: "post",
+                url: "mesCountChk.do?usNo=${user.usNo}",
+                dataType: 'json',
+                success: function (data) {
+                    if (data.check == true) {
+                        $('.badgeSize').show();
+                    } else {
+                        $('.badgeSize').hide();
+                    }
+                },
+                error: function (request, status, error) {
+
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+
+            });
+            var usertalnet = "${user.usTalent}";
+            var userrole = "${user.usRole}";
+            console.log(userrole);
+            if (userrole === "user") {
+                $('#defaultHeader').hide();
+                $("#loginHeader").show();
+                // $("#userWelcome").text("");
+                // $("#userPoint").text("");
+                if (usertalnet === "N") {
+                    $('.enroll').show();
+                } else {
+                    $('.enroll2').html("전문가 변경");
+                }
+
+
+            } else if (userrole === "admin") {
+                $('#defaultHeader').hide();
+                $("#adminHeader").show();
+            }
+
+            </c:otherwise>
+            </c:choose>
+
+            $('#payCharge').click(function () {
+                var payment = prompt("충전 금액을 입력해주세요!");
+                var IMP = window.IMP; // 생략가능
+                IMP.init('imp06763653');// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+                                        // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+                IMP.request_pay({
+                    pg: 'html5_inicis', // version 1.1.0부터 지원.
+                    /*
+                    'kakao':카카오페이,
+                    html5_inicis':이니시스(웹표준결제)
+                    'nice':나이스페이
+                    'jtnet':제이티넷
+                    'uplus':LG유플러스
+                    'danal':다날
+                    'payco':페이코
+                    'syrup':시럽페이
+                    'paypal':페이팔
+                    */
+                    pay_method: 'card',
+                    /*
+                    'samsung':삼성페이,
+                    'card':신용카드,
+                    'trans':실시간계좌이체,
+                    'vbank':가상계좌,
+                    'phone':휴대폰소액결제
+                    */
+                    merchant_uid: 'merchant_' + new Date().getTime(),
+                    /*
+                    merchant_uid에 경우
+                    https://docs.iamport.kr/implementation/payment
+                    위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+                    참고하세요.
+                    나중에 포스팅 해볼게요.
+                    */
+                    name: '포인트 충전',
+//결제창에서 보여질 이름
+                    amount: payment,
+//가격
+                    buyer_email: '${user.usEmail}',
+                    m_redirect_url: 'main.do'
+                    /*
+                    모바일 결제시,
+                    결제가 끝나고 랜딩되는 URL을 지정
+                    (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+                    */
+                }, function (rsp) {
+                    console.log(rsp);
+                    if (rsp.success) {
+                        var msg = '결제가 완료되었습니다.';
+                        msg += '고유ID : ' + rsp.imp_uid;
+                        msg += '상점 거래ID : ' + rsp.merchant_uid;
+                        msg += '결제 금액 : ' + rsp.paid_amount;
+                        msg += '카드 승인번호 : ' + rsp.apply_num;
+                        $.ajax({
+                            type: "post",
+                            url:"charge.do?usNo=${user.usNo}&usCash=" +rsp.paid_amount,
+                            success: function () {
+                                alert("충전이 완료되었습니다.");
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        var msg = '결제에 실패하였습니다.';
+                        msg += '에러내용 : ' + rsp.error_msg;
+                    }
+                    console.log(msg);
+                });
+            });
+
 
         });
-        var usertalnet = "${user.usTalent}";
-        var userrole = "${user.usRole}";
-        console.log(userrole);
-        if (userrole === "user") {
-            $('#defaultHeader').hide();
-            $("#loginHeader").show();
-            // $("#userWelcome").text("");
-            // $("#userPoint").text("");
-            if (usertalnet === "N") {
-                $('.enroll').show();
-            } else {
-                $('.enroll2').html("전문가 변경");
-            }
 
 
-        } else if (userrole === "admin") {
-            $('#defaultHeader').hide();
-            $("#adminHeader").show();
-        }
-
-        </c:otherwise>
-        </c:choose>
-
-
-        
-    });
-    
-</script>
+    </script>
 </head>
 
 <body>
@@ -221,10 +296,14 @@
 
                     <div class="contentList">
                         <label id="userWelcome">${user.usName}님 환영합니다!</label>
-                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav" onclick="signOut();">logOut</button>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav" onclick="signOut();">
+                            logOut
+                        </button>
                         |
                         <label id="userPoint">포인트 : ${user.usCash}Point</label>
-                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">충전</button>
+                        <button id="payCharge" class="btn btn-outline-primary btn-sm rounded-pill marginNav">
+                            충전
+                        </button>
                         <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">출금</button>
                         |
                         <a href="mypage.do?usNo=${user.usNo }" class="navA">MY PAGE</a>

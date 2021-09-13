@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
-    
+
     <select id="loginUser" parameterType="userDto" resultType="userDto">
         SELECT *
         FROM W_USER
@@ -16,15 +16,23 @@
 
         INSERT INTO W_USER
         VALUES (USERSEQ.NEXTVAL, #{usId}, #{usPw}, #{usName}, #{usPhone},
-                #{usAddress1}, #{usAddress2}, #{usEmail}, NULL, 'N', SYSDATE, 'Y', 'user', '0', http://wjwan0.dothome.co.kr/stoarge/personimg.png)
+                #{usAddress1}, #{usAddress2}, #{usEmail}, NULL, 'N', SYSDATE, 'Y', 'user', '0',
+                http://wjwan0.dothome.co.kr/stoarge/personimg.png)
 
     </insert>
-    
+
     <select id="idChk" parameterType="userDto" resultType="int">
-    SELECT COUNT(*) FROM W_USER
-	WHERE USID = #{usId}
+        SELECT COUNT(*)
+        FROM W_USER
+        WHERE USID = #{usId}
     </select>
-    
+
+    <update id="charge" parameterType="userDto">
+        UPDATE W_USER
+        SET USCASH = #{usCash}
+        WHERE USNO = #{usNo}
+    </update>
+
     <select id="findId" parameterType="userDto" resultType="string">
         SELECT USID
         FROM W_USER

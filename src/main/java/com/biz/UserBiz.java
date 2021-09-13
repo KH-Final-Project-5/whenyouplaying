@@ -10,4 +10,7 @@ public interface UserBiz {
     public String findPw(UserDto dto);
     public int userEdit(UserDto dto);
     public int idChk(UserDto dto) throws Exception;
+
+    public void Charge(UserDto dto);
+
 }

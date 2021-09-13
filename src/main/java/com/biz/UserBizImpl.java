@@ -40,5 +40,10 @@ public class UserBizImpl implements UserBiz{
 		return dao.idChk(dto);
 	}
 
+	@Override
+	public void Charge(UserDto dto) {
+		dao.Charge(dto);
+	}
+
 
 }

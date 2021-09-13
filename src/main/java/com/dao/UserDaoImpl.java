@@ -52,8 +52,13 @@ public class UserDaoImpl implements UserDao{
 		}
 		return res;
 	}
-    
-    
+
+	@Override
+	public void Charge(UserDto dto) {
+		sqlSessionTemplate.update(NAMESPACE + "charge", dto);
+	}
+
+
 	public String findId(UserDto dto) {
 		
 		String res = null;

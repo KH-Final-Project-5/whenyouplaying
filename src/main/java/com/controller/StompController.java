@@ -26,25 +26,6 @@ public class StompController {
     @Autowired
     FtpClient ftpClient;
 
-    @ResponseBody
-    @RequestMapping(value = "/chatdown.do", produces = "application/text; charset=utf-8")
-    public String ChatDown(int dealNo) throws Exception {
-        String deal = String.valueOf(dealNo);
-
-        File tempDir = new File("");
-
-        String dir = tempDir.getAbsolutePath();
-
-        File file = ftpClient.downloadTxt(deal, dir);
-
-        Path path = Paths.get(dir + "/" + deal + ".txt");
-
-        Stream<String> lines = Files.lines(path);
-
-        String line = lines.collect(Collectors.joining(System.lineSeparator()));
-        file.delete();
-        return line;
-    }
 
     @MessageMapping("/TTT")
     public void ttt(ChatSeller seller) throws Exception {
