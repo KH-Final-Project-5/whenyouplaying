@@ -119,7 +119,7 @@
                             <br>
                             <input type="text" class="form-control" id="usId" placeholder="" value="" required
                                    name="usId">
-							<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+							<button class="btn btn-primary btn-lg btn-block" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
                             <div class="invalid-feedback"> 아이디를 입력해주세요.</div>
                         </div>
 
@@ -130,7 +130,9 @@
                         <div class="col-md-6 mb-3">
                             <label for="usPW">PW</label>
                             <br>
-                            <input type="text" class="form-control" id="usPW" placeholder="" value="" required name="usPw">
+                            <password>
+                            </password>
+                            <input type="password" class="form-control" id="usPW" placeholder="" value="" required name="usPw">
                         </div>
 
 
@@ -138,7 +140,7 @@
 
                             <label for="usPW2">PW 확인</label>
                             <br>
-                            <input type="text" class="form-control" id="usPW2" placeholder="" value="" required>
+                            <input type="password" class="form-control" id="usPW2" placeholder="" value="" required>
 
                          <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
                          <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>

@@ -110,6 +110,12 @@
 		WHERE PRCONTENT LIKE '%'||#{searchContent}||'%'
 	</select>
 	
+	<select id="prsearch" parameterType="ProjectDto" resultType="ProjectDto">
+SELECT *
+ FROM W_PROJECT 
+ WHERE PRTITLE =#{prTitle}
+	</select>
+	
 
 	<select id="newest" resultType="ProjectDto">
 	

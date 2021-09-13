@@ -159,6 +159,13 @@ public class ProjectBizImpl implements ProjectBiz{
 		return dao.reviewDelete(rvNo);
 	}
 
+
+	@Override
+	public List<ProjectDto> Prsearch(ProjectDto dto) {
+		
+		return dao.Prsearch(dto);
+	}
+
 	
 
 

@@ -228,9 +228,8 @@
                             <span class="input-group-text" style="padding: 0px;"><img
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
-                        <form action="">
-
-                            <input type="search" class="searchBar" name="search">
+                        <form action="prsearch.do">
+                            <input type="search" class="searchBar" name="search" value="${prTitle}">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                         </form>
 

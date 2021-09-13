@@ -248,6 +248,21 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 		return res;
 	}
+
+	@Override
+	public List<ProjectDto> Prsearch(ProjectDto dto) {
+		List<ProjectDto> list = new ArrayList<>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "prsearch",dto);
+		} catch (Exception e) {
+			System.out.println("prsearch 에러");
+
+			e.printStackTrace();
+			
+		}
+		return null;
+	}
 	
 
 

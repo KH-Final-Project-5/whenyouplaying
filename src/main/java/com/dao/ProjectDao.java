@@ -45,4 +45,6 @@ public interface ProjectDao {
     public int reviewUpdate(ReviewDto dto);
     
     public int reviewDelete(int rvNo);
+    
+    public List<ProjectDto> Prsearch(ProjectDto dto);
     }

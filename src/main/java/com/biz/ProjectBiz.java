@@ -30,6 +30,7 @@ public interface ProjectBiz {
     
     public List<ProjectDto> search(ProjectDto dto);
     
+    public List<ProjectDto> Prsearch(ProjectDto dto);
 
     public List<ReviewDto> newest();
     
