@@ -79,7 +79,7 @@ function sendMessage(message) {
 navigator.mediaDevices
     .getUserMedia({
         video: true,
-        audio: false,
+        audio: true,
     })
     .then(gotStream)
     .catch((error) => console.error(error));
