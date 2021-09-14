@@ -138,7 +138,8 @@
                     <input type="hidden" value="${dto.prNo}" name="prNo">
                     <input type="hidden" value="${dto.usSellNo}" name="usSellNo">
                     <input type="hidden" value="${dto.usBuyNo}" name="usBuyNo">
-                    <input type="button" class="btn btn-outline-dark" id="faceChatBtn" value="화상 채팅">
+                    <input type="button" class="btn btn-outline-dark" id="faceChatBtn" value="화상 채팅"
+                           onclick="location.href='videochat.do?dealNo=${dto.dealNo}';">
                     <label class="btn btn-outline-dark" id="uploadBtn" style="margin-top: 10px">
                         파일추가 <input type="file" id="uploadBtn2" name="files" value="업로드" accept="image/*" multiple
                                     style="display: none">

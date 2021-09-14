@@ -72,7 +72,8 @@
             </div>
 
             <div class="col-6">
-                <input type="button" class="btn btn-outline-dark" id="faceChatBtn" value="화상 채팅">
+                <input type="button" class="btn btn-outline-dark" id="faceChatBtn" value="화상 채팅"
+                onclick="location.href='videochat.do?dealNo=${dto.dealNo}';">
                 <br>
                 <br>
                 <c:choose>

@@ -349,10 +349,18 @@ public class DealController {
 
         ScriptUtils.alertAndMovePage(response, "구매완료!", "main.do");
 
+    }
 
+    @RequestMapping("/videochat.do")
+    public String VideoChat(int dealNo, Model model) {
+
+        model.addAttribute("dealNo", dealNo);
+
+        return "trade/videochat";
     }
 
     public String ChatDownload(int dealNo) throws Exception {
+
         String deal = String.valueOf(dealNo);
 
         File tempDir = new File("");
