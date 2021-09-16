@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.biz.MyPageBiz;
 import com.commons.Criteria;
@@ -19,6 +20,7 @@ import com.commons.PageMaker;
 import com.commons.ScriptUtils;
 import com.dto.BankAccountDto;
 import com.dto.FinishDealDto;
+import com.dto.UserDto;
 
 @Controller
 public class MyPageController {
@@ -186,6 +188,18 @@ public class MyPageController {
 		
 		logger.info("insertaccount.do : 계좌 등록");
 		
+		//System.out.println(dto.getBaBankName());
+		
+		String bankName = dto.getBaBankName();
+		
+		String[] bankArr = bankName.split("/");
+		
+		bankName = bankArr[0];
+		String bankCode = bankArr[1];
+		
+		dto.setBaBankName(bankName);
+		dto.setBaBankCode(bankCode);
+		
 		int res = biz.insertAccount(dto);
 		
 		if(res>0) {
@@ -193,6 +207,16 @@ public class MyPageController {
 		}else {
 			return "redirect:failinsertaccount.do?usNo="+dto.getUsNo();
 		}
+		
+	}
+	
+	//오픈뱅크 계좌등록
+	@RequestMapping("/bankauth.do")
+	public void bankAuth(HttpServletResponse response,String code, String scope, String state, HttpSession session) throws IOException {
+		
+		
+		
+		ScriptUtils.alert(response, "금융결제원 계좌등록완료, 팝업창을 닫아주세요.");
 		
 	}
 	
@@ -246,6 +270,60 @@ public class MyPageController {
 		}
 		
 	}
+	
+	
+	//포인트출금
+	@RequestMapping("/pointdeposituser.do")
+	public String pointDepositUser(Model model,int usNo) {
+		
+		logger.info("pointdeposituser.do : 포인트 출금 페이지 이동");
+		
+		model.addAttribute("accountList", biz.accountList(usNo));
+		
+		return "mypage/cashWith";
+	}
+	
+	//계좌정보가지고오기
+	@RequestMapping("/getaccount.do")
+	@ResponseBody
+	public BankAccountDto getAccount(int baNo) {
+		
+		BankAccountDto result = biz.getAccount(baNo);
+		
+		return result;
+	}
+	
+	
+	//포인트 출금 후 적용
+	@RequestMapping("/adjustpoint.do")
+	@ResponseBody
+	public int adjustPoint(UserDto user, HttpSession session) {
+		
+		int res = biz.updateCash(user);
+		
+		if(res>0) {
+			UserDto tmp = biz.selectUser(user.getUsNo());
+			session.setAttribute("user", tmp);
+			return res;
+		}else {
+			System.out.println("업데이트실패");
+			return res;
+		}
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

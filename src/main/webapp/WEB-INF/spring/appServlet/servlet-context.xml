@@ -45,5 +45,7 @@
     </websocket:handlers>
 	
 	<bean id="naverLoginBO" class="com.commons.NaverLoginBO" />
-
+	
 </beans>
+
+

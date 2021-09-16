@@ -43,10 +43,12 @@
     <!-- 만든 필터를 사용할수 있도록 맵핑하자 -->
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
-        <!-- 모든 요청 전부다 받겠다. -->
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
 
+    
+    
     <!--<filter>
         <filter-name>logFilter</filter-name>
         <filter-class>com.mvc.upgrade.common.filter.LogFilter</filter-class>

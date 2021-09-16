@@ -88,6 +88,16 @@ public class MyPageBizImpl implements MyPageBiz {
 	public int closeUser(int usNo) {
 		return dao.closeUser(usNo);
 	}
+
+	@Override
+	public BankAccountDto getAccount(int baNo) {
+		return dao.getAccount(baNo);
+	}
+
+	@Override
+	public int updateCash(UserDto user) {
+		return dao.updateCash(user);
+	}
 	
 	
 	

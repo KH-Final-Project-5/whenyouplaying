@@ -163,13 +163,21 @@ h3{
     border-top: 1px solid black;
 }
 
-a {
-    color: black;
-    
+.myA{
+	color: black;
 }
 
-a:hover{
-    color: black;
-    text-decoration: none;
+.myA:hover{
+	color: black;
+	text-decoration: none;
+}
 
+#pointInputArea{
+	margin-left: 30px;
+}
+
+#pointInput{
+	margin-top : 10px;
+	margin-left : 10px;
+	display: block;
 }

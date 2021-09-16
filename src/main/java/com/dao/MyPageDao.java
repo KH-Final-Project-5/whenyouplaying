@@ -27,5 +27,7 @@ public interface MyPageDao {
 	public int insertAccount(BankAccountDto dto);
 	public int deleteAccount(int baNo);
 	public int closeUser(int usNo);
+	public BankAccountDto getAccount(int baNo);
+	public int updateCash(UserDto user);
 	 
 }
