@@ -35,7 +35,13 @@
 	
 	<!-- JQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+	
+	 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 
+
+	
+	
 	<!-- 구글 소셜 로그인 -->
 	<meta name="google-signin-client_id" content="557137904134-232ci9t86836vrm925onj9blpmnh4b2f.apps.googleusercontent.com">
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script> 
@@ -81,6 +87,7 @@
 				  }
 			  });			  
 		}
+
 		
 		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');
 		
@@ -123,6 +130,15 @@
 
 
 
+	
+	
+	</script>
+	
+	<!-- 네이버 스크립트 -->
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	
+
+
 </head>
 <body style="overflow-y: hidden">
 <div class="wwrap">
@@ -159,6 +175,7 @@
                 </form>
                 
               	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
+
             <ul>
 	<li onclick="kakaoLogin();">
       <a href="javascript:void(0)">
@@ -173,6 +190,18 @@
 	</li>
 </ul>
 
+				
+				<!-- 네이버 로그인 창으로 이동 -->
+			<div id="naver_id_login" style="text-align:center; margin-top:15px; margin-right:60px;">
+				<a href="${url}">
+					<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+				</a>
+			</div>
+			<br>
+				
+
+
+					
 				<div id="getTest"></div>
                 	<a class="loginA" href="regiform.do">회원가입</a><br><br>
                 	<a class="loginA" href="finduser.do">아이디 / 비밀번호 찾기</a>
