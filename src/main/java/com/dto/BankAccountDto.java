@@ -15,6 +15,7 @@ public class BankAccountDto extends UserDto{
 	private int baNo;
 	private String baNickName;
 	private String baBankName;
+	private String baBankCode;
 	private String baBankNumber;
 	private String baOwner;
 	

@@ -107,7 +107,7 @@
 
 	<insert id="insertAccount" parameterType="bankAccountDto">
 		INSERT INTO W_BANKACCOUNT
-		VALUES(BANKSEQ.NEXTVAL, #{usNo}, #{baNickName}, #{baBankName}, #{baBankNumber}, #{baOwner})
+		VALUES(BANKSEQ.NEXTVAL, #{usNo}, #{baNickName}, #{baBankName}, #{baBankCode}, #{baBankNumber}, #{baOwner})
 	</insert>
 
 
@@ -122,6 +122,19 @@
 		WHERE USNO = #{usNo}
 	</delete>
 
+	
+	<select id="getAccount" parameterType="int" resultType="bankAccountDto">
+		SELECT * FROM W_BANKACCOUNT
+		WHERE BANO = #{baNo}
+	</select>
+	
+	<update id="updateCash" parameterType="com.dto.UserDto">
+		UPDATE W_USER
+		SET USCASH = #{usCash}
+		WHERE USNO = #{usNo}
+	</update>
+	
+	
 
 
 </mapper>

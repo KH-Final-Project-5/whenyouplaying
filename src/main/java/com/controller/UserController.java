@@ -145,7 +145,7 @@ public class UserController {
         try {
             HttpPost httpPost = new HttpPost(url);
             httpPost.setHeader("Content-type", "application/json; charset=utf-8");
-            String json = "{\"sender\":\"" + "01055763376" + "\",\"receivers\":[\"" + "01055763376" + "\"],\"content\":\"" +
+            String json = "{\"sender\":\"" + "01055763376" + "\",\"receivers\":[\"" + receiver + "\"],\"content\":\"" +
                     "인증번호는 [" + rand + "] 입니다." + "\"}";
 
             StringEntity se = new StringEntity(json, "UTF-8");

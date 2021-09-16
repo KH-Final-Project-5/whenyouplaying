@@ -47,6 +47,26 @@
             $(".col-3, #tableArea, #contentTitle").css('opacity','unset');
 
         }
+        
+        
+        function openBank(){
+			 
+			 var url = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"+
+				 	   "response_type=code&"+
+					   "client_id=b16b6e96-be84-4b16-bbde-4a9ffe23c677&"+
+					   "redirect_uri=http://localhost:8105/whenyouplay/bankauth.do&"+
+					   "scope=login inquiry transfer&"+
+					   "state=12345678901234567890123456789012&"+
+					   "auth_type=0";
+			 
+			 var options = "width=700, height=700, top=30";
+					   
+			 window.open(url, "오픈뱅킹 계좌등록", options);
+			 
+	
+        }
+        
+        
     </script>
 
 </head>
@@ -100,6 +120,7 @@
                                 <th class="thcss">은행명</th>
                                 <th class="thcss">계좌번호</th>
                                 <th class="thcss">예금주</th>
+                                <th class="thcss" style="width: 50px;"></th>
                                 <th id="lastTh"></th>
                             </tr>
                         </thead>
@@ -107,25 +128,26 @@
                         	<c:choose>
                         		<c:when test="${empty accountList }">
                         			<tr>
-                        				<td colspan="6" align="center">---------------------- 계좌가 없습니다. -------------------------</td>
+                        				<td colspan="7" align="center">---------------------- 계좌가 없습니다. -------------------------</td>
                         			</tr>
                         		</c:when>
                         		<c:otherwise>
                         			<c:forEach items="${accountList }" var="dto">
                         				<tr>
-			                                <td class="centerTd" style="border-left: 1px solid black;">${dto.baNo }</td>
+			                                <td id="bankId" class="centerTd" style="border-left: 1px solid black;">${dto.baNo }</td>
 			                                <td class="centerTd">${dto.baNickName }</td>
 			                                <td class="centerTd">${dto.baBankName }</td>
 			                                <td class="centerTd">${dto.baBankNumber }</td>
 			                                <td class="centerTd">${dto.baOwner }</td>
 			                                <td class="centerTd"><button class="btn btn-secondary btn-sm" onclick="location.href='deleteaccount.do?baNo=${dto.baNo}&usNo=${user.usNo }'">삭제</button></td>
+                            				<td class="centerTd"><button class="btn btn-secondary btn-sm" onclick="openBank();">인증</button><td>
                             			</tr>
                         			</c:forEach>
                         		</c:otherwise>
                         	</c:choose>
 
                             <tr id="lastTr">
-                                <td colspan="6">
+                                <td colspan="7">
                                     <button style="margin-top: 10px;" class="btn btn-primary btn-sm" onclick="registForm();">계좌등록</button>
                                 </td>
                             </tr>
@@ -134,7 +156,7 @@
                 </div>
 
                 <div id="registerArea" class="shadow">
-                    <form action="insertaccount.do">
+                    <form action="insertaccount.do" method="get">
                     	<input type="hidden" name="usNo" value="${user.usNo }">
                         <b style="font-size: 17px;">계좌등록</b>
                         <hr style="margin: 3px;">
@@ -151,12 +173,18 @@
                         </style>
                         <select name="baBankName" class="accountInput" id="selectArea" required>
                             <option disabled selected>선택해주세요</option>
-                            <option value="국민은행">국민은행</option>
-                            <option value="하나은행">하나은행</option>
-                            <option value="신한은행">신한은행</option>
-                            <option value="카카오뱅크">카카오뱅크</option>
-                            <option value="농협은행">농협은행</option>
-                            <option value="우리은행">우리은행</option>
+                            <option value="국민은행/004">국민은행</option>
+                            <option value="하나은행/081">하나은행</option>
+                            <option value="신한은행/088">신한은행</option>
+                            <option value="카카오뱅크/090">카카오뱅크</option>
+                            <option value="농협은행/011">농협은행</option>
+                            <option value="우리은행/020">우리은행</option>
+                            <option value="산업은행/002">산업은행</option>
+                            <option value="기업은행/003">기업은행</option>
+                            <option value="수협은행/007">수협은행</option>
+                            <option value="SC제일은행/023">SC제일은행</option>
+                            <option value="씨티은행/027">씨티은행</option>
+                            <option value="토스/092">토스(Toss)</option>
                         </select>
                         <hr style="margin: 3px;">
                         
