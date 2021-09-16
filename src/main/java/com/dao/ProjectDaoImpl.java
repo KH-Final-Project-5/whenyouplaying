@@ -250,18 +250,18 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
-	public List<ProjectDto> Prsearch(ProjectDto dto) {
+	public List<ProjectDto> prSearch(ProjectDto dto,Criteria cri) {
 		List<ProjectDto> list = new ArrayList<>();
 		
 		try {
-			list = sqlSession.selectList(NAMESPACE + "prsearch",dto);
+			list = sqlSession.selectList(NAMESPACE + "prSearch",dto);
 		} catch (Exception e) {
 			System.out.println("prsearch 에러");
 
 			e.printStackTrace();
 			
 		}
-		return null;
+		return list;
 	}
 	
 

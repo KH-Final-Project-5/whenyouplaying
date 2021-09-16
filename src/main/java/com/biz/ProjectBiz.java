@@ -30,7 +30,7 @@ public interface ProjectBiz {
     
     public List<ProjectDto> search(ProjectDto dto);
     
-    public List<ProjectDto> Prsearch(ProjectDto dto);
+    public List<ProjectDto> prSearch(ProjectDto dto,Criteria cri)throws Exception;;
 
     public List<ReviewDto> newest();
     

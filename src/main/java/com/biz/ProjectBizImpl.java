@@ -161,9 +161,9 @@ public class ProjectBizImpl implements ProjectBiz{
 
 
 	@Override
-	public List<ProjectDto> Prsearch(ProjectDto dto) {
+	public List<ProjectDto> prSearch(ProjectDto dto,Criteria cri) {
 		
-		return dao.Prsearch(dto);
+		return dao.prSearch(dto, cri);
 	}
 
 	

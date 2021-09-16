@@ -39,11 +39,14 @@ public class ProjectController {
     private int result;
     
     @RequestMapping("/prsearch.do")
-    public String Prsearch(Model model, ProjectDto dto) {
+    public String Prsearch(Model model, ProjectDto dto, Criteria cri) throws Exception {
     	logger.info("PrSearch");
-    	model.addAttribute("pr_dto",biz.Prsearch(dto));
-        
-        
+    	model.addAttribute("pr_dto",biz.prSearch(dto, cri));
+    	
+    	PageMaker pageMaker = new PageMaker();
+    	pageMaker.setCri(cri);
+    	pageMaker.setTotalCount(biz.listCount());
+    	model.addAttribute("pr_PageMaker", pageMaker);
     	return "projectBoard/talentBoard";
     	
     }
