@@ -110,10 +110,10 @@
 		WHERE PRCONTENT LIKE '%'||#{searchContent}||'%'
 	</select>
 	
-	<select id="prsearch" parameterType="ProjectDto" resultType="ProjectDto">
-SELECT *
- FROM W_PROJECT 
- WHERE PRTITLE =#{prTitle}
+	<select id="prSearch" parameterType="projectDto" resultType="projectDto">
+SELECT * 
+FROM W_PROJECT
+WHERE PRTITLE LIKE '%'||#{prTitle}||'%'
 	</select>
 	
 

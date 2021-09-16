@@ -46,5 +46,5 @@ public interface ProjectDao {
     
     public int reviewDelete(int rvNo);
     
-    public List<ProjectDto> Prsearch(ProjectDto dto);
+    public List<ProjectDto> prSearch(ProjectDto dto,Criteria cri);
     }

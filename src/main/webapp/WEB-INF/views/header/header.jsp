@@ -219,7 +219,7 @@
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
                         <form action="prsearch.do">
-                            <input type="search" class="searchBar" name="search" value="${prTitle}">
+                            <input type="search" class="searchBar" name="prTitle">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                         </form>
 
