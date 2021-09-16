@@ -226,6 +226,36 @@ public class MyPageDaoImpl implements MyPageDao {
 		return res;
 	}
 
+	@Override
+	public BankAccountDto getAccount(int baNo) {
+
+		BankAccountDto res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectOne(NAMESPACE+"getAccount", baNo);
+		} catch (Exception e) {
+			System.out.println("[error] : getAccount 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int updateCash(UserDto user) {
+
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.update(NAMESPACE+"updateCash", user);
+		} catch (Exception e) {
+			System.out.println("[error] : updateCash 에러");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
 	
 
 	

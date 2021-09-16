@@ -40,5 +40,6 @@
         <websocket:sockjs websocket-enabled="true"/>
     </websocket:handlers>
 
-
+	
+	
 </beans>
