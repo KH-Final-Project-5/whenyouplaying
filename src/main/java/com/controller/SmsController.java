@@ -17,14 +17,16 @@ import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+@Controller
 public class SmsController {
+	
 	@ResponseBody 
-	@RequestMapping("/sendSms2.do") 
-	public void sendSms(String receiver) { 
-		 
+	@RequestMapping("/smsSend2.do") 
+	public void sendSms(String receiver,String usId) { 
+		System.out.println("receiver : " + receiver);
 		String hostname = "api.bluehouselab.com";
 		String url = "https://" + hostname + "/smscenter/v1.0/sendsms";
 		
@@ -46,7 +48,7 @@ public class SmsController {
 		httpPost.setHeader("Content-type", "application/json; charset=utf-8"); 
 		
 		//문자에 대한 정보 
-		String json = "{\"sender\":\"보내는 사람\",\"receivers\":[\"" + receiver + "\"],\"content\":\"문자 내용\"}"; 
+		String json = "{\"sender\":\"01055763376\",\"receivers\":[\"" + receiver + "\"],\"content\":\""+usId+"님이 구매를 신청하셨습니다."+"\"}"; 
 		StringEntity se = new StringEntity(json, "UTF-8");
 		httpPost.setEntity(se);
 		

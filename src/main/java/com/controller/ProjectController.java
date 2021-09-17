@@ -29,329 +29,276 @@ import com.dto.UserDto;
 @Controller
 public class ProjectController {
 
+	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
-    private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
-
-
-    @Autowired
-    private ProjectBiz biz;
-
-    private int result;
-    
-    @RequestMapping("/prsearch.do")
-    public String Prsearch(Model model, ProjectDto dto, Criteria cri) throws Exception {
-    	logger.info("PrSearch");
-    	model.addAttribute("pr_dto",biz.prSearch(dto, cri));
-    	
-    	PageMaker pageMaker = new PageMaker();
-    	pageMaker.setCri(cri);
-    	pageMaker.setTotalCount(biz.listCount());
-    	model.addAttribute("pr_PageMaker", pageMaker);
-    	return "projectBoard/talentBoard";
-    	
-    }
-
-    @RequestMapping("/category.do")
-    public String designProject(Model model, String prTalent, Criteria cri) throws Exception {
-        
-    	
-    	
-    	
-    	
-
-        logger.info("Select Category");
-        model.addAttribute("pr_dto", biz.selectCategory(cri));
-        
-        cri.setPrTalent(prTalent);
-        model.addAttribute("pr_cri",cri);
-        System.out.println( "prtalent값 확인: " + cri.getPrTalent());
-        
-        PageMaker pageMaker = new PageMaker();
-        pageMaker.setCri(cri);
-        pageMaker.setTotalCount(biz.listCount());
-        
-        model.addAttribute("pr_PageMaker", pageMaker);
-        
-       
-        
-        
-        return "projectBoard/talentBoard";
-    }
-    
-    @RequestMapping("search.do")
-    public String Search(Model model, ProjectDto dto){
-    	
-    	
-        
-        logger.info("Search content");
-        model.addAttribute("pr_dto",biz.search(dto));
-        
-        
-        
-        
-        
-    	return "projectBoard/talentBoard";
-    }
-
-
-    @RequestMapping("/Detail.do")
-    public String ProjectDetail(Model model, int prNo) {
-
-        logger.info("Detail test");
-        model.addAttribute("detail_dto", biz.selectDetail(prNo));
-        
-        
-        //리뷰 뿌려주기
-        model.addAttribute("review",biz.reviewSelect(prNo));
-        
-        return "projectBoard/talentBoardDetail";
-        
-        
-        
-    }
-
-
-    @RequestMapping("popup.do")
-    public String ProjectDetail(int prNo, Model model) {
-
-        model.addAttribute("popupDto", biz.messagePopup(prNo));
-
-        return "trade/messagePopup";
-
-    }
-    @RequestMapping("review.do")
-    public void Review(ProjectDto dto,ReviewDto dto3,HttpServletResponse response,FinishDealDto dto2) throws IOException {
-    	
-    	
-    	int dealNo = dto2.getDealNo();
-    	List<FinishDealDto> finDto = new ArrayList<>();
-    	
-    	
-    	finDto = biz.selectReview(dto2);
-    	
-    	
-    	System.out.println(finDto+"finDto 확인!!!!!!!!!!!!!!");
-    	
-    	if(finDto.size()!=0) {
-    		int res= 0;
-    		res = biz.insertReivew(dto3);
-    		
-    		if(res>0) {
-    			ScriptUtils.alertAndMovePage(response, "작성완료", "Detail.do?prNo="+dto.getPrNo());
-    		}else {
-    			ScriptUtils.alertAndMovePage(response, "작성실패", "Detail.do?prNo="+dto.getPrNo());
-    		}
-    	}else {
-    		ScriptUtils.alertAndMovePage(response, "구매후 작성이 가능합니다.", "Detail.do?prNo="+dto.getPrNo());
-    	}
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	 
-    }
+	@Autowired
+	private ProjectBiz biz;
 
-    @RequestMapping("insertProject.do")
-    public String insertProject(Model model) {
-        logger.info("insert");
-        return "projectBoard/talentBoardInsert";
-    }
-
-    @RequestMapping(value = "insertProjectRes.do")
-    public void insertProjectRes(HttpServletResponse response, ProjectDto dto) throws Exception {
-        logger.info("Insert Res");
-        FtpClient ftpClient =
-                new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
+	private int result;
 
-        String filename = null;
+	@RequestMapping("/prsearch.do")
+	public String Prsearch(Model model, ProjectDto dto, Criteria cri) throws Exception {
+		logger.info("PrSearch");
+		model.addAttribute("pr_dto", biz.prSearch(dto, cri));
 
-        //dto안에 들어있는 file을 가져오고
-        MultipartFile multiFile = dto.getPrImage2();
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(biz.listCount());
+		model.addAttribute("pr_PageMaker", pageMaker);
+		return "projectBoard/talentBoard";
 
-        //파일 real이름을 filename 변수에 저장
-        filename = multiFile.getOriginalFilename();
+	}
 
-        //id : id값 을 id만 나올 수 있게 만든다
+	@RequestMapping("/category.do")
+	public String designProject(Model model, String prTalent, Criteria cri) throws Exception {
 
+		logger.info("Select Category");
+		model.addAttribute("pr_dto", biz.selectCategory(cri));
 
-        String filename2 = ftpClient.fileName(filename, dto.getUsId());
-
-        //경로/id/filename
-        dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
+		cri.setPrTalent(prTalent);
+		model.addAttribute("pr_cri", cri);
+		System.out.println("prtalent값 확인: " + cri.getPrTalent());
 
-        //multiPartFile을 File로 변환하는 작업
-        File file = ftpClient.convert(multiFile);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(biz.listCount());
 
-        ftpClient.upload(file, filename, dto.getUsId());
+		model.addAttribute("pr_PageMaker", pageMaker);
 
+		return "projectBoard/talentBoard";
+	}
 
-        int res = biz.insertProject(dto);
+	@RequestMapping("search.do")
+	public String Search(Model model, ProjectDto dto) {
 
+		logger.info("Search content");
+		model.addAttribute("pr_dto", biz.search(dto));
 
-        if (res > 0) {
-            ScriptUtils.alertAndMovePage(response, "입력 완료", "main.do");
-        } else {
-            ScriptUtils.alertAndMovePage(response, "입력 실패", "main.do");
-        }
-    }
+		return "projectBoard/talentBoard";
+	}
 
+	@RequestMapping("/Detail.do")
+	public String ProjectDetail(Model model, int prNo) {
 
-    @RequestMapping("ProjectUpdate.do")
-    public String ProjectUpdate(Model model, int prNo) {
-        logger.info("UPDATE FORM");
-        model.addAttribute("dto", biz.selectDetail(prNo));
-        return "projectBoard/talentBoardUpdate";
-    }
+		logger.info("Detail test");
+		model.addAttribute("detail_dto", biz.selectDetail(prNo));
 
-    @RequestMapping("ProjectUpdateRes.do")
-    public void ProjectUpdateRes(HttpServletResponse response, ProjectDto dto) throws Exception {
-        logger.info("Update Res");
+		// 리뷰 뿌려주기
+		model.addAttribute("review", biz.reviewSelect(prNo));
 
-        FtpClient ftpClient =
-                new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
+		return "projectBoard/talentBoardDetail";
 
-        String filename = null;
+	}
 
-        //dto안에 들어있는 file을 가져오고
-        MultipartFile multiFile = dto.getPrImage2();
+	@RequestMapping("popup.do")
+	public String ProjectDetail(int prNo, Model model) {
 
-        //파일 real이름을 filename 변수에 저장
-        filename = multiFile.getOriginalFilename();
+		model.addAttribute("popupDto", biz.messagePopup(prNo));
 
-        //id : id값 을 id만 나올 수 있게 만든다
+		return "trade/messagePopup";
 
+	}
 
-        String filename2 = ftpClient.fileName(filename, dto.getUsId());
+	@RequestMapping("review.do")
+	public void Review(ProjectDto dto, ReviewDto dto3, HttpServletResponse response, FinishDealDto dto2)
+			throws IOException {
 
-        //경로/id/filename
-        dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
+		int dealNo = dto2.getDealNo();
+		List<FinishDealDto> finDto = new ArrayList<>();
 
-        //multiPartFile을 File로 변환하는 작업
-        File file = ftpClient.convert(multiFile);
+		finDto = biz.selectReview(dto2);
 
-        ftpClient.upload(file, filename, dto.getUsId());
+		System.out.println(finDto + "finDto 확인!!!!!!!!!!!!!!");
 
+		if (finDto.size() != 0) {
+			int res = 0;
+			res = biz.insertReivew(dto3);
 
-        int res = biz.updateProject(dto);
-        if (res > 0) {
-            ScriptUtils.alertAndMovePage(response, "수정 완료", "main.do");
-        } else {
-            ScriptUtils.alertAndMovePage(response, "수정 실패", "main.do");
-        }
+			if (res > 0) {
+				ScriptUtils.alertAndMovePage(response, "작성완료", "Detail.do?prNo=" + dto.getPrNo());
+			} else {
+				ScriptUtils.alertAndMovePage(response, "작성실패", "Detail.do?prNo=" + dto.getPrNo());
+			}
+		} else {
+			ScriptUtils.alertAndMovePage(response, "구매후 작성이 가능합니다.", "Detail.do?prNo=" + dto.getPrNo());
+		}
 
-    }
-    
-    @RequestMapping("reviewUpdate.do")
-    public void UpdateReview(HttpServletResponse response, ReviewDto dto,ProjectDto dto2) throws IOException {
-    	
-    	int res;
-    	
-    	res = biz.reviewUpdate(dto);
-    	
-    	if(res > 0) {
-    		ScriptUtils.alertAndMovePage(response,  "리뷰 수정 완료", "Detail.do?prNo=" + dto2.getPrNo());
-    	}else {
-    		ScriptUtils.alertAndMovePage(response, "리뷰 수정 실패", "Detail.do?prNo=" + dto2.getPrNo());
-    	}
-    
-    	
-    }
+	}
 
+	@RequestMapping("insertProject.do")
+	public String insertProject(Model model) {
+		logger.info("insert");
+		return "projectBoard/talentBoardInsert";
+	}
 
-    @RequestMapping("ProjectDelete.do")
-    public void ProjectDelete(HttpServletResponse response, int prNo) throws IOException {
+	@RequestMapping(value = "insertProjectRes.do")
+	public void insertProjectRes(HttpServletResponse response, ProjectDto dto) throws Exception {
+		logger.info("Insert Res");
+		FtpClient ftpClient = new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
-        logger.info("Delete");
+		String filename = null;
 
-        int res = biz.deleteProject(prNo);
+		// dto안에 들어있는 file을 가져오고
+		MultipartFile multiFile = dto.getPrImage2();
 
-        if (res > 0) {
-            ScriptUtils.alertAndMovePage(response, "삭제 성공", "main.do");
-        } else {
-            ScriptUtils.alertAndMovePage(response, "삭제 실패", "detail.do?prNo=" + prNo);
-        }
-    }
+		// 파일 real이름을 filename 변수에 저장
+		filename = multiFile.getOriginalFilename();
 
-    @RequestMapping("online.do")
-    public String Online(Model model, int prNo, int usNo, int loginUsNo, String buyselect, HttpSession session) {
-        System.out.println("online");
+		// id : id값 을 id만 나올 수 있게 만든다
 
-        UserDto dto = (UserDto) session.getAttribute("user");
-        ProjectDto dto2 = biz.selectDetail(prNo);
+		String filename2 = ftpClient.fileName(filename, dto.getUsId());
 
+		// 경로/id/filename
+		dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
 
-        int cash = dto.getUsCash();
-        int price = dto2.getPrPrice();
+		// multiPartFile을 File로 변환하는 작업
+		File file = ftpClient.convert(multiFile);
 
-        result = cash - price;
-        System.out.println(result);
-        model.addAttribute("result1", result);
-        model.addAttribute("dto", biz.selectDetail(prNo));
+		ftpClient.upload(file, filename, dto.getUsId());
 
+		int res = biz.insertProject(dto);
 
-        return "trade/onlinetrade";
+		if (res > 0) {
+			ScriptUtils.alertAndMovePage(response, "입력 완료", "main.do");
+		} else {
+			ScriptUtils.alertAndMovePage(response, "입력 실패", "main.do");
+		}
+	}
 
+	@RequestMapping("ProjectUpdate.do")
+	public String ProjectUpdate(Model model, int prNo) {
+		logger.info("UPDATE FORM");
+		model.addAttribute("dto", biz.selectDetail(prNo));
+		return "projectBoard/talentBoardUpdate";
+	}
 
-    }
+	@RequestMapping("ProjectUpdateRes.do")
+	public void ProjectUpdateRes(HttpServletResponse response, ProjectDto dto) throws Exception {
+		logger.info("Update Res");
 
+		FtpClient ftpClient = new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
-    @RequestMapping("direct.do")
-    public String Perchase(Model model, int prNo, int usNo, int loginUsNo, HttpSession session) {
-        System.out.println("direct");
+		String filename = null;
 
+		// dto안에 들어있는 file을 가져오고
+		MultipartFile multiFile = dto.getPrImage2();
 
-        UserDto dto = (UserDto) session.getAttribute("user");
+		// 파일 real이름을 filename 변수에 저장
+		filename = multiFile.getOriginalFilename();
 
+		// id : id값 을 id만 나올 수 있게 만든다
 
-        String phone1 = dto.getUsPhone().substring(0, 3);
+		String filename2 = ftpClient.fileName(filename, dto.getUsId());
 
+		// 경로/id/filename
+		dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
 
-        String phone2 = dto.getUsPhone().substring(4, 4);
+		// multiPartFile을 File로 변환하는 작업
+		File file = ftpClient.convert(multiFile);
 
-        String phone3 = dto.getUsPhone().substring(4, 4);
-        ProjectDto dto2 = biz.selectDetail(prNo);
-        model.addAttribute("dto", dto2);
+		ftpClient.upload(file, filename, dto.getUsId());
 
-        System.out.println(dto.getUsPhone());
-        System.out.println(phone1);
-        System.out.println(phone2);
-        System.out.println(phone3);
+		int res = biz.updateProject(dto);
+		if (res > 0) {
+			ScriptUtils.alertAndMovePage(response, "수정 완료", "main.do");
+		} else {
+			ScriptUtils.alertAndMovePage(response, "수정 실패", "main.do");
+		}
 
+	}
 
-        model.addAttribute("phone", dto);
+	@RequestMapping("reviewUpdate.do")
+	public void UpdateReview(HttpServletResponse response, ReviewDto dto, ProjectDto dto2) throws IOException {
 
+		int res;
 
-        int cash = dto.getUsCash();
-        int price = dto2.getPrPrice();
+		res = biz.reviewUpdate(dto);
 
-        result = cash - price;
-        System.out.println(result);
-        model.addAttribute("result1", result);
+		if (res > 0) {
+			ScriptUtils.alertAndMovePage(response, "리뷰 수정 완료", "Detail.do?prNo=" + dto2.getPrNo());
+		} else {
+			ScriptUtils.alertAndMovePage(response, "리뷰 수정 실패", "Detail.do?prNo=" + dto2.getPrNo());
+		}
 
+	}
 
-        return "trade/directtrade";
+	@RequestMapping("ProjectDelete.do")
+	public void ProjectDelete(HttpServletResponse response, int prNo) throws IOException {
 
+		logger.info("Delete");
 
-    }
-    
-    
-    @RequestMapping("deleteReview.do")
-    public void deleteReview(HttpServletResponse response,int rvNo,int prNo) throws IOException {
-    	int res = 0;
-    	System.out.println(rvNo);
-    	System.out.println(prNo);
-    	res = biz.reviewDelete(rvNo);
-    	
-    	if(res>0) {
-    		ScriptUtils.alertAndMovePage(response, "리뷰 삭제 완료", "Detail.do?prNo="+prNo);
-    	}else {
-    		ScriptUtils.alertAndMovePage(response, "리뷰 삭제 실패", "Detail.do?prNo="+prNo);
-    	}
-    }
-   
-    
+		int res = biz.deleteProject(prNo);
+
+		if (res > 0) {
+			ScriptUtils.alertAndMovePage(response, "삭제 성공", "main.do");
+		} else {
+			ScriptUtils.alertAndMovePage(response, "삭제 실패", "detail.do?prNo=" + prNo);
+		}
+	}
+
+	@RequestMapping("online.do")
+	public String Online(Model model, int prNo, int usNo, int loginUsNo, String buyselect, HttpSession session) {
+		System.out.println("online");
+
+		UserDto dto = (UserDto) session.getAttribute("user");
+		ProjectDto dto2 = biz.selectDetail(prNo);
+
+		int cash = dto.getUsCash();
+		int price = dto2.getPrPrice();
+
+		result = cash - price;
+		System.out.println(result);
+		model.addAttribute("result1", result);
+		model.addAttribute("dto", biz.selectDetail(prNo));
+
+		return "trade/onlinetrade";
+
+	}
+
+	@RequestMapping("direct.do")
+	public String Perchase(Model model, int prNo, int usNo, int loginUsNo, HttpSession session) {
+		System.out.println("direct");
+
+		UserDto dto = (UserDto) session.getAttribute("user");
+
+		String phone1 = dto.getUsPhone().substring(0, 3);
+
+		String phone2 = dto.getUsPhone().substring(4, 4);
+
+		String phone3 = dto.getUsPhone().substring(4, 4);
+		ProjectDto dto2 = biz.selectDetail(prNo);
+		model.addAttribute("dto", dto2);
+
+		System.out.println(dto.getUsPhone());
+		System.out.println(phone1);
+		System.out.println(phone2);
+		System.out.println(phone3);
+
+		model.addAttribute("phone", dto);
+
+		int cash = dto.getUsCash();
+		int price = dto2.getPrPrice();
+
+		result = cash - price;
+		System.out.println(result);
+		model.addAttribute("result1", result);
+
+		return "trade/directtrade";
+
+	}
+
+	@RequestMapping("deleteReview.do")
+	public void deleteReview(HttpServletResponse response, int rvNo, int prNo) throws IOException {
+		int res = 0;
+		System.out.println(rvNo);
+		System.out.println(prNo);
+		res = biz.reviewDelete(rvNo);
+
+		if (res > 0) {
+			ScriptUtils.alertAndMovePage(response, "리뷰 삭제 완료", "Detail.do?prNo=" + prNo);
+		} else {
+			ScriptUtils.alertAndMovePage(response, "리뷰 삭제 실패", "Detail.do?prNo=" + prNo);
+		}
+	}
 
 }
