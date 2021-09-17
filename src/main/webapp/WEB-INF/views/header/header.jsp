@@ -190,6 +190,7 @@
 </head>
 
 <body>
+<div id="socketAlert" class="alert alert-success" role="alert" style="display: none"></div>
 
 
 <!-- default -->

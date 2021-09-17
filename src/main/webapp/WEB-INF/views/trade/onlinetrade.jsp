@@ -28,6 +28,11 @@
 <link href="<c:url value="/resources/css/onlinetrade.css"/>" rel="stylesheet">
 <script src="<c:url value="/resources/js/onlinetrade.js"/>"></script>
 <script>
+
+    let buyer = '${user.usId}';
+    let seller = '${dto.usId}';
+
+
     function paySubmit(){
         var pay = '${result1}';
         // console.log($('#orderCheckBox').is(":checked"));
@@ -35,6 +40,12 @@
         if($('#orderCheckBox').is(":checked")===true){
             if (pay > 0) {
                 if (confirm("결제하시겠습니까?")) {
+                    let msg = {'buyer' : buyer, 'seller' : seller};
+                    if (isStomp) {
+                        socket.send('/MES', {}, JSON.stringify(msg));
+                    } else {
+                        socket.send(msg);
+                    }
 
                     payForm.submit();
                 }
@@ -62,6 +73,7 @@
             <input type="hidden" name="usBuyNo" value="${user.usNo}">
             <input type="hidden" name="usSellNo" value="${dto.usNo}">
             <input type="hidden" name="prNo" value="${dto.prNo}">
+            <input type="hidden" name="dealPrice" value="${dto.prPrice}">
 
             <div class="orderContainsDiv row">
                 <div class="col-8">
@@ -129,7 +141,6 @@
                     </div>
                     <hr>
                     <br>
-                    <input type="hidden" name="dealPrice" value="${dto.prPrice}">
                     <label id="orderCheckLabel">
                         <input type="checkbox" name="orderCheckBox" id="orderCheckBox">&nbsp;&nbsp;주문 확인(필수)</label><br><br>
                     <input type="button" class="btn btn-outline-primary" id="payBtn" value="결제하기"
