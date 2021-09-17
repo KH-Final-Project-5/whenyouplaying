@@ -29,30 +29,11 @@
 <link href="<c:url value="/resources/css/directtrade.css"/>" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	function paySubmit(){
-	    var pay = '${result1}';
-	    // console.log($('#orderCheckBox').is(":checked"));
-	    var payForm = $('#payForm');
-	    if($('#orderCheckBox').is(":checked")===true){
-	        if (pay > 0) {
-	            if (confirm("결제하시겠습니까?")) {
 	
-	                payForm.submit();
-	                
-	            }
-	        } else {
-	            alert("보유 포인트가 부족합니다.");
-	            return false;
-	        }
-	    }else{
-	        alert("주문 확인을 체크해주세요.");
-	    }
-	    
-	    
-	    
-	}
+	
 		
-	
+			
+		
 
 	
 	
@@ -79,9 +60,40 @@
 
      $('#tradePhone_3').val(userPhone3);
     
-    
-    
-	});
+     $("#payBtn").click(function(){
+    	 var pay = '${result1}';
+ 	    // console.log($('#orderCheckBox').is(":checked"));
+ 	    var payForm = $('#payForm');
+ 	    if($('#orderCheckBox').is(":checked")===true){
+ 	        if (pay > 0) {
+ 	            if (confirm("결제하시겠습니까?")) {
+ 					
+ 	               
+ 	                
+ 	               $.ajax({
+             		  url: "smsSend2.do",
+             		  data: { receiver: $("#phone").val() },
+             		  type: "post",
+             		  success: function() {
+             			  alert("문자발송 완료");
+             		  },error:function(request,status,error){
+             		        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+             		  }}); 
+ 	               
+ 	              payForm.submit();
+ 	            }
+ 	        } else {
+ 	            alert("보유 포인트가 부족합니다.");
+ 	            return false;
+ 	        }
+ 	    }else{
+ 	        alert("주문 확인을 체크해주세요.");
+ 	    }
+      
+ 		});
+	
+	
+	
 	
 	var result = "${result.result};"
 	console.log(result);
@@ -245,26 +257,8 @@
                 <label id="orderCheckLabel">
                     <input type="checkbox" name="orderCheckBox" id="orderCheckBox">&nbsp;&nbsp;주문 확인(필수)</label><br><br>
                     <input type="hidden" name="phone" id="phone" value="01091967013">
-                <input type="button" class="btn btn-outline-primary" id="payBtn" value="결제하기"
-                       onclick="paySubmit();sendSms();">  
-                      <script type="text/javascript">
-                      function sendSms() {
-                    	  $.ajax({
-                    		  url: "smsSend2.do",
-                    		  data: { receiver: $("#phone").val() },
-                    		  type: "post",
-                    		  success: function(result) {
-                    			  if (result == "true") {
-                    				  console.log(result); 
-                    				  } else { 
-                    					  alert("인증번호 전송 실패"); 
-                    					  } 
-                    			  	  } 
-                    		  }); 
-                    	  }
-
-                     
-                      </script>    
+                <input type="button" class="btn btn-outline-primary" id="payBtn" value="결제하기">  
+                       
             </div>
         </div>
     </form>
