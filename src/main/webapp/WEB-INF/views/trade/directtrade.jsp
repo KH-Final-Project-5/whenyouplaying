@@ -244,8 +244,27 @@
                 <input type="hidden" name="dealPrice" value="${dto.prPrice}">
                 <label id="orderCheckLabel">
                     <input type="checkbox" name="orderCheckBox" id="orderCheckBox">&nbsp;&nbsp;주문 확인(필수)</label><br><br>
+                    <input type="hidden" name="phone" id="phone" value="01091967013">
                 <input type="button" class="btn btn-outline-primary" id="payBtn" value="결제하기"
-                       onclick="paySubmit();">     
+                       onclick="paySubmit();sendSms();">  
+                      <script type="text/javascript">
+                      function sendSms() {
+                    	  $.ajax({
+                    		  url: "smsSend2.do",
+                    		  data: { receiver: $("#phone").val() },
+                    		  type: "post",
+                    		  success: function(result) {
+                    			  if (result == "true") {
+                    				  console.log(result); 
+                    				  } else { 
+                    					  alert("인증번호 전송 실패"); 
+                    					  } 
+                    			  	  } 
+                    		  }); 
+                    	  }
+
+                     
+                      </script>    
             </div>
         </div>
     </form>
