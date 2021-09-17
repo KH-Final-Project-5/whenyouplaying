@@ -245,7 +245,7 @@
                 <label id="orderCheckLabel">
                     <input type="checkbox" name="orderCheckBox" id="orderCheckBox">&nbsp;&nbsp;주문 확인(필수)</label><br><br>
                 <input type="button" class="btn btn-outline-primary" id="payBtn" value="결제하기"
-                       onclick="paySubmit();">
+                       onclick="paySubmit();">     
             </div>
         </div>
     </form>
