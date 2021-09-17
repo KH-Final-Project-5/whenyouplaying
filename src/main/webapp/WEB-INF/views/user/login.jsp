@@ -44,8 +44,9 @@
 	
 	<!-- 구글 소셜 로그인 -->
 	<meta name="google-signin-client_id" content="557137904134-232ci9t86836vrm925onj9blpmnh4b2f.apps.googleusercontent.com">
-	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script> 
+		<!-- 카카오톡 소셜 로그인 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  
 	<script type="text/javascript">
 		
 		function onSignIn(googleUser) {
@@ -86,6 +87,49 @@
 				  }
 			  });			  
 		}
+
+		
+		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');
+		
+		function kakaoLogin() {
+		    Kakao.Auth.login({
+		    	scope:'	profile_nickname'
+		      success: function (response) {
+		        Kakao.API.request({
+		          url: '/v2/user/me',
+		          success: function (response) {
+		        	  console.log(response)
+		          },
+		          fail: function (error) {
+		            console.log(error)
+		          },
+		        })
+		      },
+		      fail: function (error) {
+		        console.log(error)
+		      },
+		    })
+		  }
+		
+		function kakaoLogout() {
+		    if (Kakao.Auth.getAccessToken()) {
+		      Kakao.API.request({
+		        url: '/v1/user/unlink',
+		        success: function (response) {
+		        	console.log(response)
+		        },
+		        fail: function (error) {
+		          console.log(error)
+		        },
+		      })
+		      Kakao.Auth.setAccessToken(undefined)
+		    }
+		  }  
+	</script>  
+
+
+
+
 	
 	
 	</script>
@@ -93,6 +137,7 @@
 	<!-- 네이버 스크립트 -->
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 	
+
 
 </head>
 <body style="overflow-y: hidden">
@@ -130,6 +175,21 @@
                 </form>
                 
               	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
+
+            <ul>
+	<li onclick="kakaoLogin();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그인</span>
+      </a>
+      <li onclick="kakaoLogout();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그아웃</span>
+      </a>
+	</li>
+      
+	</li>
+</ul>
+
 				
 				<!-- 네이버 로그인 창으로 이동 -->
 			<div id="naver_id_login" style="text-align:center; margin-top:15px; margin-right:60px;">
@@ -139,6 +199,7 @@
 			</div>
 			<br>
 				
+
 
 					
 				<div id="getTest"></div>
