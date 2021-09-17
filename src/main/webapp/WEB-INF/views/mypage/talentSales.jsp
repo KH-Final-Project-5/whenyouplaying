@@ -162,7 +162,7 @@
                                             <td>대기중</td>
                                         </c:if>
                                         <c:if test="${dto.finIf ne 'S' && dto.finStatus ne '거래완료'}">
-                                        
+
                                             <td>
                                                 <button class="btn btn-outline-success btn-sm rounded-pill moveBtn"
                                                         id="${dto.prDeal}"
