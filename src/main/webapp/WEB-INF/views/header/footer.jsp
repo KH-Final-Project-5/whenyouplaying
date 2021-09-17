@@ -51,8 +51,32 @@
     var socket = null;
     var isStomp = false;
     $(function () {
-
+        connectStompMes();
     });
+
+    function connectStompMes(){
+        const ws = new SockJS("/stompTest");
+        var client = Stomp.over(ws);
+        isStomp = true;
+        socket = client;
+
+        client.connect({},function() {
+            console.log("Connected stompTest!!");
+
+            client.subscribe('/topic/mes/${user.usId}' , function (event) {
+                var content = JSON.parse(event.body).content;
+                /*console.log(content);
+                console.log('!!!!!!!!!!!!!!!!evnt>>', event);*/
+                let $socketAlert = $('div#socketAlert');
+                var content2 = "<a href='selllist.do?usNo=${user.usNo}&finStatus=거래취소'>" + content + "</a>";
+                $socketAlert.html(content2);
+                $socketAlert.css('display', 'block');
+                setTimeout(function () {
+                    $socketAlert.css('display', 'none');
+                }, 3000);
+            });
+        });
+    }
 
     function connectStopm(dealNo, buyer) {
         const ws = new SockJS("/stompTest");

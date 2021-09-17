@@ -57,8 +57,8 @@
             var userId = "${user.usId}"
             var prDeal = "${detail_dto.prDeal}"
             
-            
-            
+       
+          
             
             
             if(prDeal == "online"){

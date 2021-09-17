@@ -10,19 +10,30 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-//        전문가 등록을 눌렀을 때
-        if (request.getRequestURI().contains("/talentform.do") &&
-                request.getSession().getAttribute("user") == null) {
-            response.sendRedirect("/loginform.do");
-            return false;
-//            쪽지 창 그냥 들어갈 때
-        } else if (request.getRequestURI().contains("/messagechk.do") &&
-                request.getSession().getAttribute("user") == null) {
-            response.sendRedirect("/loginform.do");
-            return false;
-        }
 
+        /*if (request.getRequestURI().contains("/category.do")
+                || request.getRequestURI().contains("Detail.do")
+                || request.getRequestURI().contains("main.do")
+                || request.getRequestURI().contains("loginform.do")
+                || request.getRequestURI().contains("prsearch.do")
+                || request.getRequestURI().contains("login.do")) {
+            return true;
+        } else if (request.getSession().getAttribute("user") == null) {
+            response.sendRedirect("/loginform.do");
+            return false;
+        }*/
+//        전문가 등록을 눌렀을 때
+            /*if (request.getRequestURI().contains("/talentform.do") &&
+                    request.getSession().getAttribute("user") == null) {
+                response.sendRedirect("/loginform.do");
+                return false;
+//            쪽지 창 그냥 들어갈 때
+            } else if (request.getRequestURI().contains("/messagechk.do") &&
+                    request.getSession().getAttribute("user") == null) {
+
+            }*/
         return true;
+
     }
 
     @Override

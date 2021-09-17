@@ -55,7 +55,29 @@
        
     });
     </script>
- 
+ 	
+ 	<script>
+ 	$(function(){
+ 		 var user = "<%=session.getAttribute("user")%>";
+ 		var userTalent = '${user.usTalent}';
+
+        if (userTalent == "design") {
+            $('#usTalent').text("디자인");
+        } else if (userTalent == "translation") {
+            $('#usTalent').text("번역/외국어");
+        } else if (userTalent == "document") {
+            $('#usTalent').text("문서작성");
+        } else if (userTalent == "music") {
+            $('#usTalent').text("음악/영상");
+        } else if (userTalent == "biz") {
+            $('#usTalent').text("마케팅/비즈니스");
+        } else if (userTalent == "life") {
+            $('#usTalent').text("생활서비스");
+        }
+ 	});
+ 	</script>
+ 	
+ 	
 
 	<script>
 	$(document).on("change", ".file-input", function () {
@@ -185,21 +207,14 @@
                             <!--재능 종류-->
                             <tr>
                                 <th class="deal-th">재능 종류</th>
-                                <td>
-                                    <select name="prTalent" class="accountInput"  required>
-                                        <option value="" disabled selected>선택해주세요</option>
-                                        <option value="design">디자인</option>
-                                        <option value="translation">번역/외국어</option>
-                                        <option value="document">문서작성</option>
-                                        <option value="music">음악/영상</option>
-                                        <option value="program">프로그램개발</option>
-                                        <option value="biz">마케팅/비지니스</option>
-                                        <option value="life">생활서비스</option>
-                                    </select>
-                                    <hr style="margin: 3px;">
+                                <td id="usTalent">
+                                    
+                                    
                                 </td>
                             </tr>
-
+                            
+							<input type="hidden" name="prTalent" value="${user.usTalent }">
+							
                             <!--거래 방법-->
                             <tr>
                                 <th class="deal-th">거래 방법</th>

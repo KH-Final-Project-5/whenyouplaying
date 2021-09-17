@@ -1,9 +1,11 @@
 package com.commons;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import org.apache.http.HttpResponse;
@@ -27,54 +29,29 @@ import org.json.JSONObject;
 */
 
 public class test {
-    public static void main(String[] args) {
-        int rand = (int) (Math.random() * 899999) + 100000;
+    public static void main(String[] args) throws Exception {
 
-        String hostname = "api.bluehouselab.com";
-        String url = "https://" + hostname + "/smscenter/v1.0/sendsms";
+        FtpClient ftpClient = new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
-        CredentialsProvider credsProvider = new BasicCredentialsProvider();
-        credsProvider.setCredentials(
-                new AuthScope(hostname, 443, AuthScope.ANY_REALM),
-                new UsernamePasswordCredentials("whenyouplay", "a2a643d4148311ecacae0cc47a1fcfae")
-        );
 
-        // Create AuthCache instance
-        AuthCache authCache = new BasicAuthCache();
-        authCache.put(new HttpHost(hostname, 443, "https"), new BasicScheme());
+        String deal = String.valueOf(111);
 
-        // Add AuthCache to the execution context
-        HttpClientContext context = HttpClientContext.create();
-        context.setCredentialsProvider(credsProvider);
-        context.setAuthCache(authCache);
+        File tempDir = new File("");
 
-        DefaultHttpClient client = new DefaultHttpClient();
+        String dir = tempDir.getAbsolutePath();
 
-        try {
-            HttpPost httpPost = new HttpPost(url);
-            httpPost.setHeader("Content-type", "application/json; charset=utf-8");
-            String json = "{\"sender\":\"" + "01055763376" + "\",\"receivers\":[\"" + "01055763376" + "\"],\"content\":\"" +
-                    "인증번호는 ["+rand+"] 입니다." + "\"}";
+        File file = ftpClient.downloadTxt(deal, dir);
 
-            StringEntity se = new StringEntity(json, "UTF-8");
-            httpPost.setEntity(se);
+        Path path = Paths.get(dir + "/" + deal + ".txt");
 
-            HttpResponse httpResponse = client.execute(httpPost, context);
-            System.out.println(httpResponse.getStatusLine().getStatusCode());
+        Stream<String> lines = Files.lines(path);
 
-            InputStream inputStream = httpResponse.getEntity().getContent();
-            if (inputStream != null) {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String line = "";
-                while ((line = bufferedReader.readLine()) != null)
-                    System.out.println(line);
-                inputStream.close();
-            }
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getLocalizedMessage());
-        } finally {
-            client.getConnectionManager().shutdown();
-        }
+        String line = lines.collect(Collectors.joining(System.lineSeparator()));
+
+        System.out.println(line);
+
+
+        file.delete();
 
     }
 }

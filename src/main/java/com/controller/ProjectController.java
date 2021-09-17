@@ -36,9 +36,7 @@ import com.dto.UserDto;
 @Controller
 public class ProjectController {
 
-
-    private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
-
+	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
     @Autowired
     private ProjectBiz biz;
@@ -75,23 +73,14 @@ public class ProjectController {
         
         model.addAttribute("pr_PageMaker", pageMaker);
         
-       
-        
-        
         return "projectBoard/talentBoard";
     }
     
     @RequestMapping("search.do")
     public String Search(Model model, ProjectDto dto){
-    	
-    	
         
         logger.info("Search content");
         model.addAttribute("pr_dto",biz.search(dto));
-        
-        
-        
-        
         
     	return "projectBoard/talentBoard";
     }
@@ -103,16 +92,12 @@ public class ProjectController {
         logger.info("Detail test");
         model.addAttribute("detail_dto", biz.selectDetail(prNo));
         
-        
         //리뷰 뿌려주기
         model.addAttribute("review",biz.reviewSelect(prNo));
         
         return "projectBoard/talentBoardDetail";
         
-        
-        
     }
-
 
     @RequestMapping("popup.do")
     public String ProjectDetail(int prNo, Model model) {
@@ -122,6 +107,7 @@ public class ProjectController {
         return "trade/messagePopup";
 
     }
+
     @RequestMapping("review.do")
     public void Review(ProjectDto dto,ReviewDto dto3,HttpServletResponse response,FinishDealDto dto2) throws IOException {
     	
@@ -147,13 +133,6 @@ public class ProjectController {
     	}else {
     		ScriptUtils.alertAndMovePage(response, "구매후 작성이 가능합니다.", "Detail.do?prNo="+dto.getPrNo());
     	}
-    	
-    	
-    	
-    	
-    	
-    	
-    	
     	 
     }
 
@@ -208,144 +187,47 @@ public class ProjectController {
         }
     }
 
+	@RequestMapping("ProjectUpdate.do")
+	public String ProjectUpdate(Model model, int prNo) {
+		logger.info("UPDATE FORM");
+		model.addAttribute("dto", biz.selectDetail(prNo));
+		return "projectBoard/talentBoardUpdate";
+	}
 
-    @RequestMapping("ProjectUpdate.do")
-    public String ProjectUpdate(Model model, int prNo) {
-        logger.info("UPDATE FORM");
-        model.addAttribute("dto", biz.selectDetail(prNo));
-        return "projectBoard/talentBoardUpdate";
-    }
+	@RequestMapping("ProjectUpdateRes.do")
+	public void ProjectUpdateRes(HttpServletResponse response, ProjectDto dto) throws Exception {
+		logger.info("Update Res");
 
-    @RequestMapping("ProjectUpdateRes.do")
-    public void ProjectUpdateRes(HttpServletResponse response, ProjectDto dto) throws Exception {
-        logger.info("Update Res");
+		FtpClient ftpClient = new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
-        FtpClient ftpClient =
-                new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
+		String filename = null;
 
-        String filename = null;
+		// dto안에 들어있는 file을 가져오고
+		MultipartFile multiFile = dto.getPrImage2();
 
-        //dto안에 들어있는 file을 가져오고
-        MultipartFile multiFile = dto.getPrImage2();
+		// 파일 real이름을 filename 변수에 저장
+		filename = multiFile.getOriginalFilename();
 
-        //파일 real이름을 filename 변수에 저장
-        filename = multiFile.getOriginalFilename();
+		// id : id값 을 id만 나올 수 있게 만든다
 
-        //id : id값 을 id만 나올 수 있게 만든다
+		String filename2 = ftpClient.fileName(filename, dto.getUsId());
+		
+		// 경로/id/filename
+		dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
 
+		// multiPartFile을 File로 변환하는 작업
+		File file = ftpClient.convert(multiFile);
 
-        String filename2 = ftpClient.fileName(filename, dto.getUsId());
+		ftpClient.upload(file, filename, dto.getUsId());
 
-        //경로/id/filename
-        dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
+		int res = biz.updateProject(dto);
+		if (res > 0) {
+			ScriptUtils.alertAndMovePage(response, "수정 완료", "main.do");
+		} else {
+			ScriptUtils.alertAndMovePage(response, "수정 실패", "main.do");
+		}
 
-        //multiPartFile을 File로 변환하는 작업
-        File file = ftpClient.convert(multiFile);
-
-        ftpClient.upload(file, filename, dto.getUsId());
-
-
-        int res = biz.updateProject(dto);
-        if (res > 0) {
-            ScriptUtils.alertAndMovePage(response, "수정 완료", "main.do");
-        } else {
-            ScriptUtils.alertAndMovePage(response, "수정 실패", "main.do");
-        }
-
-    }
-    
-    @RequestMapping("reviewUpdate.do")
-    public void UpdateReview(HttpServletResponse response, ReviewDto dto,ProjectDto dto2) throws IOException {
-    	
-    	int res;
-    	
-    	res = biz.reviewUpdate(dto);
-    	
-    	if(res > 0) {
-    		ScriptUtils.alertAndMovePage(response,  "리뷰 수정 완료", "Detail.do?prNo=" + dto2.getPrNo());
-    	}else {
-    		ScriptUtils.alertAndMovePage(response, "리뷰 수정 실패", "Detail.do?prNo=" + dto2.getPrNo());
-    	}
-    
-    	
-    }
-
-
-    @RequestMapping("ProjectDelete.do")
-    public void ProjectDelete(HttpServletResponse response, int prNo) throws IOException {
-
-        logger.info("Delete");
-
-        int res = biz.deleteProject(prNo);
-
-        if (res > 0) {
-            ScriptUtils.alertAndMovePage(response, "삭제 성공", "main.do");
-        } else {
-            ScriptUtils.alertAndMovePage(response, "삭제 실패", "detail.do?prNo=" + prNo);
-        }
-    }
-
-    @RequestMapping("online.do")
-    public String Online(Model model, int prNo, int usNo, int loginUsNo, String buyselect, HttpSession session) {
-        System.out.println("online");
-
-        UserDto dto = (UserDto) session.getAttribute("user");
-        ProjectDto dto2 = biz.selectDetail(prNo);
-
-
-        int cash = dto.getUsCash();
-        int price = dto2.getPrPrice();
-
-        result = cash - price;
-        System.out.println(result);
-        model.addAttribute("result1", result);
-        model.addAttribute("dto", biz.selectDetail(prNo));
-
-
-        return "trade/onlinetrade";
-
-
-    }
-
-
-    @RequestMapping("direct.do")
-    public String Perchase(Model model, int prNo, int usNo, int loginUsNo, HttpSession session) {
-        System.out.println("direct");
-
-
-        UserDto dto = (UserDto) session.getAttribute("user");
-
-
-        String phone1 = dto.getUsPhone().substring(0, 3);
-
-
-        String phone2 = dto.getUsPhone().substring(4, 4);
-
-        String phone3 = dto.getUsPhone().substring(4, 4);
-        ProjectDto dto2 = biz.selectDetail(prNo);
-        model.addAttribute("dto", dto2);
-
-        System.out.println(dto.getUsPhone());
-        System.out.println(phone1);
-        System.out.println(phone2);
-        System.out.println(phone3);
-
-
-        model.addAttribute("phone", dto);
-
-
-        int cash = dto.getUsCash();
-        int price = dto2.getPrPrice();
-
-        result = cash - price;
-        System.out.println(result);
-        model.addAttribute("result1", result);
-
-
-        return "trade/directtrade";
-
-
-    }
+	}
     
     
     @RequestMapping("deleteReview.do")
@@ -362,7 +244,6 @@ public class ProjectController {
     	}
     }
    
-    
     //일정페이지 이동
     @RequestMapping("appointChange.do")
     public String appointChange(Model model,int prNo) {
@@ -442,6 +323,7 @@ public class ProjectController {
     	
     }
     
+    //일정삭제
     @RequestMapping("/deleteSchedule.do")
     @ResponseBody
     public String deleteSchedule(String scTitle, Date scStartDate, Date scEndDate) {
@@ -465,7 +347,86 @@ public class ProjectController {
     	
     }
     
-    
-    
+
+	@RequestMapping("reviewUpdate.do")
+	public void UpdateReview(HttpServletResponse response, ReviewDto dto, ProjectDto dto2) throws IOException {
+
+		int res;
+
+		res = biz.reviewUpdate(dto);
+
+		if (res > 0) {
+			ScriptUtils.alertAndMovePage(response, "리뷰 수정 완료", "Detail.do?prNo=" + dto2.getPrNo());
+		} else {
+			ScriptUtils.alertAndMovePage(response, "리뷰 수정 실패", "Detail.do?prNo=" + dto2.getPrNo());
+		}
+
+	}
+
+	@RequestMapping("ProjectDelete.do")
+	public void ProjectDelete(HttpServletResponse response, int prNo) throws IOException {
+
+		logger.info("Delete");
+
+		int res = biz.deleteProject(prNo);
+
+		if (res > 0) {
+			ScriptUtils.alertAndMovePage(response, "삭제 성공", "main.do");
+		} else {
+			ScriptUtils.alertAndMovePage(response, "삭제 실패", "detail.do?prNo=" + prNo);
+		}
+	}
+
+	@RequestMapping("online.do")
+	public String Online(Model model, int prNo, int usNo, int loginUsNo, String buyselect, HttpSession session) {
+		System.out.println("online");
+
+		UserDto dto = (UserDto) session.getAttribute("user");
+		ProjectDto dto2 = biz.selectDetail(prNo);
+
+		int cash = dto.getUsCash();
+		int price = dto2.getPrPrice();
+
+		result = cash - price;
+		System.out.println(result);
+		model.addAttribute("result1", result);
+		model.addAttribute("dto", biz.selectDetail(prNo));
+
+		return "trade/onlinetrade";
+
+	}
+
+	@RequestMapping("direct.do")
+	public String Perchase(Model model, int prNo, int usNo, int loginUsNo, HttpSession session) {
+		System.out.println("direct");
+
+		UserDto dto = (UserDto) session.getAttribute("user");
+
+		String phone1 = dto.getUsPhone().substring(0, 3);
+
+		String phone2 = dto.getUsPhone().substring(4, 4);
+
+		String phone3 = dto.getUsPhone().substring(4, 4);
+		ProjectDto dto2 = biz.selectDetail(prNo);
+		model.addAttribute("dto", dto2);
+
+		System.out.println(dto.getUsPhone());
+		System.out.println(phone1);
+		System.out.println(phone2);
+		System.out.println(phone3);
+
+		model.addAttribute("phone", dto);
+
+		int cash = dto.getUsCash();
+		int price = dto2.getPrPrice();
+
+		result = cash - price;
+		System.out.println(result);
+		model.addAttribute("result1", result);
+
+		return "trade/directtrade";
+
+	}
+
 
 }
