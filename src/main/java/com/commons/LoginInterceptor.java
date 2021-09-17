@@ -11,7 +11,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
 
-        if (request.getRequestURI().contains("/category.do")
+        /*if (request.getRequestURI().contains("/category.do")
                 || request.getRequestURI().contains("Detail.do")
                 || request.getRequestURI().contains("main.do")
                 || request.getRequestURI().contains("loginform.do")
@@ -21,7 +21,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         } else if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/loginform.do");
             return false;
-        }
+        }*/
 //        전문가 등록을 눌렀을 때
             /*if (request.getRequestURI().contains("/talentform.do") &&
                     request.getSession().getAttribute("user") == null) {
