@@ -28,60 +28,118 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/reservation_seller.css"/>">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<c:url value="/resources/css/reservation_seller.css"/>"></script>
-<script>
+
+<!-- 캘린더 -->
+<link rel="stylesheet" href="<c:url value="/resources/fullcalendar-5.9.0/lib/main.css"/>">
+<script src="<c:url value="/resources/fullcalendar-5.9.0/lib/main.js"/>"></script>
+
+<script type="text/javascript">
+
+	$(function(){
+		
+		$.ajax({
+			url: "calendar.do",
+			type: "GET",
+			data:{
+				'prNo': ${calendar.prNo}
+			},
+			dataType:"json",
+			success: function(res){
+				console.log(res);
+				
+				var calendarEl = document.getElementById('calendar');
+				
+				var calendar = new FullCalendar.Calendar(calendarEl, {
+					events : res,
+					eventClick : function(info){
+						var scTitle = info.event.title;
+						var scStart = info.event.start;
+						var scEnd = info.event.end;
+
+						if(confirm(scTitle+"을 삭제하시겠습니까?")){
+							$.ajax({
+								url : "deleteSchedule.do",
+								type : "GET",
+								data : {
+									'scTitle' : scTitle,
+									'scStartDate' : scStart,
+									'scEndDate' : scEnd
+								},
+								success: function(res){
+									console.log(res);
+									alert("삭제되었습니다.");
+									location.reload();
+								},
+								error: function(){
+									alert("삭제 실패 ㅠ");
+								}
+							});															
+						}
+					},
+					eventTimeFormat: { 
+					    hour: '2-digit',
+					    minute: '2-digit',
+					    hour12: false
+					},
+				});
+				calendar.render();
+			},
+			error:function(){
+				alert("통신실패");
+			}
+		});
+		
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 </script>
 
 <body>
-<div class="container">
+<div class="container" style="width: 850px;">
     <div class="row">
-        <div class="sellerCalender col-9">
-            캘린더가 들어갈 예정입니다.
-        </div>
+        <div id="calendar" class="sellerCalender col-9"></div>
         <div class="col-3">
-            <button class="btn btn-outline-primary" id="calenderUpdate">수정 완료</button>
+            <button class="btn btn-outline-primary" id="calenderUpdate" onclick="window.close();">수정 완료</button>
             <br><br>
-            <button class="btn btn-outline-primary" id="closePop">닫기</button>
+            <button class="btn btn-outline-primary" id="closePop" onclick="window.close();">닫기</button>
         </div>
     </div>
-</div>
+
 <br>
 <div class="row">
     <div class="updateCalender col-9">
-        <form action="" method="post">
+        
+        <form action="insertSchedule.do" method="post">
+        	<input type="hidden" name="calNo" value="${calendar.calNo }" >
+        	<input type="hidden" name="prNo" value="${calendar.prNo }">
+			<input type="hidden" name="usNo" value="${calendar.usNo }">
+			        	
             <label>
-                <input type="checkbox" name="reservation_chk1" id="reservation_chk1">
-                <label>예약 일정 선택</label>
-                <label class="eventreservation1">* 선택하면 하루만 선택 가능합니다.</label>
+                <label class="reservation"><b>예약하기</b></label>
             </label>
             <br>
-            <div class="inputdate">
-                <input type="date" name="reserStartDate">
-                <label class="inputEndDate" id="inputEndDate1">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="date" name="reserEndDate"></label>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" class="btn btn-outline-dark" value="입력">
-            </div>
-        </form>
-        <hr class="hrClass1">
-        <br>
-        <form action="" method="post">
-            <label>
-                <input type="checkbox" name="reservation_chk2" id="reservation_chk2">
-                <label class="reservation"> 예약하기</label>
-                <label class="eventreservation2">* 선택하면 하루만 선택 가능합니다.</label>
-            </label>
+            <input type="text" name="scTitle" placeholder="예약자 이름" id="reserName">
             <br>
-            <input type="text" name="reserName" placeholder="예약자 이름" id="reserName">
-            <br>
-            <input type="date" name="reserStartDate">
+            <input type="date" name="scStart">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label class="inputEndDate" id="inputEndDate2">~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="date" name="reserEndDate">
+                <input type="date" name="scEnd">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input type="submit" class="btn btn-outline-dark" value="입력">
         </form>
+        
     </div>
+    
     <div class="col-3"></div>
 </div>
 </div>

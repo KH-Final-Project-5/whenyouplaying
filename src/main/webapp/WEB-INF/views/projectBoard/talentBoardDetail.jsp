@@ -116,6 +116,22 @@
             }
         });
     </script>
+    
+    
+    <script type="text/javascript">
+    	
+    	function appointChange(){
+
+    		var option = "width=800, height =884, top =30, left =100, location=no"
+                window.open("appointChange.do?prNo=${detail_dto.prNo}", "", option)
+    		
+    		
+    	}
+    
+    
+    
+    </script>
+    
 </head>
 
 
@@ -330,22 +346,21 @@
                             <input type="submit" value="직거래 구매" class="detail-button btn btn-outline-primary btn-lg"
                                    id="perchase-button2" formaction="direct.do" style="margin-left:200px">
 
-
-                            <!-- class를 detail-button3로 주었으며
-                                 로그인된 회원의 여부에 따라 class를 추가해줌으로 display를 조절하면 될 것 같아요   -->
-                            <!--구매자 일 경우-->
-                            <button onclick="" id="reserChk"
-                                    class="detail-button btn btn-outline-primary btn-lg detail-button3"
-                                    style="margin-left:555px;">예약확인
-                            </button>
-                            <!--판매자 일 경우-->
-                            <button onclick="" id="reserbtn" class="detail-button btn btn-outline-primary btn-lg"
-                                    style="margin-left:555px;">예약변경
-                            </button>
                         </div>
                     </div>
                     <!--거래방법을 통한 구매하기 submit-->
                 </form>
+				
+				<!-- 구매자 -->                            
+                <button onclick="" id="reserChk" class="detail-button btn btn-outline-primary btn-lg detail-button3" style="margin-left:555px;">예약확인</button>
+                         
+                            
+			    <button  id="reserbtn" class="detail-button btn btn-outline-primary btn-lg"
+                	style="margin-left:555px;" onclick="appointChange()">예약변경
+                </button>
+                            
+                            
+                            
                 <div class="row" id="button-div">
                     <div class="col-12">
                         <button onclick="location.href='ProjectUpdate.do?prNo=${detail_dto.prNo}'"

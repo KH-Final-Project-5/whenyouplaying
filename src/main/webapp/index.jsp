@@ -9,6 +9,7 @@
 <title>index</title>
 
 </head>
+
 <body>
 	
 	<c:redirect url="/main.do"/>

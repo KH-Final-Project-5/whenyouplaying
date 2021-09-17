@@ -80,45 +80,6 @@
         </div>
     </div>
     
-    
-    <script type="text/javascript">
-	  var naver_id_login = new naver_id_login("W8MZyypCFeeRj8en33yc", "http://localhost:8105/whenyouplay/main.do");
-	  	
-	  	var naver_email = null;
-	    var naver_name = null;
-	  // 네이버 사용자 프로필 조회
-	  naver_id_login.get_naver_userprofile("naverSignInCallback()");
-	  // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-	  function naverSignInCallback() {
-	    naver_email = naver_id_login.getProfileData('email');
-	    naver_name = naver_id_login.getProfileData('name');
-	    
-	    console.log(naver_email);
-	    console.log(naver_name);
-	    
-	  }
-	  
-	  
-	  $(function(){
-	    	$.ajax({
-	    		url : "naverLogin.do&naver_email="+naver_email,
-	    		type : "POST",
-	    		dataType : "json",
-	    		success : function(data){
-	    			
-	    			if(data.check==true){
-	    				location.href="main.do";
-	    			}
-	    			
-	    		}
-	    		
-	    		
-	    	})
-	    });
-	</script>
-	    
-	    
-	    
 	    
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>

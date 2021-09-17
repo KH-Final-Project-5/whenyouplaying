@@ -18,6 +18,8 @@
         <typeAlias type="com.dto.WithDrawDto" alias="withDrawDto"/>
         <typeAlias type="com.dto.NotificationDto" alias="notificationDto"/>
         <typeAlias type="com.dto.BankAccountDto" alias="bankAccountDto"/>
+        <typeAlias type="com.dto.ScheduleDto" alias="scheduleDto"/>
+        <typeAlias type="com.dto.CalendarDto" alias="calendarDto"/>
     </typeAliases>
 
     <mappers>

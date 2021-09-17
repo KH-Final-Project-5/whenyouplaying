@@ -2,18 +2,24 @@ package com.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.biz.ProjectBiz;
@@ -24,6 +30,7 @@ import com.commons.ScriptUtils;
 import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
 import com.dto.ReviewDto;
+import com.dto.ScheduleDto;
 import com.dto.UserDto;
 
 @Controller
@@ -53,10 +60,6 @@ public class ProjectController {
 
     @RequestMapping("/category.do")
     public String designProject(Model model, String prTalent, Criteria cri) throws Exception {
-        
-    	
-    	
-    	
     	
 
         logger.info("Select Category");
@@ -190,9 +193,16 @@ public class ProjectController {
 
         int res = biz.insertProject(dto);
 
-
         if (res > 0) {
-            ScriptUtils.alertAndMovePage(response, "입력 완료", "main.do");
+        	
+        	int resCal = biz.insertCalendar(dto);
+        	
+        	if(resCal>0) {
+        		ScriptUtils.alertAndMovePage(response, "입력 완료", "main.do");
+        	}else {
+        		ScriptUtils.alertAndMovePage(response, "입력 실패", "main.do");
+        	}
+        	
         } else {
             ScriptUtils.alertAndMovePage(response, "입력 실패", "main.do");
         }
@@ -352,6 +362,110 @@ public class ProjectController {
     	}
     }
    
+    
+    //일정페이지 이동
+    @RequestMapping("appointChange.do")
+    public String appointChange(Model model,int prNo) {
+    	
+    	model.addAttribute("calendar",biz.selectCalendar(prNo));
+    	
+    	return "seller/reservationyer_pop_seller";
+    }
+    
+    //일정 불러오기
+    @RequestMapping("calendar.do")
+    @ResponseBody
+    public List calendar(int prNo) {
+    		
+    	List<ScheduleDto> list = biz.scheduleList(prNo);
+    	
+    	List jArray = new ArrayList();
+    	
+    	for(int i=0; i< list.size(); i++) {
+    		
+    		JSONObject sObject = new JSONObject();
+    		sObject.put("title", list.get(i).getScTitle());
+    		sObject.put("start", list.get(i).getScStart());
+    		sObject.put("end", list.get(i).getScEnd());
+    		jArray.add(sObject);
+    		
+    	}
+    	
+    	return jArray;
+    	
+    }
+    
+    //날짜 +1
+    private static String AddDate(String strDate, int year, int month, int day) throws Exception { 
+    	SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd"); 
+    	
+    	Calendar cal = Calendar.getInstance(); 
+    	Date dt = dtFormat.parse(strDate); 
+    	cal.setTime(dt); cal.add(Calendar.YEAR, year); 
+    	cal.add(Calendar.MONTH, month); 
+    	cal.add(Calendar.DATE, day); 
+    	
+    	return dtFormat.format(cal.getTime()); 
+    }
+
+    
+    //일정 저장
+    @RequestMapping("insertSchedule.do")
+    public String insertSchedule(ScheduleDto dto) throws Exception {
+    	
+    	String scTitle = dto.getScTitle()+"님의 스케줄";
+    	
+    	String endDate = dto.getScEnd();
+    	
+    	String[] dateSplit = endDate.split("-");
+    	String date = dateSplit[0] + dateSplit[1] + dateSplit[2];
+    	
+    	String addDate = AddDate(date, 0, 0, 1);
+    	
+    	String year = addDate.substring(0,4);
+    	String mon = addDate.substring(4, 6);
+    	String day = addDate.substring(6);
+    	
+    	String finDate = year+"-"+mon+"-"+day;
+    	
+    	dto.setScEnd(finDate);
+    	
+    	dto.setScTitle(scTitle);
+    	
+    	int res = biz.insertSchedule(dto);
+    	
+    	if(res>0) {
+    		return "redirect:appointChange.do?prNo="+dto.getPrNo();
+    	}else {
+    		return "redirect:appointChange.do?prNo="+dto.getPrNo();
+    	}
+    	
+    }
+    
+    @RequestMapping("/deleteSchedule.do")
+    @ResponseBody
+    public String deleteSchedule(String scTitle, Date scStartDate, Date scEndDate) {
+    	
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	String scStart = dateFormat.format(scStartDate);
+    	String scEnd = dateFormat.format(scEndDate);
+    	
+    	ScheduleDto dto = new ScheduleDto();
+    	dto.setScTitle(scTitle);
+    	dto.setScStart(scStart);
+    	dto.setScEnd(scEnd);
+    	
+    	int res = biz.deleteSchedule(dto);
+    	
+    	if(res>0) {
+    		return "삭제 성공";
+    	}else {
+    		return "삭제 실패";
+    	}
+    	
+    }
+    
+    
     
 
 }

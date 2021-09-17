@@ -11,9 +11,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ScheduleDto {
+public class ScheduleDto extends CalendarDto{
 	private int scNo;
 	private String scTitle;
-	private Date scStart;
-	private Date scEnd;
+	private String scStart;
+	private String scEnd;
 }

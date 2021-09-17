@@ -125,22 +125,20 @@ WHERE PRTITLE LIKE '%'||#{prTitle}||'%'
 	
 	
 	<select id ="popularity" parameterType="ReviewDto" resultType="ReviewDto">
-<![CDATA[
-SELECT *
-FROM(
-SELECT *
-FROM(SELECT PRNO, COUNT(RVGRADE) w, TRUNC(AVG(RVGRADE),1) e 
-FROM W_REVIEW
-GROUP BY PRNO
-ORDER BY e DESC) c
-JOIN W_PROJECT d ON (c.PRNO = d.PRNO)
-ORDER BY c.e DESC
-) 
-WHERE ROWNUM <= 4
-]]>
-
+		<![CDATA[
+		SELECT *
+		FROM(
+		SELECT *
+		FROM(SELECT PRNO, COUNT(RVGRADE) w, TRUNC(AVG(RVGRADE),1) e 
+		FROM W_REVIEW
+		GROUP BY PRNO
+		ORDER BY e DESC) c
+		JOIN W_PROJECT d ON (c.PRNO = d.PRNO)
+		ORDER BY c.e DESC
+		) 
+		WHERE ROWNUM <= 4
+		]]>
 	</select>
-
 	
 	<update id="reviewUpdate" parameterType="ReviewDto" >
 		UPDATE W_REVIEW
@@ -153,4 +151,43 @@ WHERE ROWNUM <= 4
 		FROM W_REVIEW
 		WHERE RVNO=#{rvNo}
 	</delete>
+	
+	
+	<insert id="insertCalendar" parameterType="projectDto">
+		INSERT INTO W_CALENDAR
+		VALUES(CALSEQ.NEXTVAL, #{prNo}, #{usNo})
+	</insert>
+	
+	
+	<select id="scheduleList" parameterType="int" resultType="scheduleDto">
+		SELECT * FROM W_SCHEDULE
+		WHERE PRNO = #{prNo}
+	</select>
+	
+	<select id="selectCalendar" parameterType="int" resultType="calendarDto">
+		SELECT * FROM W_CALENDAR
+		WHERE PRNO = #{prNo}
+	</select>
+	
+	
+	<insert id="insertSchedule" parameterType="scheduleDto">
+		INSERT INTO W_SCHEDULE
+		VALUES(SCSEQ.NEXTVAL, #{calNo}, #{prNo}, #{usNo}, #{scTitle}, #{scStart}, #{scEnd})
+	</insert>
+	
+	<delete id="deleteSchedule" parameterType="scheduleDto">
+		DELETE FROM W_SCHEDULE
+		WHERE SCTITLE = #{scTitle}
+		  AND SCSTART = #{scStart}
+		  AND SCEND = #{scEnd}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
