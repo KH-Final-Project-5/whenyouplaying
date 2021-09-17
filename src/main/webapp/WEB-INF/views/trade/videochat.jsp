@@ -68,7 +68,7 @@
     <video id="remoteVideo" width="480px" autoplay></video>
 </div>
 
-<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+<script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script>
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 <script src="<c:url value="/resources/js/video.js"/>"></script>
 
