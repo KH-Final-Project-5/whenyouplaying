@@ -18,20 +18,66 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="<c:url value="/resources/css/reservation_buyer.css"/>">
-<script src="<c:url value="/resources/js/reservation_buyer.js"/>"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- 캘린더 -->
+<link rel="stylesheet" href="<c:url value="/resources/fullcalendar-5.9.0/lib/main.css"/>">
+<script src="<c:url value="/resources/fullcalendar-5.9.0/lib/main.js"/>"></script>
+
+<script type="text/javascript">
+
+	$(function(){
+		
+		$.ajax({
+			url:"calendar.do",
+			type: "GET",
+			data: {
+				'prNo': ${calendar.prNo}
+			},
+			dataType:"json",
+			success: function(res){
+				console.log(res);
+				
+				var calendarEl = document.getElementById('calendar');
+				
+				var calendar = new FullCalendar.Calendar(calendarEl, {
+					events : res,
+					eventTimeFormat: { 
+					    hour: '2-digit',
+					    minute: '2-digit',
+					    hour12: false
+					},
+				});
+				
+				calendar.render();
+			},
+			error: function(){
+				alert("통신실패");
+			}	
+			
+		});
+		
+	});
+
+
+
+</script>
+
+
+
 
 <body>
-<div class="container">
+
+<div class="container" style="width: 850px;">
     <div class="row">
-        <div class="buyCalender col-9">
-            캘린더가 들어갈 예정입니다.
-        </div>
+        <div id="calendar" class="sellerCalender col-9"></div>
         <div class="col-3">
-            <button class="btn btn-outline-primary" id="sendMessage">쪽지 보내기</button>
-            <br><br>
-            <button class="btn btn-outline-primary" id="closePop">닫기</button>
+            <button class="btn btn-outline-primary" id="closePop" onclick="window.close();">닫기</button>
         </div>
     </div>
 </div>
+
 </body>
 </html>
+
+
