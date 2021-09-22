@@ -41,8 +41,7 @@ public class DealController {
     @Autowired
     UserBiz biz1;
 
-    @Autowired
-    FtpClient ftpClient;
+    FtpClient ftpClient = new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
     @RequestMapping("/onlinetrade.do")
     public String OnlineTradeForm(Model model, DealStatusDto dto, HttpSession session) throws Exception {
@@ -76,6 +75,8 @@ public class DealController {
 
         return "redirect:buylist.do?usNo=" + dto1.getUsNo() + "&finStatus=1";
     }
+
+
 
     @RequestMapping("/directtrade.do")
     public String DirectTradeForm(Model model, DealStatusDto dto, HttpSession session, String tradePhone_1, String tradePhone_2, String tradePhone_3) throws Exception {

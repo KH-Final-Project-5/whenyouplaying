@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.commons.Criteria;
 import com.dao.ProjectDao;
+import com.dto.CalendarDto;
 import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
 import com.dto.ReviewDto;
+import com.dto.ScheduleDto;
 import com.dto.UserDto;
 
 @Service
@@ -31,13 +33,6 @@ public class ProjectBizImpl implements ProjectBiz{
 		// TODO Auto-generated method stub
 		return dao.listCount();
 	}
-
-
-	
-	
-	
-	
-	
 	
 	@Override
 	public ProjectDto selectDetail(int prNo) {
@@ -45,27 +40,11 @@ public class ProjectBizImpl implements ProjectBiz{
 		return dao.selectDetail(prNo);
 	}
 
-
-
-
-
-
-
-
-
 	@Override
 	public int insertProject(ProjectDto dto) {
 		
 		return dao.insertProject(dto);
 	}
-
-
-
-
-
-
-
-
 
 	@Override
 	public int updateProject(ProjectDto dto) {
@@ -73,27 +52,11 @@ public class ProjectBizImpl implements ProjectBiz{
 		return dao.updateProject(dto);
 	}
 
-
-
-
-
-
-
-
-
 	@Override
 	public int deleteProject(int prNo) {
 		// TODO Auto-generated method stub
 		return dao.deleteProject(prNo);
 	}
-
-
-
-
-
-
-
-
 
 	@Override
 	public UserDto selectSession(int usNo) {
@@ -164,6 +127,36 @@ public class ProjectBizImpl implements ProjectBiz{
 	public List<ProjectDto> prSearch(ProjectDto dto,Criteria cri) {
 		
 		return dao.prSearch(dto, cri);
+	}
+
+
+	@Override
+	public int insertCalendar(ProjectDto dto) {
+		return dao.insertCalendar(dto);
+	}
+
+
+	@Override
+	public List<ScheduleDto> scheduleList(int prNo) {
+		return dao.scheduleList(prNo);
+	}
+
+
+	@Override
+	public int insertSchedule(ScheduleDto dto) {
+		return dao.insertSchedule(dto);
+	}
+
+
+	@Override
+	public CalendarDto selectCalendar(int prNo) {
+		return dao.selectCalendar(prNo);
+	}
+
+
+	@Override
+	public int deleteSchedule(ScheduleDto dto) {
+		return dao.deleteSchedule(dto);
 	}
 
 	

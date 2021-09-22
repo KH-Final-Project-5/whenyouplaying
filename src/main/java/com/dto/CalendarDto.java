@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CalendarDto {
+public class CalendarDto extends ProjectDto{
     private int calNo;
 }

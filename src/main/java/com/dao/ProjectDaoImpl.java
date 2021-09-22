@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.commons.Criteria;
+import com.dto.CalendarDto;
 import com.dto.FinishDealDto;
 import com.dto.ProjectDto;
 import com.dto.ReviewDto;
+import com.dto.ScheduleDto;
 import com.dto.UserDto;
 
 @Repository
@@ -262,6 +264,81 @@ public class ProjectDaoImpl implements ProjectDao {
 			
 		}
 		return list;
+	}
+
+	@Override
+	public int insertCalendar(ProjectDto dto) {
+
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE+"insertCalendar", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : insertCalendar에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public List<ScheduleDto> scheduleList(int prNo) {
+		
+		List<ScheduleDto> list = new ArrayList<ScheduleDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE+"scheduleList", prNo);
+		} catch (Exception e) {
+			System.out.println("[error] : scheduleList 에러");
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public int insertSchedule(ScheduleDto dto) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE+"insertSchedule", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : insertSchedule 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public CalendarDto selectCalendar(int prNo) {
+		
+		CalendarDto res = null;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"selectCalendar", prNo);
+		} catch (Exception e) {
+			System.out.println("[error] : selectCalendar 에러");
+			e.printStackTrace(); 
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int deleteSchedule(ScheduleDto dto) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE+"deleteSchedule", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : deleteSchedule 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 	
 

@@ -210,8 +210,8 @@
             </div>
             <div class="msgButton">
                 <br>
-                <button class="btn btn-outline-primary btn-lg resendbtn" id="" onclick="mesPopup(this);">답장</button>
-                <button class="btn btn-outline-primary btn-lg delbtn" style="margin-left: 50px" id="" onclick="mesDel(this)">삭제</button>
+                <button class="btn btn-outline-primary btn-lg resendbtn"  onclick="mesPopup(this);">답장</button>
+                <button class="btn btn-outline-primary btn-lg delbtn" style="margin-left: 50px" onclick="mesDel(this)">삭제</button>
             </div>
         </div>
 
@@ -224,6 +224,5 @@
 <footer>
     <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
 </footer>
-</div>
 </body>
 </html>
