@@ -12,7 +12,7 @@
 <html>
 <head>
 
-    <title>Login Page</title>
+    <title>Login Page</title>	
     <!--Made with love by Mutiullah Samim -->
 
     <!-- bootstrap css -->
@@ -93,7 +93,6 @@
 		
 		function kakaoLogin() {
 		    Kakao.Auth.login({
-		    	scope:'	profile_nickname'
 		      success: function (response) {
 		        Kakao.API.request({
 		          url: '/v2/user/me',
@@ -176,17 +175,16 @@
                 
               	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
 
-            <ul>
+<ul>
 	<li onclick="kakaoLogin();">
       <a href="javascript:void(0)">
           <span>카카오 로그인</span>
       </a>
-      <li onclick="kakaoLogout();">
+	</li>
+	<li onclick="kakaoLogout();">
       <a href="javascript:void(0)">
           <span>카카오 로그아웃</span>
       </a>
-	</li>
-      
 	</li>
 </ul>
 
