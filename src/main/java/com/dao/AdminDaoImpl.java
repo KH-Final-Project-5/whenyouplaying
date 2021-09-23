@@ -76,7 +76,7 @@ public class AdminDaoImpl implements AdminDao{
 			e.printStackTrace();
 		}
 		
-		return 0;
+		return res;
 	}
 
 	@Override

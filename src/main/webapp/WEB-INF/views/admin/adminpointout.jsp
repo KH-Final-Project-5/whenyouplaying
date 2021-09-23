@@ -117,7 +117,7 @@
 
             <div id="menuList">
                 <br>
-                <span class="menuText"><a class="adA" href="noticeListAdmin.do">공지 사항</a></span><br><br>
+                <span class="menuText"><a class="adA" href="noticemainadmin.do?usNo=${user.usNo }">공지 사항</a></span><br><br>
                 <span class="menuText"><a class="adA" href="abilitymain.do">재능 기부 승인</a></span><br><br>
                 <span class="menuText"><a class="adA" href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
                 <span class="menuText"><a class="adA" href="userManage.do">회원 목록 확인</a></span><br><br>

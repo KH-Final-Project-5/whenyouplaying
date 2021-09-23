@@ -108,14 +108,14 @@ public class AdminController {
     
     //기부처 등록
     @RequestMapping("/insertdonate.do")
-    public String insertDonate(String doName) {
+    public void insertDonate(String doName, HttpServletResponse response) throws IOException {
     	
     	int res = biz.insertDonate(doName);
     	
     	if(res>0) {
-    		return "redirect:adminpointout.do";
+    		ScriptUtils.alertAndMovePage(response, "기부처가 등록되었습니다", "adminpointout.do");
     	}else {
-    		return "redirect:adminpointout.do";
+    		ScriptUtils.alertAndMovePage(response, "기부처 등록 실패", "adminpointout.do");
     	}
     	
     }
@@ -135,14 +135,14 @@ public class AdminController {
     
     //등록된 기부처 삭제
     @RequestMapping("/deletedonate.do")
-    public String deleteDonate(int doNo) {
+    public void deleteDonate(int doNo, HttpServletResponse response) throws IOException {
     	
     	int res = biz.deleteDonate(doNo);
     	
     	if(res>0) {
-    		return "redirect:donatelist.do";
+    		ScriptUtils.alertAndMovePage(response, "기부처가 삭제되었습니다.", "donatelist.do");
     	}else {
-    		return "redirect:donatelist.do";
+    		ScriptUtils.alertAndMovePage(response, "기부처 삭제 실패", "donatelist.do");
     	}
     	
     }

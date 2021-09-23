@@ -68,7 +68,8 @@
 	                <span class="menuText"><a class="menuText noA" href="abilitymain.do">재능 기부 승인</a></span><br><br>
 	                <span class="menuText"><a class="menuText noA" href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
 	                <span class="menuText"><a class="menuText noA" href="userManage.do">회원 목록 확인</a></span><br><br>
-	                <span class="menuText"><a class="menuText noA" href="adminpointout.do">기부 캐쉬 출금</a></span><br><br>
+	                <span class="menuText"><a class="menuText noA" href="adminpointout.do">관리자 출금 관리</a></span><br><br>
+	                <span class="menuText"><a class="menuText noA" href="donatelist.do">기부처 관리</a></span><br><br>
 	            </div>
 	        </div>
 	
