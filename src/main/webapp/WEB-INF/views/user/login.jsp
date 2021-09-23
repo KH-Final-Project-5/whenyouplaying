@@ -48,6 +48,7 @@
 		
 	<!-- 카카오톡 소셜 로그인 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  
+	
 	<script type="text/javascript">
 		
 		function onSignIn(googleUser) {
@@ -93,8 +94,12 @@
 
 		
 
+	</script>  
+	
+	<script type="text/javascript">
+	
 		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');	
-		//window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');
+
 		function kakaoLogin() {
 		    window.Kakao.Auth.login({
 		    	scope: 'profile_nickname,account_email',
@@ -135,8 +140,9 @@
 		      })
 		      Kakao.Auth.setAccessToken(undefined)
 		    }
-		  }  
-	</script>  
+		  }
+	
+	</script>
 
 	
 	<!-- 네이버 스크립트 -->
@@ -181,20 +187,7 @@
                 
                 <!-- 구글 로그인 -->
               	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
-
-
-      <a href="javascript:kakaoLogin()">
-          <span>카카오 로그인</span>
-      </a>
-      
-<ul>
-	<li onclick="kakaoLogout();">
-      <a href="javascript:void(0)">
-          <span>카카오 로그아웃</span>
-      </a>
-	</li>
-</ul>
-
+				
 	            <ul>
 					<li onclick="kakaoLogin();">
 				      <a href="javascript:void(0)">
@@ -206,8 +199,6 @@
 				      </a>
 				      
 				</ul>
-
-
 				
 				<!-- 네이버 로그인 창으로 이동 -->
 			<div id="naver_id_login" style="text-align:center; margin-top:15px; margin-right:60px;">
