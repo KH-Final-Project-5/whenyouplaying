@@ -162,10 +162,14 @@ public class ProjectController {
                 new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
         String filename = null;
-
+        
+        
+        
         //dto안에 들어있는 file을 가져오고
         MultipartFile multiFile = dto.getPrImage2();
-
+        
+        
+        if(multiFile.getSize() > 0) {
         //파일 real이름을 filename 변수에 저장
         filename = multiFile.getOriginalFilename();
 
@@ -182,9 +186,11 @@ public class ProjectController {
 
         ftpClient.upload(file, filename, dto.getUsId());
 
-
+        }else {
+        	dto.setPrImage("a");
+        }
         int res = biz.insertProject(dto);
-
+        
         if (res > 0) {
         	
         	int resCal = biz.insertCalendar(dto);
