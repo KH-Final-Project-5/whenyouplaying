@@ -53,8 +53,6 @@
 		
 		function onSignIn(googleUser) {
 			  var profile = googleUser.getBasicProfile();
-			  console.log(profile);
-			  console.log("test");
 			  
 			  var googleId = profile.getEmail();
 			  var googlePw = profile.getId();
@@ -208,8 +206,6 @@
 			</div>
 			
 			<br>
-			
-
 
 					
 				<div id="getTest"></div>
