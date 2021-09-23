@@ -204,19 +204,19 @@
                         <table>
                         	<tr>
                             	<td>
-                                <input type="usPhone" style="width: 65px" class="form-control" required name="usPhone1" value="<%=usPhone1 %>" maxlength="3">
+                                <input type="usPhone" style="width: 65px" class="form-control" required name="usPhone1" value="<%=usPhone1 %>">
                             	</td>
                             	<td>
                             	-
                             	</td>
                             	<td>
-                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone2" value="<%=usPhone2 %>" maxlength="4"> 
+                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone2" value="<%=usPhone2 %>"> 
                                 </td>
                                	<td>
                             	-
                             	</td>
                                 <td>
-                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone3" value="<%=usPhone3 %>" maxlength="4">
+                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone3" value="<%=usPhone3 %>">
 								</td>
 							</tr>                          
                         </table>

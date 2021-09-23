@@ -36,6 +36,15 @@
 
     <script>
         $(function () {
+
+            $('#applyBtn').click(function () {
+                $("#refuseContent").val($("#refuseContent").val().replace(/(?:\r\n|\r|\n)/g, '<br />'));
+
+                $("#abilitynego").submit();
+
+            });
+
+
             var abstatus = '${dto.abStatus}';
             if (abstatus == "승인 대기") {
                 $('.btna').show();
@@ -195,7 +204,7 @@
     <br><br><br>
     <!--거절사유-->
     <div id="refuse">
-        <form action="abilitynega.do" method="post">
+        <form action="abilitynega.do" method="post" id="abilitynego">
             <h2>거절사유</h2><br>
 
             <textarea rows="10" name="mesContents" id="refuseContent"></textarea><br>
@@ -205,7 +214,7 @@
 
 
             <input type="button" value="취소" onclick="closeWin();" id="cancelBtn" class="btn btn-outline-primary">
-            <input type="submit" value="확인" id="applyBtn" class="btn btn-outline-primary">
+            <input type="button" value="확인" id="applyBtn" class="btn btn-outline-primary">
 
 
         </form>
