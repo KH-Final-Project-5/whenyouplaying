@@ -190,11 +190,16 @@
 
 <%
 					UserDto userDto = (UserDto)session.getAttribute("user");
-					String usPhone = userDto.getUsPhone();
 					
-					String usPhone1 = usPhone.substring(0, 3);
-					String usPhone2 = usPhone.substring(3, 7);
-					String usPhone3	= usPhone.substring(7);
+						String usPhone = userDto.getUsPhone();
+					
+						String usPhone1 = usPhone.substring(0, 3);
+						String usPhone2 = usPhone.substring(3, 7);
+						String usPhone3	= usPhone.substring(7);
+					
+					
+					
+					
 
 %>
                     <div class="mb-3">
