@@ -53,12 +53,8 @@
 		
 		function onSignIn(googleUser) {
 			  var profile = googleUser.getBasicProfile();
-<<<<<<< HEAD
 			  console.log(profile);
-			  console.log("test");	
-=======
->>>>>>> 3d7e3c1a103595978a7182042ba46a68cadea5a1
-			  
+			  console.log("test");	  
 			  var googleId = profile.getEmail();
 			  var googlePw = profile.getId();
 			  var googleName = profile.getName();
