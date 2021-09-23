@@ -71,7 +71,7 @@
                   <a class="mainNewLink" href="Detail.do?prNo=${pr_dto2.prNo }"><img class="mainNewImg" src="${pr_dto2.prImage}"/></a><br>
                 <a class="mainNewLink" href="Detail.do?prNo=${pr_dto2.prNo }">${pr_dto2.prTitle }</a>
                 <br>
-                <img class="mainStarImg" src=""/>
+                <img class="mainStarImg" src="<c:url value="/resources/img_header/starimg.png"/>"/>
                 <label class="mainStarLabel">${pr_dto2.e}</label><br>
                 <label class="mainRating">${pr_dto2.w}개의 평가</label>
             </div>

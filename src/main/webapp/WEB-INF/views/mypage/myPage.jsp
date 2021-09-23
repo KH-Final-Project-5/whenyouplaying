@@ -25,7 +25,15 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        /*let talent = '${user.usTalent}';
+        $(function () {
+            if (talent == 'N') {
+                $('.sellList').hide();
+            }
+        });*/
+    </script>
 
 </head>
 <body>
@@ -60,7 +68,7 @@
                 </div>
 
                 <div class="col-8">
-                    <p>[사이트명]에서 가입한<br>회원정보를 수정<br>할 수 있습니다.<br>
+                    <p>놀면뭐하니에서 가입한<br>회원정보를 수정<br>할 수 있습니다.<br>
 
                 </div>
 
@@ -86,7 +94,6 @@
 
         <!--두번째 줄-->
         <div class="row">
-
             <div class="col-4">
                 <div class="col-8">
                     <a href="buylist.do?usNo=${user.usNo }&finStatus=1"><img
@@ -95,15 +102,12 @@
                 <div class="col-8">
                     <a class="myA" href="buylist.do?usNo=${user.usNo }&finStatus=1"><b>재능 구매 내역</b></a>
                 </div>
-
                 <div class="col-8">
                     <p>회원님의 재능 구매 내역을<br>확인 할 수 있습니다.<br>
-
                 </div>
-
-
             </div>
-            <div class="col-4">
+
+            <div class="col-4 sellList">
                 <div class="col-8">
                     <a href="selllist.do?usNo=${user.usNo }&finStatus=거래취소"><img
                             src="<c:url value="/resources/img_mypage/sell.png"/>"></a>

@@ -232,16 +232,6 @@
                             <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
                                             height="35"></a>
                         </div>
-
-                        <div class="rec">
-                            <button class="btn btn-primary">전문가 추천</button>
-                        </div>
-
-                        <div class="enroll">
-                            <button class="btn btn-primary enroll2"
-                                    onclick="location.href='talentform.do'">전문가 등록
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -333,10 +323,6 @@
                                             height="35"></a>
                         </div>
 
-                        <div class="rec">
-                            <button class="btn btn-primary">전문가 추천</button>
-                        </div>
-
                         <div class="enroll">
                             <button class="btn btn-primary enroll2"
                                     onclick="location.href='talentform.do'">전문가 등록
@@ -421,14 +407,10 @@
                                                 height="35"></a>
                             </div>
 
-                            <div class="rec">
-                                <button class="btn btn-primary">전문가 추천</button>
-                            </div>
                         </div>
                     </form>
                 </div>
             </div>
-
             <div class="row">
                 <div class="categoryArea">
                     <ul class="list-group list-group-horizontal flex-fill listArea">
