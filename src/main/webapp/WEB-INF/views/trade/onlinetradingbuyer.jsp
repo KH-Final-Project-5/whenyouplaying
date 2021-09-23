@@ -32,9 +32,6 @@
     writer = '${user.usId}';
     dealNo = '${dto.dealNo}';
     buyer = '${dto.usId}';
-    $(function () {
-
-    });
 </script>
 
 

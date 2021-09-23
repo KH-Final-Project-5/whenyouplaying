@@ -39,13 +39,14 @@
             <c:otherwise>
             <c:forEach var="mesList" items="${mesList}">
             var a = '${mesList.mesContents}';
+
             if (a.length > 10) {
                 a = a.substring(0, 15);
                 console.log(a.substring(0, 8));
                 a += "  ...";
-                $('.mescontents${mesList.mesNo}').text(a);
+                $('.mescontents${mesList.mesNo}').html(a);
             } else {
-                $('.mescontents${mesList.mesNo}').text(a);
+                $('.mescontents${mesList.mesNo}').html(a);
             }
             </c:forEach>
             </c:otherwise>
@@ -78,7 +79,7 @@
             })
 
             $('#sendName').text(name);
-            $('#msgContents').text(contents);
+            $('#msgContents').html(contents);
             $('#sendDate').text(date);
         }
 

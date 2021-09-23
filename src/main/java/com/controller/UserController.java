@@ -336,14 +336,7 @@ public class UserController {
 
         return "user/regiGoogle";
     }
-    @RequestMapping("regiKakao.do")
-    public String regiKakao(Model model, UserDto dto) {
-    	
-    	model.addAttribute("kakao", dto);
-    	
-    	return "user/regiKakao";
-    }
-
+    
     @RequestMapping("/logout.do")
     public String logout(HttpSession session) {
         session.invalidate();

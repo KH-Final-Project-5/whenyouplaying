@@ -78,7 +78,7 @@
         });
     }
 
-    function connectStopm(dealNo, buyer) {
+    function connectStopm(dealNo) {
         const ws = new SockJS("/stompTest");
         var client = Stomp.over(ws);
         isStomp = true;
@@ -92,7 +92,10 @@
             client.subscribe('/topic/message/'+dealNo+"/"+writer , function (event) {
                 var content = JSON.parse(event.body).content;
                 var user = JSON.parse(event.body).writer;
-                $('#chatul').append('<li class="left"><b>' + user + "</b></li>");
+                var cal = JSON.parse(event.body).cal;
+
+                $('#chatul').append('<li class="left"><b>' + user + "</b>&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    cal + "</li>");
                 $('#chatul').append('<li class="left">' + content + "</li>");
                 $('#chatArea').val("");
                 $('.chat')

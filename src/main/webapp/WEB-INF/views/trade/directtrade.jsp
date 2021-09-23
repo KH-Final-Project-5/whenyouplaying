@@ -180,12 +180,12 @@
                                 <tr>
                                     <td class="nameClass">전화번호&nbsp;&nbsp;&nbsp;</td>
                                     <td><input type="text" class="tradePhone"
-                                               id="tradePhone_1" value="" name="tradePhone_1">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+                                               id="tradePhone_1" value="" name="tradePhone_1" maxlength="3">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
 
                                         <input type="text" class="tradePhone" id="tradePhone_2"
-                                               value="" name="tradePhone_2">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+                                               value="" name="tradePhone_2" maxlength="4">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
                                         <input type="text" class="tradePhone" id="tradePhone_3"
-                                               value="" name="tradePhone_3"></td>
+                                               value="" name="tradePhone_3" maxlength="4"></td>
                                 </tr>
                                 <tr>
                                     <td class="nameClass">주소&nbsp;&nbsp;&nbsp;</td>

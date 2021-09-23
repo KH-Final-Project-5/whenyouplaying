@@ -54,22 +54,22 @@
     <script type="text/javascript">
 
 
-            //구글 로그인 세션 취소
-            function signOut() {
-                var auth2 = gapi.auth2.getAuthInstance();
-                auth2.signOut().then(function () {
-                    console.log('User signed out');
-                    location.href = "logout.do";
-                });
-                auth2.disconnect();
+        //구글 로그인 세션 취소
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out');
+                location.href = "logout.do";
+            });
+            auth2.disconnect();
 
-            }
+        }
 
-            function onLoad() {
-                gapi.load('auth2', function () {
-                    gapi.auth2.init();
-                });
-            }
+        function onLoad() {
+            gapi.load('auth2', function () {
+                gapi.auth2.init();
+            });
+        }
 
     </script>
 
@@ -175,7 +175,7 @@
                     if (rsp.success) {
                         $.ajax({
                             type: "post",
-                            url:"charge.do?usNo=${user.usNo}&usCash=" +rsp.paid_amount+"&pay_method="+rsp.pay_method,
+                            url: "charge.do?usNo=${user.usNo}&usCash=" + rsp.paid_amount + "&pay_method=" + rsp.pay_method,
                             success: function () {
                                 alert("충전이 완료되었습니다.");
                                 location.reload();
@@ -222,7 +222,7 @@
                             <span class="input-group-text" style="padding: 0px;"><img
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
-                        <form action="prsearch.do">
+                        <form action="prsearch.do" method="post">
                             <input type="search" class="searchBar" name="prTitle">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                         </form>
@@ -231,16 +231,6 @@
                         <div class="mic">
                             <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
                                             height="35"></a>
-                        </div>
-
-                        <div class="rec">
-                            <button class="btn btn-primary">전문가 추천</button>
-                        </div>
-
-                        <div class="enroll">
-                            <button class="btn btn-primary enroll2"
-                                    onclick="location.href='talentform.do'">전문가 등록
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -297,7 +287,10 @@
                         <button id="payCharge" class="btn btn-outline-primary btn-sm rounded-pill marginNav">
                             충전
                         </button>
-                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav">출금</button>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill marginNav"
+                                onclick="location.href='' +
+                                        'pointdeposituser.do?usNo=${user.usNo }'">출금
+                        </button>
                         |
                         <a href="mypage.do?usNo=${user.usNo }" class="navA">MY PAGE</a>
                         |
@@ -318,9 +311,9 @@
                             <span class="input-group-text" style="padding: 0px;"><img
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
-                        <form action="">
+                        <form action="prsearch.do" method="post">
 
-                            <input type="search" class="searchBar" name="search">
+                            <input type="search" class="searchBar" name="prTitle">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                         </form>
 
@@ -328,10 +321,6 @@
                         <div class="mic">
                             <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
                                             height="35"></a>
-                        </div>
-
-                        <div class="rec">
-                            <button class="btn btn-primary">전문가 추천</button>
                         </div>
 
                         <div class="enroll">
@@ -405,12 +394,12 @@
             </div>
             <div class="row">
                 <div class="searchArea">
-                    <form action="">
+                    <form action="prsearch.do" method="post">
                         <div class="input-group input-group mb-3 ">
                             <span class="input-group-text" style="padding: 0px;"><img
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
-                            <input type="search" class="searchBar" name="search">
+                            <input type="search" class="searchBar" name="prTitle">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
 
                             <div class="mic">
@@ -418,14 +407,10 @@
                                                 height="35"></a>
                             </div>
 
-                            <div class="rec">
-                                <button class="btn btn-primary">전문가 추천</button>
-                            </div>
                         </div>
                     </form>
                 </div>
             </div>
-
             <div class="row">
                 <div class="categoryArea">
                     <ul class="list-group list-group-horizontal flex-fill listArea">

@@ -13,4 +13,6 @@ public class ChatSeller {
     private String buyer;
     private int dealNo;
     private String content;
+    private String cal;
+
 }

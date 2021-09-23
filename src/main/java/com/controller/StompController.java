@@ -38,12 +38,14 @@ public class StompController {
         File file = ftpClient.downloadTxt(deal, dir);
 
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(deal + ".txt", true)))) {
-            out.println("<li class=\"left\"><b>" + seller.getWriter() + "</b></li>");
+            out.println("<li class=\"left\"><b>" + seller.getWriter() + "</b>&nbsp;&nbsp;&nbsp;&nbsp;" +
+                    seller.getCal() + "</li>");
             out.println("<li class=\"left\">" + seller.getContent() + "</li>");
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
         }
         ftpClient.uploadTxt(file, deal + ".txt");
+        System.out.println(seller.getCal());
 
         file.delete();
 

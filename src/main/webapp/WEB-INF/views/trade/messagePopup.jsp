@@ -30,14 +30,15 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
 
     <script>
+        let usSendId = '${user.usId}';
+        let usNo = '${popupDto.usNo}';
         $(function () {
             $('#msg-submit').click(function () {
 
-                var form1 = $('#mesForm').serialize();
+                let mesContents = $("#mesContents").val().replace(/(?:\r\n|\r|\n)/g, '<br />');
 
+                let form1 = {usSendId: usSendId, usNo: usNo, mesContents: mesContents};
 
-
-                console.log(form1);
 
                 $.ajax({
                     type: "post",
@@ -63,39 +64,38 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form action="" id="mesForm">
-                <input type="hidden" value="${user.usId}" name="usSendId">
-                <input type="hidden" value="${popupDto.usNo}" name="usNo">
-                <table>
-                    <tr>
-                        <th>보내는이 :</th>
-                        <td><input type="text" value="${user.usId}" class="msgPop-input"
-                                   readonly="readonly">
-                        </td>
-                    </tr>
+            <input type="hidden" value="${user.usId}" name="usSendId">
+            <input type="hidden" value="${popupDto.usNo}" name="usNo">
+            <table>
+                <tr>
+                    <th>보내는이 :</th>
+                    <td><input type="text" value="${user.usId}" class="msgPop-input"
+                               readonly="readonly">
+                    </td>
+                </tr>
 
-                    <tr>
-                        <th>받는이 :</th>
-                        <td><input type="text" value="${popupDto.usId}" readonly class="msgPop-input"></td>
-                    </tr>
+                <tr>
+                    <th>받는이 :</th>
+                    <td><input type="text" value="${popupDto.usId}" readonly class="msgPop-input"></td>
+                </tr>
 
-                    <tr>
-                        <th>메시지:</th>
-                        <td><textarea cols="40" rows="20" name="mesContents" class="text-area"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <input class="btn btn-outline-primary btn-sm msg-button" id="msg-submit" type="button"
-                                   value="보내기">
-                            <button class="btn btn-outline-primary btn-sm msg-button" onclick="window.close()"
-                                    id="msg-button">
-                                취소
-                            </button>
-                        </td>
+                <tr>
+                    <th>메시지:</th>
+                    <td><textarea cols="40" id="mesContents" rows="20" name="mesContents"
+                                  class="text-area"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="btn btn-outline-primary btn-sm msg-button" id="msg-submit" type="button"
+                               value="보내기">
+                        <button class="btn btn-outline-primary btn-sm msg-button" onclick="window.close()"
+                                id="msg-button">
+                            취소
+                        </button>
+                    </td>
 
-                    </tr>
-                </table>
-            </form>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

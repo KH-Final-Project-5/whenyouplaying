@@ -90,7 +90,20 @@ public class ProjectController {
     public String ProjectDetail(Model model, int prNo) {
 
         logger.info("Detail test");
-        model.addAttribute("detail_dto", biz.selectDetail(prNo));
+        ProjectDto dto = biz.selectDetail(prNo);
+        String youtube = dto.getPrYoutube();
+        
+        int idx = youtube.indexOf("=");
+        
+        String youtube2 = youtube.substring(idx+1);
+        dto.setPrYoutube(youtube2);
+        System.out.println(dto.getPrYoutube());
+        
+        
+      
+        
+        
+        model.addAttribute("detail_dto", dto);
         
         //리뷰 뿌려주기
         model.addAttribute("review",biz.reviewSelect(prNo));
@@ -149,10 +162,14 @@ public class ProjectController {
                 new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
         String filename = null;
-
+        
+        
+        
         //dto안에 들어있는 file을 가져오고
         MultipartFile multiFile = dto.getPrImage2();
-
+        
+        
+        if(multiFile.getSize() > 0) {
         //파일 real이름을 filename 변수에 저장
         filename = multiFile.getOriginalFilename();
 
@@ -169,9 +186,11 @@ public class ProjectController {
 
         ftpClient.upload(file, filename, dto.getUsId());
 
-
+        }else {
+        	dto.setPrImage("a");
+        }
         int res = biz.insertProject(dto);
-
+        
         if (res > 0) {
         	
         	int resCal = biz.insertCalendar(dto);

@@ -190,11 +190,16 @@
 
 <%
 					UserDto userDto = (UserDto)session.getAttribute("user");
-					String usPhone = userDto.getUsPhone();
 					
-					String usPhone1 = usPhone.substring(0, 3);
-					String usPhone2 = usPhone.substring(3, 7);
-					String usPhone3	= usPhone.substring(7);
+						String usPhone = userDto.getUsPhone();
+					
+						String usPhone1 = usPhone.substring(0, 3);
+						String usPhone2 = usPhone.substring(3, 7);
+						String usPhone3	= usPhone.substring(7);
+					
+					
+					
+					
 
 %>
                     <div class="mb-3">
@@ -204,19 +209,19 @@
                         <table>
                         	<tr>
                             	<td>
-                                <input type="usPhone" style="width: 65px" class="form-control" required name="usPhone1" value="<%=usPhone1 %>">
+                                <input type="usPhone" style="width: 65px" class="form-control" required name="usPhone1" value="<%=usPhone1 %>" maxlength="3">
                             	</td>
                             	<td>
                             	-
                             	</td>
                             	<td>
-                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone2" value="<%=usPhone2 %>"> 
+                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone2" value="<%=usPhone2 %>" maxlength="4"> 
                                 </td>
                                	<td>
                             	-
                             	</td>
                                 <td>
-                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone3" value="<%=usPhone3 %>">
+                                <input type="usPhone" style="width: 65px" class="form-control"  required name="usPhone3" value="<%=usPhone3 %>" maxlength="4">
 								</td>
 							</tr>                          
                         </table>
