@@ -31,10 +31,16 @@
 
     <!--  <script src="<c:url value="/resources/js/messagePopup.js"/>"></script> -->
     <script>
+        var userid = '${user.usId}';
 
         function messagePopup() {
-            var option = "width=800, height =1000, top =100, left =200,location=no"
-            window.open("popup.do?prNo=${detail_dto.prNo}", "", option)
+            if (userid == null || userid == "null" || userid == "") {
+                location.href = 'loginform.do';
+            } else {
+                var option = "width=800, height =1000, top =100, left =200,location=no";
+                window.open("popup.do?prNo=${detail_dto.prNo}", "", option)
+            }
+
         }
 
         function reportPopup() {
