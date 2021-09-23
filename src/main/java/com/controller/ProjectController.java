@@ -243,7 +243,19 @@ public class ProjectController {
     		ScriptUtils.alertAndMovePage(response, "리뷰 삭제 실패", "Detail.do?prNo="+prNo);
     	}
     }
-   
+
+    //일정페이지 이동(구매자)
+    @RequestMapping("appointCheck.do")
+    public String appointCheck(Model model, int prNo) {
+    	
+    	model.addAttribute("calendar", biz.selectCalendar(prNo));
+    	
+    	return "buyer/reservationyer_pop_buyer";
+    	
+    }
+    
+    
+    
     //일정페이지 이동
     @RequestMapping("appointChange.do")
     public String appointChange(Model model,int prNo) {
@@ -252,6 +264,7 @@ public class ProjectController {
     	
     	return "seller/reservationyer_pop_seller";
     }
+    
     
     //일정 불러오기
     @RequestMapping("calendar.do")

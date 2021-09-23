@@ -82,6 +82,7 @@
 					    hour12: false
 					},
 				});
+				
 				calendar.render();
 			},
 			error:function(){
@@ -90,17 +91,6 @@
 		});
 		
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 </script>
 

@@ -128,9 +128,17 @@
     	
     	function appointChange(){
 
-    		var option = "width=800, height =884, top =30, left =100, location=no"
-                window.open("appointChange.do?prNo=${detail_dto.prNo}", "", option)
+    		var option = "width=800, height =884, top =30, left =100, location=no";
+                window.open("appointChange.do?prNo=${detail_dto.prNo}", "", option);
     		
+    		
+    	}
+    	
+    	
+    	function appointCheck(){
+    		
+    		var option = "width=800, height =884, top =30, left =100, location=no";
+    		window.open("appointCheck.do?prNo=${detail_dto.prNo}","", option);
     		
     	}
     
@@ -358,8 +366,7 @@
                 </form>
 				
 				<!-- 구매자 -->                            
-                <button onclick="" id="reserChk" class="detail-button btn btn-outline-primary btn-lg detail-button3" style="margin-left:555px;">예약확인</button>
-                         
+                <button onclick="appointCheck()" id="reserChk" class="detail-button btn btn-outline-primary btn-lg detail-button3" style="margin-left:555px;">예약확인</button>
                             
 			    <button  id="reserbtn" class="detail-button btn btn-outline-primary btn-lg"
                 	style="margin-left:555px;" onclick="appointChange()">예약변경
