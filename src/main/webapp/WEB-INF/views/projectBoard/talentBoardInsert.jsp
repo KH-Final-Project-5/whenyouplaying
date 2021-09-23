@@ -114,7 +114,11 @@
 				$('#map_tr').hide();
 				$('#prLati').hide();
 				$('#prLongi').hide();
-			}
+			} else if (result == 'direct') {
+                $('#map_tr').show();
+                $('#prLati').show();
+                $('#prLongi').show();
+            }
 			
 		})
 	})
