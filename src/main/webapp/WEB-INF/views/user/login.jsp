@@ -12,7 +12,7 @@
 <html>
 <head>
 
-    <title>Login Page</title>
+    <title>Login Page</title>	
     <!--Made with love by Mutiullah Samim -->
 
     <!-- bootstrap css -->
@@ -98,16 +98,23 @@
 	
 	<script type="text/javascript">
 	
-		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');
-	
+		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');	
+
 		function kakaoLogin() {
-		    Kakao.Auth.login({
-		    	scope:'	profile_nickname'
-		      success: function (response) {
-		        Kakao.API.request({
+		    window.Kakao.Auth.login({
+		    	scope: 'profile_nickname,account_email',
+		      success: function (authObj) {
+		        window.Kakao.API.request({
 		          url: '/v2/user/me',
-		          success: function (response) {
-		        	  console.log(response)
+		          success: res => {
+		        	  const name = res.properties.nickname;
+		        	  const email = res.kakao_account.email;
+		        	  
+		        	  console.log(email)
+		        	  console.log(name)
+		        	  
+		        	  $('#kakaoemail').val(email);
+		        	  $('#kakaoname').val(name);
 		          },
 		          fail: function (error) {
 		            console.log(error)
@@ -180,7 +187,7 @@
                 
                 <!-- 구글 로그인 -->
               	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
-
+				
 	            <ul>
 					<li onclick="kakaoLogin();">
 				      <a href="javascript:void(0)">
@@ -192,7 +199,6 @@
 				      </a>
 				      
 				</ul>
-
 				
 				<!-- 네이버 로그인 창으로 이동 -->
 			<div id="naver_id_login" style="text-align:center; margin-top:15px; margin-right:60px;">
