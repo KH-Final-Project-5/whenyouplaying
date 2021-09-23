@@ -53,7 +53,7 @@
 		function onSignIn(googleUser) {
 			  var profile = googleUser.getBasicProfile();
 			  console.log(profile);
-			  console.log("test");
+			  console.log("test");	
 			  
 			  var googleId = profile.getEmail();
 			  var googlePw = profile.getId();
@@ -94,7 +94,6 @@
 		
 
 		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');	
-		//window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');
 		function kakaoLogin() {
 		    window.Kakao.Auth.login({
 		    	scope: 'profile_nickname,account_email',
@@ -110,6 +109,7 @@
 		        	  
 		        	  $('#kakaoemail').val(email);
 		        	  $('#kakaoname').val(name);
+		        	 	document.regikakao.submit();
 		          },
 		          fail: function (error) {
 		            console.log(error)
@@ -194,19 +194,6 @@
       </a>
 	</li>
 </ul>
-
-	            <ul>
-					<li onclick="kakaoLogin();">
-				      <a href="javascript:void(0)">
-				          <span>카카오 로그인</span>
-				      </a>
-				      <li onclick="kakaoLogout();">
-				      <a href="javascript:void(0)">
-				          <span>카카오 로그아웃</span>
-				      </a>
-				      
-				</ul>
-
 
 				
 				<!-- 네이버 로그인 창으로 이동 -->
