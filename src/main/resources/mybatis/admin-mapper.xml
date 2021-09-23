@@ -36,5 +36,37 @@
         FROM W_USER
         WHERE USID LIKE '%' || #{usId} || '%'
     </select>
+    
+    
+    <insert id="insertDonate" parameterType="String">
+    	INSERT INTO W_DONATELIST
+    	VALUES(DONATESEQ.NEXTVAL, #{doName}, DEFAULT)
+    </insert>
+
+	<select id="selectDonateList" resultType="donateListDto">
+		SELECT * FROM W_DONATELIST
+	</select>
+
+	<delete id="deleteDonate" parameterType="int">
+		DELETE FROM W_DONATELIST
+		WHERE DONO = #{doNo}
+	</delete>
+
+
+	<update id="updateDonate" parameterType="donateListDto">
+		UPDATE W_DONATELIST
+		SET DOCASH = (SELECT DOCASH FROM W_DONATELIST WHERE DONO = #{doNo}) + #{doCash}
+		WHERE DONO = #{doNo}
+	</update>
+
+	<update id="updateUsCash" parameterType="userDto">
+		UPDATE W_USER
+		SET USCASH = #{usCash}
+		WHERE USNO = #{usNo}
+	</update>
+
+
+
+
 
 </mapper>

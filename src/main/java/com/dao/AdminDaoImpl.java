@@ -2,6 +2,7 @@ package com.dao;
 
 
 import com.commons.Criteria;
+import com.dto.DonateListDto;
 import com.dto.UserDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,4 +63,78 @@ public class AdminDaoImpl implements AdminDao{
 
         return list;
     }
+
+	@Override
+	public int insertDonate(String doName) {
+
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.insert(NAMESPACE + "insertDonate", doName);
+		} catch (Exception e) {
+			System.out.println("[error] : insertDonate 에러");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	@Override
+	public List<DonateListDto> selectDonateList() {
+
+		List<DonateListDto> res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectList(NAMESPACE+"selectDonateList");
+		} catch (Exception e) {
+			System.out.println("[error] : selectDonateList 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int deleteDonate(int doNo) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.delete(NAMESPACE+"deleteDonate", doNo);
+		} catch (Exception e) {
+			System.out.println("[error] : deleteDonate 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int updateDonate(DonateListDto dto) {
+
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.update(NAMESPACE+"updateDonate", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : updateDonate 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int updateUsCash(UserDto user) {
+
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.update(NAMESPACE+"updateUsCash", user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 }
