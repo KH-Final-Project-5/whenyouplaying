@@ -218,7 +218,7 @@
 
                             <div class="detail-content">
                                 <iframe id="gangnamStyleIframe" width="350" height="300"
-                                        src="https://www.youtube.com/embed/0I2hBTj1rVY?rel=0&enablejsapi=1"
+                                        src="https://www.youtube.com/embed/${detail_dto.prYoutube }"
                                         frameborder="0"
                                         allow="autoplay; fullscreen" allowfullscreen></iframe>
 

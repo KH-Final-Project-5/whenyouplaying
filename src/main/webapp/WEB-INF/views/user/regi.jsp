@@ -182,13 +182,13 @@
 
                         <label for="usPhone">휴대전화</label><br>
                         <input type="text" style="display: inline" class="form-control phone" id="usPhone" required
-                               name="usPhone">
+                               name="usPhone" maxlength="3">
                         -
                         <input type="text" style="display: inline" class="form-control phone" id="usPhone2" required
-                               name="usPhone2">
+                               name="usPhone2" maxlength="4">
                         -
                         <input type="text" style="display: inline" class="form-control phone" id="usPhone3" required
-                               name="usPhone3">
+                               name="usPhone3" maxlength="4">
                         <div class="invalid-feedback"> 휴대전화를 입력해주세요.
                         </div>
 

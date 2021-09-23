@@ -116,7 +116,7 @@
 
             <div class="col-3 tradeAllDiv">
                 <div class="tradeDiv">
-                    <form method="post" action="" id="buyerForm">
+<%--                    <form method="post" action="" id="buyerForm">--%>
 
                         <table id="tradeTable">
                             <colgroup>
@@ -156,7 +156,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </form>
+<%--                    </form>--%>
                     <br>
                     <form action="buytradecomplete.do" method="post">
                         <input type="hidden" name="usSellNo" value="${dto.usSellNo}">

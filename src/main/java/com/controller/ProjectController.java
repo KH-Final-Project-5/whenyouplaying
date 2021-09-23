@@ -90,7 +90,20 @@ public class ProjectController {
     public String ProjectDetail(Model model, int prNo) {
 
         logger.info("Detail test");
-        model.addAttribute("detail_dto", biz.selectDetail(prNo));
+        ProjectDto dto = biz.selectDetail(prNo);
+        String youtube = dto.getPrYoutube();
+        
+        int idx = youtube.indexOf("=");
+        
+        String youtube2 = youtube.substring(idx+1);
+        dto.setPrYoutube(youtube2);
+        System.out.println(dto.getPrYoutube());
+        
+        
+      
+        
+        
+        model.addAttribute("detail_dto", dto);
         
         //리뷰 뿌려주기
         model.addAttribute("review",biz.reviewSelect(prNo));

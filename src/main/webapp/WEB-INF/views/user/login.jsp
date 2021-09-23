@@ -48,12 +48,16 @@
 		
 	<!-- 카카오톡 소셜 로그인 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  
+	
 	<script type="text/javascript">
 		
 		function onSignIn(googleUser) {
 			  var profile = googleUser.getBasicProfile();
+<<<<<<< HEAD
 			  console.log(profile);
 			  console.log("test");	
+=======
+>>>>>>> 3d7e3c1a103595978a7182042ba46a68cadea5a1
 			  
 			  var googleId = profile.getEmail();
 			  var googlePw = profile.getId();
@@ -93,6 +97,10 @@
 
 		
 
+	</script>  
+	
+	<script type="text/javascript">
+	
 		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');	
 		function kakaoLogin() {
 		    window.Kakao.Auth.login({
@@ -135,8 +143,9 @@
 		      })
 		      Kakao.Auth.setAccessToken(undefined)
 		    }
-		  }  
-	</script>  
+		  }
+	
+	</script>
 
 	
 	<!-- 네이버 스크립트 -->
@@ -183,6 +192,7 @@
               	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
 
 
+
       <a href="javascript:kakaoLogin()">
           <span>카카오 로그인</span>
       </a>
@@ -195,6 +205,20 @@
 	</li>
 </ul>
 
+
+				
+	            <ul>
+					<li onclick="kakaoLogin();">
+				      <a href="javascript:void(0)">
+				          <span>카카오 로그인</span>
+				      </a>
+				      <li onclick="kakaoLogout();">
+				      <a href="javascript:void(0)">
+				          <span>카카오 로그아웃</span>
+				      </a>
+				      
+				</ul>
+
 				
 				<!-- 네이버 로그인 창으로 이동 -->
 			<div id="naver_id_login" style="text-align:center; margin-top:15px; margin-right:60px;">
@@ -204,8 +228,6 @@
 			</div>
 			
 			<br>
-			
-
 
 					
 				<div id="getTest"></div>
