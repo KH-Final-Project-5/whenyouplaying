@@ -31,8 +31,8 @@ public class AbilityController {
     @Autowired
     AbilityBiz biz;
 
-    @Autowired
-    FtpClient ftpClient;
+    FtpClient ftpClient = new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
+
 
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
