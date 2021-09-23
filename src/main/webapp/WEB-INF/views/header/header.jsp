@@ -76,6 +76,8 @@
     <script>
 
         $(function () {
+            var user = null;
+            var user1 = null;
             <c:choose>
             <c:when test="${empty user.usNo}">
 
@@ -86,6 +88,7 @@
             $.ajax({
                 type: "post",
                 url: "mesCountChk.do?usNo=${user.usNo}",
+                data: user, user1,
                 dataType: 'json',
                 success: function (data) {
                     if (data.check == true) {

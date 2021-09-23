@@ -45,12 +45,15 @@
 	<!-- 구글 소셜 로그인 -->
 	<meta name="google-signin-client_id" content="557137904134-232ci9t86836vrm925onj9blpmnh4b2f.apps.googleusercontent.com">
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script> 
-		<!-- 카카오톡 소셜 로그인 -->
+		
+	<!-- 카카오톡 소셜 로그인 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  
 	<script type="text/javascript">
 		
 		function onSignIn(googleUser) {
 			  var profile = googleUser.getBasicProfile();
+			  console.log(profile);
+			  console.log("test");
 			  
 			  var googleId = profile.getEmail();
 			  var googlePw = profile.getId();
@@ -89,7 +92,9 @@
 		}
 
 		
+
 		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');	
+		//window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');
 		function kakaoLogin() {
 		    window.Kakao.Auth.login({
 		    	scope: 'profile_nickname,account_email',
@@ -133,12 +138,6 @@
 		  }  
 	</script>  
 
-
-
-
-	
-	
-	</script>
 	
 	<!-- 네이버 스크립트 -->
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
@@ -180,7 +179,9 @@
                     <br><br>
                 </form>
                 
+                <!-- 구글 로그인 -->
               	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
+
 
       <a href="javascript:kakaoLogin()">
           <span>카카오 로그인</span>
@@ -193,6 +194,19 @@
       </a>
 	</li>
 </ul>
+
+	            <ul>
+					<li onclick="kakaoLogin();">
+				      <a href="javascript:void(0)">
+				          <span>카카오 로그인</span>
+				      </a>
+				      <li onclick="kakaoLogout();">
+				      <a href="javascript:void(0)">
+				          <span>카카오 로그아웃</span>
+				      </a>
+				      
+				</ul>
+
 
 				
 				<!-- 네이버 로그인 창으로 이동 -->
