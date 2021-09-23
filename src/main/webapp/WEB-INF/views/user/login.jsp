@@ -48,6 +48,7 @@
 		
 	<!-- 카카오톡 소셜 로그인 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  
+	
 	<script type="text/javascript">
 		
 		function onSignIn(googleUser) {
@@ -92,8 +93,13 @@
 		}
 
 		
-		//window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');
-		
+
+	</script>  
+	
+	<script type="text/javascript">
+	
+		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');
+	
 		function kakaoLogin() {
 		    Kakao.Auth.login({
 		    	scope:'	profile_nickname'
@@ -127,8 +133,9 @@
 		      })
 		      Kakao.Auth.setAccessToken(undefined)
 		    }
-		  }  
-	</script>  
+		  }
+	
+	</script>
 
 	
 	<!-- 네이버 스크립트 -->
