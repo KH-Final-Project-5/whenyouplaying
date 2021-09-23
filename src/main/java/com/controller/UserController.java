@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -334,7 +335,13 @@ public class UserController {
 
         return "user/regiGoogle";
     }
-
+    @RequestMapping("regiKakao.do")
+    public String regiKakao(Model model, UserDto dto) {
+    	
+    	model.addAttribute("kakao", dto);
+    	
+    	return "user/regiKakao";
+    }
 
     @RequestMapping("/logout.do")
     public String logout(HttpSession session) {

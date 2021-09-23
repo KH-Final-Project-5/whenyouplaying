@@ -89,15 +89,22 @@
 		}
 
 		
-		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');
-		
+		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');	
 		function kakaoLogin() {
-		    Kakao.Auth.login({
-		      success: function (response) {
-		        Kakao.API.request({
+		    window.Kakao.Auth.login({
+		    	scope: 'profile_nickname,account_email',
+		      success: function (authObj) {
+		        window.Kakao.API.request({
 		          url: '/v2/user/me',
-		          success: function (response) {
-		        	  console.log(response)
+		          success: res => {
+		        	  const name = res.properties.nickname;
+		        	  const email = res.kakao_account.email;
+		        	  
+		        	  console.log(email)
+		        	  console.log(name)
+		        	  
+		        	  $('#kakaoemail').val(email);
+		        	  $('#kakaoname').val(name);
 		          },
 		          fail: function (error) {
 		            console.log(error)
@@ -175,12 +182,11 @@
                 
               	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
 
-<ul>
-	<li onclick="kakaoLogin();">
-      <a href="javascript:void(0)">
+      <a href="javascript:kakaoLogin()">
           <span>카카오 로그인</span>
       </a>
-	</li>
+      
+<ul>
 	<li onclick="kakaoLogout();">
       <a href="javascript:void(0)">
           <span>카카오 로그아웃</span>
