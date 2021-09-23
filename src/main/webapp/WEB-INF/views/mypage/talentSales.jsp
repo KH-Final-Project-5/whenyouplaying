@@ -53,8 +53,8 @@
             var dealNo = $(form).parent().prevAll(".dealNo").text()
             if ($(form).attr('id') == "online") {
                 location.href = 'onlineTradeSellForm.do?dealNo=' + dealNo;
-            }else if($(form).attr('id') =="direct"){
-            	location.href = 'directTradeSellForm.do?dealNo=' + dealNo;
+            } else if ($(form).attr('id') == "direct") {
+                location.href = 'directTradeSellForm.do?dealNo=' + dealNo;
             }
         }
 
@@ -91,14 +91,18 @@
                     <br>
                     <span class="menuText"><a class="myA" href="noticemainuser.do">공지사항</a></span><br><br>
                     <span class="menuText"><a class="myA" href="useredit.do">회원정보</a></span><br><br>
-                    <span class="menuText"><a class="myA" href="#">찜 내역</a></span><br><br>
-                    <span class="menuText"><a class="myA" href="buylist.do?usNo=${user.usNo }&finStatus=1">재능 구매내역</a></span><br><br>
+                    <span class="menuText"><a class="myA"
+                                              href="buylist.do?usNo=${user.usNo }&finStatus=1">재능 구매내역</a></span><br><br>
                     <span class="menuText"><a class="myA" href="selllist.do?usNo=${user.usNo }&finStatus=거래취소"><u><b>재능 판매내역</b></u></a></span><br><br>
-                    <span class="menuText"><a class="myA" href="cashrecord.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">충전 내역확인</a></span><br><br>
-                    <span class="menuText"><a class="myA" href="manageaccount.do?usNo=${user.usNo }">계좌 관리</a></span><br><br>
-                    <span class="menuText"><a class="myA" href="#">포인트 출금</a></span><br><br>
-                    <span class="menuText"><a class="myA" href="withdrawhistory.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">포인트 출금내역</a></span><br><br>
-                    <span class="menuText"><a class="myA" href="#">회원 탈퇴</a></span><br><br>
+                    <span class="menuText"><a class="myA"
+                                              href="cashrecord.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">충전 내역확인</a></span><br><br>
+                    <span class="menuText"><a class="myA"
+                                              href="manageaccount.do?usNo=${user.usNo }">계좌 관리</a></span><br><br>
+                    <span class="menuText"><a class="myA"
+                                              href="pointdeposituser.do?usNo=${user.usNo }">포인트 출금</a></span><br><br>
+                    <span class="menuText"><a class="myA"
+                                              href="withdrawhistory.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">포인트 출금내역</a></span><br><br>
+                    <span class="menuText"><a class="myA" href="closeaccountform.do">회원 탈퇴</a></span><br><br>
                 </div>
             </div>
             <div class="col-9">
@@ -166,7 +170,7 @@
                                             <td>
                                                 <button class="btn btn-outline-success btn-sm rounded-pill moveBtn"
                                                         id="${dto.prDeal}"
-                                                        onclick=tradeForm(this); >거래페이지
+                                                        onclick=tradeForm(this);>거래페이지
                                                 </button>
                                             </td>
                                         </c:if>

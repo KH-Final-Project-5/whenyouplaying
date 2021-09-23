@@ -2,20 +2,27 @@
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- bootstrap js -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
 
     <!-- css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/bankAccount.css"/>">
@@ -23,50 +30,51 @@
     <!-- 글씨체-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    
-    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+
+
     <script type="text/javascript">
 
-        $(function(){
-            
+        $(function () {
+
             $("#registerArea").hide();
 
         });
 
-        function registForm(){
+        function registForm() {
 
             $("#registerArea").show();
-            $(".col-3, #tableArea, #contentTitle").css('opacity','0.25');
+            $(".col-3, #tableArea, #contentTitle").css('opacity', '0.25');
 
         }
 
-        function registerCancle(){
+        function registerCancle() {
 
             $("#registerArea").hide();
-            $(".col-3, #tableArea, #contentTitle").css('opacity','unset');
+            $(".col-3, #tableArea, #contentTitle").css('opacity', 'unset');
 
         }
-        
-        
-        function openBank(){
-			 
-			 var url = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"+
-				 	   "response_type=code&"+
-					   "client_id=b16b6e96-be84-4b16-bbde-4a9ffe23c677&"+
-					   "redirect_uri=http://localhost:8105/whenyouplay/bankauth.do&"+
-					   "scope=login inquiry transfer&"+
-					   "state=12345678901234567890123456789012&"+
-					   "auth_type=0";
-			 
-			 var options = "width=700, height=700, top=30";
-					   
-			 window.open(url, "오픈뱅킹 계좌등록", options);
-			 
-	
+
+
+        function openBank() {
+
+            var url = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?" +
+                "response_type=code&" +
+                "client_id=b16b6e96-be84-4b16-bbde-4a9ffe23c677&" +
+                "redirect_uri=http://localhost:8105/whenyouplay/bankauth.do&" +
+                "scope=login inquiry transfer&" +
+                "state=12345678901234567890123456789012&" +
+                "auth_type=0";
+
+            var options = "width=700, height=700, top=30";
+
+            window.open(url, "오픈뱅킹 계좌등록", options);
+
+
         }
-        
-        
+
+
     </script>
 
 </head>
@@ -93,19 +101,23 @@
                 </div>
                 <hr>
                 <div id="pageName"><b>My Page</b></div>
-    
+
                 <div id="menuList">
                     <br>
                     <span class="menuText"><a class="acA" href="noticemainuser.do">공지사항</a></span><br><br>
                     <span class="menuText"><a class="acA" href="useredit.do">회원정보</a></span><br><br>
-                    <span class="menuText"><a class="acA" href="#">찜 내역</a></span><br><br>
-                    <span class="menuText"><a class="acA" href="buylist.do?usNo=${user.usNo }&finStatus=1">재능 구매내역</a></span><br><br>
-                    <span class="menuText"><a class="acA" href="selllist.do?usNo=${user.usNo }&finStatus=거래취소">재능 판매내역</a></span><br><br>
-                    <span class="menuText"><a class="acA" href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01">충전 내역확인</a></span><br><br>
+                    <span class="menuText"><a class="acA"
+                                              href="buylist.do?usNo=${user.usNo }&finStatus=1">재능 구매내역</a></span><br><br>
+                    <span class="menuText"><a class="acA"
+                                              href="selllist.do?usNo=${user.usNo }&finStatus=거래취소">재능 판매내역</a></span><br><br>
+                    <span class="menuText"><a class="acA"
+                                              href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01">충전 내역확인</a></span><br><br>
                     <span class="menuText"><a class="acA" href="manageaccount.do?usNo=${user.usNo} "><b><u>계좌 관리</u></b></a></span><br><br>
-                    <span class="menuText"><a class="acA" href="#">포인트 출금</a></span><br><br>
-                    <span class="menuText"><a class="acA" href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01">포인트 출금내역</a></span><br><br>
-                    <span class="menuText"><a class="acA" href="#">회원 탈퇴</a></span><br><br>
+                    <span class="menuText"><a class="acA"
+                                              href="pointdeposituser.do?usNo=${user.usNo }">포인트 출금</a></span><br><br>
+                    <span class="menuText"><a class="acA"
+                                              href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01">포인트 출금내역</a></span><br><br>
+                    <span class="menuText"><a class="acA" href="closeaccountform.do">회원 탈퇴</a></span><br><br>
                 </div>
             </div>
             <div class="col-9">
@@ -114,62 +126,76 @@
                 <div id="tableArea">
                     <table id="table">
                         <thead>
-                            <tr class="table-secondary">
-                                <th class="thcss">No.</th>
-                                <th class="thcss">별칭</th>
-                                <th class="thcss">은행명</th>
-                                <th class="thcss">계좌번호</th>
-                                <th class="thcss">예금주</th>
-                                <th class="thcss" style="width: 50px;"></th>
-                                <th id="lastTh"></th>
-                            </tr>
+                        <tr class="table-secondary">
+                            <th class="thcss">No.</th>
+                            <th class="thcss">별칭</th>
+                            <th class="thcss">은행명</th>
+                            <th class="thcss">계좌번호</th>
+                            <th class="thcss">예금주</th>
+                            <th class="thcss" style="width: 50px;"></th>
+                            <th id="lastTh"></th>
+                        </tr>
                         </thead>
                         <tbody>
-                        	<c:choose>
-                        		<c:when test="${empty accountList }">
-                        			<tr>
-                        				<td colspan="7" align="center">---------------------- 계좌가 없습니다. -------------------------</td>
-                        			</tr>
-                        		</c:when>
-                        		<c:otherwise>
-                        			<c:forEach items="${accountList }" var="dto">
-                        				<tr>
-			                                <td id="bankId" class="centerTd" style="border-left: 1px solid black;">${dto.baNo }</td>
-			                                <td class="centerTd">${dto.baNickName }</td>
-			                                <td class="centerTd">${dto.baBankName }</td>
-			                                <td class="centerTd">${dto.baBankNumber }</td>
-			                                <td class="centerTd">${dto.baOwner }</td>
-			                                <td class="centerTd"><button class="btn btn-secondary btn-sm" onclick="location.href='deleteaccount.do?baNo=${dto.baNo}&usNo=${user.usNo }'">삭제</button></td>
-                            				<td class="centerTd"><button class="btn btn-secondary btn-sm" onclick="openBank();">인증</button><td>
-                            			</tr>
-                        			</c:forEach>
-                        		</c:otherwise>
-                        	</c:choose>
+                        <c:choose>
+                            <c:when test="${empty accountList }">
+                                <tr>
+                                    <td colspan="7" align="center">---------------------- 계좌가 없습니다.
+                                        -------------------------
+                                    </td>
+                                </tr>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach items="${accountList }" var="dto">
+                                    <tr>
+                                        <td id="bankId" class="centerTd"
+                                            style="border-left: 1px solid black;">${dto.baNo }</td>
+                                        <td class="centerTd">${dto.baNickName }</td>
+                                        <td class="centerTd">${dto.baBankName }</td>
+                                        <td class="centerTd">${dto.baBankNumber }</td>
+                                        <td class="centerTd">${dto.baOwner }</td>
+                                        <td class="centerTd">
+                                            <button class="btn btn-secondary btn-sm"
+                                                    onclick="location.href='deleteaccount.do?baNo=${dto.baNo}&usNo=${user.usNo }'">
+                                                삭제
+                                            </button>
+                                        </td>
+                                        <td class="centerTd">
+                                            <button class="btn btn-secondary btn-sm" onclick="openBank();">인증</button>
+                                        <td>
+                                    </tr>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
 
-                            <tr id="lastTr">
-                                <td colspan="7">
-                                    <button style="margin-top: 10px;" class="btn btn-primary btn-sm" onclick="registForm();">계좌등록</button>
-                                </td>
-                            </tr>
+                        <tr id="lastTr">
+                            <td colspan="7">
+                                <button style="margin-top: 10px;" class="btn btn-primary btn-sm"
+                                        onclick="registForm();">계좌등록
+                                </button>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div id="registerArea" class="shadow">
                     <form action="insertaccount.do" method="get">
-                    	<input type="hidden" name="usNo" value="${user.usNo }">
+                        <input type="hidden" name="usNo" value="${user.usNo }">
                         <b style="font-size: 17px;">계좌등록</b>
                         <hr style="margin: 3px;">
-                        
+
                         <label>별칭</label>
                         <br>
-                        <input class="accountInput" type="text" name="baNickName"  placeholder="별칭을 입력하세요">
+                        <input class="accountInput" type="text" name="baNickName" placeholder="별칭을 입력하세요">
                         <hr style="margin: 3px;">
-                        
+
                         <label>은행명</label>
                         <br>
                         <style>
-                            select:invalid {color:gray;}
+                            select:invalid {
+                                color: gray;
+                            }
                         </style>
                         <select name="baBankName" class="accountInput" id="selectArea" required>
                             <option disabled selected>선택해주세요</option>
@@ -187,19 +213,20 @@
                             <option value="토스/092">토스(Toss)</option>
                         </select>
                         <hr style="margin: 3px;">
-                        
+
                         <label>계좌번호</label>
                         <br>
                         <input class="accountInput" type="text" name="baBankNumber" placeholder="계좌를 입력하세요">
                         <hr style="margin: 3px;">
-                        
+
                         <label>예금주</label>
                         <br>
                         <input class="accountInput" type="text" name="baOwner" placeholder="예금주명을 입력하세요">
                         <hr style="margin: 3px;">
-                        
+
                         <input id="submitButton" class="btn btn-sm btn-outline-primary" type="submit" value="등록하기">
-                        <input id="cancleButton" class="btn btn-sm btn-outline-primary" type="reset" value="취소하기" onclick="registerCancle();">
+                        <input id="cancleButton" class="btn btn-sm btn-outline-primary" type="reset" value="취소하기"
+                               onclick="registerCancle();">
                     </form>
                 </div>
 
