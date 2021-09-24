@@ -66,6 +66,32 @@
         if(user === "null" || user==null){
         	$("#insertBtn").hide();
         }
+
+		let url = new URL(window.location.href);
+
+		let urlParams = url.searchParams;
+
+		console.log(url);
+
+		let prTalent = urlParams.get("prTalent");
+
+
+		console.log("para : "+prTalent);
+
+		if (prTalent == 'design') {
+			$("#1iframe").attr('src', 'https://www.youtube.com/embed/o3uMD8AV25s?rel=0&enablejsapi=1');
+			$("#2iframe").attr('src', 'https://www.youtube.com/embed/hp7TJRksIC8?rel=0&enablejsapi=1');
+			$("#3iframe").attr('src', 'https://www.youtube.com/embed/mXytyvQvfso?rel=0&enablejsapi=1');
+		} else if (prTalent == 'translation') {
+			$("#1iframe").attr('src', 'https://www.youtube.com/embed/Lo05O39IPXk?rel=0&enablejsapi=1');
+			$("#2iframe").attr('src', 'https://www.youtube.com/embed/8Te944ThqkQ?rel=0&enablejsapi=1');
+			$("#3iframe").attr('src', 'https://www.youtube.com/embed/O2BI9NonVWk?rel=0&enablejsapi=1');
+		} else {
+			$(".youtubeDiv").hide();
+		}
+
+
+
     });
 
 </script>
@@ -91,9 +117,9 @@
 						onclick="location.href='insertProject.do'">재능 등록하기</button>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row youtubeDiv">
 				<div class="col-4">
-					<iframe id="gangnamStyleIframe" width="350" height="300"
+					<iframe id="1iframe" width="350" height="300"
 						src="https://www.youtube.com/embed/o3uMD8AV25s?rel=0&enablejsapi=1"
 						frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
@@ -114,7 +140,7 @@
                     var player;
 
                     function onYouTubeIframeAPIReady() {
-                        player = new YT.Player('gangnamStyleIframe', {
+                        player = new YT.Player('1iframe', {
 //                height: '315',            // <iframe> 태그 지정시 필요없음
 //                width: '560',             // <iframe> 태그 지정시 필요없음
 //                videoId: '9bZkp7q19f0',   // <iframe> 태그 지정시 필요없음
@@ -150,7 +176,7 @@
                 </script>
 				</div>
 				<div class="col-4">
-					<iframe id="gangnamStyleIframe" width="350" height="300"
+					<iframe id="2iframe" width="350" height="300"
 						src="https://www.youtube.com/embed/9bZkp7q19f0?rel=0&enablejsapi=1"
 						frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
@@ -171,7 +197,7 @@
                     var player;
 
                     function onYouTubeIframeAPIReady() {
-                        player = new YT.Player('gangnamStyleIframe', {
+                        player = new YT.Player('2iframe', {
 //                height: '315',            // <iframe> 태그 지정시 필요없음
 //                width: '560',             // <iframe> 태그 지정시 필요없음
 //                videoId: '9bZkp7q19f0',   // <iframe> 태그 지정시 필요없음
@@ -207,7 +233,7 @@
                 </script>
 				</div>
 				<div class="col-4">
-					<iframe id="gangnamStyleIframe" width="350" height="300"
+					<iframe id="3iframe" width="350" height="300"
 						src="https://www.youtube.com/embed/9bZkp7q19f0?rel=0&enablejsapi=1"
 						frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
@@ -228,7 +254,7 @@
                     var player;
 
                     function onYouTubeIframeAPIReady() {
-                        player = new YT.Player('gangnamStyleIframe', {
+                        player = new YT.Player('3iframe', {
 //                height: '315',            // <iframe> 태그 지정시 필요없음
 //                width: '560',             // <iframe> 태그 지정시 필요없음
 //                videoId: '9bZkp7q19f0',   // <iframe> 태그 지정시 필요없음

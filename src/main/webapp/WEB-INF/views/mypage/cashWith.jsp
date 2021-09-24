@@ -239,12 +239,12 @@
                     <span class="menuText"><a class="colorA"
                                               href="selllist.do?usNo=${user.usNo }&finStatus=거래취소">재능 판매내역</a></span><br><br>
                     <span class="menuText"><a class="colorA"
-                                              href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01">충전 내역확인</a></span><br><br>
+                                              href="cashrecord.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">충전 내역확인</a></span><br><br>
                     <span class="menuText"><a class="colorA"
                                               href="manageaccount.do?usNo=${user.usNo }">계좌 관리</a></span><br><br>
                     <span class="menuText"><a class="colorA" href="pointdeposituser.do?usNo=${user.usNo }"><b><u>포인트 출금</u></b></a></span><br><br>
                     <span class="menuText"><a class="colorA"
-                                              href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01">포인트 출금내역</a></span><br><br>
+                                              href="withdrawhistory.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">포인트 출금내역</a></span><br><br>
                     <span class="menuText"><a class="colorA" href="closeaccountform.do">회원 탈퇴</a></span><br><br>
                 </div>
             </div>

@@ -408,10 +408,10 @@ public class ProjectController {
 
         int res = biz.deleteProject(prNo);
 
-        if (res > 0) {
+        if (res > 1) {
             ScriptUtils.alertAndMovePage(response, "삭제 성공", "main.do");
         } else {
-            ScriptUtils.alertAndMovePage(response, "삭제 실패", "detail.do?prNo=" + prNo);
+            ScriptUtils.alertAndMovePage(response, "진행중인 거래가 있습니다.", "Detail.do?prNo=" + prNo);
         }
     }
 

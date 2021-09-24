@@ -109,10 +109,11 @@
         WHERE prNo = #{prNo}
     </update>
 
-    <delete id="delete" parameterType="int">
-        DELETE
-        FROM W_PROJECT
-        WHERE PRNO = #{prNo}
+    <delete id="delete" parameterType="map" statementType="CALLABLE">
+        {call PC_DELPROJECT(
+                #{prNo, mode=IN, jdbcType=NUMERIC, javaType=java.lang.Integer},
+                #{RESULTNUM_OUT, mode=OUT, jdbcType=NUMERIC, javaType=java.lang.Integer}
+            ) }
     </delete>
 
 
@@ -154,11 +155,11 @@
         ORDER BY PRNO DESC
 
     </select>
-	
-	<insert id="insertCalendar" parameterType="projectDto">
-		INSERT INTO W_CALENDAR
-		VALUES(CALSEQ.NEXTVAL, PROJECTSEQ.CURRVAL, #{usNo})
-	</insert>
+
+    <insert id="insertCalendar" parameterType="projectDto">
+        INSERT INTO W_CALENDAR
+        VALUES (CALSEQ.NEXTVAL, PROJECTSEQ.CURRVAL, #{usNo})
+    </insert>
 
     <select id="popularity" parameterType="ReviewDto" resultType="ReviewDto">
 		<![CDATA[

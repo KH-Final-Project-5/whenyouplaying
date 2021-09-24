@@ -127,7 +127,10 @@
             </c:choose>
 
             $('#payCharge').click(function () {
-                var payment = prompt("충전 금액을 입력해주세요!");
+                var payment = prompt("충전 금액을 입력해주세요!(숫자만 입력)");
+                while (isNaN(payment)) {
+                    payment = prompt("숫자만 입력해주세요!");
+                }
                 var IMP = window.IMP; // 생략가능
                 IMP.init('imp06763653');// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
                                         // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드

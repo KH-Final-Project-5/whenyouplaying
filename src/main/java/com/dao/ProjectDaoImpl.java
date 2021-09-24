@@ -1,7 +1,9 @@
 package com.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,14 +112,17 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public int deleteProject(int prNo) {
-        int res = 0;
 
+		Map<String, Integer> map = new HashMap<>();
+        int res = 0;
+		map.put("prNo", prNo);
         try {
-            res = sqlSession.delete(NAMESPACE + "delete", prNo);
+            sqlSession.delete(NAMESPACE + "delete", map);
         } catch (Exception e) {
             System.out.println("[error] : delete");
             e.printStackTrace();
         }
+		res = map.get("RESULTNUM_OUT");
         return res;
     }
 
