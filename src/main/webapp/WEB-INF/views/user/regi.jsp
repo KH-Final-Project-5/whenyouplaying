@@ -139,7 +139,7 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-<div class="content" style="min-height: 2500px;">
+<div class="content" style="min-height: 1500px;">
     <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
 
         <div class="input-form-backgroud row">
@@ -231,8 +231,7 @@
                                onkeypress="return checkNumber(event, 'numbers');"
                                onkeydown="fn_press_han(this)"
                                maxlength="4">
-                        <div class="invalid-feedback"> 휴대전화를 입력해주세요.
-                        </div>
+                        <div class="invalid-feedback"> 휴대전화를 입력해주세요.</div>
 
                         <br>
                         <br>
@@ -242,8 +241,7 @@
                         <input type="text" class="form-control" id="usEmail" placeholder="you@example.com" required
                                name="usEmail">
 
-                        <div class="invalid-feedback"> 이메일을 입력해주세요.
-                        </div>
+                        <div class="invalid-feedback"> 이메일을 입력해주세요.</div>
 
                         <br>
 
@@ -258,6 +256,7 @@
                             </div>
 
                         </div>
+                      </div>
 
                         <div class="mb-3">
 
@@ -281,7 +280,7 @@
                             </div>
                             <button class="btn btn-primary btn-lg btn-block" type="submit" id="regisubmit">가입 완료
                             </button>
-
+                         </div>
                 </form>
 
             </div>
@@ -290,10 +289,9 @@
         <div class="col-2">
 
         </div>
-
-
+		</div>
+		
     </div>
-</div>    
  
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
