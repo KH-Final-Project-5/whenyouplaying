@@ -20,6 +20,7 @@
         <typeAlias type="com.dto.BankAccountDto" alias="bankAccountDto"/>
         <typeAlias type="com.dto.ScheduleDto" alias="scheduleDto"/>
         <typeAlias type="com.dto.CalendarDto" alias="calendarDto"/>
+        <typeAlias type="com.dto.DonateListDto" alias="donateListDto" />
     </typeAliases>
 
     <mappers>

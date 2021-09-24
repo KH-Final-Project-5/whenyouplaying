@@ -32,18 +32,74 @@
           rel="stylesheet">
 
     <!-- css -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <link rel="stylesheet" href="<c:url value="/resources/css/adminpointout.css"/>">
     <script src="<c:url value="/resources/js/adminpointout.js"/>"></script>
+
+
+	<script type="text/javascript">
+	
+	    $(function(){
+	        
+	    
+	    	
+	        $("#registerArea").hide();
+	        
+	        
+	        $("#adminOutBtn").click(function(){
+	        	
+	        	var doName = $("#doName").val();
+	        	console.log(doName);
+	        	var adminCash = "${user.usCash}";
+				console.log(adminCash);
+	        	var formSubmit = $("#donateupdate");
+				console.log(formSubmit);
+	        	var doCash = $("#adminOutBank").val();
+	        	console.log(doCash);
+	        	
+	        	var checkCash = adminCash - doCash;
+	        	
+	        	if(doName == "" || doName == null){
+	        		alert("계좌를 선택해주세요");
+	        	}else if(doCash == "" || doCash == null){
+	        		alert("기부금을 입력해주세요");
+	        	}else if(checkCash < 0){
+	        		alert("잔액이 부족합니다");
+	        	}else{
+	        		formSubmit.submit();
+	        	}
+	        	
+	        });
+	    
+	    });
+		
+	    function donateForm(){
+	    	
+	    	$("#registerArea").show();
+	    	$("#opacityArea1, #adminResetBtn").css('opacity','0');
+	    	
+	    }
+	    
+	    function cancelForm(){
+	    	$("#registerArea").hide();
+            $("#opacityArea1, #adminResetBtn").css('opacity','unset');
+	    	
+	    }
+        
+	</script>
+
+
 
 </head>
 <body>
 
-<!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-<div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div>
+<div class="wwrap">
+    <header>
+        <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
+    </header>
 
-
-<div class="container">
+<div class="container" style="margin-top: 60px; padding-bottom:0px;">
     <div class="row">
         <div class="col-3">
             <div id="sideBarImgArea">
@@ -61,78 +117,105 @@
 
             <div id="menuList">
                 <br>
-                <span class="menuText"><a href="noticeListAdmin.do">공지 사항</a></span><br><br>
-                <span class="menuText"><a href="abilitymain.do">재능 기부 승인</a></span><br><br>
-                <span class="menuText"><a href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
-                <span class="menuText"><a href="userManage.do">회원 목록 확인</a></span><br><br>
-                <span class="menuText"><a href="adminpoinout.do"><u><b>기부 캐쉬 출금</b></u></a></span><br><br>
+                <span class="menuText"><a class="adA" href="noticemainadmin.do?usNo=${user.usNo }">공지 사항</a></span><br><br>
+                <span class="menuText"><a class="adA" href="abilitymain.do">재능 기부 승인</a></span><br><br>
+                <span class="menuText"><a class="adA" href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
+                <span class="menuText"><a class="adA" href="userManage.do">회원 목록 확인</a></span><br><br>
+                <span class="menuText"><a class="adA" href="adminpointout.do"><u><b>관리자 출금 관리</b></u></a></span><br><br>
+                <span class="menuText"><a class="adA" href="donatelist.do">기부처 관리</a></span><br><br>
             </div>
         </div>
         <div class="col-9">
             <br>
             <div id="titleName"><h3>관리자 출금 관리</h3></div>
             <br><br>
-            <form action="" method="post">
-
-                <div class="row">
-                    <div class="col-9">
+            
+            <form action="donateupdate.do" id="donateupdate" method="get">
+            	<input type="hidden" name="usCash" value="${user.usCash }">
+            	<input type="hidden" name="usNo" value="${user.usNo }">
+                <div class="row" id="opacityArea1">
+                    <div class="col-7">
                         <div class="pointDiv">
                             <div id="cashHave" class="shadow">
                                 <div id="cashHaveContentArea">
                                     <div id="cashTitle">
-                                        보유중인 캐시
+                                        	보유중인 캐시
                                     </div>
                                     <div id="cashContent">
-                                        1000원
+                                        ${user.usCash }
                                     </div>
                                 </div>
                             </div>
                             <br><br><br>
                             <div id="selectAccount">
-                                계좌선택
+                                	기부처 선택
                                 <div id="selectContent">
                                     <style>
                                         select:invalid {
                                             color: gray;
                                         }
                                     </style>
-                                    <select name="bankName" class="accountInput" required>
+                                    <select id="doName" name="doNo" class="accountInput" required>
                                         <option value="" disabled selected>선택해주세요</option>
-                                        <option value="shinhan">신한은행</option>
-                                        <option value="kbstar">국민은행</option>
-                                        <option value="woori">우리은행</option>
-                                        <option value="hana">하나은행</option>
-                                        <option value="kakao">카카오뱅크</option>
-                                        <option value="nh">농협은행</option>
+   										<c:choose>
+   											<c:when test="${empty donateList}">
+												<option value="">등록된 기부처가 없습니다.</option>											
+   											</c:when>
+   											<c:otherwise>
+   												<c:forEach items="${donateList }" var="dto">
+   													<option value="${dto.doNo }">${dto.doName }</option>
+   												</c:forEach>
+   											</c:otherwise>
+   										</c:choose>
                                     </select>
-                                    <input type="text" name="adminoutbank"
-                                           id="adminOutBank" placeholder="계좌번호를 입력해주세요.(-제외)"
+
+                                    <input type="text" name="doCash"
+                                           id="adminOutBank" style="width:200px;" placeholder="기부금을 입력해주세요"
                                            onkeypress="return checkNumber(event)">
-                                    <hr style="margin: 3px;">
+                                    <hr style="margin: 3px; width: 400px;">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-5">
                         <br><br><br><br><br><br><br><br><br>
-                        <input id="adminOutBtn" class="btn btn-primary" type="submit" value="기부">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-9"></div>
-                    <div class="col-3">
-                        <input id="adminResetBtn" class="btn btn-primary" type="button" value="초기화"
-                               onclick="location.reload();">
+                        <input id="adminOutBtn" class="btn btn-primary" type="button" value="기부">
                     </div>
                 </div>
             </form>
+            
+                <div class="row">
+                    <div class="col-7"></div>
+                    <div class="col-5">
+                    	<button id="adminResetBtn" class="btn btn-primary" onclick="donateForm();">기부처 등록</button>
+                    </div>
+                </div>
+            
+            <div id="registerArea" class="shadow">
+                <form action="insertdonate.do" method="get">
+                        
+                        <b style="font-size: 20px;">기부처등록</b>
+                        <hr style="margin: 3px; margin-top: 5px; margin-bottom: 5px;">
+                        
+                        <label>기부처 이름</label>
+                        <br>
+                        <input class="accountInput" style="width: 300px;" type="text" name="doName"  placeholder="기부처를 입력하세요">
+                        
+                        <hr style="margin: 3px; margin-bottom: 10px;">
+                        
+                        <input id="submitButton" class="btn btn-sm btn-outline-primary" type="submit" value="등록하기">
+                        <input id="cancleButton" class="btn btn-sm btn-outline-primary" type="reset" value="취소하기" onclick="cancelForm();">
+                    </form>
+                </div>
+            
         </div>
     </div>
 </div>
 
-<!-- footer 영역-->
-<div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;">임시 footer 영역입니다.</div>
-
-
+    <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
+    
+</div>
 </body>
 </html>

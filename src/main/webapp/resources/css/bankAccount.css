@@ -24,6 +24,12 @@ body{
     height: 100px;
 }
 
+#adminImg {
+    display: block;
+    margin: auto;
+    height: 100px;
+}
+
 #userName {
 
     position: absolute;
@@ -54,11 +60,7 @@ body{
     
 }
 
-#adminImg {
-    display: block;
-    margin: auto;
-    height: 100px;
-}
+
 
 
 h3{

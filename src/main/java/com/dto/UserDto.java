@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -29,4 +30,5 @@ public class UserDto {
 	private String usRole;
 	private int usCash;
 	private String usImg;
+	private MultipartFile usImgFile;
 }

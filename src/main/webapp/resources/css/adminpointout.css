@@ -80,16 +80,10 @@ body{
 }
 
 #adminResetBtn {
-    width: 80px;
+    width: 110px;
     margin-top: 20px;
 }
 
-a {
-    color: black;
-}
-a:hover {
-    color: black;
-}
 a:visited {
     color: black;
 }
@@ -138,3 +132,21 @@ a:visited {
     text-align: center;
     position: relative;
 }
+
+.adA{
+	color: black;
+}
+
+.adA:hover{
+	color:black;
+	text-decoration: none;
+}
+
+#registerArea{
+	position: relative;
+	left: 300px;
+	bottom: 230px;
+	width: 300px;
+}
+
+

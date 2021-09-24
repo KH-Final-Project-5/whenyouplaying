@@ -425,16 +425,16 @@ a:visited {
 
 }
 
-#sideImg {
-    height: 100px;
-}
 
 #adminImg {
     display: block;
     margin: auto;
     height: 100px;
 }
+#sideImg {
 
+    height: 100px;
+}
 
 .menuText {
     font-size: 20px;
@@ -452,11 +452,11 @@ a:visited {
     background-color: #d6d8db;
 }
 
-.myA{
+.colorA{
 	color: black;
 }
 
-.myA:hover {
+.colorA:hover {
 	color: black;
 	text-decoration: none;
 }

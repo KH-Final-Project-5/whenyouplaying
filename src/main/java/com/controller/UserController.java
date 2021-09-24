@@ -1,16 +1,14 @@
 package com.controller;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.commons.FtpClient;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
@@ -48,22 +46,25 @@ import com.dto.ReportDto;
 import com.dto.ReviewDto;
 import com.dto.UserDto;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-    
+
     /* NaverLoginBO */
-	private NaverLoginBO naverLoginBO;
-	private String apiResult = null;
-	
-	@Autowired
-	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
-		this.naverLoginBO = naverLoginBO;
-	}
-    
-    
+    private NaverLoginBO naverLoginBO;
+    private String apiResult = null;
+
+    @Autowired
+    private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+        this.naverLoginBO = naverLoginBO;
+    }
+
+    FtpClient ftpClient = new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
+
+
     @Autowired
     UserBiz biz;
     @Autowired
@@ -175,83 +176,78 @@ public class UserController {
 
     //로그인 페이지
     @RequestMapping("/loginform.do")
-    public String loginForm(Model model,HttpSession session) {
-    	
-    	String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		
-		//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-		//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
-		//System.out.println("네이버:" + naverAuthUrl);
-		
-		//네이버 
-		model.addAttribute("url", naverAuthUrl);
+    public String loginForm(Model model, HttpSession session) {
+
+        String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+
+        //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+        //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+        //System.out.println("네이버:" + naverAuthUrl);
+
+        //네이버
+        model.addAttribute("url", naverAuthUrl);
 
         return "user/login";
     }
-    
-   
-    
-    
-  //네이버 로그인 성공시 callback호출 메소드
-  	@RequestMapping(value = "/naverLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
-  	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
-  		
-  		System.out.println("여기는 callback");
-  		OAuth2AccessToken oauthToken;
-          oauthToken = naverLoginBO.getAccessToken(session, code, state);
 
-          //1. 로그인 사용자 정보를 읽어온다.
-  		apiResult = naverLoginBO.getUserProfile(oauthToken);  //String형식의 json데이터
-  		
-  		/** apiResult json 구조
-  		{"resultcode":"00",
-  		 "message":"success",
-  		 "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
-  		**/
-  		
-  		//2. String형식인 apiResult를 json형태로 바꿈
-  		JSONParser parser = new JSONParser();
-  		Object obj = parser.parse(apiResult);
-  		JSONObject jsonObj = (JSONObject) obj;
-  		
-  		//3. 데이터 파싱 
-  		//Top레벨 단계 _response 파싱
-  		JSONObject response_obj = (JSONObject)jsonObj.get("response");
-  		//response의 nickname값 파싱
-  		
-  		String id = (String)response_obj.get("email");
-  		String name = (String)response_obj.get("name");
-  		String pw = (String)response_obj.get("id");
-  		
-  		UserDto dto = new UserDto();
-  		dto.setUsId(id);
-  		dto.setUsName(name);
-  		dto.setUsPw(pw);
-  		
-  		model.addAttribute("naverDto", dto);
-  		
-  		System.out.println(apiResult);
-  		
-  		
-  		dto = biz.login(dto);
-  		
-  		
-  		if(dto==null) {
-  			return "user/regiNaver";
-  		}else {
-  			session.setAttribute("user", dto);
-  			
-  			return "redirect:main.do";
-  			
-  		}
-  		
-  		
-  	}
-  	
-  	
-  	
-    
-    
+
+    //네이버 로그인 성공시 callback호출 메소드
+    @RequestMapping(value = "/naverLogin.do", method = {RequestMethod.GET, RequestMethod.POST})
+    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
+
+        System.out.println("여기는 callback");
+        OAuth2AccessToken oauthToken;
+        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+
+        //1. 로그인 사용자 정보를 읽어온다.
+        apiResult = naverLoginBO.getUserProfile(oauthToken);  //String형식의 json데이터
+
+        /** apiResult json 구조
+         {"resultcode":"00",
+         "message":"success",
+         "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
+         **/
+
+        //2. String형식인 apiResult를 json형태로 바꿈
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(apiResult);
+        JSONObject jsonObj = (JSONObject) obj;
+
+        //3. 데이터 파싱
+        //Top레벨 단계 _response 파싱
+        JSONObject response_obj = (JSONObject) jsonObj.get("response");
+        //response의 nickname값 파싱
+
+        String id = (String) response_obj.get("email");
+        String name = (String) response_obj.get("name");
+        String pw = (String) response_obj.get("id");
+
+        UserDto dto = new UserDto();
+        dto.setUsId(id);
+        dto.setUsName(name);
+        dto.setUsPw(pw);
+
+        model.addAttribute("naverDto", dto);
+
+        System.out.println(apiResult);
+
+
+        dto = biz.login(dto);
+
+
+        if (dto == null) {
+            return "user/regiNaver";
+        } else {
+            session.setAttribute("user", dto);
+
+            return "redirect:main.do";
+
+        }
+
+
+    }
+
+
     @RequestMapping("/regiphone.do")
     public String regiphone() {
         return "user/regiphone";
@@ -307,10 +303,8 @@ public class UserController {
         }
 
     }
-    
-  
-    
-    
+
+
     //구글 로그인
     @RequestMapping(value = "/googlelogin.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
     public @ResponseBody
@@ -342,7 +336,7 @@ public class UserController {
 
         return "user/regiGoogle";
     }
-    
+
     @RequestMapping("/logout.do")
     public String logout(HttpSession session) {
         session.invalidate();
@@ -419,7 +413,19 @@ public class UserController {
 
     //회원정보 수정결과
     @RequestMapping("/usereditres.do")
-    public void userEditRes(HttpServletResponse response, UserDto dto, String usPhone1, String usPhone2, String usPhone3) {
+    public void userEditRes(HttpServletResponse response, UserDto dto, String usPhone1, String usPhone2, String usPhone3) throws Exception {
+
+        if (dto.getUsImgFile().getSize() > 0) {
+            String filename = dto.getUsImgFile().getOriginalFilename();
+            String refilename = ftpClient.fileName(filename, dto.getUsId());
+
+            dto.setUsImg("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + refilename);
+            File file = ftpClient.convert(dto.getUsImgFile());
+            ftpClient.upload(file, filename, dto.getUsId());
+        } else {
+            dto.setUsImg("http://wjwan0.dothome.co.kr/stoarge/personimg.png");
+        }
+
 
         logger.info("usereditres.do : 회원정보수정 결과값 db 적용");
 

@@ -510,7 +510,11 @@
                                 <form action="regiform.do" method="post" id="regiform">
                                     <input style="margin-left: 180px; display: inline;" type="text" name="phone"
                                            id="phone"
-                                           placeholder="번호를 입력하세요(-제외)" onkeypress="return checkNumber(event);">
+                                           placeholder="번호를 입력하세요(-제외)"
+                                           onkeypress="return checkNumber(event, 'numbers');"
+                                           onkeydown="fn_press_han(this)"
+                                    >
+
                                     <br>
                                     <button style="margin-left: 180px; display: inline; position: relative;"
                                             id="numbersend"
@@ -520,6 +524,8 @@
                                     <br><br>
                                     <input style="margin-left: 180px; display: inline;" type="text" name="phone2"
                                            id="phone2"
+                                           onkeypress="return checkNumber(event, 'numbers');"
+                                           onkeydown="fn_press_han(this)"
                                            placeholder="인증번호 6자리를 입력해주세요">
                                     <br>
                                     <button style="margin-left: 180px; display: inline; position: relative;"

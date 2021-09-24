@@ -51,6 +51,16 @@
         });
     </script>
     <script type="text/javascript">
+        function checkNumber(event, type) {
+            if (type == 'numbers') {
+                if (event.keyCode < 48 || event.keyCode > 57) return false;
+            }
+        }
+
+        function fn_press_han(obj) {
+            obj.value = obj.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
+        }
+
         function fn_idChk() {
             $.ajax({
                 url: "/idChk.do",
@@ -182,13 +192,22 @@
 
                         <label for="usPhone">휴대전화</label><br>
                         <input type="text" style="display: inline" class="form-control phone" id="usPhone" required
-                               name="usPhone" maxlength="3">
+                               name="usPhone"
+                               onkeypress="return checkNumber(event, 'numbers');"
+                               onkeydown="fn_press_han(this)"
+                               maxlength="3">
                         -
                         <input type="text" style="display: inline" class="form-control phone" id="usPhone2" required
-                               name="usPhone2" maxlength="4">
+                               name="usPhone2"
+                               onkeypress="return checkNumber(event, 'numbers');"
+                               onkeydown="fn_press_han(this)"
+                               maxlength="4">
                         -
                         <input type="text" style="display: inline" class="form-control phone" id="usPhone3" required
-                               name="usPhone3" maxlength="4">
+                               name="usPhone3"
+                               onkeypress="return checkNumber(event, 'numbers');"
+                               onkeydown="fn_press_han(this)"
+                               maxlength="4">
                         <div class="invalid-feedback"> 휴대전화를 입력해주세요.
                         </div>
 

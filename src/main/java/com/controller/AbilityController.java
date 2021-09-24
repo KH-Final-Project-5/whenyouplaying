@@ -42,11 +42,6 @@ public class AbilityController {
 
         String id = dto.getUsId().trim().substring(3, dto.getUsId().length()).trim();
 
-
-        System.out.println(dto.getFile1().getSize());
-        System.out.println(dto.getFile2().getSize());
-
-
         if (dto.getFile1().getSize() > 0) {
             MultipartFile mfile1 = dto.getFile1();
             if (mfile1 != null) {

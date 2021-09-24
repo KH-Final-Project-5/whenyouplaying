@@ -134,16 +134,17 @@
 	
 	<!-- 네이버 스크립트 -->
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-	
 
 
 </head>
-<body style="overflow-y: hidden">
+<body>
+
 <div class="wwrap">
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
-    <div class="container">
+    
+    <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
         <div class="row">
             <div class="col-5"></div>
             <!-- Custom styles for this template -->
@@ -156,7 +157,7 @@
                            style="width: 271px; display: inline-block; margin: 0 auto;"
                            class="form-control"
                            placeholder="ID를 입력해주세요"
-                           required autofocus>
+                           required>
                     <br>
                     <br>
                     <input type="password" id="usPw" class="form-control" name="usPw"
@@ -175,6 +176,7 @@
                 <!-- 구글 로그인 -->
               	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
 
+
   <ul>
       <li onclick="kakaoLogin();">
         <a href="javascript:void(0)">
@@ -189,6 +191,8 @@
 	</li>
   </ul>
 			
+				
+
 				<!-- 네이버 로그인 창으로 이동 -->
 			<div id="naver_id_login" style="text-align:center; margin-top:15px; margin-right:60px;">
 				<a href="${url}">
@@ -207,8 +211,12 @@
             <div class="col-4"></div>
         </div>
        
-    </div>
     
+    </div>
+        <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
 </div>
+    
 </body>
 </html>

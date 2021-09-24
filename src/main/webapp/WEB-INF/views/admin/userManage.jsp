@@ -68,9 +68,6 @@
 </head>
 <body>
 
-<!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
-<%--    <div id="headerArea" style="width: 100%; height: 100px; background-color: darkgray;">heaer영역입니다.</div> --%>
-
 <div class="wwrap">
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
@@ -94,13 +91,14 @@
 
                 <div id="menuList">
                     <br>
-                    <span class="menuText"><a class="menuText" href="noticeListAdmin.do">공지 사항</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="noticemainadmin.do?usNo=${user.usNo }">공지 사항</a></span><br><br>
                     <span class="menuText"><a class="menuText" href="abilitymain.do">재능 기부 승인</a></span><br><br>
                     <span class="menuText"><a class="menuText"
                                               href="reportMain.do?change=no">신고 내역 확인</a></span><br><br>
                     <span class="menuText"><a class="menuText"
                                               href="userManage.do"><u><b>회원 목록 확인</b></u></a></span><br><br>
-                    <span class="menuText"><a class="menuText" href="adminpoinout.do">기부 캐쉬 출금</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="adminpointout.do">관리자 출금 관리</a></span><br><br>
+                    <span class="menuText"><a class="menuText" href="donatelist.do">기부처 관리</a></span><br><br>
                 </div>
             </div>
             <div class="col-9">

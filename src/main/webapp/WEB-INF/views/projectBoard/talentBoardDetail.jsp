@@ -55,6 +55,8 @@
 	
 	
     <script>
+        var a = '${detail_dto.prImage}';
+        var b = '${detail_dto.prYoutube}'
         $(function () {
             var user = "<%=session.getAttribute("user")%>";
             
@@ -62,8 +64,15 @@
             var projectUsNo = "${detail_dto.usNo}"
             var userId = "${user.usId}"
             var prDeal = "${detail_dto.prDeal}"
-            
-       
+
+
+            if (a == "a") {
+                $('.detailImgDiv').hide();
+            }
+
+            if (b == "b") {
+                $('.youtubeDiv').hide();
+            }
           
             
             
@@ -184,7 +193,8 @@
 
                 <div id="menuList">
                     <div style="border: black solid 3px; width: 269px; height: 1000px; ">
-                        자기소개 글 내용
+                        ${detail_dto.usSelfInfo}
+
                     </div>
                 </div>
             </div>
@@ -205,7 +215,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row detailImgDiv">
                         <div class="col-12">
                             <div class="detail-content">
                                 <img id="ai-img" src="${detail_dto.prImage }" alt="사진">
@@ -213,7 +223,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row youtubeDiv">
                         <div class="col-12">
 
                             <div class="detail-content">
@@ -332,7 +342,7 @@
                             var container = document.getElementById('map');
                             var options = {
                             		center: new kakao.maps.LatLng(${detail_dto.prLatitude}, ${detail_dto.prLongitude}),
-                                level: 8
+                                level: 3
                             };
 
                            

@@ -36,53 +36,53 @@ import com.dto.UserDto;
 @Controller
 public class ProjectController {
 
-	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
     @Autowired
     private ProjectBiz biz;
 
     private int result;
-    
+
     @RequestMapping("/prsearch.do")
     public String Prsearch(Model model, ProjectDto dto, Criteria cri) throws Exception {
-    	logger.info("PrSearch");
-    	model.addAttribute("pr_dto",biz.prSearch(dto, cri));
-    	
-    	PageMaker pageMaker = new PageMaker();
-    	pageMaker.setCri(cri);
-    	pageMaker.setTotalCount(biz.listCount());
-    	model.addAttribute("pr_PageMaker", pageMaker);
-    	return "projectBoard/talentBoard";
-    	
+        logger.info("PrSearch");
+        model.addAttribute("pr_dto", biz.prSearch(dto, cri));
+
+        PageMaker pageMaker = new PageMaker();
+        pageMaker.setCri(cri);
+        pageMaker.setTotalCount(biz.listCount());
+        model.addAttribute("pr_PageMaker", pageMaker);
+        return "projectBoard/talentBoard";
+
     }
 
     @RequestMapping("/category.do")
     public String designProject(Model model, String prTalent, Criteria cri) throws Exception {
-    	
+
 
         logger.info("Select Category");
         model.addAttribute("pr_dto", biz.selectCategory(cri));
-        
+
         cri.setPrTalent(prTalent);
-        model.addAttribute("pr_cri",cri);
-        System.out.println( "prtalent값 확인: " + cri.getPrTalent());
-        
+        model.addAttribute("pr_cri", cri);
+        System.out.println("prtalent값 확인: " + cri.getPrTalent());
+
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCri(cri);
         pageMaker.setTotalCount(biz.listCount());
-        
+
         model.addAttribute("pr_PageMaker", pageMaker);
-        
+
         return "projectBoard/talentBoard";
     }
-    
+
     @RequestMapping("search.do")
-    public String Search(Model model, ProjectDto dto){
-        
+    public String Search(Model model, ProjectDto dto) {
+
         logger.info("Search content");
-        model.addAttribute("pr_dto",biz.search(dto));
-        
-    	return "projectBoard/talentBoard";
+        model.addAttribute("pr_dto", biz.search(dto));
+
+        return "projectBoard/talentBoard";
     }
 
 
@@ -92,24 +92,31 @@ public class ProjectController {
         logger.info("Detail test");
         ProjectDto dto = biz.selectDetail(prNo);
         String youtube = dto.getPrYoutube();
-        
-        int idx = youtube.indexOf("=");
-        
-        String youtube2 = youtube.substring(idx+1);
-        dto.setPrYoutube(youtube2);
-        System.out.println(dto.getPrYoutube());
-        
-        
-      
-        
-        
+
+
+        if (youtube.contains("=")) {
+            int idx = youtube.indexOf("=");
+            String youtube2 = youtube.substring(idx + 1);
+            dto.setPrYoutube(youtube2);
+        } else if (youtube.contains("youtu.be")) {
+            int idx = youtube.indexOf("be/");
+            String youtube2 = youtube.substring(idx + 3);
+            System.out.println(youtube2);
+            dto.setPrYoutube(youtube2);
+        } else {
+            dto.setPrYoutube("b");
+        }
+
+
+
+
         model.addAttribute("detail_dto", dto);
-        
+
         //리뷰 뿌려주기
-        model.addAttribute("review",biz.reviewSelect(prNo));
-        
+        model.addAttribute("review", biz.reviewSelect(prNo));
+
         return "projectBoard/talentBoardDetail";
-        
+
     }
 
     @RequestMapping("popup.do")
@@ -122,31 +129,31 @@ public class ProjectController {
     }
 
     @RequestMapping("review.do")
-    public void Review(ProjectDto dto,ReviewDto dto3,HttpServletResponse response,FinishDealDto dto2) throws IOException {
-    	
-    	
-    	int dealNo = dto2.getDealNo();
-    	List<FinishDealDto> finDto = new ArrayList<>();
-    	
-    	
-    	finDto = biz.selectReview(dto2);
-    	
-    	
-    	System.out.println(finDto+"finDto 확인!!!!!!!!!!!!!!");
-    	
-    	if(finDto.size()!=0) {
-    		int res= 0;
-    		res = biz.insertReivew(dto3);
-    		
-    		if(res>0) {
-    			ScriptUtils.alertAndMovePage(response, "작성완료", "Detail.do?prNo="+dto.getPrNo());
-    		}else {
-    			ScriptUtils.alertAndMovePage(response, "작성실패", "Detail.do?prNo="+dto.getPrNo());
-    		}
-    	}else {
-    		ScriptUtils.alertAndMovePage(response, "구매후 작성이 가능합니다.", "Detail.do?prNo="+dto.getPrNo());
-    	}
-    	 
+    public void Review(ProjectDto dto, ReviewDto dto3, HttpServletResponse response, FinishDealDto dto2) throws IOException {
+
+
+        int dealNo = dto2.getDealNo();
+        List<FinishDealDto> finDto = new ArrayList<>();
+
+
+        finDto = biz.selectReview(dto2);
+
+
+        System.out.println(finDto + "finDto 확인!!!!!!!!!!!!!!");
+
+        if (finDto.size() != 0) {
+            int res = 0;
+            res = biz.insertReivew(dto3);
+
+            if (res > 0) {
+                ScriptUtils.alertAndMovePage(response, "작성완료", "Detail.do?prNo=" + dto.getPrNo());
+            } else {
+                ScriptUtils.alertAndMovePage(response, "작성실패", "Detail.do?prNo=" + dto.getPrNo());
+            }
+        } else {
+            ScriptUtils.alertAndMovePage(response, "구매후 작성이 가능합니다.", "Detail.do?prNo=" + dto.getPrNo());
+        }
+
     }
 
     @RequestMapping("insertProject.do")
@@ -158,307 +165,306 @@ public class ProjectController {
     @RequestMapping(value = "insertProjectRes.do")
     public void insertProjectRes(HttpServletResponse response, ProjectDto dto) throws Exception {
         logger.info("Insert Res");
+        
         FtpClient ftpClient =
                 new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
         String filename = null;
         
-        
-        
         //dto안에 들어있는 file을 가져오고
         MultipartFile multiFile = dto.getPrImage2();
-        
-        
-        if(multiFile.getSize() > 0) {
-        //파일 real이름을 filename 변수에 저장
-        filename = multiFile.getOriginalFilename();
 
-        //id : id값 을 id만 나올 수 있게 만든다
+        if (multiFile.getSize() > 0) {
+            //파일 real이름을 filename 변수에 저장
+            filename = multiFile.getOriginalFilename();
+
+            //id : id값 을 id만 나올 수 있게 만든다
 
 
-        String filename2 = ftpClient.fileName(filename, dto.getUsId());
+            String filename2 = ftpClient.fileName(filename, dto.getUsId());
 
-        //경로/id/filename
-        dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
+            //경로/id/filename
+            dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
 
-        //multiPartFile을 File로 변환하는 작업
-        File file = ftpClient.convert(multiFile);
+            //multiPartFile을 File로 변환하는 작업
+            File file = ftpClient.convert(multiFile);
 
-        ftpClient.upload(file, filename, dto.getUsId());
+            ftpClient.upload(file, filename, dto.getUsId());
 
-        }else {
-        	dto.setPrImage("a");
+        } else {
+            dto.setPrImage("a");
         }
-        int res = biz.insertProject(dto);
         
+        int res = biz.insertProject(dto);
+
         if (res > 0) {
-        	
-        	int resCal = biz.insertCalendar(dto);
-        	
-        	if(resCal>0) {
-        		ScriptUtils.alertAndMovePage(response, "입력 완료", "main.do");
-        	}else {
-        		ScriptUtils.alertAndMovePage(response, "입력 실패", "main.do");
-        	}
-        	
+
+            int resCal = biz.insertCalendar(dto);
+
+            if (resCal > 0) {
+                ScriptUtils.alertAndMovePage(response, "입력 완료", "main.do");
+            } else {
+                ScriptUtils.alertAndMovePage(response, "입력 실패", "main.do");
+            }
+
         } else {
             ScriptUtils.alertAndMovePage(response, "입력 실패", "main.do");
         }
     }
 
-	@RequestMapping("ProjectUpdate.do")
-	public String ProjectUpdate(Model model, int prNo) {
-		logger.info("UPDATE FORM");
-		model.addAttribute("dto", biz.selectDetail(prNo));
-		return "projectBoard/talentBoardUpdate";
-	}
+    @RequestMapping("ProjectUpdate.do")
+    public String ProjectUpdate(Model model, int prNo) {
+        logger.info("UPDATE FORM");
+        model.addAttribute("dto", biz.selectDetail(prNo));
+        return "projectBoard/talentBoardUpdate";
+    }
 
-	@RequestMapping("ProjectUpdateRes.do")
-	public void ProjectUpdateRes(HttpServletResponse response, ProjectDto dto) throws Exception {
-		logger.info("Update Res");
+    @RequestMapping("ProjectUpdateRes.do")
+    public void ProjectUpdateRes(HttpServletResponse response, ProjectDto dto) throws Exception {
+        logger.info("Update Res");
 
-		FtpClient ftpClient = new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
+        FtpClient ftpClient = new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
-		String filename = null;
+        String filename = null;
 
-		// dto안에 들어있는 file을 가져오고
-		MultipartFile multiFile = dto.getPrImage2();
+        // dto안에 들어있는 file을 가져오고
+        MultipartFile multiFile = dto.getPrImage2();
 
-		// 파일 real이름을 filename 변수에 저장
-		filename = multiFile.getOriginalFilename();
+        // 파일 real이름을 filename 변수에 저장
+        filename = multiFile.getOriginalFilename();
 
-		// id : id값 을 id만 나올 수 있게 만든다
+        // id : id값 을 id만 나올 수 있게 만든다
 
-		String filename2 = ftpClient.fileName(filename, dto.getUsId());
-		
-		// 경로/id/filename
-		dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
+        String filename2 = ftpClient.fileName(filename, dto.getUsId());
 
-		// multiPartFile을 File로 변환하는 작업
-		File file = ftpClient.convert(multiFile);
+        // 경로/id/filename
+        dto.setPrImage("http://wjwan0.dothome.co.kr/stoarge/" + dto.getUsId() + "/" + filename2);
 
-		ftpClient.upload(file, filename, dto.getUsId());
+        // multiPartFile을 File로 변환하는 작업
+        File file = ftpClient.convert(multiFile);
 
-		int res = biz.updateProject(dto);
-		if (res > 0) {
-			ScriptUtils.alertAndMovePage(response, "수정 완료", "main.do");
-		} else {
-			ScriptUtils.alertAndMovePage(response, "수정 실패", "main.do");
-		}
+        ftpClient.upload(file, filename, dto.getUsId());
 
-	}
-    
-    
+        int res = biz.updateProject(dto);
+        if (res > 0) {
+            ScriptUtils.alertAndMovePage(response, "수정 완료", "main.do");
+        } else {
+            ScriptUtils.alertAndMovePage(response, "수정 실패", "main.do");
+        }
+
+    }
+
+
     @RequestMapping("deleteReview.do")
-    public void deleteReview(HttpServletResponse response,int rvNo,int prNo) throws IOException {
-    	int res = 0;
-    	System.out.println(rvNo);
-    	System.out.println(prNo);
-    	res = biz.reviewDelete(rvNo);
-    	
-    	if(res>0) {
-    		ScriptUtils.alertAndMovePage(response, "리뷰 삭제 완료", "Detail.do?prNo="+prNo);
-    	}else {
-    		ScriptUtils.alertAndMovePage(response, "리뷰 삭제 실패", "Detail.do?prNo="+prNo);
-    	}
+    public void deleteReview(HttpServletResponse response, int rvNo, int prNo) throws IOException {
+        int res = 0;
+        System.out.println(rvNo);
+        System.out.println(prNo);
+        res = biz.reviewDelete(rvNo);
+
+        if (res > 0) {
+            ScriptUtils.alertAndMovePage(response, "리뷰 삭제 완료", "Detail.do?prNo=" + prNo);
+        } else {
+            ScriptUtils.alertAndMovePage(response, "리뷰 삭제 실패", "Detail.do?prNo=" + prNo);
+        }
     }
 
     //일정페이지 이동(구매자)
     @RequestMapping("appointCheck.do")
     public String appointCheck(Model model, int prNo) {
-    	
-    	model.addAttribute("calendar", biz.selectCalendar(prNo));
-    	
-    	return "buyer/reservationyer_pop_buyer";
-    	
+
+        model.addAttribute("calendar", biz.selectCalendar(prNo));
+
+        return "buyer/reservationyer_pop_buyer";
+
     }
-    
-    
-    
+
+
     //일정페이지 이동
     @RequestMapping("appointChange.do")
-    public String appointChange(Model model,int prNo) {
-    	
-    	model.addAttribute("calendar",biz.selectCalendar(prNo));
-    	
-    	return "seller/reservationyer_pop_seller";
+    public String appointChange(Model model, int prNo) {
+
+        model.addAttribute("calendar", biz.selectCalendar(prNo));
+
+        return "seller/reservationyer_pop_seller";
     }
-    
-    
+
+
     //일정 불러오기
     @RequestMapping("calendar.do")
     @ResponseBody
     public List calendar(int prNo) {
-    		
-    	List<ScheduleDto> list = biz.scheduleList(prNo);
-    	
-    	List jArray = new ArrayList();
-    	
-    	for(int i=0; i< list.size(); i++) {
-    		
-    		JSONObject sObject = new JSONObject();
-    		sObject.put("title", list.get(i).getScTitle());
-    		sObject.put("start", list.get(i).getScStart());
-    		sObject.put("end", list.get(i).getScEnd());
-    		jArray.add(sObject);
-    		
-    	}
-    	
-    	return jArray;
-    	
-    }
-    
-    //날짜 +1
-    private static String AddDate(String strDate, int year, int month, int day) throws Exception { 
-    	SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd"); 
-    	
-    	Calendar cal = Calendar.getInstance(); 
-    	Date dt = dtFormat.parse(strDate); 
-    	cal.setTime(dt); cal.add(Calendar.YEAR, year); 
-    	cal.add(Calendar.MONTH, month); 
-    	cal.add(Calendar.DATE, day); 
-    	
-    	return dtFormat.format(cal.getTime()); 
+
+        List<ScheduleDto> list = biz.scheduleList(prNo);
+
+        List jArray = new ArrayList();
+
+        for (int i = 0; i < list.size(); i++) {
+
+            JSONObject sObject = new JSONObject();
+            sObject.put("title", list.get(i).getScTitle());
+            sObject.put("start", list.get(i).getScStart());
+            sObject.put("end", list.get(i).getScEnd());
+            jArray.add(sObject);
+
+        }
+
+        return jArray;
+
     }
 
-    
+    //날짜 +1
+    private static String AddDate(String strDate, int year, int month, int day) throws Exception {
+        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
+
+        Calendar cal = Calendar.getInstance();
+        Date dt = dtFormat.parse(strDate);
+        cal.setTime(dt);
+        cal.add(Calendar.YEAR, year);
+        cal.add(Calendar.MONTH, month);
+        cal.add(Calendar.DATE, day);
+
+        return dtFormat.format(cal.getTime());
+    }
+
+
     //일정 저장
     @RequestMapping("insertSchedule.do")
     public String insertSchedule(ScheduleDto dto) throws Exception {
-    	
-    	String scTitle = dto.getScTitle()+"님의 스케줄";
-    	
-    	String endDate = dto.getScEnd();
-    	
-    	String[] dateSplit = endDate.split("-");
-    	String date = dateSplit[0] + dateSplit[1] + dateSplit[2];
-    	
-    	String addDate = AddDate(date, 0, 0, 1);
-    	
-    	String year = addDate.substring(0,4);
-    	String mon = addDate.substring(4, 6);
-    	String day = addDate.substring(6);
-    	
-    	String finDate = year+"-"+mon+"-"+day;
-    	
-    	dto.setScEnd(finDate);
-    	
-    	dto.setScTitle(scTitle);
-    	
-    	int res = biz.insertSchedule(dto);
-    	
-    	if(res>0) {
-    		return "redirect:appointChange.do?prNo="+dto.getPrNo();
-    	}else {
-    		return "redirect:appointChange.do?prNo="+dto.getPrNo();
-    	}
-    	
+
+        String scTitle = dto.getScTitle() + "님의 스케줄";
+
+        String endDate = dto.getScEnd();
+
+        String[] dateSplit = endDate.split("-");
+        String date = dateSplit[0] + dateSplit[1] + dateSplit[2];
+
+        String addDate = AddDate(date, 0, 0, 1);
+
+        String year = addDate.substring(0, 4);
+        String mon = addDate.substring(4, 6);
+        String day = addDate.substring(6);
+
+        String finDate = year + "-" + mon + "-" + day;
+
+        dto.setScEnd(finDate);
+
+        dto.setScTitle(scTitle);
+
+        int res = biz.insertSchedule(dto);
+
+        if (res > 0) {
+            return "redirect:appointChange.do?prNo=" + dto.getPrNo();
+        } else {
+            return "redirect:appointChange.do?prNo=" + dto.getPrNo();
+        }
+
     }
-    
+
     //일정삭제
     @RequestMapping("/deleteSchedule.do")
     @ResponseBody
     public String deleteSchedule(String scTitle, Date scStartDate, Date scEndDate) {
-    	
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	String scStart = dateFormat.format(scStartDate);
-    	String scEnd = dateFormat.format(scEndDate);
-    	
-    	ScheduleDto dto = new ScheduleDto();
-    	dto.setScTitle(scTitle);
-    	dto.setScStart(scStart);
-    	dto.setScEnd(scEnd);
-    	
-    	int res = biz.deleteSchedule(dto);
-    	
-    	if(res>0) {
-    		return "삭제 성공";
-    	}else {
-    		return "삭제 실패";
-    	}
-    	
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String scStart = dateFormat.format(scStartDate);
+        String scEnd = dateFormat.format(scEndDate);
+
+        ScheduleDto dto = new ScheduleDto();
+        dto.setScTitle(scTitle);
+        dto.setScStart(scStart);
+        dto.setScEnd(scEnd);
+
+        int res = biz.deleteSchedule(dto);
+
+        if (res > 0) {
+            return "삭제 성공";
+        } else {
+            return "삭제 실패";
+        }
+
     }
-    
 
-	@RequestMapping("reviewUpdate.do")
-	public void UpdateReview(HttpServletResponse response, ReviewDto dto, ProjectDto dto2) throws IOException {
 
-		int res;
+    @RequestMapping("reviewUpdate.do")
+    public void UpdateReview(HttpServletResponse response, ReviewDto dto, ProjectDto dto2) throws IOException {
 
-		res = biz.reviewUpdate(dto);
+        int res;
 
-		if (res > 0) {
-			ScriptUtils.alertAndMovePage(response, "리뷰 수정 완료", "Detail.do?prNo=" + dto2.getPrNo());
-		} else {
-			ScriptUtils.alertAndMovePage(response, "리뷰 수정 실패", "Detail.do?prNo=" + dto2.getPrNo());
-		}
+        res = biz.reviewUpdate(dto);
 
-	}
+        if (res > 0) {
+            ScriptUtils.alertAndMovePage(response, "리뷰 수정 완료", "Detail.do?prNo=" + dto2.getPrNo());
+        } else {
+            ScriptUtils.alertAndMovePage(response, "리뷰 수정 실패", "Detail.do?prNo=" + dto2.getPrNo());
+        }
 
-	@RequestMapping("ProjectDelete.do")
-	public void ProjectDelete(HttpServletResponse response, int prNo) throws IOException {
+    }
 
-		logger.info("Delete");
+    @RequestMapping("ProjectDelete.do")
+    public void ProjectDelete(HttpServletResponse response, int prNo) throws IOException {
 
-		int res = biz.deleteProject(prNo);
+        logger.info("Delete");
 
-		if (res > 0) {
-			ScriptUtils.alertAndMovePage(response, "삭제 성공", "main.do");
-		} else {
-			ScriptUtils.alertAndMovePage(response, "삭제 실패", "detail.do?prNo=" + prNo);
-		}
-	}
+        int res = biz.deleteProject(prNo);
 
-	@RequestMapping("online.do")
-	public String Online(Model model, int prNo, int usNo, int loginUsNo, String buyselect, HttpSession session) {
-		System.out.println("online");
+        if (res > 1) {
+            ScriptUtils.alertAndMovePage(response, "삭제 성공", "main.do");
+        } else {
+            ScriptUtils.alertAndMovePage(response, "진행중인 거래가 있습니다.", "Detail.do?prNo=" + prNo);
+        }
+    }
 
-		UserDto dto = (UserDto) session.getAttribute("user");
-		ProjectDto dto2 = biz.selectDetail(prNo);
+    @RequestMapping("online.do")
+    public String Online(Model model, int prNo, int usNo, int loginUsNo, String buyselect, HttpSession session) {
+        System.out.println("online");
 
-		int cash = dto.getUsCash();
-		int price = dto2.getPrPrice();
+        UserDto dto = (UserDto) session.getAttribute("user");
+        ProjectDto dto2 = biz.selectDetail(prNo);
 
-		result = cash - price;
-		System.out.println(result);
-		model.addAttribute("result1", result);
-		model.addAttribute("dto", biz.selectDetail(prNo));
+        int cash = dto.getUsCash();
+        int price = dto2.getPrPrice();
 
-		return "trade/onlinetrade";
+        result = cash - price;
+        System.out.println(result);
+        model.addAttribute("result1", result);
+        model.addAttribute("dto", biz.selectDetail(prNo));
 
-	}
+        return "trade/onlinetrade";
 
-	@RequestMapping("direct.do")
-	public String Perchase(Model model, int prNo, int usNo, int loginUsNo, HttpSession session) {
-		System.out.println("direct");
+    }
 
-		UserDto dto = (UserDto) session.getAttribute("user");
+    @RequestMapping("direct.do")
+    public String Perchase(Model model, int prNo, int usNo, int loginUsNo, HttpSession session) {
+        System.out.println("direct");
 
-		String phone1 = dto.getUsPhone().substring(0, 3);
+        UserDto dto = (UserDto) session.getAttribute("user");
 
-		String phone2 = dto.getUsPhone().substring(4, 4);
+        String phone1 = dto.getUsPhone().substring(0, 3);
 
-		String phone3 = dto.getUsPhone().substring(4, 4);
-		ProjectDto dto2 = biz.selectDetail(prNo);
-		model.addAttribute("dto", dto2);
+        String phone2 = dto.getUsPhone().substring(4, 4);
 
-		System.out.println(dto.getUsPhone());
-		System.out.println(phone1);
-		System.out.println(phone2);
-		System.out.println(phone3);
+        String phone3 = dto.getUsPhone().substring(4, 4);
+        ProjectDto dto2 = biz.selectDetail(prNo);
+        model.addAttribute("dto", dto2);
 
-		model.addAttribute("phone", dto);
+        System.out.println(dto.getUsPhone());
+        System.out.println(phone1);
+        System.out.println(phone2);
+        System.out.println(phone3);
 
-		int cash = dto.getUsCash();
-		int price = dto2.getPrPrice();
+        model.addAttribute("phone", dto);
 
-		result = cash - price;
-		System.out.println(result);
-		model.addAttribute("result1", result);
+        int cash = dto.getUsCash();
+        int price = dto2.getPrPrice();
 
-		return "trade/directtrade";
+        result = cash - price;
+        System.out.println(result);
+        model.addAttribute("result1", result);
 
-	}
+        return "trade/directtrade";
+
+    }
 
 
 }

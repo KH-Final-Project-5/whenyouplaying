@@ -4,24 +4,53 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="project">
-	
-	<select id="selectDesign" parameterType="com.commons.Criteria" resultType="ProjectDto">
-		SELECT PRNO,USNO,PRTITLE, PRCONTENT, PRPRICE, PRWRITEDATE, PRTALENT, PRDEAL,PRYOUTUBE,PRIMAGE,PRDATE,PRSTATUS,PRLATITUDE,PRLONGITUDE,PRADDRESS
+
+    <select id="selectDesign" parameterType="com.commons.Criteria" resultType="ProjectDto">
+        SELECT PRNO,
+               USNO,
+               PRTITLE,
+               PRCONTENT,
+               PRPRICE,
+               PRWRITEDATE,
+               PRTALENT,
+               PRDEAL,
+               PRYOUTUBE,
+               PRIMAGE,
+               PRDATE,
+               PRSTATUS,
+               PRLATITUDE,
+               PRLONGITUDE,
+               PRADDRESS
         FROM (
-                SELECT PRNO,USNO,PRTITLE, PRCONTENT, PRPRICE, PRWRITEDATE, PRTALENT, PRDEAL,PRYOUTUBE,PRIMAGE,PRDATE,PRSTATUS,PRLATITUDE,PRLONGITUDE,PRADDRESS, ROW_NUMBER() OVER(ORDER BY PRNO DESC) AS RNUM
-                FROM W_PROJECT
-                WHERE PRTALENT=#{prTalent} AND PRDELSTATUS = 'Y' )
+                 SELECT PRNO,
+                        USNO,
+                        PRTITLE,
+                        PRCONTENT,
+                        PRPRICE,
+                        PRWRITEDATE,
+                        PRTALENT,
+                        PRDEAL,
+                        PRYOUTUBE,
+                        PRIMAGE,
+                        PRDATE,
+                        PRSTATUS,
+                        PRLATITUDE,
+                        PRLONGITUDE,
+                        PRADDRESS,
+                        ROW_NUMBER() OVER(ORDER BY PRNO DESC) AS RNUM
+                 FROM W_PROJECT
+                 WHERE PRTALENT = #{prTalent}
+                   AND PRDELSTATUS = 'Y')
         WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
         ORDER BY PRNO DESC
-	</select>
-	
-	
+    </select>
 
-	<select id="prListCount" resultType="int">
-		SELECT COUNT(PRNO)
-		FROM W_PROJECT
-		WHERE PRNO>0
-	</select>
+
+    <select id="prListCount" resultType="int">
+        SELECT COUNT(PRNO)
+        FROM W_PROJECT
+        WHERE PRNO > 0
+    </select>
 
     <!-- <select id="selectDesign" parameterType="String" resultType="ProjectDto">
         SELECT *
@@ -29,44 +58,43 @@
         WHERE PRTALENT = #{prTalent}
     </select>
 	 -->
-	
-	
-	<select id="reviewSelect" parameterType="int" resultType="reviewDto">
-		SELECT  PRNO,b.USNO,RVNO,RVCONTENT,RVDATE,RVGRADE,USNAME
-		FROM W_REVIEW a
-		JOIN W_USER b ON b.USNO = a.USWRITER
-		WHERE PRNO=#{prNo}
-	</select>
-	
+
+
+    <select id="reviewSelect" parameterType="int" resultType="reviewDto">
+        SELECT PRNO, b.USNO, RVNO, RVCONTENT, RVDATE, RVGRADE, USNAME
+        FROM W_REVIEW a
+                 JOIN W_USER b ON b.USNO = a.USWRITER
+        WHERE PRNO = #{prNo}
+    </select>
+
     <select id="detail" parameterType="int" resultType="ProjectDto">
         SELECT a.*, b.*
         FROM W_PROJECT a
                  JOIN W_USER b ON a.USNO = b.USNO
         WHERE PRNO = #{prNo}
     </select>
-	
-	
+
 
     <insert id="insert" parameterType="ProjectDto">
         INSERT INTO W_PROJECT
         VALUES (PROJECTSEQ.NEXTVAL, #{usNo}, #{prTitle}, #{prContent}, #{prPrice}, SYSDATE, #{prTalent}, #{prDeal},
-                #{prYoutube}, #{prImage}, SYSDATE, '대기중', #{prLatitude}, #{prLongitude}, '주소','Y')
+                #{prYoutube}, #{prImage}, SYSDATE, '대기중', #{prLatitude}, #{prLongitude}, '주소', 'Y')
 
     </insert>
-     
-   
-    
-    
+
+
     <insert id="insertReview" parameterType="reviewDto">
-    INSERT INTO W_REVIEW
-	VALUES (RVSEQ.NEXTVAL,#{prNo},#{usSellNo},#{usBuyNo},#{rvContent},SYSDATE,#{rating})
+        INSERT INTO W_REVIEW
+        VALUES (RVSEQ.NEXTVAL, #{prNo}, #{usSellNo}, #{usBuyNo}, #{rvContent}, SYSDATE, #{rating})
     </insert>
 
 
- 	<select id="selectReview" parameterType="FinishDealDto" resultType="finishDealDto">
-    	SELECT *
-		FROM W_FINISHDEAL
-		WHERE PRNO=#{prNo} AND USBUYNO=#{usBuyNo} AND FINSTATUS='거래완료'
+    <select id="selectReview" parameterType="FinishDealDto" resultType="finishDealDto">
+        SELECT *
+        FROM W_FINISHDEAL
+        WHERE PRNO = #{prNo}
+          AND USBUYNO = #{usBuyNo}
+          AND FINSTATUS = '거래완료'
     </select>
 
     <update id="update" parameterType="ProjectDto">
@@ -81,10 +109,11 @@
         WHERE prNo = #{prNo}
     </update>
 
-    <delete id="delete" parameterType="int">
-        DELETE
-        FROM W_PROJECT
-        WHERE PRNO = #{prNo}
+    <delete id="delete" parameterType="map" statementType="CALLABLE">
+        {call PC_DELPROJECT(
+                #{prNo, mode=IN, jdbcType=NUMERIC, javaType=java.lang.Integer},
+                #{RESULTNUM_OUT, mode=OUT, jdbcType=NUMERIC, javaType=java.lang.Integer}
+            ) }
     </delete>
 
 
@@ -100,94 +129,91 @@
                  JOIN W_USER WU on W_PROJECT.USNO = WU.USNO
         WHERE PRNO = #{prNo}
     </select>
-	
-	
-	<select id="search" parameterType="ProjectDto" resultType="ProjectDto">
-		SELECT *
-		FROM (SELECT *
-			  FROM W_PROJECT
-			  WHERE PRTALENT=#{prTalent})
-		WHERE PRCONTENT LIKE '%'||#{searchContent}||'%'
-	</select>
-	
-	<select id="prSearch" parameterType="projectDto" resultType="projectDto">
-SELECT * 
-FROM W_PROJECT
-WHERE PRTITLE LIKE '%'||#{prTitle}||'%'
-	</select>
-	
 
-	<select id="newest" resultType="ProjectDto">
-	
-		SELECT ROWNUM, a.* FROM W_PROJECT a WHERE ROWNUM &lt; 5 ORDER BY PRNO DESC
-		
-	</select>
-	
-	
-	<select id ="popularity" parameterType="ReviewDto" resultType="ReviewDto">
+
+    <select id="search" parameterType="ProjectDto" resultType="ProjectDto">
+        SELECT *
+        FROM (SELECT *
+              FROM W_PROJECT
+              WHERE PRTALENT = #{prTalent})
+        WHERE PRCONTENT LIKE '%' || #{searchContent} || '%'
+    </select>
+
+    <select id="prSearch" parameterType="projectDto" resultType="projectDto">
+        SELECT *
+        FROM W_PROJECT
+        WHERE PRTITLE LIKE '%' || #{prTitle} || '%'
+    </select>
+
+
+    <select id="newest" resultType="ProjectDto">
+
+        SELECT ROWNUM, a.*
+        FROM W_PROJECT a
+        WHERE ROWNUM &lt; 5
+          AND PRIMAGE != 'a'
+        ORDER BY PRNO DESC
+
+    </select>
+
+    <insert id="insertCalendar" parameterType="projectDto">
+        INSERT INTO W_CALENDAR
+        VALUES (CALSEQ.NEXTVAL, PROJECTSEQ.CURRVAL, #{usNo})
+    </insert>
+
+    <select id="popularity" parameterType="ReviewDto" resultType="ReviewDto">
 		<![CDATA[
-		SELECT *
-		FROM(
-		SELECT *
-		FROM(SELECT PRNO, COUNT(RVGRADE) w, TRUNC(AVG(RVGRADE),1) e 
-		FROM W_REVIEW
-		GROUP BY PRNO
-		ORDER BY e DESC) c
-		JOIN W_PROJECT d ON (c.PRNO = d.PRNO)
-		ORDER BY c.e DESC
-		) 
-		WHERE ROWNUM <= 4
-		]]>
+        SELECT *
+        FROM (
+                 SELECT *
+                 FROM (SELECT PRNO, COUNT(RVGRADE) w, TRUNC(AVG(RVGRADE), 1) e
+                       FROM W_REVIEW
+                       GROUP BY PRNO
+                       ORDER BY e DESC) c
+                          JOIN W_PROJECT d ON (c.PRNO = d.PRNO)
+                 ORDER BY c.e DESC
+             )
+        WHERE ROWNUM <= 4
+          AND PRIMAGE != 'a'
+        ]]>
 	</select>
-	
-	<update id="reviewUpdate" parameterType="ReviewDto" >
-		UPDATE W_REVIEW
-		SET RVCONTENT=#{rvContent}
-		WHERE RVNO=#{rvNo}
-	</update>
-	
-	<delete id="reviewDelete" parameterType="int">
-		DELETE
-		FROM W_REVIEW
-		WHERE RVNO=#{rvNo}
-	</delete>
-	
-	
-	<insert id="insertCalendar" parameterType="projectDto">
-		INSERT INTO W_CALENDAR
-		VALUES(CALSEQ.NEXTVAL, #{prNo}, #{usNo})
-	</insert>
-	
-	
-	<select id="scheduleList" parameterType="int" resultType="scheduleDto">
-		SELECT * FROM W_SCHEDULE
-		WHERE PRNO = #{prNo}
-	</select>
-	
-	<select id="selectCalendar" parameterType="int" resultType="calendarDto">
-		SELECT * FROM W_CALENDAR
-		WHERE PRNO = #{prNo}
-	</select>
-	
-	
-	<insert id="insertSchedule" parameterType="scheduleDto">
-		INSERT INTO W_SCHEDULE
-		VALUES(SCSEQ.NEXTVAL, #{calNo}, #{prNo}, #{usNo}, #{scTitle}, #{scStart}, #{scEnd})
-	</insert>
-	
-	<delete id="deleteSchedule" parameterType="scheduleDto">
-		DELETE FROM W_SCHEDULE
-		WHERE SCTITLE = #{scTitle}
-		  AND SCSTART = #{scStart}
-		  AND SCEND = #{scEnd}
-	</delete>
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+    <update id="reviewUpdate" parameterType="ReviewDto">
+        UPDATE W_REVIEW
+        SET RVCONTENT=#{rvContent}
+        WHERE RVNO = #{rvNo}
+    </update>
+
+    <delete id="reviewDelete" parameterType="int">
+        DELETE
+        FROM W_REVIEW
+        WHERE RVNO = #{rvNo}
+    </delete>
+
+    <select id="scheduleList" parameterType="int" resultType="scheduleDto">
+        SELECT *
+        FROM W_SCHEDULE
+        WHERE PRNO = #{prNo}
+    </select>
+
+    <select id="selectCalendar" parameterType="int" resultType="calendarDto">
+        SELECT *
+        FROM W_CALENDAR
+        WHERE PRNO = #{prNo}
+    </select>
+
+
+    <insert id="insertSchedule" parameterType="scheduleDto">
+        INSERT INTO W_SCHEDULE
+        VALUES (SCSEQ.NEXTVAL, #{calNo}, #{prNo}, #{usNo}, #{scTitle}, #{scStart}, #{scEnd})
+    </insert>
+
+    <delete id="deleteSchedule" parameterType="scheduleDto">
+        DELETE
+        FROM W_SCHEDULE
+        WHERE SCTITLE = #{scTitle}
+          AND SCSTART = #{scStart}
+          AND SCEND = #{scEnd}
+    </delete>
+
 </mapper>
