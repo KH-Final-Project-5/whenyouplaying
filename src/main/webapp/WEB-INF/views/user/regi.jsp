@@ -39,7 +39,29 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
+        let phone = '${phone}';
+        let phone1;
+        let phone2;
+        let phone3;
+        if (phone.length == 11) {
+            phone1 = phone.substr(0, 3);
+            phone2 = phone.substr(3, 4);
+            phone3 = phone.substr(7);
+        } else {
+            phone1 = phone.substr(0, 3);
+            phone2 = phone.substr(3, 3);
+            phone3 = phone.substr(6);
+        }
+
+
         $(function () {
+
+            $("#usPhone").val(phone1);
+            $("#usPhone2").val(phone2);
+            $("#usPhone3").val(phone3);
+
+
+
             $("#addrBtn").click(function () {
                 new daum.Postcode({
                     oncomplete: function (data) { //선택시 입력값 세팅
