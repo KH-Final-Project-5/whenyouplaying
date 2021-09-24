@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>talnetBoard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -105,8 +105,8 @@
 			<jsp:include page="/WEB-INF/views/header/header.jsp" flush="false" />
 		</header>
 		
-	<div class="content">	
-		<div class="container">
+	<div class="content" style="min-height: 3500px;">
+		<div class="container" style="margin-top: 60px; margin-bottom: 60px;">
 			<div class="row">
 				<div class="col-12 userNav">
 					<h2>재능 판매 게시판</h2>
