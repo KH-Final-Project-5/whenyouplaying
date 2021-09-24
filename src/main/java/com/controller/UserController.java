@@ -49,8 +49,6 @@ import com.dto.ReportDto;
 import com.dto.ReviewDto;
 import com.dto.UserDto;
 import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.mail.Email;
-import com.mail.EmailSender;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -79,12 +77,7 @@ public class UserController {
     UserBiz biz;
     @Autowired
     ProjectBiz biz2;
-	
-    @Autowired
-	EmailSender emailSender;
 
-	@Autowired
-	Email email;
 	
     @ResponseBody
     @RequestMapping("charge.do")
