@@ -202,18 +202,14 @@
         }
 
         function startSpeechRecognition() {
-            console.log("start");
 
             recognition.addEventListener("speechstart", () => {
-                console.log("Speech Start");
             });
 
             recognition.addEventListener("speechend", () => {
-                console.log("Speech End");
             });
 
             recognition.addEventListener("result", (event) => {
-                console.log("Speech Result", event.results);
                 const text = event.results[0][0].transcript;
                 $(".searchBar").val(text);
 
