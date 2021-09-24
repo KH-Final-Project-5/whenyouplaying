@@ -267,20 +267,20 @@
             <div class="row">
                 <div class="searchArea">
                     <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img
-                                    src="<c:url value="/resources/img_header/search.png"/>"
-                                    alt="음성인식" width="40"
+
+                            <span class="input-group-text" style="padding: 0px; height:35px;"><img
+                                    src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
 
                         <form action="prsearch.do" method="post">
-                            <input type="search" id="searchHeadBar" class="searchBar" name="prTitle">
-                            <button class="btn btn-outline-primary" type="submit">검색</button>
+                            <input type="search" class="searchBar" name="prTitle">
+                            <button class="btn btn-outline-primary searchButton" type="submit">검색</button>
                         </form>
 
 
                         <div class="mic">
-                            <img class="micImg" src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                 height="35" onclick="startSpeechRecognition();">
+                            <img class="micImg" src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="45"
+                                 height="33" onclick="startSpeechRecognition();">
                         </div>
 
                     </div>
@@ -359,19 +359,19 @@
             <div class="row">
                 <div class="searchArea">
                     <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img
+                            <span class="input-group-text" style="padding: 0px; height:35px"><img
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
                         <form action="prsearch.do" method="post">
 
                             <input type="search" class="searchBar" name="prTitle">
-                            <button class="btn btn-outline-primary" type="submit">검색</button>
+                            <button class="btn btn-outline-primary searchButton" type="submit">검색</button>
                         </form>
 
 
                         <div class="mic">
-                                <img class="micImg" src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                     height="35" onclick="startSpeechRecognition();">
+                            <img class="micImg" src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="45"
+                                 height="33" onclick="startSpeechRecognition();">
                         </div>
 
                         <div class="enroll">
@@ -445,21 +445,23 @@
             </div>
             <div class="row">
                 <div class="searchArea">
-                    <form action="prsearch.do" method="post">
-                        <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img
+                    <div class="input-group input-group mb-3 ">
+                            <span class="input-group-text" style="padding: 0px; height:35px"><img
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
-                            <input type="search" class="searchBar" name="prTitle">
-                            <button class="btn btn-outline-primary" type="submit">검색</button>
 
-                            <div class="mic">
-                                    <img class="micImg" src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                         height="35" onclick="startSpeechRecognition();">
-                            </div>
-
+                        <div class="mic">
+                            <img class="micImg" src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="45"
+                                 height="33" onclick="startSpeechRecognition();">
                         </div>
-                    </form>
+
+
+                        <form action="prsearch.do" method="post">
+                            <input type="search" class="searchBar" name="prTitle">
+                            <button class="btn btn-outline-primary searchButton" type="submit">검색</button>
+                        </form>
+
+                    </div>
                 </div>
             </div>
             <div class="row">

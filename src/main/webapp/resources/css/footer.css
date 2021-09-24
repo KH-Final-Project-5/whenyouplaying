@@ -3,8 +3,6 @@
 
     width: 1200px;
     max-width: none !important;
-    /*height: 110px;*/
-    margin-top: 20px;
 
 }
 
@@ -13,15 +11,15 @@ body{
     font-family: 'Noto Sans KR', sans-serif;
 }
 footer{
-    /*height: %;*/
     background-color: whitesmoke;
+    height: 160px;
 }
 
 footer img{
     width: 150px;
     height: 130px;
     border-radius: 50%;
-    margin-top: 7px;
+    margin-top: 10px;
 }
 
 .foo_div{

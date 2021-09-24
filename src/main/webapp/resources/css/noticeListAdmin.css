@@ -3,8 +3,7 @@
 
     width: 1200px;
     max-width: none !important;
-    margin-top: 60px;
-    margin-bottom: 60px;
+
 }
 
 
@@ -76,12 +75,6 @@ h2{
     position: relative;
     top: 5px;
     left: 10px;
-}
-
-p{
-    position: relative;
-    top: 20px;
-    left: 50%;
 }
 
 

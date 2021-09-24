@@ -1,22 +1,12 @@
 
-html,
-body {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-x: hidden;
-    /*overflow-y: hidden;*/
 
-}
 .wwrap {
-    min-height: 85vh;
     position: relative;
+    height: 100%;
 }
+
 footer {
     width:100%;
-    position:absolute;
-    bottom: 0;
     text-align: center;
 }
 
@@ -28,11 +18,11 @@ body {
 .container {
     width: 1200px;
     max-width: none !important;
-    min-height: 85vh;
-    margin-top: 20px;
-    margin-bottom: 0;
-    padding-bottom: 180px;
    
+}
+
+.micImg:hover {
+    cursor: pointer;
 }
 
 /* 구글 아이콘*/
@@ -145,14 +135,20 @@ body {
 
 .searchArea {
     position: relative;
-    top: 15px;
-    left: 200px;
+    top: 30px;
+    left: 250px;
 }
 
 .searchBar {
     width: 600px;
     border: 1px solid lightgray;
     outline: none;
+    height: 35px;
+}
+
+.searchButton{
+	height: 35px;
+	top: -2px;
 }
 
 
@@ -169,14 +165,12 @@ body {
 .mic {
     position: relative;
     right: 103px;
-    top: 2px;
+    top:1px;
 }
 
 .headerBack {
     background-color: whitesmoke;
     height: 240px;
-    position: relative;
-    top: -20px;
 
 }
 

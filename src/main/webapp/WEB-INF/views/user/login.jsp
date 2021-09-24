@@ -146,16 +146,17 @@
 	
 	<!-- 네이버 스크립트 -->
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-	
 
 
 </head>
-<body style="overflow-y: hidden">
+<body>
+
 <div class="wwrap">
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
-    <div class="container">
+    
+    <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
         <div class="row">
             <div class="col-5"></div>
             <!-- Custom styles for this template -->
@@ -168,7 +169,7 @@
                            style="width: 271px; display: inline-block; margin: 0 auto;"
                            class="form-control"
                            placeholder="ID를 입력해주세요"
-                           required autofocus>
+                           required>
                     <br>
                     <br>
                     <input type="password" id="usPw" class="form-control" name="usPw"
@@ -189,17 +190,17 @@
 
 
 
-      <a href="javascript:kakaoLogin()">
-          <span>카카오 로그인</span>
-      </a>
-      
-<ul>
-	<li onclick="kakaoLogout();">
-      <a href="javascript:void(0)">
-          <span>카카오 로그아웃</span>
-      </a>
-	</li>
-</ul>
+			      <a href="javascript:kakaoLogin()">
+			          <span>카카오 로그인</span>
+			      </a>
+				      
+				<ul>
+					<li onclick="kakaoLogout();">
+				      <a href="javascript:void(0)">
+				          <span>카카오 로그아웃</span>
+				      </a>
+					</li>
+				</ul>
 
 
 				
@@ -233,8 +234,12 @@
             <div class="col-4"></div>
         </div>
        
-    </div>
     
+    </div>
+        <footer>
+        <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
+    </footer>
 </div>
+    
 </body>
 </html>
