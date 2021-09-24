@@ -42,6 +42,16 @@
 
     <!-- script -->
     <script type="text/javascript">
+        function checkNumber(event, type) {
+            if (type == 'numbers') {
+                if (event.keyCode < 48 || event.keyCode > 57) return false;
+            }
+        }
+
+        function fn_press_han(obj) {
+            obj.value = obj.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
+        }
+
         $(document).ready(function () {
             $("#addrBtn").click(function () {
                 new daum.Postcode({
@@ -256,22 +266,28 @@
                         <table>
                             <tr>
                                 <td>
-                                    <input type="text" style="width: 65px" id="usPhone" class="form-control" required
-                                           name="usPhone1" value="<%=usPhone1 %>" maxlength="3">
+                                    <input type="text" style="width: 65px; IME-MODE: disabled;" id="usPhone" class="form-control" required
+                                           name="usPhone1" value="<%=usPhone1 %>"
+                                           onkeypress="return checkNumber(event, 'numbers');" onkeydown="fn_press_han(this)"
+                                           minlength="3" maxlength="3">
                                 </td>
                                 <td>
                                     -
                                 </td>
                                 <td>
                                     <input type="text" style="width: 65px" class="form-control" required
-                                           name="usPhone2" value="<%=usPhone2 %>" maxlength="4">
+                                           name="usPhone2" value="<%=usPhone2 %>"
+                                           onkeypress="return checkNumber(event, 'numbers');" onkeydown="fn_press_han(this)"
+                                           minlength="3" maxlength="4">
                                 </td>
                                 <td>
                                     -
                                 </td>
                                 <td>
                                     <input type="text" style="width: 65px" class="form-control" required
-                                           name="usPhone3" value="<%=usPhone3 %>" maxlength="4">
+                                           name="usPhone3" value="<%=usPhone3 %>"
+                                           onkeypress="return checkNumber(event, 'numbers');" onkeydown="fn_press_han(this)"
+                                           minlength="4" maxlength="4">
                                 </td>
                             </tr>
                         </table>

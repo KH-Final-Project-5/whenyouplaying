@@ -36,9 +36,12 @@ function test() {
     }
 }
 
-function checkNumber(event) {
-    if (event.key >= 0 && event.key <= 9) {
-        return true;
+function checkNumber(event, type) {
+    if (type == 'numbers') {
+        if (event.keyCode < 48 || event.keyCode > 57) return false;
     }
-    return false;
+}
+
+function fn_press_han(obj) {
+    obj.value = obj.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
 }
