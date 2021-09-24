@@ -445,16 +445,16 @@
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
 
+                        <form action="prsearch.do" method="post">
+                            <input type="search" class="searchBar" name="prTitle">
+                            <button class="btn btn-outline-primary searchButton" type="submit">검색</button>
+                        </form>
+
                         <div class="mic">
                             <img class="micImg" src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="45"
                                  height="33" onclick="startSpeechRecognition();">
                         </div>
 
-
-                        <form action="prsearch.do" method="post">
-                            <input type="search" class="searchBar" name="prTitle">
-                            <button class="btn btn-outline-primary searchButton" type="submit">검색</button>
-                        </form>
 
                     </div>
                 </div>
