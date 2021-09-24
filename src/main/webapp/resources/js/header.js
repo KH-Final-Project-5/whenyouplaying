@@ -1,4 +1,6 @@
-$(function(){
-	$("#loginHeader").hide();
-	$("#adminHeader").hide();
+
+
+$(function () {
+    $("#loginHeader").hide();
+    $("#adminHeader").hide();
 });

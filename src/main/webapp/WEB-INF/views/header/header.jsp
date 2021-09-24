@@ -193,10 +193,55 @@
 
 
     </script>
+    <script>
+        let recognition = null;
+
+        function checkCompatibility() {
+            recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = "ko-KR";
+            recognition.maxAlternatives = 5;
+            if (!recognition) {
+                alert("you cannot use speech api.");
+            }
+        }
+
+        function startSpeechRecognition() {
+            console.log("start");
+
+            recognition.addEventListener("speechstart", () => {
+                console.log("Speech Start");
+
+            });
+
+            recognition.addEventListener("speechend", () => {
+                console.log("Speech End");
+            });
+
+            recognition.addEventListener("result", (event) => {
+                console.log("Speech Result", event.results);
+                const text = event.results[0][0].transcript;
+                $(".searchBar").val(text);
+
+            });
+
+            recognition.start();
+            let $sttAlert = $("div#sttAlert");
+            $sttAlert.html("음성녹음을 3초동안 진행합니다.");
+            $sttAlert.show();
+            setTimeout(function () {
+                recognition.stop();
+                $sttAlert.hide();
+            }, 3000);
+        }
+
+        window.addEventListener('load', checkCompatibility);
+
+    </script>
 </head>
 
 <body>
 <div id="socketAlert" class="alert alert-success" role="alert" style="display: none"></div>
+<div id="sttAlert" class="alert alert-success" role="alert" style="display: none"></div>
 
 
 <!-- default -->
@@ -223,18 +268,21 @@
                 <div class="searchArea">
                     <div class="input-group input-group mb-3 ">
                             <span class="input-group-text" style="padding: 0px;"><img
-                                    src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
+                                    src="<c:url value="/resources/img_header/search.png"/>"
+                                    alt="음성인식" width="40"
                                     height="20"></span>
+
                         <form action="prsearch.do" method="post">
-                            <input type="search" class="searchBar" name="prTitle">
+                            <input type="search" id="searchHeadBar" class="searchBar" name="prTitle">
                             <button class="btn btn-outline-primary" type="submit">검색</button>
                         </form>
 
 
                         <div class="mic">
-                            <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                            height="35"></a>
+                            <img class="micImg" src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
+                                 height="35" onclick="startSpeechRecognition();">
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -322,8 +370,8 @@
 
 
                         <div class="mic">
-                            <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                            height="35"></a>
+                                <img class="micImg" src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
+                                     height="35" onclick="startSpeechRecognition();">
                         </div>
 
                         <div class="enroll">
@@ -406,8 +454,8 @@
                             <button class="btn btn-outline-primary" type="submit">검색</button>
 
                             <div class="mic">
-                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                                height="35"></a>
+                                    <img class="micImg" src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
+                                         height="35" onclick="startSpeechRecognition();">
                             </div>
 
                         </div>
