@@ -26,10 +26,7 @@
         FROM W_USER
         WHERE USID = #{usId}
     </select>
-    
-	<update id="updatePw" >
-	UPDATE W_USER SET USPW = #{usPw} WHERE USID = #{usId}
-	</update>
+
 	
     <update id="charge" parameterType="userDto">
         UPDATE W_USER
@@ -37,6 +34,12 @@
         WHERE USNO = #{usNo}
     </update>
 
+<update id="newPassword" parameterType="userDto">
+		UPDATE W_USER
+		SET USPW = #{usPw}
+		WHERE USEMAIL=#{usEmail}
+	</update>
+	
     <select id="findId" parameterType="userDto" resultType="string">
         SELECT USID
         FROM W_USER

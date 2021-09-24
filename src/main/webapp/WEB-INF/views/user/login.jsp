@@ -177,21 +177,15 @@
 
                     <!-- 구글 로그인 -->
                     <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <br>
+					
+					<div id="kakao_login" onclick="kakaoLogin();">
+                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=dbf3216f878ddd57aec90512ab8d985e&redirect_uri=http://localhost:8105/kakaologin.do&response_type=code">
+                           <img src="resources/img_header/kakao_login.png">
+                        </a>
+                    </div>
 
-
-                    <ul>
-                        <li onclick="kakaoLogin();">
-                            <a href="https://kauth.kakao.com/oauth/authorize?client_id=dbf3216f878ddd57aec90512ab8d985e&redirect_uri=http://localhost:8105/kakaologin.do&response_type=code">
-                                <span>카카오 로그인</span>
-                            </a>
-                        </li>
-
-                        <li onclick="kakaoLogout();">
-                            <a href="javascript:void(0)">
-                                <span>카카오 로그아웃</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <br>
 
 
                     <!-- 네이버 로그인 창으로 이동 -->

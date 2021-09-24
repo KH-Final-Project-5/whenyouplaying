@@ -3,11 +3,6 @@ package com.dao;
 import com.dto.ChargeHistoryDto;
 import com.dto.UserDto;
 
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.mail.HtmlEmail;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -85,20 +80,47 @@ public class UserDaoImpl implements UserDao{
 		return res;
 	}
 
-	@Override
-	public String findPw(UserDto dto) {
-		
-		String res = null;
-		
-		try {
-			res = sqlSessionTemplate.selectOne(NAMESPACE+"findPw", dto);
-		} catch (Exception e) {
-			System.out.println("[error] : pw찾기 에러");
-			e.printStackTrace();
-		}
-
-		return res;
-	}
+//	@Override
+//	public String findPw(UserDto dto)throws Exception {
+//		
+//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//		
+//		String res = null;
+//		
+//		System.out.println("로그인 확인");
+//		
+//		try {
+//			res = sqlSessionTemplate.selectOne(NAMESPACE+"findPw", dto);
+//			
+//			if(dto != null) {
+//				String tempPw = UUID.randomUUID().toString().replace("-", "");
+//				tempPw = tempPw.substring(0,10);
+//				
+//				System.out.println("임시 비밀번호 확인: " + tempPw);
+//				
+//				//임시 비밀번호 담기
+//				dto.setUsPw(tempPw);
+//				
+//				//메일전송
+//				MailMain mail = new MailMain();
+//				mail.sendMail(dto);
+//				
+//				//회원 비밀번호 암호화
+//				String securePw = encoder.encode(dto.getUsPw());
+//				dto.setUsPw(securePw);
+//				
+//
+//			}
+//			
+//		} catch (Exception e) {
+//			System.out.println("[error] : pw찾기 에러");
+//			e.printStackTrace();
+//		}
+//
+//		return res;
+//	}
+	
+	
 
 	@Override
 	public int userEdit(UserDto dto) {
@@ -114,37 +136,12 @@ public class UserDaoImpl implements UserDao{
 		
 		return res;
 	}
+
 	
+
 	@Override
-	public int updatePw(UserDto dto) throws Exception {
-		
-		int res = 0;
-		
-		try {
-			res = sqlSessionTemplate.update(NAMESPACE+".updatePw", dto);
-		} catch (Exception e) {
-			System.out.println("[error] : 비밀번호 찾기 에러");
-			e.printStackTrace();
-		}
-		
-		return res;
+	public String findPw(UserDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
-	public Object idCheck(String usId) {
-
-		return sqlSessionTemplate.update(NAMESPACE+".updatePw", usId);
-	}
-	public UserDto readMember(String usId) {
-
-	    UserDto userDto = null;
-
-        try {
-            userDto = sqlSessionTemplate.selectOne(NAMESPACE+"readMember", usId);
-        } catch (Exception e) {
-            System.out.println("[error] 아이디 불러오기 에러");
-            e.printStackTrace();
-        }
-
-        return userDto;
-    }
 }

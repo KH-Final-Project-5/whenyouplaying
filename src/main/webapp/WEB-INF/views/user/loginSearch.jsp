@@ -30,7 +30,7 @@
 	$(function(){
 		$("#findBtn").click(function(){
 			$.ajax({
-				url : "findpw2.do",
+				url : "newPassword.do",
 				type : "POST",
 				data : {
 					id : $("#usId").val(),

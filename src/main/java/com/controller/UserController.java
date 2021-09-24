@@ -4,9 +4,12 @@ package com.controller;
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import com.commons.FtpClient;
 import org.apache.http.HttpHost;
@@ -46,6 +49,9 @@ import com.dto.ReportDto;
 import com.dto.ReviewDto;
 import com.dto.UserDto;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.mail.Email;
+import com.mail.EmailSender;
+
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -56,6 +62,10 @@ public class UserController {
     /* NaverLoginBO */
     private NaverLoginBO naverLoginBO;
     private String apiResult = null;
+
+
+
+
 
     @Autowired
     private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
@@ -69,7 +79,13 @@ public class UserController {
     UserBiz biz;
     @Autowired
     ProjectBiz biz2;
+	
+    @Autowired
+	EmailSender emailSender;
 
+	@Autowired
+	Email email;
+	
     @ResponseBody
     @RequestMapping("charge.do")
     public void Charge(UserDto dto, HttpSession session, String pay_method) {
@@ -380,28 +396,28 @@ public class UserController {
 
     }
 
-    //pw찾기
-    @RequestMapping("/findpw.do")
-    public void findPw(HttpServletResponse response, UserDto dto) {
-
-        logger.info("findpw.do : pw찾기");
-
-        String resPw = null;
-
-        resPw = biz.findPw(dto);
-
-        try {
-            if (resPw == null) {
-                ScriptUtils.alertAndMovePage(response, "일치하는 pw가 없습니다. 다시 입력해주세요.", "finduser.do");
-            } else {
-                ScriptUtils.alertAndMovePage(response, "pw는 " + resPw + "입니다.", "loginform.do");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+	/*
+	 * //pw찾기
+	 * 
+	 * @RequestMapping("/findpw.do") public void findPw(HttpServletResponse
+	 * response, UserDto dto) {
+	 * 
+	 * logger.info("findpw.do : pw찾기");
+	 * 
+	 * String resPw = null;
+	 * 
+	 * resPw = biz.findPw(dto);
+	 * 
+	 * try { if (resPw == null) { ScriptUtils.alertAndMovePage(response,
+	 * "일치하는 pw가 없습니다. 다시 입력해주세요.", "finduser.do"); } else {
+	 * ScriptUtils.alertAndMovePage(response, "pw는 " + resPw + "입니다.",
+	 * "loginform.do"); }
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); } }
+	 */
+    
+ // 비밀번호 찾기
+ 
 
     //회원정보 수정
     @RequestMapping("/useredit.do")
@@ -457,15 +473,5 @@ public class UserController {
 
         return "user/reportPageForm";
     }
-    
-    @RequestMapping(value = "/findpw2.do", method = RequestMethod.GET)
-    public void findPwGET() throws Exception{
-    }
-
-    @RequestMapping(value = "/findpw2.do", method = RequestMethod.POST)
-    public void findPwPOST(@ModelAttribute UserDto dto, HttpServletResponse response) throws Exception{
-    	biz.findPw2(response, dto);
-    }
-
-
+	
 }
