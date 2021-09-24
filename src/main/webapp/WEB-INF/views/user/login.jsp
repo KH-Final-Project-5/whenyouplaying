@@ -117,7 +117,6 @@
 
             if (kakaoInfo != "") {
                 var data = JSON.parse(kakaoInfo);
-
                 alert("카카오로그인 성공 \n accessToken : " + data['accessToken']);
                 alert(
                     "user : \n" + "email : "
@@ -126,6 +125,7 @@
                     + data['nickname']);
             }
         });
+
 
     </script>
 
@@ -141,6 +141,7 @@
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
+
 
     <div class="content" style="min-height: 1100px;">
         <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
@@ -213,7 +214,10 @@
             </div>
 
         </div>
+       
+    
     </div>
+
 
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>

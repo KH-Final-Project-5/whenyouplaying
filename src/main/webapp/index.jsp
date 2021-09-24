@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html>	
 <head>
 <title>index</title>
 
@@ -13,7 +13,6 @@
 <body>
 	
 	<c:redirect url="/main.do"/>
-
 
 </body>	
 </html>
