@@ -155,7 +155,7 @@ WHERE PRTITLE LIKE '%'||#{prTitle}||'%'
 	
 	<insert id="insertCalendar" parameterType="projectDto">
 		INSERT INTO W_CALENDAR
-		VALUES(CALSEQ.NEXTVAL, #{prNo}, #{usNo})
+		VALUES(CALSEQ.NEXTVAL, PROJECTSEQ.CURRVAL, #{usNo})
 	</insert>
 	
 	
@@ -183,7 +183,12 @@ WHERE PRTITLE LIKE '%'||#{prTitle}||'%'
 	</delete>
 	
 	
-	
+	<select id="selectPrNo" parameterType="projectDto" resultType="projectDto">
+		SELECT USNO, PRNO
+		FROM W_PROJECT
+		WHERE USNO = #{usNo}
+		AND PRTITLE = #{prTitle}
+	</select>
 	
 	
 	

@@ -30,17 +30,18 @@
 
     <!-- jquery-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <%--주소 찾기--%>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    
     <%--카카오맵--%>
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ab159e5abb2442cfed56949c9439ba9&libraries=services"></script>
 
     <script src="<c:url value="/resources/js/messagePopup.js"/>"></script>
     <!-- <script src="<c:url value="/resources/ckeditor/ckeditor.js"/>"></script> -->
-    <script type="text/javascript"
-            src="<c:url value="/resources/smarteditor2/js/service/HuskyEZCreator.js"/>"
-            charset="utf-8"></script>
+   
+    <script type="text/javascript" src="<c:url value="/resources/smarteditor2/js/service/HuskyEZCreator.js"/>" charset="utf-8"></script>
 
 
     <script>

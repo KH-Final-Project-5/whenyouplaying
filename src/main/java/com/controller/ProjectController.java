@@ -158,16 +158,15 @@ public class ProjectController {
     @RequestMapping(value = "insertProjectRes.do")
     public void insertProjectRes(HttpServletResponse response, ProjectDto dto) throws Exception {
         logger.info("Insert Res");
+        
         FtpClient ftpClient =
                 new FtpClient("wjwan0.dothome.co.kr", 21, "wjwan0", "aqpalzm13!");
 
         String filename = null;
         
         
-        
         //dto안에 들어있는 file을 가져오고
         MultipartFile multiFile = dto.getPrImage2();
-        
         
         if(multiFile.getSize() > 0) {
         //파일 real이름을 filename 변수에 저장
@@ -189,7 +188,10 @@ public class ProjectController {
         }else {
         	dto.setPrImage("a");
         }
+        
         int res = biz.insertProject(dto);
+        
+        //ProjectDto prDto = biz.selectPrNo(dto);
         
         if (res > 0) {
         	

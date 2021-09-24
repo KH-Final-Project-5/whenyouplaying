@@ -340,6 +340,21 @@ public class ProjectDaoImpl implements ProjectDao {
 		
 		return res;
 	}
+
+	@Override
+	public ProjectDto selectPrNo(ProjectDto dto) {
+
+		ProjectDto res = null;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"selectPrNo", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : selectPrNo");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 	
 
 

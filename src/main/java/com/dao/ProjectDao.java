@@ -59,4 +59,6 @@ public interface ProjectDao {
 	public CalendarDto selectCalendar(int prNo);
 
 	public int deleteSchedule(ScheduleDto dto);
+
+	public ProjectDto selectPrNo(ProjectDto dto);
     }
