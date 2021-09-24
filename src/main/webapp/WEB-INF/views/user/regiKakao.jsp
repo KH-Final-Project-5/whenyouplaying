@@ -122,7 +122,7 @@
                             <label for="usPW">PW</label>
                             <br>
                             <input type="password" class="form-control" id="usPW" placeholder=""
-                                   value="${userInfo.usEmail}" required name="usPw" readonly="readonly">
+                                   value="${userInfo.usPw}" required name="usPw" readonly="readonly">
                         </div>
 
 
@@ -131,7 +131,7 @@
                             <label for="usPW2">PW 확인</label>
                             <br>
                             <input type="password" class="form-control" id="usPW2" placeholder=""
-                                   value="${userInfo.usEmail}" required readonly="readonly">
+                                   value="${userInfo.usPw}" required readonly="readonly">
 
                             <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
                             <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
