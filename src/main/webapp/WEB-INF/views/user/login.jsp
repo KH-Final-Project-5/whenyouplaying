@@ -185,12 +185,6 @@
                                 <span>카카오 로그인</span>
                             </a>
                         </li>
-
-                        <li onclick="kakaoLogout();">
-                            <a href="javascript:void(0)">
-                                <span>카카오 로그아웃</span>
-                            </a>
-                        </li>
                     </ul>
 
 
@@ -207,7 +201,6 @@
                     <div id="getTest"></div>
                     <a class="loginA" href="regiform.do">회원가입</a><br><br>
                     <a class="loginA" href="finduser.do">아이디 / 비밀번호 찾기</a>
-                    <a class="loginA" href="test.jsp">비밀번호 찾기</a>
                 </div>
                 <div class="col-4"></div>
             </div>
