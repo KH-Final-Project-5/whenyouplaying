@@ -167,11 +167,13 @@ var kakao_message = new Object();
 </head>
 <body>
 <div class="wwrap">
+
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-    <div class="container">
+<div class="content" style="min-height: 1500px;">
+    <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
 
         <div class="input-form-backgroud row">
 
@@ -309,9 +311,9 @@ var kakao_message = new Object();
         <div class="col-2">
 
         </div>
-
-
     </div>
+	</div>
+
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>

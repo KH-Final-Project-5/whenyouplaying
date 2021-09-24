@@ -267,10 +267,9 @@
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
-    <!-- header가 들어갈 영역 임시로 height: 100px로 잡는다. -->
 
-
-    <div class="container" id="boardDetail">
+<div class="content" style="min-height: 1700px;">
+    <div class="container" id="boardDetail" style="margin-top: 60px; margin-bottom: 60px;">
         <div class="row">
 
             <div class="col-3">
@@ -420,6 +419,7 @@
 
 
         </div>
+    </div>
     </div>
 
     <footer>
