@@ -169,7 +169,7 @@
                            style="width: 271px; display: inline-block; margin: 0 auto;"
                            class="form-control"
                            placeholder="ID를 입력해주세요"
-                           required autofocus>
+                           required>
                     <br>
                     <br>
                     <input type="password" id="usPw" class="form-control" name="usPw"

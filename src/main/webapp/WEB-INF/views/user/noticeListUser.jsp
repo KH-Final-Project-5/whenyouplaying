@@ -25,6 +25,28 @@
     <script src="<c:url value="/resources/js/noticeListUser.js"/>"></script>
     
     
+    <script type="text/javascript">
+    	
+    	$(function(){
+    		
+    		var user = "${user.usNo}";
+    		console.log(user);
+    		console.log("확인되나");
+    		
+    		if(user == null || user == ""){
+    			$("#sideBar").hide();
+    			$("#noticeArea").css({"position":"relative", "left":"150px"});
+    		}
+    		
+    	});
+    
+    
+    </script>
+    
+    
+    
+    
+    
 </head>
 <body>
 
@@ -34,9 +56,9 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-    <div class="container">
+    <div class="container" style="margin-top: 60px; margin-bottom:60px;">
         <div class="row">
-            <div class="col-3">
+            <div class="col-3" id="sideBar">
                 <div id="sideBarImgArea">
                     <div id="sideImg">
                         <img id="adminImg"
@@ -70,7 +92,7 @@
     
     
 
-            <div class="col-9">
+            <div class="col-9" id="noticeArea">
                 <div id="titleName"><h1>공지사항</h1></div><br><br>
                 <div class="tableDiv" style="margin-bottom: 100px;">
                     <table border="1" align="center" class="table">
