@@ -3,8 +3,7 @@
 
     width: 1200px;
     max-width: none !important;
-    margin-top: 60px;
-    margin-bottom: 60px;
+
 }
 
 body{
@@ -13,6 +12,7 @@ body{
 
 
 /*시작*/
+
 #sideBarImgArea {
 
     position: relative;
@@ -21,9 +21,15 @@ body{
 }
 
 #sideImg {
-
     height: 100px;
 }
+
+#adminImg {
+    display: block;
+    margin: auto;
+    height: 100px;
+}
+
 
 #userName {
 

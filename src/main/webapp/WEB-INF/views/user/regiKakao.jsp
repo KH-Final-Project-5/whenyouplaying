@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+         pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 
-<!-- bootstrap css -->
+    <!-- bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -31,10 +31,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
           rel="stylesheet">
-          
+
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-          
     <script type="text/javascript">
 		function fn_idChk(){
 			$.ajax({
@@ -122,7 +121,52 @@ var kakao_message = new Object();
 	});
 	
 </script>  
+=======
+>>>>>>> 6a7967411f6531541edb0cfe0ef521cbb2684c60
 
+    <script type="text/javascript">
+        function fn_idChk() {
+            $.ajax({
+                url: "/idChk.do",
+                type: "post",
+                dataType: "json",
+                data: {"usId": $("#usId").val()},
+                success: function (data) {
+                    if (data == 1) {
+                        alert("중복된 아이디입니다.");
+                        $("#usId").val("");
+                    } else if (data == 0) {
+                        $("#idChk").attr("value", "Y");
+                        alert("사용가능한 아이디입니다.");
+                    }
+                }
+            })
+        }
+
+        $(function () {
+            $("#alert-success").hide();
+            $("#alert-danger").hide();
+            $("input").keyup(function () {
+                var usPW = $("#usPW").val();
+                var usPW2 = $("#usPW2").val();
+                if (usPW != "" || usPW2 != "") {
+                    if (usPW == usPW2) {
+                        $("#alert-success").show();
+
+                        $("#alert-danger").hide();
+
+                        $("#submit").removeAttr("disabled");
+                    } else {
+                        $("#alert-success").hide();
+                        $("#alert-danger").show();
+                        $("#submit").attr("disabled", "disabled");
+
+                    }
+                }
+            });
+        });
+
+    </script>
 </head>
 <body>
 <div class="wwrap">
@@ -155,10 +199,8 @@ var kakao_message = new Object();
                             <label for="usID">ID</label>
 
                             <br>
-                            <input type="text" class="form-control" id="usId" placeholder="" value="${userInfo.usId}" required
-                                   name="usId">
-							<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
-                            <div class="invalid-feedback"> 아이디를 입력해주세요.</div>
+                            <input type="text" class="form-control" id="usId" placeholder="" value="${userInfo.usEmail}"
+                                   readonly required name="usId">
                         </div>
 
 
@@ -168,7 +210,8 @@ var kakao_message = new Object();
                         <div class="col-md-6 mb-3">
                             <label for="usPW">PW</label>
                             <br>
-                            <input type="password" class="form-control" id="usPW" placeholder="" value="${userInfo.usPw}" required name="usPw" readonly="readonly">
+                            <input type="password" class="form-control" id="usPW" placeholder=""
+                                   value="${userInfo.usEmail}" required name="usPw" readonly="readonly">
                         </div>
 
 
@@ -176,10 +219,11 @@ var kakao_message = new Object();
 
                             <label for="usPW2">PW 확인</label>
                             <br>
-                            <input type="password" class="form-control" id="usPW2" placeholder="" value="${userInfo.usPw}" required readonly="readonly">
+                            <input type="password" class="form-control" id="usPW2" placeholder=""
+                                   value="${userInfo.usEmail}" required readonly="readonly">
 
-                         <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
-                         <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+                            <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+                            <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 
                         </div>
 
@@ -187,7 +231,8 @@ var kakao_message = new Object();
 
                             <label for="usName">이름</label>
                             <br>
-                            <input type="text" class="form-control" id="usName" placeholder="" value="${userInfo.usName}" required
+                            <input type="text" class="form-control" id="usName" placeholder=""
+                                   value="${userInfo.usName}" required
                                    name="usName">
 
 
@@ -216,7 +261,7 @@ var kakao_message = new Object();
                         <label for="usEmail">이메일</label>
                         <br>
                         <input type="text" class="form-control" id="usEmail" placeholder="you@example.com" required
-                               name="usEmail" value="${googleInfo.usId }">
+                               name="usEmail" value="${userInfo.usEmail }">
 
                         <div class="invalid-feedback"> 이메일을 입력해주세요.
                         </div>
@@ -257,7 +302,8 @@ var kakao_message = new Object();
                             </div>
                             <button class="btn btn-primary btn-lg btn-block" type="submit" id="regisubmit">가입 완료
                             </button>
-
+                        </div>
+                    </div>
                 </form>
 
             </div>
