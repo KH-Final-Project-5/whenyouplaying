@@ -176,7 +176,7 @@
                     </form>
 
                     <!-- 구글 로그인 -->
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <div class="g-signin2" data-width="41" data-height="40" data-onsuccess="onSignIn"></div> 
 
 
                     <ul>
@@ -195,10 +195,9 @@
 
 
                     <!-- 네이버 로그인 창으로 이동 -->
-                    <div id="naver_id_login" style="text-align:center; margin-top:15px; margin-right:60px;">
+                    <div id="naver_id_login" class="shadow" style="width: 41px;"> 
                         <a href="${url}">
-                            <img width="223"
-                                 src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+                            <img width="41" height="40" src="/resources/img/naverlogo.png"/>
                         </a>
                     </div>
 
