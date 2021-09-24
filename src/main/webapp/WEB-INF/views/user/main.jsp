@@ -44,7 +44,7 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
     
-  <div class="content">
+  <div class="content" style="min-height: 1200px;">
     <div class="container" id="mainpageArea">
         <div class="row">
             <h2>최신순</h2>

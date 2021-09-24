@@ -53,7 +53,8 @@
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
-
+   
+   <div class="content" style="min-height: 1300px;">
     <div class="container" style="margin-top: 60px; margin-bottom:60px;">
         <div class="row">
             <div class="col-3" id="sideBar">
@@ -136,6 +137,7 @@
             </div>
         </div>
     </div>
+   </div>
 
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
