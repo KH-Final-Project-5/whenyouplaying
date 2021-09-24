@@ -36,7 +36,9 @@
           
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-          
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
     <script type="text/javascript">
 		function fn_idChk(){
 			$.ajax({
@@ -56,6 +58,17 @@
 			})
 		}
 		$(function(){
+
+            $("#addrBtn").click(function () {
+                new daum.Postcode({
+                    oncomplete: function (data) { //선택시 입력값 세팅
+                        $("#praddress").val(data.address); // 주소 넣기
+                        $("#praddress2").focus(); //상세입력 포커싱
+                    }
+                }).open();
+            });
+
+
 			$("#alert-success").hide(); 
 			$("#alert-danger").hide(); 
 			$("input").keyup(function(){ var usPW=$("#usPW").val(); 
@@ -98,7 +111,8 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-    <div class="container">
+<div class="content" style="min-height: 1500px;" >
+    <div class="container" style="">
 
         <div class="input-form-backgroud row">
 
@@ -191,9 +205,9 @@
                         <div class="mb-3"><label for="prAddress">주소</label>
                             <br>
                             <input type="text" class="form-control" id="praddress" placeholder="서울특별시 강남구" required
-                                   name="usAddress1">
+                                   name="usAddress1" readonly>
 
-                            <input type="button" class="btn btn-primary" value="우편 찾기">
+                            <input type="button" id="addrBtn" class="btn btn-primary" value="우편 찾기">
                             <div class="invalid-feedback"> 주소를 입력해주세요.
                             </div>
 
@@ -233,6 +247,8 @@
         </div>
 
 
+    </div>
+    
     </div>
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>

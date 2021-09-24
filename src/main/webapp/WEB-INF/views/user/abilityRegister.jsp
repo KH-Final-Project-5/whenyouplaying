@@ -73,7 +73,10 @@
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
-    <div class="container">
+    
+    
+    <div class="content" style="min-height: 1700px;">
+    <div class="container" style="margin-top:60px; margin-bottom:60px;">
         <div class="row">
             <div class="col-3">
                 <div id="sideBarImgArea">
@@ -161,10 +164,11 @@
                     </div>
 
                     <button id="applyBtn" class="btn btn-outline-primary">신청하기</button>
-                    <input type="button" value="취소하기" id="cancelBtn" class="btn btn-outline-primary">
+                    <input type="reset" value="취소하기" id="cancelBtn" class="btn btn-outline-primary" onclick="location.href='main.do'">
                 </form>
             </div>
         </div>
+    </div>
     </div>
     <br><br>
 

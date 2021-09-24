@@ -40,7 +40,9 @@
     </header>
 
     <!-- grid영역, 컬럼은 12줄로 이루어져 있고 갯수 비율로 틀을 잡는다. -->
-    <div class="container">
+    
+<div class="content" style="min-height: 1700px;">
+    <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
         <div class="row" id="area1">
             <div class="col-7">
                 <div id="productImg">
@@ -109,14 +111,13 @@
                         </figure>
                     </c:forEach>
 
-
-
-
                 </div>
             </div>
         </div>
 
     </div>
+   </div> 
+    
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>

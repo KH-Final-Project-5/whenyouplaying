@@ -50,7 +50,9 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-	<div class="container">
+
+<div class="content" style="min-height: 1500px;">
+	<div class="container" style="margin-top: 60px; margin-bottom: 60px;">
 	    <div class="row" id="search-box">
 	        <div class="col-3">
 	
@@ -110,6 +112,7 @@
 	        </div>
 	    </div>
 	</div>
+</div>
 
 	<!-- footer -->
     <footer>

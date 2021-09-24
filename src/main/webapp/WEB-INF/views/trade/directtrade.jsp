@@ -68,14 +68,14 @@
             if ($('#orderCheckBox').is(":checked") === true) {
                 if (pay > 0) {
                     if (confirm("결제하시겠습니까?")) {
-                        $.ajax({
+                        /*$.ajax({
                             url: "smsSend2.do",
                             data: {receiver: $("#phone").val(), usId: $("#buyId").val()},
                             type: "post",
                             success: function () {
                                 alert("문자발송 완료");
                             }
-                        });
+                        });*/
 
                         payForm.submit();
                     }
@@ -131,7 +131,10 @@
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
-    <div class="container">
+    
+    
+<div class="content" style="min-height: 1700px;">
+    <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
         <div class="row">
             <div class="col-12">
                 <label id="payMentLabel">결제하기</label>
@@ -250,6 +253,7 @@
             </div>
         </form>
     </div>
+   </div> 
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
