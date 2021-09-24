@@ -91,7 +91,9 @@
     </header>
     <!--채팅 출처-->
     <!--https://dororongju.tistory.com/151-->
-    <div class="container">
+    
+   <div class="content" style="min-heihgt: 1700px;">
+    <div class="container" style="margin-top:60px; margin-bottom: 60px;">
         <div class="row">
             <div class="col-12">
                 <label id="tradingLabel">거래 진행 중</label><br>
@@ -225,8 +227,8 @@
                 </div>
             </div>
         </div>
-
     </div>
+  </div>
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
