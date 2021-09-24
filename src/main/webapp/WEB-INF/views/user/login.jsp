@@ -191,7 +191,7 @@
                     <!-- 네이버 로그인 창으로 이동 -->
                     <div id="naver_id_login" class="shadow" style="width: 41px;"> 
                         <a href="${url}">
-                            <img width="41" height="40" src="/resources/img/naverlogo.png"/>
+                            <img width="41" height="40" src="<c:url value="/resources/img/naverlogo.png"/>"/>
                         </a>
                     </div>
 
