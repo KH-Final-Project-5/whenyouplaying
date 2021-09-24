@@ -96,10 +96,6 @@
                     } else {
                         $('.badgeSize').hide();
                     }
-                },
-                error: function (request, status, error) {
-
-                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
                 }
 
             });
@@ -206,18 +202,14 @@
         }
 
         function startSpeechRecognition() {
-            console.log("start");
 
             recognition.addEventListener("speechstart", () => {
-                console.log("Speech Start");
             });
 
             recognition.addEventListener("speechend", () => {
-                console.log("Speech End");
             });
 
             recognition.addEventListener("result", (event) => {
-                console.log("Speech Result", event.results);
                 const text = event.results[0][0].transcript;
                 $(".searchBar").val(text);
 
@@ -225,12 +217,12 @@
 
             recognition.start();
             let $sttAlert = $("div#sttAlert");
-            $sttAlert.html("음성녹음을 3초동안 진행합니다.");
+            $sttAlert.html("음성녹음을 5초동안 진행합니다.");
             $sttAlert.show();
             setTimeout(function () {
                 recognition.stop();
                 $sttAlert.hide();
-            }, 3000);
+            }, 5000);
         }
 
         window.addEventListener('load', checkCompatibility);

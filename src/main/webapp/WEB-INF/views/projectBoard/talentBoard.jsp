@@ -104,6 +104,8 @@
 		<header>
 			<jsp:include page="/WEB-INF/views/header/header.jsp" flush="false" />
 		</header>
+		
+	<div class="content">	
 		<div class="container">
 			<div class="row">
 				<div class="col-12 userNav">
@@ -405,10 +407,8 @@
 			</div>
 		</div>
 		<!-- grid영역, 컬럼은 12줄로 이루어져 있고 갯수 비율로 틀을 잡는다. -->
+	</div>
 
-
-		<!-- footer 영역-->
-		<%--<div id="footerArea" style="width: 100%; height: 300px; background-color: darkgray;">임시 footer 영역입니다.</div>--%>
 		<footer>
 			<jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false" />
 		</footer>
