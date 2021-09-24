@@ -258,7 +258,7 @@ public class DealController {
 
 
                 UserDto userDto1 = new UserDto();
-                userDto1.setUsNo(4);
+                userDto1.setUsNo(2);
 
                 userDto1 = biz.IdCheck(userDto1.getUsNo());
 
@@ -303,7 +303,7 @@ public class DealController {
             session.setAttribute("user", userDto);
 
             UserDto userDto1 = new UserDto();
-            userDto1.setUsNo(4);
+            userDto1.setUsNo(2);
 
             userDto1 = biz.IdCheck(userDto1.getUsNo());
 
@@ -338,7 +338,7 @@ public class DealController {
             session.setAttribute("user", userDto);
 
             UserDto userDto1 = new UserDto();
-            userDto1.setUsNo(4);
+            userDto1.setUsNo(2);
 
             userDto1 = biz.IdCheck(userDto1.getUsNo());
 
