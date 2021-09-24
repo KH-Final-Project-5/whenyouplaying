@@ -268,7 +268,7 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-<div class="content" style="min-height: 1700px;">
+<div class="content" style="min-height: 2500px;">
     <div class="container" id="boardDetail" style="margin-top: 60px; margin-bottom: 60px;">
         <div class="row">
 
