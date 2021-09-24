@@ -25,6 +25,7 @@ import com.google.gson.JsonParser;
 @Controller
 public class KakaoController {
 	@RequestMapping("regiKakao2.do")
+	
 	public @ResponseBody String getKakaoAuthUrl(
 			HttpServletRequest request) throws Exception {
 		String reqUrl = 
@@ -55,7 +56,7 @@ public class KakaoController {
         JSONObject kakaoInfo =  new JSONObject(userInfo);
         model.addAttribute("kakaoInfo", kakaoInfo);
         
-        return "regiKakao2.do"; //본인 원하는 경로 설정
+        return "regiKakao.do"; //본인 원하는 경로 설정
 	}
 	
     //토큰발급
@@ -78,7 +79,7 @@ public class KakaoController {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=dbf3216f878ddd57aec90512ab8d985e");  //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:8105/whenyouplay/regikakao2.do");     // 본인이 설정해 놓은 경로
+            sb.append("&redirect_uri=http://localhost:8105/whenyouplay/regikakao.do");     // 본인이 설정해 놓은 경로
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();
@@ -118,7 +119,6 @@ public class KakaoController {
     }
 	
     //유저정보조회
-	
     public HashMap<String, Object> getUserInfo (String access_Token) {
 
         //    요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언

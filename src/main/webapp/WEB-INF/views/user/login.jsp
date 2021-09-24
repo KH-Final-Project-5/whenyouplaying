@@ -128,7 +128,8 @@
       }
   });  
 
-  </script> 
+  </script>
+
 
 	
 	<!-- 네이버 스크립트 -->
@@ -143,7 +144,6 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
     
-   <div class="content" style="min-height: 1100px;">
     <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
         <div class="row">
             <div class="col-5"></div>
@@ -210,11 +210,10 @@
             	</div>
             <div class="col-4"></div>
         </div>
+       
     
     </div>
-  </div>
-    
-    <footer>
+        <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>
 </div>

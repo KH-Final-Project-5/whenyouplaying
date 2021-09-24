@@ -93,9 +93,9 @@ var kakao_message = new Object();
 		        var m_uid = 'KAKAO_'+kakao_message['id'];
 				console.log(""+window.location.hostname+"");
 				var data = JSON.stringify({
-					usId : m_uid
-				 , usName : kakao_message['nickname']
-				 , usEmail : kakao_message['email']
+					uid : m_uid
+				 , uname : kakao_message['nickname']
+				 , uemail : kakao_message['email']
 				 , join_pass : 'KAKAO'
 				});
 				// 로그인시 서버에서 넘어왔음.. 
