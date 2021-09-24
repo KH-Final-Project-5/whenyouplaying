@@ -219,18 +219,18 @@
             <div class="row">
                 <div class="searchArea">
                     <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img
+                            <span class="input-group-text" style="padding: 0px; height:35px;"><img
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
                         <form action="prsearch.do" method="post">
                             <input type="search" class="searchBar" name="prTitle">
-                            <button class="btn btn-outline-primary" type="submit">검색</button>
+                            <button class="btn btn-outline-primary searchButton" type="submit">검색</button>
                         </form>
 
 
                         <div class="mic">
-                            <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                            height="35"></a>
+                            <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="45"
+                                            height="33"></a>
                         </div>
                     </div>
                 </div>
@@ -308,19 +308,19 @@
             <div class="row">
                 <div class="searchArea">
                     <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img
+                            <span class="input-group-text" style="padding: 0px; height:35px"><img
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
                         <form action="prsearch.do" method="post">
 
                             <input type="search" class="searchBar" name="prTitle">
-                            <button class="btn btn-outline-primary" type="submit">검색</button>
+                            <button class="btn btn-outline-primary searchButton" type="submit">검색</button>
                         </form>
 
 
                         <div class="mic">
-                            <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                            height="35"></a>
+                            <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="45"
+                                            height="33"></a>
                         </div>
 
                         <div class="enroll">
@@ -394,21 +394,22 @@
             </div>
             <div class="row">
                 <div class="searchArea">
-                    <form action="prsearch.do" method="post">
                         <div class="input-group input-group mb-3 ">
-                            <span class="input-group-text" style="padding: 0px;"><img
+                            <span class="input-group-text" style="padding: 0px; height:35px"><img
                                     src="<c:url value="/resources/img_header/search.png"/>" alt="음성인식" width="40"
                                     height="20"></span>
+
+                    <form action="prsearch.do" method="post">
                             <input type="search" class="searchBar" name="prTitle">
-                            <button class="btn btn-outline-primary" type="submit">검색</button>
-
-                            <div class="mic">
-                                <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="50"
-                                                height="35"></a>
-                            </div>
-
-                        </div>
+                            <button class="btn btn-outline-primary searchButton" type="submit">검색</button>
                     </form>
+                    
+                        <div class="mic">
+                            <a href=""><img src="<c:url value="/resources/img_header/mic.png"/>" alt="" width="45"
+                                            height="33"></a>
+                        </div>
+
+                     </div>
                 </div>
             </div>
             <div class="row">
