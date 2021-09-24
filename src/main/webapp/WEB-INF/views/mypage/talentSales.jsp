@@ -125,11 +125,11 @@
                     <table border="1" class="buy-table">
                         <colgroup>
                             <col width="70px">
-                            <col width="440">
+                            <col width="430">
                             <col width="90px">
                             <col width="80px">
                             <col width="100px">
-                            <col width="90px">
+                            <col width="100px">
                         </colgroup>
 
                         <tr class="tr_bottom_line">

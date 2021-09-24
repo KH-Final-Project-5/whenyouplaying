@@ -80,7 +80,9 @@
     <header>
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
-    <div class="container">
+    
+   <div class="content" style="min-height: 1700px;">
+    <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
         <div class="row">
             <div class="col-12" style="margin-top: 50px">
                 <label id="payMentLabel">결제하기</label>
@@ -174,6 +176,8 @@
         </form>
 
     </div>
+   </div> 
+    
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
     </footer>

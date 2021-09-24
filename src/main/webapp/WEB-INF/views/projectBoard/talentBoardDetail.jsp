@@ -332,8 +332,8 @@
 
 
                     <div class="row" style="margin-left:200px;">
-                        <div class="col-12">
-                            <span class="detail-content"><b id="location">거래 지역</b></span>
+                        <div class="col-12" style="margin-top: 15px; margin-bottom: 10px;">
+                            <span style="margin-top: 30px;"><b id="location">거래 지역</b></span>
                         </div>
                         <div id="map" style="width:500px;height:400px;"></div>
                         <script type="text/javascript"
