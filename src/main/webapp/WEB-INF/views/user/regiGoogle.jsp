@@ -123,7 +123,6 @@
                             <br>
                             <input type="text" class="form-control" id="usId" placeholder="" value="${googleInfo.usId }" required
                                    name="usId">
-							<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
                             <div class="invalid-feedback"> 아이디를 입력해주세요.</div>
                         </div>
 
