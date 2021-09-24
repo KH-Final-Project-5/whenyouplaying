@@ -1,4 +1,4 @@
-.container{
+.container {
 
     width: 1200px;
     max-width: none !important;
@@ -10,13 +10,13 @@
 #sideBarImgArea {
 
     position: relative;
-    height: 270px;
+    height: 170px;
 
 }
 
 #sideImg {
 
-    height: 200px;
+    height: 100px;
 }
 
 #userName {
@@ -46,27 +46,28 @@
 
 .menuText {
     font-size: 20px;
-    
+
 }
 
-#amount > input, #point > input{
+#amount > input, #point > input {
     width: 300px;
-    border: none; background: transparent;
+    border: none;
+    background: transparent;
     pointer-events: none;
 }
 
-#bold{
+#bold {
     font-size: 25px;
     font: bold;
 }
 
-#point{
+#point {
     position: absolute;
     right: 200px;
     top: 21.4%;
 }
 
-#divBox{
+#divBox {
     border: solid 0.5px gray;
     position: relative;
     top: 20px;
@@ -77,78 +78,90 @@
 
 }
 
-h2{
+#adminImg {
+    display: block;
+    margin: auto;
+    height: 100px;
+}
+
+h2 {
     text-align: center;
 }
 
 
-h2>input {
-    border: none; background: transparent;
+h2 > input {
+    border: none;
+    background: transparent;
     pointer-events: none;
     text-align: center;
 }
 
 
-#fromDate{
+#fromDate {
     position: relative;
     text-align: center;
     left: 19%
 }
-#toDate{
+
+#toDate {
     position: relative;
     text-align: center;
     left: 19%
 }
-#fromDateSpan{
+
+#fromDateSpan {
     position: relative;
     text-align: center;
     left: 19%
 }
-#toDateSpan{
+
+#toDateSpan {
     position: relative;
     text-align: center;
     left: 19%
 }
 
 
-.table{
+.table {
     text-align: center;
     height: 50px;
-    border: none; background: transparent;
+    border: none;
+    background: transparent;
 }
 
-th{
+th {
     background-color: #dcdcdc;
 }
 
-body{
+body {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-#btn{
+#btn {
     position: relative;
     left: 160px;
     top: -3px;
 }
 
-#titleName{
+#titleName {
     border-bottom: outset 3px;
     text-align: center;
     position: relative;
-    top:30px;
+    top: 30px;
 }
 
-#pagingArea{
+#pagingArea {
 
     position: relative;
     top: 10px;
     left: 370px;
-    
+
 }
 
-a{
+a {
     color: black;
 }
+
 a:hover {
     color: black;
 }
@@ -158,14 +171,14 @@ a:active {
 }
 
 
-.menuA{
-	
-	color: black;
+.menuA {
+
+    color: black;
 }
 
-.menuA:hover{
-	color: black;
-	text-decoration: none;
+.menuA:hover {
+    color: black;
+    text-decoration: none;
 }
 
 
