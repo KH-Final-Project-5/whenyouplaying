@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -321,7 +322,12 @@ public class UserController {
         }
 
     }
-
+        
+    @RequestMapping("regikakao.do")
+    public String regiKakao(Model model, UserDto dto) {
+    	model.addAttribute("userinfo", dto);
+    	return "user/regiKakao";
+    }
     //구글 회원가입
     @RequestMapping("regigoogle.do")
     public String regiGoogle(Model model, UserDto dto) {
@@ -450,6 +456,15 @@ public class UserController {
 
 
         return "user/reportPageForm";
+    }
+    
+    @RequestMapping(value = "/findpw2.do", method = RequestMethod.GET)
+    public void findPwGET() throws Exception{
+    }
+
+    @RequestMapping(value = "/findpw2.do", method = RequestMethod.POST)
+    public void findPwPOST(@ModelAttribute UserDto dto, HttpServletResponse response) throws Exception{
+    	biz.findPw2(response, dto);
     }
 
 

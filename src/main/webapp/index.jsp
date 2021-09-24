@@ -15,7 +15,7 @@
 	<c:redirect url="/main.do"/>
 
 
-</body>
+</body>	
 </html>
 
  

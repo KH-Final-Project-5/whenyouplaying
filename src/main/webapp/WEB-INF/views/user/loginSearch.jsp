@@ -25,6 +25,24 @@
 
     <!--css 가져오는 방법-->
     <link rel="stylesheet" href="<c:url value="/resources/css/loginSearch.css"/>">
+    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(function(){
+		$("#findBtn").click(function(){
+			$.ajax({
+				url : "findpw2.do",
+				type : "POST",
+				data : {
+					id : $("#usId").val(),
+					email : $("#usEmail").val()
+				},
+				success : function(result) {
+					alert(result);
+				},
+			})
+		});
+	})
+</script>
 </head>
 <body>
 <div class="wwrap">
@@ -72,12 +90,7 @@
 		                <h3 class="h3Display">비밀번호 찾기</h3>
 		            </div>
 		            
-		            <form action="findpw.do" method="post">
-						
-		                <div class="search-row">
-		                    <label>Name : </label> 
-		                    <input type="text" name="usName" placeholder="이름을 입력해주세요" id="pw-name-input">
-		                </div>
+		            <form method="post">
 
 		                <div class="search-row">
 		                    <label>ID : </label> 
@@ -87,7 +100,7 @@
 		              	<div class="search-row">
 		                    <label>E-MAIL : </label> 
 		                    <input type="text" name="usEmail" placeholder="example@naver.com" id="pw-email-input">
-		                    <input class="btn btn-outline-primary" id="pw-search-btn" type="submit" value="PW찾기">
+		                    <button type="button" id="findBtn" class="btn btn-outline-primary">찾기</button>
 		                </div>
 
 		            </form>

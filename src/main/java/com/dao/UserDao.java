@@ -17,4 +17,10 @@ public interface UserDao {
     public void Charge(UserDto dto);
 
     public int ChargeHistory(ChargeHistoryDto dto);
+    
+    public int updatePw(UserDto dto) throws Exception;
+	public Object idCheck(String usId);
+	public UserDto readMember(String usId);
+
+
 }

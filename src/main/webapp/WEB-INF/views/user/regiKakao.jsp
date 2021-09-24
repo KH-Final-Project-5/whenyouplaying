@@ -74,7 +74,54 @@
 			});
 			});
 
-	</script>      
+	</script>    
+	<script type="text/javascript">
+var kakao_message = new Object();   
+	$(document).ready(function(){	
+		var ACCESS_TOKEN= $("#access_token").val();
+		//할당받은 토근을  세팅
+		Kakao.Auth.setAccessToken(ACCESS_TOKEN);
+		console.log(Kakao.Auth.getAccessToken());		
+		Kakao.API.request({
+		    url: '/v2/user/me',
+		    success: function(response) {
+		        console.log(response);
+		        kakao_message['id']=response['id'];
+				kakao_message['email']=response['kakao_account']['email'];
+				kakao_message['nickname']=response['kakao_account']['profile']['nickname'];
+		        console.log(kakao_message);
+		        var m_uid = 'KAKAO_'+kakao_message['id'];
+				console.log(""+window.location.hostname+"");
+				var data = JSON.stringify({
+					usId : m_uid
+				 , usName : kakao_message['nickname']
+				 , usEmail : kakao_message['email']
+				 , join_pass : 'KAKAO'
+				});
+				// 로그인시 서버에서 넘어왔음.. 
+				//로그인정보가 있다면 로그인 시도하기.. 
+				var url = '/user/userid_duplicate_check';
+				getPostData(url,data,callback_userid_duplicate_check, false);	
+				
+				if(!is_userid) //sns가입된 id가 있다면 로그인 시도.
+				{
+					url = '/user/naver_kakao_sns_login';					
+					getPostData(url,data,callback_join_ok, false);
+				}
+				else if(is_userid) //sns로 가입된 id가 없다면 가입시도..
+				{
+					$("#userInfo.usId").val(m_uid);
+					$("#userInfo.usId").val(kakao_message['nickname']);
+					$("#userInfo.usId").val(kakao_message['email']);
+				}
+		    },
+		    fail: function(error) {
+		        console.log(error);
+		    }
+		});
+	});
+	
+</script>  
 
 </head>
 <body>
@@ -108,7 +155,7 @@
                             <label for="usID">ID</label>
 
                             <br>
-                            <input type="text" class="form-control" id="usId" placeholder="" value="${userInfo.usId }" required
+                            <input type="text" class="form-control" id="usId" placeholder="" value="${userInfo.usId}" required
                                    name="usId">
 							<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
                             <div class="invalid-feedback"> 아이디를 입력해주세요.</div>
@@ -121,7 +168,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="usPW">PW</label>
                             <br>
-                            <input type="password" class="form-control" id="usPW" placeholder="" value="${userInfo.usPw }" required name="usPw" readonly="readonly">
+                            <input type="password" class="form-control" id="usPW" placeholder="" value="${userInfo.usPw}" required name="usPw" readonly="readonly">
                         </div>
 
 
@@ -129,7 +176,7 @@
 
                             <label for="usPW2">PW 확인</label>
                             <br>
-                            <input type="password" class="form-control" id="usPW2" placeholder="" value="${userInfo.usPw }" required readonly="readonly">
+                            <input type="password" class="form-control" id="usPW2" placeholder="" value="${userInfo.usPw}" required readonly="readonly">
 
                          <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
                          <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
@@ -140,7 +187,7 @@
 
                             <label for="usName">이름</label>
                             <br>
-                            <input type="text" class="form-control" id="usName" placeholder="" value="${userInfo.usName }" required
+                            <input type="text" class="form-control" id="usName" placeholder="" value="${userInfo.usName}" required
                                    name="usName">
 
 

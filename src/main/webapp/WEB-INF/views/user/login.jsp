@@ -95,53 +95,40 @@
 
 	</script>  
 	
-	<script type="text/javascript">
-	
-		window.Kakao.init('dbf3216f878ddd57aec90512ab8d985e');	
-		function kakaoLogin() {
-		    window.Kakao.Auth.login({
-		    	scope: 'profile_nickname,account_email',
-		      success: function (authObj) {
-		        window.Kakao.API.request({
-		          url: '/v2/user/me',
-		          success: res => {
-		        	  const name = res.properties.nickname;
-		        	  const email = res.kakao_account.email;
-		        	  
-		        	  console.log(email)
-		        	  console.log(name)
-		        	  
-		        	  $('#kakaoemail').val(email);
-		        	  $('#kakaoname').val(name);
-		        	 	document.regikakao.submit();
-		          },
-		          fail: function (error) {
-		            console.log(error)
-		          },
-		        })
-		      },
-		      fail: function (error) {
-		        console.log(error)
-		      },
-		    })
-		  }
-		
-		function kakaoLogout() {
-		    if (Kakao.Auth.getAccessToken()) {
-		      Kakao.API.request({
-		        url: '/v1/user/unlink',
-		        success: function (response) {
-		        	console.log(response)
-		        },
-		        fail: function (error) {
-		          console.log(error)
-		        },
-		      })
-		      Kakao.Auth.setAccessToken(undefined)
-		    }
-		  }
-	
-	</script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+  //카카오로그인
+  function kakaoLogin() {
+
+    $.ajax({
+        url: 'regiKakao2.do',
+        type: 'get',
+        async: false,
+        dataType: 'text',
+        success: function (res) {
+            location.href = res;
+        }
+    });
+
+  }
+
+  $(document).ready(function() {
+
+      var kakaoInfo = '${kakaoInfo}';
+
+      if(kakaoInfo != ""){
+          var data = JSON.parse(kakaoInfo);
+
+          alert("카카오로그인 성공 \n accessToken : " + data['accessToken']);
+          alert(
+          "user : \n" + "email : "
+          + data['email']  
+          + "\n nickname : " 
+          + data['nickname']);
+      }
+  });  
+
+  </script> 
 
 	
 	<!-- 네이버 스크립트 -->
@@ -190,34 +177,22 @@
               	<div class="g-signin2" data-onsuccess="onSignIn"></div> 
 
 
-
-			      <a href="javascript:kakaoLogin()">
-			          <span>카카오 로그인</span>
-			      </a>
-				      
-				<ul>
-					<li onclick="kakaoLogout();">
-				      <a href="javascript:void(0)">
-				          <span>카카오 로그아웃</span>
-				      </a>
-					</li>
-				</ul>
-
-
+  <ul>
+      <li onclick="kakaoLogin();">
+        <a href="javascript:void(0)">
+            <span>카카오 로그인</span>
+        </a>
+      </li>
+      
+      <li onclick="kakaoLogout();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그아웃</span>
+      </a>
+	</li>
+  </ul>
+			
 				
-	            <ul>
-					<li onclick="kakaoLogin();">
-				      <a href="javascript:void(0)">
-				          <span>카카오 로그인</span>
-				      </a>
-				      <li onclick="kakaoLogout();">
-				      <a href="javascript:void(0)">
-				          <span>카카오 로그아웃</span>
-				      </a>
-				      
-				</ul>
 
-				
 				<!-- 네이버 로그인 창으로 이동 -->
 			<div id="naver_id_login" style="text-align:center; margin-top:15px; margin-right:60px;">
 				<a href="${url}">
@@ -231,6 +206,7 @@
 				<div id="getTest"></div>
                 	<a class="loginA" href="regiform.do">회원가입</a><br><br>
                 	<a class="loginA" href="finduser.do">아이디 / 비밀번호 찾기</a>
+                	<a class="loginA" href="test.jsp">비밀번호 찾기</a>
             	</div>
             <div class="col-4"></div>
         </div>
