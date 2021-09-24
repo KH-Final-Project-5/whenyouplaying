@@ -25,7 +25,19 @@
     color: black;
 }
 
-.shadow {
+.shadow1 {
 
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#socialArea{
+	position: relative;
+	left: 70px;
+	top: -38px;
+}
+
+#naver_id_login{
+	position: relative;
+	left: 40px;
+	top: -38px;
 }
