@@ -30,8 +30,6 @@
     	$(function(){
     		
     		var user = "${user.usNo}";
-    		console.log(user);
-    		console.log("확인되나");
     		
     		if(user == null || user == ""){
     			$("#sideBar").hide();
