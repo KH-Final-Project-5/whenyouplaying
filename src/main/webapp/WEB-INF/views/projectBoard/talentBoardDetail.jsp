@@ -164,8 +164,8 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-
-    <div class="container">
+<div class="content" style="min-height: 4000px;">
+    <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
         <div class="row">
             <div class="col-3">
                 <div id="sideBarImgArea">
@@ -323,7 +323,7 @@
                     <div class="row">
                         <div class="col-12">
 
-                            <span class="detail-content"><b>재능&nbsp;&nbsp;&nbsp; 상세&nbsp;&nbsp;&nbsp; 정보</b></span>
+                            <span class="detail-content"><b>재능&nbsp; 상세&nbsp; 정보</b></span>
                         </div>
                         <div class="row" id="detail-content">
                             ${detail_dto.prContent }
@@ -512,6 +512,8 @@
         </div>
         <br>
 
+    </div>
+    
     </div>
     <!-- footer 영역-->
 
