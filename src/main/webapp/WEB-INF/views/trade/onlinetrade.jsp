@@ -53,7 +53,7 @@
                         socket.send(msg);
                     }
 
-                    $.ajax({
+                    /*$.ajax({
                         url: "smsSend2.do",
                         data: {receiver: $("#phone").val(), usId: $("#buyId").val()},
                         type: "post",
@@ -62,7 +62,7 @@
                         }, error: function (request, status, error) {
                             alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                         }
-                    });
+                    });*/
 
                     payForm.submit();
                 }

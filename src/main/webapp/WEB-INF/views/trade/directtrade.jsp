@@ -68,14 +68,14 @@
             if ($('#orderCheckBox').is(":checked") === true) {
                 if (pay > 0) {
                     if (confirm("결제하시겠습니까?")) {
-                        $.ajax({
+                        /*$.ajax({
                             url: "smsSend2.do",
                             data: {receiver: $("#phone").val(), usId: $("#buyId").val()},
                             type: "post",
                             success: function () {
                                 alert("문자발송 완료");
                             }
-                        });
+                        });*/
 
                         payForm.submit();
                     }
