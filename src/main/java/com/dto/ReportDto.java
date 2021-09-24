@@ -15,7 +15,7 @@ import java.util.Date;
 public class ReportDto extends ProjectDto{
     private int decNo;
     private int usWriteNum;
-    private String deContent;
+    private String decContent;
     private String decStatus;
     private String decReason;
     private Date decDate;

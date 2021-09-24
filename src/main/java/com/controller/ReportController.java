@@ -66,11 +66,11 @@ public class ReportController {
         List<ReportDto> userlist = biz.ReportListUser(criteria);
 
         for (ReportDto dto : list) {
-            if (dto.getDeContent().contains("음란성")) {
+            if (dto.getDecContent().contains("음란성")) {
                 dto.setDecReason("음란성");
-            } else if (dto.getDeContent().contains("홍보")) {
+            } else if (dto.getDecContent().contains("홍보")) {
                 dto.setDecReason("홍보");
-            } else if (dto.getDeContent().contains("저작권")) {
+            } else if (dto.getDecContent().contains("저작권")) {
                 dto.setDecReason("저작권");
             } else {
                 dto.setDecReason("기타");

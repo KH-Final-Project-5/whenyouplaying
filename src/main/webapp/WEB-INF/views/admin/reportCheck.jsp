@@ -54,7 +54,7 @@
 
     <h3>신고 내용</h3><br>
     <textarea readonly="readonly">
-        ${reportDto.deContent}
+        ${reportDto.decContent}
     </textarea> <br>
 
 
