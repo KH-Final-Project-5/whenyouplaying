@@ -44,22 +44,26 @@
         }
 
         function reportPopup() {
-            var option = "width=550, height =550, top =100, left =200,location=no";
-            var report = "?usNo=${detail_dto.usNo}&prNo=${detail_dto.prNo}&prTitle=${detail_dto.prTitle}"
-            window.open("reportpopup.do" + report, "", option)
+            if (userid == null || userid == "null" || userid == "") {
+                location.href = 'loginform.do';
+            } else {
+                var option = "width=550, height =550, top =100, left =200,location=no";
+                var report = "?usNo=${detail_dto.usNo}&prNo=${detail_dto.prNo}&prTitle=${detail_dto.prTitle}"
+                window.open("reportpopup.do" + report, "", option)
+            }
+
         }
 
 
     </script>
-		
-	
-	
+
+
     <script>
         var a = '${detail_dto.prImage}';
         var b = '${detail_dto.prYoutube}'
         $(function () {
             var user = "<%=session.getAttribute("user")%>";
-            
+
             var userNo = "${user.usNo}"
             var projectUsNo = "${detail_dto.usNo}"
             var userId = "${user.usId}"
@@ -73,19 +77,17 @@
             if (b == "b") {
                 $('.youtubeDiv').hide();
             }
-          
-            
-            
-            if(prDeal == "online"){
-            	$("#perchase-button2").hide();
-            	$("#map").hide();
-            	$("#location").hide();
-            }else if(prDeal == "direct"){
-            	$("#perchase-button1").hide();
+
+
+            if (prDeal == "online") {
+                $("#perchase-button2").hide();
+                $("#map").hide();
+                $("#location").hide();
+            } else if (prDeal == "direct") {
+                $("#perchase-button1").hide();
             }
-            
-            
-            
+
+
             if (projectUsNo !== userNo) {
                 $("#deleteBtn").hide();
                 $("#updateBtn").hide();
@@ -94,7 +96,7 @@
                 $("#reserChk").hide();
             }
 
-            
+
             if (userId == null || userId == "") {
                 $("#perchase-button1").hide();
                 $("#perchase-button2").hide();
@@ -103,15 +105,14 @@
                 $("#reserChk").hide();
 
             }
-            
+
             if (userId == null || userId == "") {
                 $("#perchase-button1").hide();
                 $("#perchase-button2").hide();
                 $("#reserChk").hide();
             }
-            
-            
-            
+
+
         });
     </script>
 
@@ -131,30 +132,29 @@
             }
         });
     </script>
-    
-    
-    <script type="text/javascript">
-    	
-    	function appointChange(){
 
-    		var option = "width=800, height =884, top =30, left =100, location=no";
-                window.open("appointChange.do?prNo=${detail_dto.prNo}", "", option);
-    		
-    		
-    	}
-    	
-    	
-    	function appointCheck(){
-    		
-    		var option = "width=800, height =884, top =30, left =100, location=no";
-    		window.open("appointCheck.do?prNo=${detail_dto.prNo}","", option);
-    		
-    	}
-    
-    
-    
+
+    <script type="text/javascript">
+
+        function appointChange() {
+
+            var option = "width=800, height =884, top =30, left =100, location=no";
+            window.open("appointChange.do?prNo=${detail_dto.prNo}", "", option);
+
+
+        }
+
+
+        function appointCheck() {
+
+            var option = "width=800, height =884, top =30, left =100, location=no";
+            window.open("appointCheck.do?prNo=${detail_dto.prNo}", "", option);
+
+        }
+
+
     </script>
-    
+
 </head>
 
 
@@ -164,356 +164,362 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-<div class="content" style="min-height: 4000px;">
-    <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
-        <div class="row">
-            <div class="col-3">
-                <div id="sideBarImgArea">
-                    <div id="sideImg">
-                        <img id="ai-img" src="<c:url value="/resources/img_header/logo.png"/>" alt="">
-                    </div>
-                    <div id="userName" style="margin-top: 120px;">
-                        ${detail_dto.usName }
-                    </div>
+    <div class="content" style="min-height: 4000px;">
+        <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
+            <div class="row">
+                <div class="col-3">
+                    <div id="sideBarImgArea">
+                        <div id="sideImg">
+                            <img id="ai-img" src="<c:url value="/resources/img_header/logo.png"/>" alt="">
+                        </div>
+                        <div id="userName" style="margin-top: 120px;">
+                            ${detail_dto.usName }
+                        </div>
 
-                    <div id="message">
-                        <button onclick="messagePopup()" class="btn btn-outline-primary btn-lg"
-                                style="margin-top: 150px; width: 268px;">판매자에게 문의하기
-                        </button>
-                        <br><br>
-                        <button onclick="reportPopup()" class="btn btn-outline-primary btn-lg"
-                                style="width: 268px;">판매자 신고하기
-                        </button>
-                    </div>
-                </div>
-                <br>
-                <hr>
-                <br>
-                <div id="pageName" style="margin-top: 150px;"><b style="margin-right: 45px;">자기소개</b></div>
-
-                <div id="menuList">
-                    <div style="border: black solid 3px; width: 269px; height: 1000px; ">
-                        ${detail_dto.usSelfInfo}
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-9">
-
-                <form>
-
-                    <input type="hidden" name="prNo" value="${detail_dto.prNo }">
-                    <input type="hidden" name="usNo" value="${detail_dto.usNo }">
-                    <input type="hidden" name="loginUsNo" value="${user.usNo }">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="detail-content">
-                                <b id="detail-title">${detail_dto.prTitle }</b>
-                            </div>
+                        <div id="message">
+                            <button onclick="messagePopup()" class="btn btn-outline-primary btn-lg"
+                                    style="margin-top: 150px; width: 268px;">판매자에게 문의하기
+                            </button>
+                            <br><br>
+                            <button onclick="reportPopup()" class="btn btn-outline-primary btn-lg"
+                                    style="width: 268px;">판매자 신고하기
+                            </button>
                         </div>
                     </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div id="pageName" style="margin-top: 150px;"><b style="margin-right: 45px;">자기소개</b></div>
 
-                    <div class="row detailImgDiv">
-                        <div class="col-12">
-                            <div class="detail-content">
-                                <img id="ai-img" src="${detail_dto.prImage }" alt="사진">
-                            </div>
+                    <div id="menuList">
+                        <div style="border: black solid 3px; width: 269px; height: 1000px; ">
+                            ${detail_dto.usSelfInfo}
+
                         </div>
                     </div>
+                </div>
 
-                    <div class="row youtubeDiv">
-                        <div class="col-12">
 
-                            <div class="detail-content">
-                                <iframe id="gangnamStyleIframe" width="350" height="300"
-                                        src="https://www.youtube.com/embed/${detail_dto.prYoutube }"
-                                        frameborder="0"
-                                        allow="autoplay; fullscreen" allowfullscreen></iframe>
+                <div class="col-9">
 
-                                <script type="text/javascript">
-                                    /**
-                                     * Youtube API 로드
-                                     */
-                                    var tag = document.createElement('script');
-                                    tag.src = "https://www.youtube.com/iframe_api";
-                                    var firstScriptTag = document.getElementsByTagName('script')[0];
-                                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                    <form>
 
-                                    /**
-                                     * onYouTubeIframeAPIReady 함수는 필수로 구현해야 한다.
-                                     * 플레이어 API에 대한 JavaScript 다운로드 완료 시 API가 이 함수 호출한다.
-                                     * 페이지 로드 시 표시할 플레이어 개체를 만들어야 한다.
-                                     */
-                                    var player;
+                        <input type="hidden" name="prNo" value="${detail_dto.prNo }">
+                        <input type="hidden" name="usNo" value="${detail_dto.usNo }">
+                        <input type="hidden" name="loginUsNo" value="${user.usNo }">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="detail-content">
+                                    <b id="detail-title">${detail_dto.prTitle }</b>
+                                </div>
+                            </div>
+                        </div>
 
-                                    function onYouTubeIframeAPIReady() {
-                                        player = new YT.Player('gangnamStyleIframe', {
+                        <div class="row detailImgDiv">
+                            <div class="col-12">
+                                <div class="detail-content">
+                                    <img id="ai-img" src="${detail_dto.prImage }" alt="사진">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row youtubeDiv">
+                            <div class="col-12">
+
+                                <div class="detail-content">
+                                    <iframe id="gangnamStyleIframe" width="350" height="300"
+                                            src="https://www.youtube.com/embed/${detail_dto.prYoutube }"
+                                            frameborder="0"
+                                            allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+                                    <script type="text/javascript">
+                                        /**
+                                         * Youtube API 로드
+                                         */
+                                        var tag = document.createElement('script');
+                                        tag.src = "https://www.youtube.com/iframe_api";
+                                        var firstScriptTag = document.getElementsByTagName('script')[0];
+                                        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                                        /**
+                                         * onYouTubeIframeAPIReady 함수는 필수로 구현해야 한다.
+                                         * 플레이어 API에 대한 JavaScript 다운로드 완료 시 API가 이 함수 호출한다.
+                                         * 페이지 로드 시 표시할 플레이어 개체를 만들어야 한다.
+                                         */
+                                        var player;
+
+                                        function onYouTubeIframeAPIReady() {
+                                            player = new YT.Player('gangnamStyleIframe', {
 //                height: '315',            // <iframe> 태그 지정시 필요없음
 //                width: '560',             // <iframe> 태그 지정시 필요없음
 //                videoId: '9bZkp7q19f0',   // <iframe> 태그 지정시 필요없음
 //                playerVars: {             // <iframe> 태그 지정시 필요없음
 //                    controls: '2'
 //                },
-                                            events: {
-                                                'onReady': onPlayerReady,               // 플레이어 로드가 완료되고 API 호출을 받을 준비가 될 때마다 실행
-                                                'onStateChange': onPlayerStateChange    // 플레이어의 상태가 변경될 때마다 실행
-                                            }
-                                        });
-                                    }
+                                                events: {
+                                                    'onReady': onPlayerReady,               // 플레이어 로드가 완료되고 API 호출을 받을 준비가 될 때마다 실행
+                                                    'onStateChange': onPlayerStateChange    // 플레이어의 상태가 변경될 때마다 실행
+                                                }
+                                            });
+                                        }
 
-                                    function onPlayerReady(event) {
-                                        console.log('onPlayerReady 실행');
+                                        function onPlayerReady(event) {
+                                            console.log('onPlayerReady 실행');
 
-                                        // 플레이어 자동실행 (주의: 모바일에서는 자동실행되지 않음)
-                                        event.target.playVideo();
-                                    }
+                                            // 플레이어 자동실행 (주의: 모바일에서는 자동실행되지 않음)
+                                            event.target.playVideo();
+                                        }
 
-                                    var playerState;
+                                        var playerState;
 
-                                    function onPlayerStateChange(event) {
-                                        playerState = event.data == YT.PlayerState.ENDED ? '종료됨' :
-                                            event.data == YT.PlayerState.PLAYING ? '재생 중' :
-                                                event.data == YT.PlayerState.PAUSED ? '일시중지 됨' :
-                                                    event.data == YT.PlayerState.BUFFERING ? '버퍼링 중' :
-                                                        event.data == YT.PlayerState.CUED ? '재생준비 완료됨' :
-                                                            event.data == -1 ? '시작되지 않음' : '예외';
+                                        function onPlayerStateChange(event) {
+                                            playerState = event.data == YT.PlayerState.ENDED ? '종료됨' :
+                                                event.data == YT.PlayerState.PLAYING ? '재생 중' :
+                                                    event.data == YT.PlayerState.PAUSED ? '일시중지 됨' :
+                                                        event.data == YT.PlayerState.BUFFERING ? '버퍼링 중' :
+                                                            event.data == YT.PlayerState.CUED ? '재생준비 완료됨' :
+                                                                event.data == -1 ? '시작되지 않음' : '예외';
 
-                                        console.log('onPlayerStateChange 실행: ' + playerState);
-                                    }
-                                </script>
+                                            console.log('onPlayerStateChange 실행: ' + playerState);
+                                        }
+                                    </script>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
+                        <div class="row">
+                            <div class="col-12">
+
+                                <span class="detail-content"><b>판매자 : &nbsp;</b></span><span
+                                    class="detail-data">${detail_dto.usName }</span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12">
+
+                                <span class="detail-content"><b>재능 등록 날짜 : &nbsp;</b></span><span
+                                    class="detail-data">${detail_dto.prDate }</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+
+                                <span class="detail-content"><b>재능 종류 : &nbsp;</b></span><span
+                                    class="detail-data">${detail_dto.prTalent }</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+
+                                <span class="detail-content"><b>가격 : &nbsp;</b></span><span
+                                    class="detail-data">${detail_dto.prPrice }</span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12">
+
+                                <span class="detail-content"><b>재능&nbsp; 상세&nbsp; 정보</b></span>
+                            </div>
+                            <div class="row" id="detail-content">
+                                ${detail_dto.prContent }
+                            </div>
+                        </div>
+
+
+                        <div class="row" style="margin-left:200px;">
+                            <div class="col-12" style="margin-top: 15px; margin-bottom: 10px;">
+                                <span style="margin-top: 30px;"><b id="location">거래 지역</b></span>
+                            </div>
+                            <div id="map" style="width:500px;height:400px;"></div>
+                            <script type="text/javascript"
+                                    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ab159e5abb2442cfed56949c9439ba9"></script>
+                            <script>
+                                var container = document.getElementById('map');
+                                var options = {
+                                    center: new kakao.maps.LatLng(${detail_dto.prLatitude}, ${detail_dto.prLongitude}),
+                                    level: 3
+                                };
+
+
+                                var map = new kakao.maps.Map(container, options);
+                                // 마커가 표시될 위치입니다
+                                var markerPosition = new kakao.maps.LatLng(${detail_dto.prLatitude}, ${detail_dto.prLongitude});
+
+                                // 마커를 생성합니다
+                                var marker = new kakao.maps.Marker({
+                                    position: markerPosition
+                                });
+
+                                // 마커가 지도 위에 표시되도록 설정합니다
+                                marker.setMap(map);
+                            </script>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12">
+
+                                <input type="submit" value="온라인 구매" class="detail-button btn btn-outline-primary btn-lg"
+                                       id="perchase-button1" formaction="online.do" style="margin-left:200px">
+                                <input type="submit" value="직거래 구매" class="detail-button btn btn-outline-primary btn-lg"
+                                       id="perchase-button2" formaction="direct.do" style="margin-left:200px">
+
+                            </div>
+                        </div>
+                        <!--거래방법을 통한 구매하기 submit-->
+                    </form>
+
+                    <!-- 구매자 -->
+                    <button onclick="appointCheck()" id="reserChk"
+                            class="detail-button btn btn-outline-primary btn-lg detail-button3"
+                            style="margin-left:555px;">예약확인
+                    </button>
+
+                    <button id="reserbtn" class="detail-button btn btn-outline-primary btn-lg"
+                            style="margin-left:555px;" onclick="appointChange()">예약변경
+                    </button>
+
+
+                    <div class="row" id="button-div">
                         <div class="col-12">
-
-                            <span class="detail-content"><b>판매자 : &nbsp;</b></span><span
-                                class="detail-data">${detail_dto.usName }</span>
+                            <button onclick="location.href='ProjectUpdate.do?prNo=${detail_dto.prNo}'"
+                                    class="detail-button2 btn btn-outline-primary btn-sm detail-button4" id="updateBtn">
+                                글 수정
+                            </button>
+                            <button onclick="location.href='ProjectDelete.do?prNo=${detail_dto.prNo}'"
+                                    class="detail-button2 btn btn-outline-primary btn-sm detail-button4" id="deleteBtn">
+                                글 삭제
+                            </button>
                         </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-12">
-
-                            <span class="detail-content"><b>재능 등록 날짜 : &nbsp;</b></span><span
-                                class="detail-data">${detail_dto.prDate }</span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-
-                            <span class="detail-content"><b>재능 종류 : &nbsp;</b></span><span
-                                class="detail-data">${detail_dto.prTalent }</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-
-                            <span class="detail-content"><b>가격 : &nbsp;</b></span><span
-                                class="detail-data">${detail_dto.prPrice }</span>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-12">
-
-                            <span class="detail-content"><b>재능&nbsp; 상세&nbsp; 정보</b></span>
-                        </div>
-                        <div class="row" id="detail-content">
-                            ${detail_dto.prContent }
-                        </div>
-                    </div>
-
-
-                    <div class="row" style="margin-left:200px;">
-                        <div class="col-12" style="margin-top: 15px; margin-bottom: 10px;">
-                            <span style="margin-top: 30px;"><b id="location">거래 지역</b></span>
-                        </div>
-                        <div id="map" style="width:500px;height:400px;"></div>
-                        <script type="text/javascript"
-                                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ab159e5abb2442cfed56949c9439ba9"></script>
-                        <script>
-                            var container = document.getElementById('map');
-                            var options = {
-                            		center: new kakao.maps.LatLng(${detail_dto.prLatitude}, ${detail_dto.prLongitude}),
-                                level: 3
-                            };
-
-                           
-                            var map = new kakao.maps.Map(container, options);
-                         // 마커가 표시될 위치입니다 
-                            var markerPosition  = new kakao.maps.LatLng(${detail_dto.prLatitude}, ${detail_dto.prLongitude}); 
-
-                            // 마커를 생성합니다
-                            var marker = new kakao.maps.Marker({
-                                position: markerPosition
-                            });
-
-                            // 마커가 지도 위에 표시되도록 설정합니다
-                            marker.setMap(map);
-                        </script>
-
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-12">
-
-                            <input type="submit" value="온라인 구매" class="detail-button btn btn-outline-primary btn-lg"
-                                   id="perchase-button1" formaction="online.do" style="margin-left:200px">
-                            <input type="submit" value="직거래 구매" class="detail-button btn btn-outline-primary btn-lg"
-                                   id="perchase-button2" formaction="direct.do" style="margin-left:200px">
-
-                        </div>
-                    </div>
-                    <!--거래방법을 통한 구매하기 submit-->
-                </form>
-				
-				<!-- 구매자 -->                            
-                <button onclick="appointCheck()" id="reserChk" class="detail-button btn btn-outline-primary btn-lg detail-button3" style="margin-left:555px;">예약확인</button>
-                            
-			    <button  id="reserbtn" class="detail-button btn btn-outline-primary btn-lg"
-                	style="margin-left:555px;" onclick="appointChange()">예약변경
-                </button>
-                            
-                            
-                            
-                <div class="row" id="button-div">
-                    <div class="col-12">
-                        <button onclick="location.href='ProjectUpdate.do?prNo=${detail_dto.prNo}'"
-                                class="detail-button2 btn btn-outline-primary btn-sm detail-button4" id="updateBtn">글 수정
-                        </button>
-                        <button onclick="location.href='ProjectDelete.do?prNo=${detail_dto.prNo}'"
-                                class="detail-button2 btn btn-outline-primary btn-sm detail-button4" id="deleteBtn">글 삭제
-                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-3">
-                <div class="row" id="review-row2">
-                    <div class="col-12">
+            <hr>
+            <div class="row">
+                <div class="col-3">
+                    <div class="row" id="review-row2">
+                        <div class="col-12">
+                        </div>
                     </div>
                 </div>
+                <div class="col-9"></div>
             </div>
-            <div class="col-9"></div>
-        </div>
-        <div class="row">
-            <div class="col-3">
-                <br><br><br><br>
-                <br><br><br><br>
-                <b id="review-write-user">${user.usName }</b>
+            <div class="row">
+                <div class="col-3">
+                    <br><br><br><br>
+                    <br><br><br><br>
+                    <b id="review-write-user">${user.usName }</b>
+                </div>
+                <!--평점선택-->
+                <div class="col-9">
+                    <h3>구매자 후기</h3>
+                    <form action="review.do">
+
+                        <input type="hidden" name="prNo" value="${detail_dto.prNo }">
+                        <input type="hidden" name="usSellNo" value="${detail_dto.usNo }">
+                        <input type="hidden" name="usBuyNo" value="${user.usNo }">
+
+                        <input type="hidden" name="finStatus" value="거래완료">
+
+                        <div class="star-rating space-x-4 mx-auto">
+                            <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+                            <label for="5-stars" class="star pr-4">★</label>
+                            <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
+                            <label for="4-stars" class="star">★</label>
+                            <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+                            <label for="3-stars" class="star">★</label>
+                            <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
+                            <label for="2-stars" class="star">★</label>
+                            <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
+                            <label for="1-star" class="star">★</label>
+                        </div>
+                        <textarea style="width: 510px; height: 200px; margin-left: 68px;" name="rvContent"
+                                  class="text-area"></textarea>
+                        <input type="submit" class="btn btn-outline-primary btn-sm" value="등록하기" id="review-submit">
+
+                    </form>
+                </div>
             </div>
-            <!--평점선택-->
-            <div class="col-9">
-                <h3>구매자 후기</h3>
-                <form action="review.do">
+            <br>
+            <hr>
+            <br>
+            <div class="row">
 
-                	<input type="hidden" name="prNo" value="${detail_dto.prNo }">
-                	<input type="hidden" name="usSellNo" value="${detail_dto.usNo }">
-                	<input type="hidden" name="usBuyNo" value="${user.usNo }">
-                	
-                	<input type="hidden" name="finStatus" value="거래완료">
 
-                    <div class="star-rating space-x-4 mx-auto">
-                        <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
-                        <label for="5-stars" class="star pr-4">★</label>
-                        <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
-                        <label for="4-stars" class="star">★</label>
-                        <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
-                        <label for="3-stars" class="star">★</label>
-                        <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
-                        <label for="2-stars" class="star">★</label>
-                        <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
-                        <label for="1-star" class="star">★</label>
-                    </div>
-                    <textarea style="width: 510px; height: 200px; margin-left: 68px;" name="rvContent"
-                              class="text-area"></textarea>
-                    <input type="submit" class="btn btn-outline-primary btn-sm" value="등록하기" id="review-submit">
-                    
-                </form>
+                <c:choose>
+                    <c:when test="${empty review }">
+                        <h1>-------------등록된 리뷰가 없습니다-----------</h1>
+                    </c:when>
+
+                    <c:otherwise>
+                        <c:forEach items="${review }" var="review">
+                            <div class="col-3">
+                                <b class="review-user">${review.usName }</b>
+
+                            </div>
+
+                            <div class="col-9 review-col">
+                                <script type="text/javascript">
+
+                                    $(function () {
+                                        var rvUsNo = "${review.usNo}"
+
+                                        var userNo = "${user.usNo}"
+
+                                        if (rvUsNo == userNo) {
+                                            $("#rv_update").show();
+                                            $("#rv_delete").show();
+                                        } else {
+                                            $("#rv_update").hide();
+                                            $("#rv_delete").hide();
+                                        }
+                                    });
+
+                                </script>
+                                <form action="reviewUpdate.do">
+
+                                    <input type="hidden" name="rvNo" value="${review.rvNo }">
+                                    <input type="hidden" name="prNo" value="${review.prNo }">
+                                    <div style="margin-left:70px;">
+                                        [구매 후기]<br>
+
+                                        후기작성일 : ${review.rvDate }<br>
+                                        평점 : ${review.rvGrade }
+
+                                    </div>
+                                    <textarea rows="6" cols="60" style="margin-left:70px; margin-bottom:10px;"
+                                              name="rvContent">${review.rvContent }</textarea>
+                                    <br>
+                                    <c:if test="${review.usNo eq user.usNo }">
+                                        <input type="submit" class="btn btn-outline-primary btn"
+                                               style="margin-left :515px " value="수정" id="rv_update">
+                                    </c:if>
+                                </form>
+                                <c:if test="${review.usNo eq user.usNo }">
+                                    <button onclick="location.href='deleteReview.do?rvNo=${review.rvNo}&prNo=${review.prNo }'"
+                                            id="rv_delete" class="btn btn-outline-primary btn"
+                                            style="margin-left:515px;">삭제
+                                    </button>
+                                </c:if>
+                            </div>
+
+
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+
+
             </div>
+            <br>
+
         </div>
-        <br>
-        <hr>
-        <br>
-        <div class="row">
 
-        
-        <c:choose>
-        	<c:when test="${empty review }">
-        		<h1>-------------등록된 리뷰가 없습니다-----------</h1>
-        	</c:when>
-        	
-        	<c:otherwise>
-        		<c:forEach items="${review }" var="review">
-        			<div class="col-3">
-                		<b class="review-user">${review.usName }</b>
-                		
-            		</div>
-            
-            		<div class="col-9 review-col">
-                		<script type="text/javascript">
-                		
-                			$(function(){
-                				var rvUsNo = "${review.usNo}"
-                	            
-                	            var userNo = "${user.usNo}"
-                	            
-                	            if(rvUsNo==userNo){
-                	            	$("#rv_update").show();
-                	            	$("#rv_delete").show();
-                	            }else{
-                	            	$("#rv_update").hide();
-                	            	$("#rv_delete").hide();
-                	            }
-                			});
-                		
-                		</script>
-                		<form action="reviewUpdate.do">
-                		
-                		<input type="hidden" name="rvNo" value="${review.rvNo }">
-                		<input type="hidden" name="prNo" value="${review.prNo }">
-                		<div style="margin-left:70px;">
-                		[구매 후기]<br>
-                		
-                		후기작성일 : ${review.rvDate }<br>
-                		평점	   : ${review.rvGrade }
-                		
-                		</div>
-                		<textarea rows="6" cols="60" style="margin-left:70px; margin-bottom:10px;" name="rvContent">${review.rvContent }</textarea>
-                		<br>
-                		<c:if test="${review.usNo eq user.usNo }"> 
-                		<input type="submit" class="btn btn-outline-primary btn" style="margin-left :515px " value="수정" id="rv_update" >
-                		</c:if>
-                		</form>
-                		<c:if test="${review.usNo eq user.usNo }">
-                		<button onclick="location.href='deleteReview.do?rvNo=${review.rvNo}&prNo=${review.prNo }'" id="rv_delete" class="btn btn-outline-primary btn" style="margin-left:515px;">삭제</button>
-                		</c:if>
-            		</div>
-        		
-        		
-        		</c:forEach>
-        	</c:otherwise>
-        </c:choose>
-      
-            
-
-
-          
-        </div>
-        <br>
-
-    </div>
-    
     </div>
     <!-- footer 영역-->
 
