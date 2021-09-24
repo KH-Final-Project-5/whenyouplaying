@@ -15,13 +15,14 @@ header{
 	
 }
 
-#content{
+.content{
 	padding: 20px;
+	min-height: 1100px;
 }
 
 
 footer {
-	position: relative;
+	position: absolute;
 	bottom: 0;
     width:100%;
     text-align: center;
