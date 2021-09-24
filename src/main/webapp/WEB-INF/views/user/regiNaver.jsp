@@ -98,7 +98,8 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-    <div class="container">
+<div class="content" style="min-height: 1500px;" >
+    <div class="container" style="">
 
         <div class="input-form-backgroud row">
 
@@ -233,6 +234,8 @@
         </div>
 
 
+    </div>
+    
     </div>
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
