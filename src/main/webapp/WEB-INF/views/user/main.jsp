@@ -36,7 +36,7 @@
 
 </head>
 
-<body style="margin-top: 0px; margin-bottom:0px;">
+<body>
 
 <div class="wwrap">
     
@@ -44,6 +44,7 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
     
+  <div class="content">
     <div class="container" id="mainpageArea">
         <div class="row">
             <h2>최신순</h2>
@@ -80,7 +81,7 @@
         
         </div>
     </div>
-    
+   </div>  
 	    
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>
