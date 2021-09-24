@@ -2,6 +2,12 @@ package com.dao;
 
 import com.dto.ChargeHistoryDto;
 import com.dto.UserDto;
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.mail.HtmlEmail;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -108,4 +114,37 @@ public class UserDaoImpl implements UserDao{
 		
 		return res;
 	}
+	
+	@Override
+	public int updatePw(UserDto dto) throws Exception {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.update(NAMESPACE+".updatePw", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : 비밀번호 찾기 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	public Object idCheck(String usId) {
+
+		return sqlSessionTemplate.update(NAMESPACE+".updatePw", usId);
+	}
+	public UserDto readMember(String usId) {
+
+	    UserDto userDto = null;
+
+        try {
+            userDto = sqlSessionTemplate.selectOne(NAMESPACE+"readMember", usId);
+        } catch (Exception e) {
+            System.out.println("[error] 아이디 불러오기 에러");
+            e.printStackTrace();
+        }
+
+        return userDto;
+    }
 }
