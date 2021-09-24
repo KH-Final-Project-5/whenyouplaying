@@ -121,9 +121,6 @@ var kakao_message = new Object();
 	});
 	
 </script>  
-=======
->>>>>>> 6a7967411f6531541edb0cfe0ef521cbb2684c60
-
     <script type="text/javascript">
         function fn_idChk() {
             $.ajax({

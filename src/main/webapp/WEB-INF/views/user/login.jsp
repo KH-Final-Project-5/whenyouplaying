@@ -142,26 +142,6 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-    
-    <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
-        <div class="row">
-            <div class="col-5"></div>
-            <!-- Custom styles for this template -->
-            <div class="col-3">
-                <form action="login.do" method="post">
-                    <img class="mb-4" src="<c:url value="/resources/img_header/logo.png"/>" alt="" width="72" height="57" style="margin-left: 90px">
-                    <h1 class="h3 mb-3 fw-normal" style="margin: 0 auto; text-align: center">Please sign in</h1>
-                    
-                    <input type="text" id="usId" name="usId"
-                           style="width: 271px; display: inline-block; margin: 0 auto;"
-                           class="form-control"
-                           placeholder="ID를 입력해주세요"
-                           required>
-                    <br>
-                    <br>
-                    <input type="password" id="usPw" class="form-control" name="usPw"
-                           style="width: 271px; display: inline-block; margin: 0 auto;" placeholder="Password" required>
-                    <br>
 
     <div class="content" style="min-height: 1100px;">
         <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
@@ -237,8 +217,7 @@
        
     
     </div>
-        <footer>
-    </div>
+
 
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>

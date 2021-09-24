@@ -11,7 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import com.biz.UserBiz;
 import com.dto.UserDto;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,8 @@ import com.google.gson.JsonParser;
 
 @Controller
 public class KakaoController {
-
+	 @Autowired
+	 UserBiz biz;
 	@RequestMapping("regiKakao2.do")
 	
 	public @ResponseBody String getKakaoAuthUrl(
@@ -173,7 +176,7 @@ public class KakaoController {
     private KakaoService kakaoService;
 
     @RequestMapping("/kakaologin.do")
-    public String home(@RequestParam(value = "code", required = false) String code, Model model) {
+    public String home(@RequestParam(value = "code", required = false) String code, Model model,HttpSession session) {
         System.out.println("########" + code);
         String access_Token = kakaoService.getAccessToken(code);
         System.out.println("######access_Token##### : " + access_Token);
@@ -183,18 +186,20 @@ public class KakaoController {
         dto.setUsName((String) userInfo.get("nickname"));
         dto.setUsPw((String) userInfo.get("id"));
         dto.setUsId((String) userInfo.get("email"));
-
-        /*
-         * 정보를 가져와서 로그인을 시켜본 후에
-         * 로그인이 정상적으로 완료되면 session에 저장하면서
-         * 메인페이지로 이동(로그인 시키기)
-         *
-         * 아닐 경우엔 회원가입 폼으로 이동 model.addA~return까지 하면 됨
-         */
-
-
         model.addAttribute("userInfo", dto);
-        return "user/regiKakao";
+        dto = biz.login(dto);
+
+
+        if (dto == null) {
+            return "user/regiKakao";
+        } else {
+            session.setAttribute("user", dto);
+
+            return "redirect:main.do";
+
+        }
+
+
 
     }
 }
