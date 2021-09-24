@@ -71,6 +71,8 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
+
+   <div class="content" style="min-height: 1500px;">
     <div class="container" style="margin-top: 60px;">
         <div class="row">
             <div class="col-3">
@@ -126,11 +128,11 @@
                     <table border="1" class="buy-table">
                         <colgroup>
                             <col width="70px">
-                            <col width="440">
+                            <col width="430">
                             <col width="90px">
                             <col width="80px">
                             <col width="100px">
-                            <col width="90px">
+                            <col width="100px">
                         </colgroup>
 
                         <tr class="tr_bottom_line">
@@ -184,7 +186,7 @@
             </div>
         </div>
     </div>
-
+ </div>
 
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>

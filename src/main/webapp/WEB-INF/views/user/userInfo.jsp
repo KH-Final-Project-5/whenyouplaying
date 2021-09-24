@@ -138,7 +138,8 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-    <div class="container">
+   <div class="content" style="min-height: 2000px;">
+    <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
         <div class="input-form-backgroud row">
             <div class="col-3">
 
@@ -160,7 +161,7 @@
                     <span class="menuText"><a class="colorA" href="noticemainuser.do">공지사항</a></span><br><br>
                     <span class="menuText"><a class="colorA" href="useredit.do"><b><u>회원정보</u></b></a></span><br><br>
                     <span class="menuText"><a class="colorA"
-                                              href="buylist.do?usNo=${user.usNo }&finStatus=1s">재능 구매내역</a></span><br><br>
+                                              href="buylist.do?usNo=${user.usNo }&finStatus=1">재능 구매내역</a></span><br><br>
                     <span class="menuText"><a class="colorA"
                                               href="selllist.do?usNo=${user.usNo }&finStatus=거래취소">재능 판매내역</a></span><br><br>
                     <span class="menuText"><a class="colorA"
@@ -347,6 +348,7 @@
 
             </div>
         </div>
+       </div>
     </div>
 
     <footer>

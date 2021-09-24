@@ -43,8 +43,9 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
+  <div class="content" style="min-height: 1100px;">
     <!-- grid영역, 컬럼은 12줄로 이루어져 있고 갯수 비율로 틀을 잡는다. -->
-    <div class="container" style="margin-top:60px; height: 30px; padding-bottom: 100px; min-height: 0px;">
+    <div class="container" style="margin-top:60px; height: 30px; padding-bottom: 100px;">
         <div class="row">
             <div class="col-12 userNav">
                 <h2><img style="width: 50px; height: 50px;" src="${userDto.usImg}">${userDto.usName }님의 mypage</h2>
@@ -90,10 +91,7 @@
 
                 </div>
             </div>
-        </div>
-
-        <!--두번째 줄-->
-        <div class="row">
+            
             <div class="col-4">
                 <div class="col-8">
                     <a href="buylist.do?usNo=${user.usNo }&finStatus=1"><img
@@ -106,6 +104,10 @@
                     <p>회원님의 재능 구매 내역을<br>확인 할 수 있습니다.<br>
                 </div>
             </div>
+        </div>
+
+        <!--두번째 줄-->
+        <div class="row">
 
             <div class="col-4 sellList">
                 <div class="col-8">
@@ -137,12 +139,7 @@
 
                 </div>
             </div>
-
-        </div>
-
-        <!-- 세번째 줄 -->
-        <div class="row">
-
+            
             <div class="col-4">
                 <div class="col-8">
                     <a href="pointdeposituser.do?usNo=${user.usNo }"><img
@@ -157,6 +154,10 @@
                 </div>
             </div>
 
+        </div>
+
+        <!-- 세번째 줄 -->
+        <div class="row">
 
             <div class="col-4">
                 <div class="col-8">
@@ -190,7 +191,7 @@
             </div>
 
         </div>
-
+	 </div>
     </div>
 
     <footer>

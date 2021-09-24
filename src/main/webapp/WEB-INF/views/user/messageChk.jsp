@@ -124,6 +124,8 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
+
+   <div class="content" style="min-height: 1100px;">
     <div class="container">
         <div class="row" id="msgList">
             <div class="col-4" id="msgContent2">
@@ -136,9 +138,8 @@
                     <colgroup>
                         <col width="30%">
                         <col width="70%">
-
-
                     </colgroup>
+
                     <c:choose>
                         <c:when test="${empty mesList}">
                             <tr>
@@ -147,14 +148,13 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${mesList}" var="mesList">
-                                <tr class="${mesList.mesNo}" onclick="msgChk(this)">
+                                <tr class="${mesList.mesNo}" onclick="msgChk(this)" style="border-bottom: 0.3px solid gray;">
                                     <th class="msgListTh">보낸이</th>
                                     <td>${mesList.usSendId}</td>
                                 </tr>
-                                <tr class="${mesList.mesNo}" onclick="msgChk(this)">
+                                <tr class="${mesList.mesNo}" onclick="msgChk(this)" style="border-bottom: 1px solid black;">
                                     <th class="msgListTh">쪽지 내용</th>
-                                    <td class="status${mesList.mesStatus} mescontents${mesList.mesNo}">
-                                    </td>
+                                    <td class="status${mesList.mesStatus} mescontents${mesList.mesNo}"></td>
                                     <input type="hidden" value="${mesList.mesContents}"
                                            class="${mesList.mesNo}contents"/>
                                     <input type="hidden" value="${mesList.usSendId}" class="${mesList.mesNo}name"/>
@@ -217,7 +217,7 @@
         </div>
 
     </div>
-
+</div>
 
 	<footer>
 	    <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>

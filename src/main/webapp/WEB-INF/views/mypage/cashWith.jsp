@@ -214,7 +214,8 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-    <div class="container">
+   <div class="content" style="min-height: 1300px;">
+    <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
         <div class="row">
             <div class="col-3">
                 <div id="sideBarImgArea">
@@ -226,8 +227,8 @@
                     <div id="userName">
                         ${user.usId}
                     </div>
-                    </div>
-                </div>
+             	</div>
+               
                 <hr>
                 <div id="pageName"><b>My Page</b></div>
 
@@ -303,14 +304,27 @@
 
 
                 </div>
-
+				<br><br><br><br>
                 <div id="noticeArea">
-                    정산에 관한 공지사항 영역
+       				안녕하세요. 놀면뭐하니입니다. <br><br>
+
+					1. 포인트 충전신청은 24시간 가능합니다. <br><br>
+					
+					1. 포인트 충전 신청 후 환불 요청은 대표번호로 연락주시길 바랍니다., 가급적 포인트 신청 후 (당일) 이내에 연락주시면 감사하겠습니다. <br><br>
+					
+					   포인트 충전신청일 기준, 입금 확인 건에 한해서만 [환불] 업무를 지원해드립니다. <br><br>
+					
+					  (업무시간에만 환불업무 가능 : 09:00~15:00) <br><br>
+					
+					※ 15시 이후 포인트충전를 완료한 회원사의 경우 명일 오전에 [환불] 업무가 지원되오니, 서비스 이용에 착오없으시길 바랍니다. <br><br>
+       
+       
                 </div>
 
             </div>
         </div>
     </div>
+</div>
 
     <footer>
         <jsp:include page="/WEB-INF/views/header/footer.jsp" flush="false"/>

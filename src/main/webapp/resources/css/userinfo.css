@@ -36,16 +36,8 @@
             resize: none;
         }
 
-        a {
-            color: black;
-            
-        }
-        
-        a:hover{
-            color: black;
-            text-decoration: none;
-        
-        }
+   
+       
         #sideBarImgArea {
 
             position: relative;
@@ -99,8 +91,7 @@
 
             width: 1200px;
             max-width: none !important;
-            margin-top: 60px;
-            margin-bottom: 60px;
+
         }
         #titleName{
             border-bottom: outset 3px;
