@@ -210,7 +210,6 @@
 
             recognition.addEventListener("speechstart", () => {
                 console.log("Speech Start");
-
             });
 
             recognition.addEventListener("speechend", () => {
