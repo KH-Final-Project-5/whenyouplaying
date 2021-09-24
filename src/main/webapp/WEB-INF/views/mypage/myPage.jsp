@@ -47,7 +47,7 @@
     <div class="container" style="margin-top:60px; height: 30px; padding-bottom: 100px; min-height: 0px;">
         <div class="row">
             <div class="col-12 userNav">
-                <h2><img src="../image/UserImg.PNG">${userDto.usName }님의 mypage</h2>
+                <h2><img style="width: 50px; height: 50px;" src="${userDto.usImg}">${userDto.usName }님의 mypage</h2>
                 <hr>
             </div>
         </div>
@@ -64,7 +64,7 @@
                     <a href="useredit.do"><img src="<c:url value="/resources/img_mypage/accountManage.png"/>"></a>
                 </div>
                 <div class="col-8">
-                    <a class="myA" href="useredit.do"><b>회원 정보 수정</b></a>
+                    <a class="colorA" href="useredit.do"><b>회원 정보 수정</b></a>
                 </div>
 
                 <div class="col-8">
@@ -82,7 +82,7 @@
                             src="<c:url value="/resources/img_mypage/bank.png"/>"></a>
                 </div>
                 <div class="col-8">
-                    <a class="myA" href="manageaccount.do?usNo=${user.usNo }"><b>계좌 관리</b></a>
+                    <a class="colorA" href="manageaccount.do?usNo=${user.usNo }"><b>계좌 관리</b></a>
                 </div>
 
                 <div class="col-8">
@@ -100,7 +100,7 @@
                             src="<c:url value="/resources/img_mypage/buy.png"/>"></a>
                 </div>
                 <div class="col-8">
-                    <a class="myA" href="buylist.do?usNo=${user.usNo }&finStatus=1"><b>재능 구매 내역</b></a>
+                    <a class="colorA" href="buylist.do?usNo=${user.usNo }&finStatus=1"><b>재능 구매 내역</b></a>
                 </div>
                 <div class="col-8">
                     <p>회원님의 재능 구매 내역을<br>확인 할 수 있습니다.<br>
@@ -113,7 +113,7 @@
                             src="<c:url value="/resources/img_mypage/sell.png"/>"></a>
                 </div>
                 <div class="col-8">
-                    <a class="myA" href="selllist.do?usNo=${user.usNo }&finStatus=거래취소"><b>재능 판매 내역</b></a>
+                    <a class="colorA" href="selllist.do?usNo=${user.usNo }&finStatus=거래취소"><b>재능 판매 내역</b></a>
                 </div>
 
                 <div class="col-8">
@@ -128,7 +128,7 @@
                         src="<c:url value="/resources/img_mypage/chargehistory.png"/>"></a>
                 </div>
                 <div class="col-8">
-                    <a class="myA"
+                    <a class="colorA"
                        href="cashrecord.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01"><b>충전 내역확인</b></a>
                 </div>
 
@@ -149,7 +149,7 @@
                             src="<c:url value="/resources/img_mypage/point.png"/>"></a>
                 </div>
                 <div class="col-8">
-                    <a class="myA" href="pointdeposituser.do?usNo=${user.usNo }"><b>포인트 출금</b></a>
+                    <a class="colorA" href="pointdeposituser.do?usNo=${user.usNo }"><b>포인트 출금</b></a>
                 </div>
 
                 <div class="col-8">
@@ -164,7 +164,7 @@
                             src="<c:url value="/resources/img_mypage/pointhistory.png"/>"></a>
                 </div>
                 <div class="col-8">
-                    <a class="myA"
+                    <a class="colorA"
                        href="withdrawhistory.do?usNo=${userDto.usNo }&startDate=2021-01-01&endDate=2022-01-01"><b>포인트 출금
                         내역</b></a>
                 </div>
@@ -181,7 +181,7 @@
                             src="<c:url value="/resources/img_mypage/closeAccount.png"/>"></a>
                 </div>
                 <div class="col-8">
-                    <a class="myA" href="closeaccountform.do"><b>회원 탈퇴</b></a>
+                    <a class="colorA" href="closeaccountform.do"><b>회원 탈퇴</b></a>
                 </div>
 
                 <div class="col-8">

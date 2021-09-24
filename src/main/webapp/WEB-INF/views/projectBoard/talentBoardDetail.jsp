@@ -184,7 +184,8 @@
 
                 <div id="menuList">
                     <div style="border: black solid 3px; width: 269px; height: 1000px; ">
-                        자기소개 글 내용
+                        ${detail_dto.usSelfInfo}
+
                     </div>
                 </div>
             </div>
@@ -332,7 +333,7 @@
                             var container = document.getElementById('map');
                             var options = {
                             		center: new kakao.maps.LatLng(${detail_dto.prLatitude}, ${detail_dto.prLongitude}),
-                                level: 8
+                                level: 3
                             };
 
                            
