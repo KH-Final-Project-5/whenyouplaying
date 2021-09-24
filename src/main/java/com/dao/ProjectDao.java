@@ -60,5 +60,4 @@ public interface ProjectDao {
 
 	public int deleteSchedule(ScheduleDto dto);
 
-	public ProjectDto selectPrNo(ProjectDto dto);
     }

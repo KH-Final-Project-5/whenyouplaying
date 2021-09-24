@@ -160,10 +160,6 @@ public class ProjectBizImpl implements ProjectBiz{
 	}
 
 
-	@Override
-	public ProjectDto selectPrNo(ProjectDto dto) {
-		return dao.selectPrNo(dto);
-	}
 
 	
 

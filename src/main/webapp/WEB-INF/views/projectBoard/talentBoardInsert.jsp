@@ -45,6 +45,16 @@
 
 
     <script>
+        function checkNumber(event, type) {
+            if (type == 'numbers') {
+                if (event.keyCode < 48 || event.keyCode > 57) return false;
+            }
+        }
+
+        function fn_press_han(obj) {
+            obj.value = obj.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
+        }
+
         $(function () {
             var oEditors = [];
             nhn.husky.EZCreator.createInIFrame({
@@ -228,9 +238,6 @@
             });
 
 
-
-
-
         });
 
 
@@ -378,7 +385,10 @@
                             <!--가격 링크-->
                             <tr>
                                 <th class="deal-th">가격</th>
-                                <td><input type="text" name="prPrice" class="deal-input-td"></td>
+                                <td><input type="text" name="prPrice" class="deal-input-td"
+                                           onkeypress="return checkNumber(event, 'numbers');"
+                                           onkeydown="fn_press_han(this)"
+                                ></td>
                             </tr>
 
                             <!--유튜브 영상링크-->

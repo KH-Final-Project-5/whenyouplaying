@@ -17,7 +17,7 @@ let pcConfig = {
 
 let room = dealNo;
 
-let socket = io.connect("http://localhost:8080", {
+let socket = io.connect("http://124.51.17.204:8080", {
     transports: ['websocket', 'polling', 'flashsocket']
 });
 
