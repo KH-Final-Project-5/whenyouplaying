@@ -141,7 +141,7 @@
                             <div id="cashHave" class="shadow">
                                 <div id="cashHaveContentArea">
                                     <div id="cashTitle">
-                                        	보유중인 캐시
+                                        	저축된 기부금액
                                     </div>
                                     <div id="cashContent">
                                         ${user.usCash }

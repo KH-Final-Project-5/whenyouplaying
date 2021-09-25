@@ -11,14 +11,21 @@
 #sideBarImgArea {
 
     position: relative;
-    height: 270px;
+    height: 170px;
 
 }
+
 
 #sideImg {
-
-    height: 200px;
+    height: 100px;
 }
+
+#adminImg {
+    display: block;
+    margin: auto;
+    height: 100px;
+}
+
 
 #userName {
 

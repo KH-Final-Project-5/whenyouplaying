@@ -61,7 +61,7 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-   <div class="content" style="min-height: 1700px;">
+   <div class="content" style="min-height: 3000px;">
     <div class="container">
         <div class="row">
             <div class="col-3">
