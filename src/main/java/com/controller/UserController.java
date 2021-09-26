@@ -409,7 +409,7 @@ public class UserController {
 		
 		int res = biz.find_pw(dto);
 		
-		ScriptUtils.alert(response, "이메일이 전송되었습니다.");
+//		ScriptUtils.alert(response, "이메일이 전송되었습니다.");
 	}
     
 }

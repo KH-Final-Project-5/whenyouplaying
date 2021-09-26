@@ -37,7 +37,7 @@ $(function(){
 				usEmail : $("#usEmail").val()
 			},
 			success : function(result) {
-				alert(result);
+				alert("임시 비밀번호가 사용자의 이메일로 전송되었습니다.");
 			},
 		})
 	});
