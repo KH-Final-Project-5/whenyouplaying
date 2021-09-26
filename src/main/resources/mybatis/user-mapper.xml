@@ -34,10 +34,8 @@
         WHERE USNO = #{usNo}
     </update>
 
-<update id="newPassword" parameterType="userDto">
-		UPDATE W_USER
-		SET USPW = #{usPw}
-		WHERE USEMAIL=#{usEmail}
+	<update id="updatePw" >
+	UPDATE W_USER SET USPW = #{usPw} WHERE USID = #{usId}
 	</update>
 	
     <select id="findId" parameterType="userDto" resultType="string">
@@ -74,6 +72,12 @@
         INSERT INTO W_CHARGEHISTORY
         VALUES (CHARGESEQ.NEXTVAL, #{usNo}, #{chCash}, SYSDATE, #{chBank})
     </insert>
+    
+    <select id="readMember" parameterType="userDto" resultType="userDto">
+    	SELECT *
+    	FROM W_USER 
+   	 	WHERE USID = #{usId}
+    </select>
 
 
 </mapper>

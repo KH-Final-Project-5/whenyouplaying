@@ -24,7 +24,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -44,6 +43,8 @@ import com.biz.ProjectBiz;
 import com.biz.UserBiz;
 import com.commons.NaverLoginBO;
 import com.commons.ScriptUtils;
+import com.dao.UserDao;
+import com.dao.UserDaoImpl;
 import com.dto.ChargeHistoryDto;
 import com.dto.ReportDto;
 import com.dto.ReviewDto;
@@ -77,7 +78,7 @@ public class UserController {
     UserBiz biz;
     @Autowired
     ProjectBiz biz2;
-
+    
 	
     @ResponseBody
     @RequestMapping("charge.do")
@@ -126,60 +127,6 @@ public class UserController {
 
 
         return "user/main";
-    }
-
-    @ResponseBody
-    @RequestMapping("/smssend.do")
-    public int sendSms(String receiver) {
-
-        int rand = (int) (Math.random() * 899999) + 100000;
-
-        String hostname = "api.bluehouselab.com";
-        String url = "https://" + hostname + "/smscenter/v1.0/sendsms";
-
-        CredentialsProvider credsProvider = new BasicCredentialsProvider();
-        credsProvider.setCredentials(
-                new AuthScope(hostname, 443, AuthScope.ANY_REALM),
-                new UsernamePasswordCredentials("whenyouplay", "a2a643d4148311ecacae0cc47a1fcfae")
-        );
-
-        // Create AuthCache instance
-        AuthCache authCache = new BasicAuthCache();
-        authCache.put(new HttpHost(hostname, 443, "https"), new BasicScheme());
-
-        // Add AuthCache to the execution context
-        HttpClientContext context = HttpClientContext.create();
-        context.setCredentialsProvider(credsProvider);
-        context.setAuthCache(authCache);
-
-        DefaultHttpClient client = new DefaultHttpClient();
-
-        try {
-            HttpPost httpPost = new HttpPost(url);
-            httpPost.setHeader("Content-type", "application/json; charset=utf-8");
-            String json = "{\"sender\":\"" + "01055763376" + "\",\"receivers\":[\"" + receiver + "\"],\"content\":\"" +
-                    "인증번호는 [" + rand + "] 입니다." + "\"}";
-
-            StringEntity se = new StringEntity(json, "UTF-8");
-            httpPost.setEntity(se);
-
-            HttpResponse httpResponse = client.execute(httpPost, context);
-            System.out.println(httpResponse.getStatusLine().getStatusCode());
-
-            InputStream inputStream = httpResponse.getEntity().getContent();
-            if (inputStream != null) {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String line = "";
-                while ((line = bufferedReader.readLine()) != null)
-                    System.out.println(line);
-                inputStream.close();
-            }
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getLocalizedMessage());
-        } finally {
-            client.getConnectionManager().shutdown();
-        }
-        return rand;
     }
 
 
@@ -389,27 +336,6 @@ public class UserController {
 
     }
 
-	/*
-	 * //pw찾기
-	 * 
-	 * @RequestMapping("/findpw.do") public void findPw(HttpServletResponse
-	 * response, UserDto dto) {
-	 * 
-	 * logger.info("findpw.do : pw찾기");
-	 * 
-	 * String resPw = null;
-	 * 
-	 * resPw = biz.findPw(dto);
-	 * 
-	 * try { if (resPw == null) { ScriptUtils.alertAndMovePage(response,
-	 * "일치하는 pw가 없습니다. 다시 입력해주세요.", "finduser.do"); } else {
-	 * ScriptUtils.alertAndMovePage(response, "pw는 " + resPw + "입니다.",
-	 * "loginform.do"); }
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } }
-	 */
-    
- // 비밀번호 찾기
  
 
     //회원정보 수정
@@ -466,5 +392,16 @@ public class UserController {
 
         return "user/reportPageForm";
     }
-	
+    
+	@RequestMapping(value = "/find_pw.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void find_pw(UserDto dto, HttpServletResponse response) throws Exception{
+		
+		System.out.println(dto.getUsId() + " : " + dto.getUsEmail());
+		
+		int res = biz.find_pw(dto);
+		
+		ScriptUtils.alert(response, "이메일이 전송되었습니다.");
+	}
+    
 }

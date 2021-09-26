@@ -4,6 +4,8 @@ import com.dao.UserDao;
 import com.dto.ChargeHistoryDto;
 import com.dto.UserDto;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,11 +31,6 @@ public class UserBizImpl implements UserBiz{
 	}
 
 	@Override
-	public String findPw(UserDto dto) throws Exception {
-		return dao.findPw(dto);
-	}
-
-	@Override
 	public int userEdit(UserDto dto) {
 		return dao.userEdit(dto);
 	}
@@ -48,6 +45,28 @@ public class UserBizImpl implements UserBiz{
 	public void Charge(UserDto dto, ChargeHistoryDto chargeHistoryDto) {
 		dao.ChargeHistory(chargeHistoryDto);
 		dao.Charge(dto);
+	}
+	
+	@Override
+	public void updatePw(UserDto dto) throws Exception {
+		dao.updatePw(dto);
+	}
+
+	/*
+	 * @Override public UserDto readMember(String usId) {
+	 * 
+	 * return dao.readMember(usId); }
+	 */
+
+	@Override
+	public UserDto idChk2(String usId) {
+
+		return dao.idChk2(usId);
+	}
+
+	@Override
+	public int find_pw(UserDto dto) {
+		return dao.find_pw(dto);
 	}
 
 
