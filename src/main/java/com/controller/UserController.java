@@ -289,19 +289,24 @@ public class UserController {
     }
 
     @RequestMapping("/login.do")
-    public String login(HttpSession session, UserDto dto) {
+    public String login(HttpSession session, UserDto dto, HttpServletResponse response) throws IOException {
 
         UserDto userDto = null;
 
         userDto = biz.login(dto);
 
         if (userDto != null) {
-            session.setAttribute("user", userDto);
-            return "redirect:main.do";
-        } else {
-            return "redirect:loginform.do";
-        }
+            if (userDto.getUsStatus().equals("Y")) {
+                session.setAttribute("user", userDto);
+                return "redirect:main.do";
+            } else {
+                ScriptUtils.alertAndMovePage(response, "회원님의 계정은 정지되었습니다.", "main.do");
+            }
 
+        } else {
+            ScriptUtils.alertAndMovePage(response, "아이디 혹은 비밀번호가 틀렸습니다..", "loginform.do");
+        }
+        return null;
     }
 
 

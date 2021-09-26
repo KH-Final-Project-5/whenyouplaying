@@ -9,7 +9,6 @@
         FROM W_USER
         WHERE USID = #{usId}
           AND USPW = #{usPw}
-          AND USSTATUS = 'Y'
     </select>
 
     <insert id="regi" parameterType="userDto">
