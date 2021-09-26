@@ -96,20 +96,7 @@
 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
-        //카카오로그인
-        function kakaoLogin() {
 
-            $.ajax({
-                url: 'regiKakao2.do',
-                type: 'get',
-                async: false,
-                dataType: 'text',
-                success: function (res) {
-                    location.href = res;
-                }
-            });
-
-        }
 
         $(document).ready(function () {
 
@@ -174,26 +161,27 @@
 
                         <br><br>
                     </form>
-
+					
+				<div style="position:relative; left: 40px;">
                     <!-- 구글 로그인 -->
-                    <div class="g-signin2" data-width="41" data-height="40" data-onsuccess="onSignIn"></div> 
+                    <div style="display:inline;" class="g-signin2" data-width="41" data-height="40" data-onsuccess="onSignIn"></div> 
 
-
-                    <ul>
-                        <li onclick="kakaoLogin();">
-                            <a href="https://kauth.kakao.com/oauth/authorize?client_id=dbf3216f878ddd57aec90512ab8d985e&redirect_uri=http://localhost:8105/kakaologin.do&response_type=code">
-                                <span>카카오 로그인</span>
-                            </a>
-                        </li>
-                    </ul>
-
+				  <div id="socialArea">
+					<div class="shadow1" style="display:inline; width: 41px;">
+                        <a style="width:41px; display:block;" href="https://kauth.kakao.com/oauth/authorize?client_id=dbf3216f878ddd57aec90512ab8d985e&redirect_uri=http://localhost:8105/kakaologin.do&response_type=code">
+                        	<img width="41" height="40" alt="카카오로그인" src="<c:url value="/resources/img/kakaologo.png"/>">
+                        </a>
+					</div>
 
                     <!-- 네이버 로그인 창으로 이동 -->
-                    <div id="naver_id_login" class="shadow" style="width: 41px;"> 
-                        <a href="${url}">
+                    <div id="naver_id_login" class="shadow1" style="display:inline; width: 41px; margin-left: 30px;"> 
+                        <a  href="${url}" >
                             <img width="41" height="40" src="<c:url value="/resources/img/naverlogo.png"/>"/>
                         </a>
                     </div>
+                    
+                  </div>
+				</div>
 
                     <br>
 
