@@ -26,15 +26,6 @@
 
     <link rel="stylesheet" href="<c:url value="/resources/css/mypage.css"/>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        /*let talent = '${user.usTalent}';
-        $(function () {
-            if (talent == 'N') {
-                $('.sellList').hide();
-            }
-        });*/
-    </script>
-
 </head>
 <body>
 

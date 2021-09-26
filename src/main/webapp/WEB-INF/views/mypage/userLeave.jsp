@@ -58,70 +58,71 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-   <div class="content">
-    <div class="container" style="margin-top: 60px; margin-bottom:60px;">
-        <div class="row">
-            <div class="col-3">
-                <div id="sideBarImgArea">
-                    <div id="sideImg">
-                        <img id="adminImg"
-                             src="${user.usImg}"
-                             alt="사진">
+    <div class="content">
+        <div class="container" style="margin-top: 60px; margin-bottom:60px;">
+            <div class="row">
+                <div class="col-3">
+                    <div id="sideBarImgArea">
+                        <div id="sideImg">
+                            <img id="adminImg"
+                                 src="${user.usImg}"
+                                 alt="사진">
+                        </div>
+                        <div id="userName">
+                            ${user.usId}
+                        </div>
                     </div>
-                    <div id="userName">
-                        ${user.usId}
+                    <hr>
+
+                    <div id="pageName"><b>MY PAGE</b></div>
+
+                    <div id="menuList">
+                        <br>
+                        <span class="menuText"><a class="colorA" href="noticemainuser.do">공지사항</a></span><br><br>
+                        <span class="menuText"><a class="colorA" href="useredit.do">회원정보</a></span><br><br>
+                        <span class="menuText"><a class="colorA"
+                                                  href="buylist.do?usNo=${user.usNo }&finStatus=1">재능 구매내역</a></span><br><br>
+                        <span class="menuText"><a class="colorA" href="selllist.do?usNo=${user.usNo }&finStatus=거래취소">재능 판매내역</a></span><br><br>
+                        <span class="menuText"><a class="colorA"
+                                                  href="cashrecord.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">충전 내역확인</a></span><br><br>
+                        <span class="menuText"><a class="colorA"
+                                                  href="manageaccount.do?usNo=${user.usNo }">계좌 관리</a></span><br><br>
+                        <span class="menuText"><a class="colorA"
+                                                  href="pointdeposituser.do?usNo=${user.usNo }">포인트 출금</a></span><br><br>
+                        <span class="menuText"><a class="colorA"
+                                                  href="withdrawhistory.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">포인트 출금내역</a></span><br><br>
+                        <span class="menuText"><a class="colorA"
+                                                  href="closeaccountform.do"><u><b>회원 탈퇴</b></u></a></span><br><br>
                     </div>
                 </div>
-                <hr>
+                <div class="col-9" align="center">
+                    <h2>회원 탈퇴</h2>
+                    <hr>
+                    <table>
+                        <tr>
+                            <th class="userleave-th" colspan="3">회원님의 비밀번호를 입력해 주세요.</th>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        <tr>
+                            <td>&nbsp;</td>
 
-                <div id="pageName"><b>MY PAGE</b></div>
+                            <form action="closeaccount.do" method="get" onsubmit="return checkPW()">
+                                <input type="hidden" name="usNo" value="${user.usNo }">
+                        <tr>
+                            <th>Password</th>
+                            <td><input id="inputPW" type="password"></td>
+                        </tr>
+                        <td colspan="3" align="right">
+                            <input type="submit" value="탈퇴하기" class="btn btn-outline-primary btn-sm">
+                        </td>
+                        </tr>
+                        </form>
 
-                <div id="menuList">
-                    <br>
-                    <span class="menuText"><a class="colorA" href="noticemainuser.do">공지사항</a></span><br><br>
-                    <span class="menuText"><a class="colorA" href="useredit.do">회원정보</a></span><br><br>
-                    <span class="menuText"><a class="colorA"
-                                              href="buylist.do?usNo=${user.usNo }&finStatus=1">재능 구매내역</a></span><br><br>
-                    <span class="menuText"><a class="colorA" href="selllist.do?usNo=${user.usNo }&finStatus=거래취소">재능 판매내역</a></span><br><br>
-                    <span class="menuText"><a class="colorA"
-                                              href="cashrecord.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">충전 내역확인</a></span><br><br>
-                    <span class="menuText"><a class="colorA"
-                                              href="manageaccount.do?usNo=${user.usNo }">계좌 관리</a></span><br><br>
-                    <span class="menuText"><a class="colorA"
-                                              href="pointdeposituser.do?usNo=${user.usNo }">포인트 출금</a></span><br><br>
-                    <span class="menuText"><a class="colorA"
-                                              href="withdrawhistory.do?usNo=${user.usNo }&startDate=2021-01-01&endDate=2022-01-01">포인트 출금내역</a></span><br><br>
-                    <span class="menuText"><a class="colorA" href="closeaccountform.do"><u><b>회원 탈퇴</b></u></a></span><br><br>
+                    </table>
                 </div>
-            </div>
-            <div class="col-9" align="center">
-                <h2>회원 탈퇴</h2>
-                <hr>
-                <table>
-                    <tr>
-                        <th class="userleave-th" colspan="3">회원님의 비밀번호를 입력해 주세요.</th>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                    <tr>
-                        <td>&nbsp;</td>
-
-                        <form action="closeaccount.do" method="get" onsubmit="return checkPW()">
-                            <input type="hidden" name="usNo" value="${user.usNo }">
-                    <tr>
-                        <th>Password</th>
-                        <td><input id="inputPW" type="password"></td>
-                    </tr>
-                    <td colspan="3" align="right">
-                        <input type="submit" value="탈퇴하기" class="btn btn-outline-primary btn-sm">
-                    </td>
-                    </tr>
-                    </form>
-
-                </table>
             </div>
         </div>
-    </div>
     </div>
 
     <footer>

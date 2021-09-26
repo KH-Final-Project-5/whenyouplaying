@@ -32,6 +32,7 @@
 
 
     <script>
+        const pryt = '${dto.prYoutube}';
         function reportsubmit() {
             location.href = 'reportsubmit.do?prNo=${dto.prNo}&decNo=${dto.decNo}';
         }
@@ -41,6 +42,9 @@
         }
 
         $(function () {
+            if (pryt == 'b') {
+                $('.detail-content').hide();
+            }
             var status = '${dto.decStatus}';
             if (status == "삭제 완료" || status=="삭제 반려") {
                 $('.detail-button4').hide();
@@ -57,13 +61,13 @@
         <jsp:include page="/WEB-INF/views/header/header.jsp" flush="false"/>
     </header>
 
-   <div class="content" style="min-height: 1700px;">
+   <div class="content" style="min-height: 3000px;">
     <div class="container">
         <div class="row">
             <div class="col-3">
                 <div id="sideBarImgArea">
                     <div id="sideImg">
-                        <img class="userImg" src="../image/chunsik.jpg">
+                        <img class="userImg" src="${dto.usImg}">
                     </div>
                     <div id="userName" style="margin-top: 120px;">
                         ${dto.usId}
@@ -100,7 +104,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="detail-content">
-                                <img id="ai-img" src="<c:url value="/resources/img_header/logo.png"/>" alt="">
+                                <img id="ai-img" src="${dto.prImage}" alt="">
                             </div>
                         </div>
                     </div>
@@ -109,7 +113,62 @@
                         <div class="col-12">
 
                             <div class="detail-content">
-                                <iframe src="https://www.youtube.com/watch?v=a-y7WIOFLd0"></iframe>
+                                <iframe id="gangnamStyleIframe" width="350" height="300"
+                                        src="https://www.youtube.com/embed/${dto.prYoutube }"
+                                        frameborder="0"
+                                        allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+                                <script type="text/javascript">
+                                    /**
+                                     * Youtube API 로드
+                                     */
+                                    var tag = document.createElement('script');
+                                    tag.src = "https://www.youtube.com/iframe_api";
+                                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                                    /**
+                                     * onYouTubeIframeAPIReady 함수는 필수로 구현해야 한다.
+                                     * 플레이어 API에 대한 JavaScript 다운로드 완료 시 API가 이 함수 호출한다.
+                                     * 페이지 로드 시 표시할 플레이어 개체를 만들어야 한다.
+                                     */
+                                    var player;
+
+                                    function onYouTubeIframeAPIReady() {
+                                        player = new YT.Player('gangnamStyleIframe', {
+//                height: '315',            // <iframe> 태그 지정시 필요없음
+//                width: '560',             // <iframe> 태그 지정시 필요없음
+//                videoId: '9bZkp7q19f0',   // <iframe> 태그 지정시 필요없음
+//                playerVars: {             // <iframe> 태그 지정시 필요없음
+//                    controls: '2'
+//                },
+                                            events: {
+                                                'onReady': onPlayerReady,               // 플레이어 로드가 완료되고 API 호출을 받을 준비가 될 때마다 실행
+                                                'onStateChange': onPlayerStateChange    // 플레이어의 상태가 변경될 때마다 실행
+                                            }
+                                        });
+                                    }
+
+                                    function onPlayerReady(event) {
+                                        console.log('onPlayerReady 실행');
+
+                                        // 플레이어 자동실행 (주의: 모바일에서는 자동실행되지 않음)
+                                        event.target.playVideo();
+                                    }
+
+                                    var playerState;
+
+                                    function onPlayerStateChange(event) {
+                                        playerState = event.data == YT.PlayerState.ENDED ? '종료됨' :
+                                            event.data == YT.PlayerState.PLAYING ? '재생 중' :
+                                                event.data == YT.PlayerState.PAUSED ? '일시중지 됨' :
+                                                    event.data == YT.PlayerState.BUFFERING ? '버퍼링 중' :
+                                                        event.data == YT.PlayerState.CUED ? '재생준비 완료됨' :
+                                                            event.data == -1 ? '시작되지 않음' : '예외';
+
+                                        console.log('onPlayerStateChange 실행: ' + playerState);
+                                    }
+                                </script>
                             </div>
                         </div>
                     </div>

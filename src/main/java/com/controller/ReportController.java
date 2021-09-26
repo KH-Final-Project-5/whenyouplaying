@@ -107,6 +107,25 @@ public class ReportController {
 
         ReportDto reportDto = biz.ReportCheck(dto);
 
+        String youtube = reportDto.getPrYoutube();
+
+        if (youtube == null) {
+            reportDto.setPrYoutube("b");
+        } else {
+            if (youtube.contains("=")) {
+                int idx = youtube.indexOf("=");
+                String youtube2 = youtube.substring(idx + 1);
+                reportDto.setPrYoutube(youtube2);
+            } else if (youtube.contains("youtu.be")) {
+                int idx = youtube.indexOf("be/");
+                String youtube2 = youtube.substring(idx + 3);
+                System.out.println(youtube2);
+                reportDto.setPrYoutube(youtube2);
+            } else {
+                reportDto.setPrYoutube("b");
+            }
+        }
+
         model.addAttribute("dto", reportDto);
 
 

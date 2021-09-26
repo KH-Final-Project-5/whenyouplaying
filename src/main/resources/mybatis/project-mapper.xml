@@ -151,7 +151,7 @@
         SELECT ROWNUM, a.*
         FROM W_PROJECT a
         WHERE ROWNUM &lt; 5
-          AND PRIMAGE != 'a'
+          AND PRIMAGE != 'a' AND PRDELSTATUS = 'Y'
         ORDER BY PRNO DESC
 
     </select>
@@ -174,7 +174,7 @@
                  ORDER BY c.e DESC
              )
         WHERE ROWNUM <= 4
-          AND PRIMAGE != 'a'
+          AND PRIMAGE != 'a' AND PRDELSTATUS = 'Y'
         ]]>
 	</select>
 
