@@ -62,7 +62,7 @@
             var url = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?" +
                 "response_type=code&" +
                 "client_id=b16b6e96-be84-4b16-bbde-4a9ffe23c677&" +
-                "redirect_uri=http://localhost:8105/whenyouplay/bankauth.do&" +
+                "redirect_uri=http://localhost:8105/bankauth.do&" +
                 "scope=login inquiry transfer&" +
                 "state=12345678901234567890123456789012&" +
                 "auth_type=0";

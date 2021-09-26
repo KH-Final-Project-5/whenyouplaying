@@ -180,6 +180,7 @@
                         });
                     }
 
+
                     function successFunction() {
                         window.location.reload();
                         return false;

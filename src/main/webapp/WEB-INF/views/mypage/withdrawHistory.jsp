@@ -130,7 +130,6 @@
                     <hr>
                     <div id="amount">
                         <input type="text" value="총 출금액" id="bold"><br>
-                        <input type="text" value="(2021.08.20)까지 출금된 금액"><br>
                         <input type="text" value="<%=totalPrice %>원">
                     </div>
                     <div id="point">
