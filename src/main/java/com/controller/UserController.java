@@ -89,6 +89,9 @@ public class UserController {
             case "phone":
                 pay_method = "휴대폰 소액결제";
                 break;
+            case "point":
+                pay_method = "카카오 페이";
+                break;
         }
 
         ChargeHistoryDto chargeHistoryDto = new ChargeHistoryDto();
