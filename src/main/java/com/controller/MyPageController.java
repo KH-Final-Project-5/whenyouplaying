@@ -21,6 +21,7 @@ import com.commons.ScriptUtils;
 import com.dto.BankAccountDto;
 import com.dto.FinishDealDto;
 import com.dto.UserDto;
+import com.dto.WithDrawDto;
 
 @Controller
 public class MyPageController {
@@ -311,7 +312,24 @@ public class MyPageController {
 		}
 		
 	}
-
+	
+	//출금내역 테이블 등록
+	@RequestMapping("/insertwithdraw.do")
+	@ResponseBody
+	public int insertWithDraw(WithDrawDto dto) {
+		
+		BankAccountDto bank = biz.selectedBank(dto.getWiBank());
+		
+		dto.setWiBank(bank.getBaNickName());
+		
+		int res = biz.insertWithDraw(dto);
+		
+		if(res>0) {
+			return res;
+		}else {
+			return res;
+		}
+	}
 	
 	
 	

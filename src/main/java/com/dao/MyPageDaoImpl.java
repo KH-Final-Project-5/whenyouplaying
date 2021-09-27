@@ -256,6 +256,36 @@ public class MyPageDaoImpl implements MyPageDao {
 		return res;
 	}
 
+	@Override
+	public int insertWithDraw(WithDrawDto dto) {
+
+		int res = 0;
+		
+		try {
+			res = sqlSessionTemplate.insert(NAMESPACE+"insertWithDraw", dto);
+		} catch (Exception e) {
+			System.out.println("[error] : insertWithDraw 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public BankAccountDto selectedBank(String wiBank) {
+		
+		BankAccountDto res = null;
+		
+		try {
+			res = sqlSessionTemplate.selectOne(NAMESPACE+"selectedBank", wiBank);
+		} catch (Exception e) {
+			System.out.println("[error] : selectedBank 에러");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
 	
 
 	

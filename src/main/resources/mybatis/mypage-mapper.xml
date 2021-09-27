@@ -135,6 +135,16 @@
 	</update>
 	
 	
+	<insert id="insertWithDraw" parameterType="withDrawDto">
+		INSERT INTO W_WITHDRAW
+		VALUES(WITHDRAWSEQ.NEXTVAL, #{usNo}, #{wiCash}, SYSDATE, #{wiBank})
+	</insert>
+	
+	<select id="selectedBank" parameterType="String" resultType="bankAccountDto" >
+		SELECT * 
+		FROM W_BANKACCOUNT
+		WHERE BANO = #{wiBank}
+	</select>
 
 
 </mapper>

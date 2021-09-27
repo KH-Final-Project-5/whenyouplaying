@@ -98,6 +98,18 @@ public class MyPageBizImpl implements MyPageBiz {
 	public int updateCash(UserDto user) {
 		return dao.updateCash(user);
 	}
+
+	@Override
+	public int insertWithDraw(WithDrawDto dto) {
+		return dao.insertWithDraw(dto);
+	}
+
+	@Override
+	public BankAccountDto selectedBank(String wiBank) {
+		return dao.selectedBank(wiBank);
+	}
+
+
 	
 	
 	

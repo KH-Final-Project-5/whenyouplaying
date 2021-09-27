@@ -179,6 +179,33 @@
                             });
                         });
                     }
+                    
+                    function fifthAjax() {
+                    	return new Promise(function (resolve, reject) {
+                    		
+                    		console.log("5번째 ajax");
+                    		
+                    		$.ajax({
+                    			url: "insertwithdraw.do",
+                    			type: "post",
+                    			data: {
+                    				"usNo" : usNo,
+                    				"wiCash" : point,
+                    				"wiBank" : selectBank
+                    			},
+                    			success: function (result) {
+                    				if (result > 0) {
+                    					console.log("테이블 생성");
+                    				} else {
+                    					console.log("테이블 생성 실패");
+                    				}
+
+                    				resolve();
+                    			}
+                    		});
+                    	});
+                    	
+                    }
 
 
                     function successFunction() {
@@ -195,6 +222,7 @@
                         .then(secondAjax)
                         .then(thirdAjax)
                         .then(firthAjax)
+                        .then(fifthAjax)
                         .then(successFunction)
                         .catch(errorFunction);
 

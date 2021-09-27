@@ -27,6 +27,8 @@ public interface MyPageBiz {
 	public int closeUser(int usNo);
 	public BankAccountDto getAccount(int baNo);
 	public int updateCash(UserDto user);
+	public int insertWithDraw(WithDrawDto dto);
+	public BankAccountDto selectedBank(String wiBank);
 	
 	
 }
