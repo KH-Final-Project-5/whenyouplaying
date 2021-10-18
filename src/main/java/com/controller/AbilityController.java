@@ -84,6 +84,50 @@ public class AbilityController {
         }
     }
 
+    @RequestMapping("/abilityregi2.do")
+    public void abilityregi2(HttpServletResponse response, AbilityDto dto) throws Exception {
+
+
+        String id = dto.getUsId().trim().substring(3, dto.getUsId().length()).trim();
+
+        dto.setAbImg1(AbilityUpload(dto.getFile1(), id));
+        dto.setAbImg2(AbilityUpload(dto.getFile2(), id));
+        
+
+
+        int res = biz.AbilityInsert(dto);
+
+
+        if (res > 0) {
+            ScriptUtils.alertAndMovePage(response, "신청 완료했습니다.", "main.do");
+        } else {
+            ScriptUtils.alertAndMovePage(response, "입력 실패", "main.do");
+        }
+    }
+    
+    public String AbilityUpload(MultipartFile mFile, String id){
+        
+        String filename = null;
+        String refilename = null;
+        String dtoName = null;
+        
+        if(mFile.getSize() > 0){
+            String filename = mFile.getOriginalFilename();
+            String refilename = ftpClient.fileName(filename, id);
+            File file = ftpClient.convert(mFile);
+            ftpClient.upload(file, refilename, id);
+            dtoName = "http://wjwan0.dothome.co.kr/stoarge/" + id + "/" + refilename;
+        } else {
+            dtoName = "none";
+        }
+        
+        return dtoName;
+        
+    }
+
+
+    
+    
 
     @RequestMapping("/abilitymain.do")
     public String abilitymain(Model model, Criteria criteria) throws ParseException {
