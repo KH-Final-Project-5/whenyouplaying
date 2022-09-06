@@ -38,7 +38,7 @@
 
     <bean id="ftpClient" class="com.commons.FtpClient">
         <property name="serverIp" value="wjwan0.dothome.co.kr"/>
-        <property name="password" value="aqpalzm13!"/>
+        <property name="password" value=""/>
         <property name="serverPort" value="21"/>
         <property name="user" value="wjwan0"/>
     </bean>
